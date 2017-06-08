@@ -9,5 +9,5 @@ cursor = cnxn.cursor()
 cursor.execute("SELECT * FROM Patient_Information")
 row = cursor.fetchone()
 while row:
-    print str(row[0]) + " " + str(row[1])
+    print str(row[0]) + ":" + str(row[1])
     row = cursor.fetchone()
