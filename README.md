@@ -11,13 +11,13 @@ The idea of this project is using a connected system of small microcontrollers t
 ## Installation 
 Follow these steps to install the modules needed to communicate with the Azure SQL Databse. 
  
-### MAC OSX 
+#### MAC OSX 
 1. Download Python 3 directly from the website at [python.org/download.](https://www.python.org/download)
 2. Open terminal and type `sudo easy_install pip`
 3. Then, type `sudo pip install pyodbc`
 
 
-### RASPBERRY PI (RASPBIAN) [IN PROGRESS]
+#### RASPBERRY PI (RASPBIAN) [IN PROGRESS]
 1. Boot up NOOBS and install Raspbian 
 (Python 3 should come with the most current of Raspbian)
 2. Open terminal and type `sudo easy install pip`
