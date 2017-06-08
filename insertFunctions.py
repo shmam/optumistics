@@ -48,17 +48,26 @@ def insert_NFC_Bracelet(nfc_status_id):
     else:
         print("nfc_status_id cannot be null")
 
-# 
+# This funciton takes in room name as an argument and then creates a new row in the table room
 def insert_Room(room_name):
     if(isinstance(room_name,str)):
         with cursor.execute("INSERT INTO Room VALUES ('" + room_name + "')"):
-            print("Sucessful insertion into ")
+            print("Sucessful insertion into Room")
+    else:
+        print("room_name has to be a string")
 
-
+def insert_Action(action_name, flag_color, button_label, action_duration, action_status, icon):
+    if(isinstance(action_name,str) and isinstance(flag_color,str) and isinstance(button_label,str) and isinstance(action_duration, int) and isinstance(action_status, str)):
+        if(icon == None or isinstance(icon,str)):
+            with cursor.execute("INSERT INTO Action VALUES ('"+ +"',)"):
+                print("Successful insertion into Action")
 
 # Testing the function that we are writing above 
 insert_NFC_Status("on")
 insert_NFC_Status("off")
 insert_NFC_Status("on")
 
-insert_NFC_Bracelets(34)
+insert_NFC_Bracelet(34)
+
+insert_Room(4)
+insert_Room("Carolina")
