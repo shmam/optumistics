@@ -27,11 +27,15 @@ Follow these steps to install the modules needed to communicate with the Azure S
 
 ## PROGRESS
 
-:white_check_mark: : Sprint 1 (Buisness model canvas and use case) 
+✓ : Sprint 1 (Buisness model canvas and use case) 
 
-:white_check_mark: : Setup Azure hostes SQL Database [DATABASE MAP AND GUIDE HERE](https://docs.google.com/drawings/d/1bGvgUyuUlZeVZPlfvcJQgDw7W7cnx_SUfNHcNOJASa0/edit)
+✓ : Setup Azure hostes SQL Database [DATABASE MAP AND GUIDE HERE](https://docs.google.com/drawings/d/1bGvgUyuUlZeVZPlfvcJQgDw7W7cnx_SUfNHcNOJASa0/edit)
 
-:white_check_mark: : Connect macs and throw querys at the databse with python 
+✓ : Connect macs and throw querys at the databse with python 
+  
+  : Connect the raspberry pi and throw queries to the database
+
+  : Connect the NFC components to the RP3
 
 
 
