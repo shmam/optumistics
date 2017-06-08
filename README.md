@@ -17,7 +17,7 @@ Follow these steps to install the modules needed to communicate with the Azure S
 3. Then, type `sudo pip install pyodbc`
 
 
-### RASPBERRY PI (RASPBIAN) [IN PROGRESS 🏗 ]
+### RASPBERRY PI (RASPBIAN) [IN PROGRESS]
 1. Boot up NOOBS and install Raspbian 
 (Python 3 should come with the most current of Raspbian)
 2. Open terminal and type `sudo easy install pip`
@@ -27,11 +27,11 @@ Follow these steps to install the modules needed to communicate with the Azure S
 
 ## PROGRESS
 
-[✅] : Sprint 1 (Buisness model canvas and use case) 
+:white_check_mark: : Sprint 1 (Buisness model canvas and use case) 
 
-[✅] : Setup Azure hostes SQL Database [DATABASE MAP AND GUIDE HERE](https://docs.google.com/drawings/d/1bGvgUyuUlZeVZPlfvcJQgDw7W7cnx_SUfNHcNOJASa0/edit)
+:white_check_mark: : Setup Azure hostes SQL Database [DATABASE MAP AND GUIDE HERE](https://docs.google.com/drawings/d/1bGvgUyuUlZeVZPlfvcJQgDw7W7cnx_SUfNHcNOJASa0/edit)
 
-[✅] : Connect macs and throw querys at the databse with python 
+:white_check_mark: : Connect macs and throw querys at the databse with python 
 
 
 
