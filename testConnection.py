@@ -18,7 +18,7 @@ while row:
     row = cursor.fetchone()
 
 # Testing the script to put data into the database
-with cursor.execute("INSERT INTO Patient_Information VALUES (10, 'Dummy', 'Data', 'M', 0)"):
+with cursor.execute("INSERT INTO Patient_Information VALUES ('Daniel', 'Wu', 'M', 1)"):
     print("Successful insertion")
 
 cnxn.commit()
