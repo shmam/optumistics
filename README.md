@@ -11,6 +11,7 @@ Then, type 'sudo pip install pyodbc'
 
 #### OR
 
+Open terminal
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap microsoft/msodbcsql https://github.com/Microsoft/homebrew-msodbcsql-preview
 brew update
