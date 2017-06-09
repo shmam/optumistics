@@ -18,6 +18,7 @@ def insert_Appointment_Type(appointment_name, appointment_duration):
     else:
         print("ERROR: appointment name cannot be null")
 
+
 # This function takes in nfc_status_name as arguments and then inserts a new row into the table of NFC Status
 # it also runs a loop that check to see if the values for the insertion are unique, becuase this is a requirement for the NFC Status
 # NFC Status either has to be a on or off
@@ -35,9 +36,8 @@ def insert_NFC_Status(nfc_status_name):
                     print("Successful insertion into NFC_Status")
             else:
                 print("NFC_Status has to be unique")
-
-                
-
+    else:
+        print("nfc_status_name has to be a string")
 
 
 # This function takes in NFC status Id as an argument and creates a new row into the NFC Bracelts table
@@ -48,6 +48,7 @@ def insert_NFC_Bracelet(nfc_status_id):
     else:
         print("nfc_status_id cannot be null")
 
+
 # This funciton takes in room name as an argument and then creates a new row in the table room
 def insert_Room(room_name):
     if(isinstance(room_name,str)):
@@ -56,18 +57,54 @@ def insert_Room(room_name):
     else:
         print("room_name has to be a string")
 
-def insert_Action(action_name, flag_color, button_label, action_duration, action_status, icon):
+
+# This function takes in arguments and inserts a new row into the table Actions 
+# Actions 
+def insert_Actions(action_name, flag_color, button_label, action_duration, action_status, icon):
     if(isinstance(action_name,str) and isinstance(flag_color,str) and isinstance(button_label,str) and isinstance(action_duration, int) and isinstance(action_status, str)):
         if(icon == None or isinstance(icon,str)):
-            with cursor.execute("INSERT INTO Action VALUES ('"+ +"',)"):
+            with cursor.execute("INSERT INTO Actions VALUES ('"+ action_name +"', '"+ flag_color +"', '"+ button_label +"', "+ str(action_duration)+",'"+ action_status +"','"+ icon +"')"):
                 print("Successful insertion into Action")
 
+        else:
+            print("Icon has to be null or a string ")
+    else: 
+        print("Invaid Arguments types")
+
+def insert_Person_Type(person_type_name):
+    if(isinstance(person_type_name,str)):
+        with cursor.execute("SELECT * FROM Person_Type"):
+            foo = cursor.fetchall()
+            isUnique = True
+            for row in foo:
+                if person_type_name == row[1]:
+                    isUnique = False
+                    break
+            if(isUnique):
+                with cursor.execute("INSERT INTO Person_Type VALUES ('"+ person_type_name.lower() +"')"):
+                    print("Successful insertion into Person_Type")
+            else:
+                print("ERROR: person_type_name has to be unique")
+
+    else:
+        print("person_type_name needs to be a string")
+
 # Testing the function that we are writing above 
-insert_NFC_Status("on")
-insert_NFC_Status("off")
-insert_NFC_Status("on")
+#insert_NFC_Status("on")
+#insert_NFC_Status("off")
+#insert_NFC_Status("on")
 
-insert_NFC_Bracelet(34)
+#insert_NFC_Bracelet(34)
 
-insert_Room(4)
-insert_Room("Carolina")
+#insert_Room(4)
+#insert_Room("Carolina")
+
+insert_Person_Type("MA")
+insert_Person_Type("Nurse")
+
+
+n = 1
+while n < 100:
+    #insert_Actions(('Blood Draw' + str(n)), 'Green', 'Blood Draw' , 5,'In Progress','blood.png')
+
+    n=n+1
