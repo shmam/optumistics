@@ -15,9 +15,14 @@ cursor = cnxn.cursor()
 # This function takes in appointment name and appointment duration as arguments, and then inserts a new row into the appointment type table
 def insert_Appointment_Type(appointment_name, appointment_duration):
     if(appointment_name != None and isinstance(appointment_name,str)):
-        if(appointment_duration == None or isinstance(appointment_duration,int)):
+        if(isinstance(appointment_duration,int)):
             with cursor.execute("INSERT INTO Appointment_Type VALUES ('"+ appointment_name + "', "+ str(appointment_duration) + ")"):
                 print("Successful insertion")
+        elif(appointment_duration == None): 
+            with cursor.execute("INSERT INTO Appointment_Type VALUES ('"+ appointment_name + "', '')"):
+                print("Successful insertion")
+        else:
+            print("Appointment duration has to be an int or null")
     else:
         print("ERROR: appointment name cannot be null")
 
@@ -53,9 +58,9 @@ def insert_NFC_Bracelet(nfc_status_id):
 
 
 # This funciton takes in room name as an argument and then creates a new row in the table room
-def insert_Room(room_name):
-    if(isinstance(room_name,str)):
-        with cursor.execute("INSERT INTO Room VALUES ('" + room_name + "')"):
+def insert_Room(room_name, room_status):
+    if(isinstance(room_name,str) and isinstance(room_status,str)):
+        with cursor.execute("INSERT INTO Room VALUES ('" + room_name + "','"+ room_status +"')"):
             print("Sucessful insertion into Room")
     else:
         print("room_name has to be a string")
@@ -112,13 +117,13 @@ def insert_Patient_Information(patient_first_name, patient_last_name, patient_ge
     else:
         print("ERROR: Invalid argument type")
 
-def insert_Provider_Information(provider_first_name, provider_last_name, gender, username, password, person_type_id):
-    if(isinstance(provider_first_name,str) and isinstance(provider_last_name,str) and isinstance(username,str) and isinstance(password,str) and isinstance(person_type_id,int)):
+def insert_Provider_Information(provider_first_name, provider_last_name, gender, username, password, person_type_id, provider_status):
+    if(isinstance(provider_first_name,str) and isinstance(provider_last_name,str) and isinstance(username,str) and isinstance(password,str) and isinstance(person_type_id,int) and isinstance(provider_status,str)):
         if(isinstance(gender,str)):
-            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '"+ gender +"', '"+ username +"', '"+ password +"',"+ str(person_type_id) +")"):
+            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '"+ gender +"', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
                 print("Sucessful insertion into Provider_Information")
         elif(gender == None):
-            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '', '"+ username +"', '"+ password +"',"+ str(person_type_id) +")"):
+            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
                 print("Sucessful insertion into Provider_Information")
         else: 
             print("ERROR: Gender has to be null or a string")
@@ -126,12 +131,20 @@ def insert_Provider_Information(provider_first_name, provider_last_name, gender,
     else: 
         print("ERROR: invalid argument type")
 
+def insert_ActivatedNFC_Provider(person_type_id, provider_id,room_id,nfc_id):
+    if(isinstance(person_type_id,int) and isinstance(provider_id,int) and isinstance(room_id,int) and isinstance(nfc_id,int)):
+        if(room_id == None):
+            room_id = ''
+        with cursor.execute("INSERT INTO ActivatedNFC_Provider VALUES ("+ str(person_type_id)+","+ str(provider_id)+","+ str(room_id)+","+ str(nfc_id)+",)"):
+            print("Successful insertion into ActivatedNFC_Provider")
+
+
 
 
 
 # Testing the function that we are writing above 
+#def randomword(length):
+#   return ''.join(random.choice(string.lowercase) for i in range(length))
 
-def randomword(length):
-   return ''.join(random.choice(string.lowercase) for i in range(length))
-
-insert_Patient_Information("Jenny","Haynes","F",7)
+insert_Provider_Information("Dr. Grey", "Anatomy",None,"username","password",8,'active')
+#insert_ActivatedNFC_Provider(,)
