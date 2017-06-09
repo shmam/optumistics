@@ -51,8 +51,13 @@ def insert_NFC_Status(nfc_status_name):
 # This function takes in NFC status Id as an argument and creates a new row into the NFC Bracelts table
 def insert_NFC_Bracelet(nfc_status_id):
     if(isinstance(nfc_status_id, int)):
-        with cursor.execute("INSERT INTO NFC_Bracelet VALUES ("+ str(nfc_status_id) + ")"):
-            print("Successful insertion into NFC Braclet")
+        nfc_status_id_row = cursor.execute("SELECT * FROM NFC_Status WHERE nfc_status_id = " + str(nfc_status_id))
+        if(nfc_status_id_row.fetchall() > 0):
+            with cursor.execute("INSERT INTO NFC_Bracelet VALUES ("+ str(nfc_status_id) + ")"):
+                print("Successful insertion into NFC Braclet")
+
+        else:
+            print("Error: Foreign Key does not exist for this entry in table NFC_Status")
     else:
         print("nfc_status_id cannot be null")
 
@@ -105,46 +110,54 @@ def insert_Person_Type(person_type_name):
 
 def insert_Patient_Information(patient_first_name, patient_last_name, patient_gender,person_type_id):
     if(isinstance(patient_first_name,str) and isinstance(patient_last_name,str) and isinstance(person_type_id,int)):
-        if(isinstance(patient_gender,str)):
-            with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','"+ patient_gender +"',"+ str(person_type_id)+")"):
-                print("Successful insertion into Patient_Information")
+        person_type_id_row = cursor.execute("SELECT * FROM Person_Type WHERE person_type_id = " + person_type_id)
+        if(person_type_id_row.fetchall() > 0):
+            if(isinstance(patient_gender,str)):
+                with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','"+ patient_gender +"',"+ str(person_type_id)+")"):
+                    print("Successful insertion into Patient_Information")
 
-        elif(patient_gender == None):
-            with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','',"+ str(person_type_id)+")"):
-                print("Successful insertion into Patient_Information")
-        else:
-            print("ERROR: patient_gender has to be a string or null")
+            elif(patient_gender == None):
+                with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','',"+ str(person_type_id)+")"):
+                    print("Successful insertion into Patient_Information")
+            else:
+                print("ERROR: patient_gender has to be a string or null")
+        else: 
+            print("ERROR: Foreign Key for person_type_id does not exist")
     else:
         print("ERROR: Invalid argument type")
 
+
 def insert_Provider_Information(provider_first_name, provider_last_name, gender, username, password, person_type_id, provider_status):
     if(isinstance(provider_first_name,str) and isinstance(provider_last_name,str) and isinstance(username,str) and isinstance(password,str) and isinstance(person_type_id,int) and isinstance(provider_status,str)):
-        if(isinstance(gender,str)):
-            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '"+ gender +"', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
-                print("Sucessful insertion into Provider_Information")
-        elif(gender == None):
-            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
-                print("Sucessful insertion into Provider_Information")
+        person_type_id_row = cursor.execute("SELECT * FROM Person_Type WHERE person_type_id = " + person_type_id)
+        if(person_type_id_row.fetchall() > 0):
+            if(isinstance(gender,str)):
+                with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '"+ gender +"', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
+                    print("Sucessful insertion into Provider_Information")
+            elif(gender == None):
+                with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
+                    print("Sucessful insertion into Provider_Information")
+            else: 
+                print("ERROR: Gender has to be null or a string")
         else: 
-            print("ERROR: Gender has to be null or a string")
-
+            print("ERROR: Foreign Key for person_type_id does not match the values in Person_Type")
     else: 
         print("ERROR: invalid argument type")
 
-def insert_ActivatedNFC_Provider(person_type_id, provider_id,room_id,nfc_id):
-    if(isinstance(person_type_id,int) and isinstance(provider_id,int) and isinstance(room_id,int) and isinstance(nfc_id,int)):
+
+def insert_ActivatedNFC_Provider( provider_id,room_id,nfc_id):
+    if(isinstance(provider_id,int) and isinstance(nfc_id,int)):
         if(room_id == None):
-            room_id = ''
-        with cursor.execute("INSERT INTO ActivatedNFC_Provider VALUES ("+ str(person_type_id)+","+ str(provider_id)+","+ str(room_id)+","+ str(nfc_id)+",)"):
-            print("Successful insertion into ActivatedNFC_Provider")
+            room_id = 0
+            room_id_row = 1
+        else: 
+            room_id_row = cursor.execute("SELECT * FROM Room WHERE room_id =" + room_id)
+        provider_id_row = cursor.execute("SELECT * FROM Provider_Information WHERE provider_id =" + provider_id)
+        nfc_id_row = cursor.execute("SELECT * FROM NFC_Bracelet WHERE nfc_id =" + nfc_id)
 
+        if(room_id_row.fetchall() > 0 and provider_id_row.fetchall() > 0 and nfc_id_row.fetchall() > 0):   
+            with cursor.execute("INSERT INTO ActivatedNFC_Provider VALUES ('"+ str(provider_id) +"','"+ str(room_id) +"','"+ str(nfc_id) +"')"):
+                print("Successful insertion into ActivatedNFC_Provider")
+    else:
+        print("ERROR: Invalid Argument Types")
 
-
-
-
-# Testing the function that we are writing above 
-#def randomword(length):
-#   return ''.join(random.choice(string.lowercase) for i in range(length))
-
-insert_Provider_Information("Dr. Grey", "Anatomy",None,"username","password",8,'active')
-#insert_ActivatedNFC_Provider(,)
