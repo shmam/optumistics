@@ -1,6 +1,9 @@
 import pyodbc
 import numpy
+import random, string
 
+
+# This establishes a connection to the database, and creates an object for sending queries 
 server = 'DBSED3646.ms.ds.uhc.com'
 database = 'SQUAD_DB'
 driver= '{ODBC Driver 13 for SQL Server}'
@@ -62,15 +65,20 @@ def insert_Room(room_name):
 # Actions 
 def insert_Actions(action_name, flag_color, button_label, action_duration, action_status, icon):
     if(isinstance(action_name,str) and isinstance(flag_color,str) and isinstance(button_label,str) and isinstance(action_duration, int) and isinstance(action_status, str)):
-        if(icon == None or isinstance(icon,str)):
+        if(isinstance(icon,str)):
             with cursor.execute("INSERT INTO Actions VALUES ('"+ action_name +"', '"+ flag_color +"', '"+ button_label +"', "+ str(action_duration)+",'"+ action_status +"','"+ icon +"')"):
                 print("Successful insertion into Action")
 
+        elif(icon == None):
+            with cursor.execute("INSERT INTO Actions VALUES ('"+ action_name +"', '"+ flag_color +"', '"+ button_label +"', "+ str(action_duration)+",'"+ action_status +"','')"):
+                print("Successful insertion into Action")
         else:
             print("Icon has to be null or a string ")
     else: 
         print("Invaid Arguments types")
 
+
+# This function takes in arguments and inserts a new row into the table Person_Type 
 def insert_Person_Type(person_type_name):
     if(isinstance(person_type_name,str)):
         with cursor.execute("SELECT * FROM Person_Type"):
@@ -89,22 +97,41 @@ def insert_Person_Type(person_type_name):
     else:
         print("person_type_name needs to be a string")
 
+
+def insert_Patient_Information(patient_first_name, patient_last_name, patient_gender,person_type_id):
+    if(isinstance(patient_first_name,str) and isinstance(patient_last_name,str) and isinstance(person_type_id,int)):
+        if(isinstance(patient_gender,str)):
+            with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','"+ patient_gender +"',"+ str(person_type_id)+")"):
+                print("Successful insertion into Patient_Information")
+
+        elif(patient_gender == None):
+            with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','',"+ str(person_type_id)+")"):
+                print("Successful insertion into Patient_Information")
+        else:
+            print("ERROR: patient_gender has to be a string or null")
+    else:
+        print("ERROR: Invalid argument type")
+
+def insert_Provider_Information(provider_first_name, provider_last_name, gender, username, password, person_type_id):
+    if(isinstance(provider_first_name,str) and isinstance(provider_last_name,str) and isinstance(username,str) and isinstance(password,str) and isinstance(person_type_id,int)):
+        if(isinstance(gender,str)):
+            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '"+ gender +"', '"+ username +"', '"+ password +"',"+ str(person_type_id) +")"):
+                print("Sucessful insertion into Provider_Information")
+        elif(gender == None):
+            with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '', '"+ username +"', '"+ password +"',"+ str(person_type_id) +")"):
+                print("Sucessful insertion into Provider_Information")
+        else: 
+            print("ERROR: Gender has to be null or a string")
+
+    else: 
+        print("ERROR: invalid argument type")
+
+
+
+
 # Testing the function that we are writing above 
-#insert_NFC_Status("on")
-#insert_NFC_Status("off")
-#insert_NFC_Status("on")
 
-#insert_NFC_Bracelet(34)
+def randomword(length):
+   return ''.join(random.choice(string.lowercase) for i in range(length))
 
-#insert_Room(4)
-#insert_Room("Carolina")
-
-insert_Person_Type("MA")
-insert_Person_Type("Nurse")
-
-
-n = 1
-while n < 100:
-    #insert_Actions(('Blood Draw' + str(n)), 'Green', 'Blood Draw' , 5,'In Progress','blood.png')
-
-    n=n+1
+insert_Patient_Information("Jenny","Haynes","F",7)
