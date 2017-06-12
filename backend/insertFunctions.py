@@ -110,7 +110,7 @@ def insert_Person_Type(person_type_name):
 
 def insert_Patient_Information(patient_first_name, patient_last_name, patient_gender,person_type_id):
     if(isinstance(patient_first_name,str) and isinstance(patient_last_name,str) and isinstance(person_type_id,int)):
-        person_type_id_row = cursor.execute("SELECT * FROM Person_Type WHERE person_type_id = " + person_type_id)
+        person_type_id_row = cursor.execute("SELECT * FROM Person_Type WHERE person_type_id = " + str(person_type_id))
         if(person_type_id_row.fetchall() > 0):
             if(isinstance(patient_gender,str)):
                 with cursor.execute("INSERT INTO Patient_Information VALUES ('"+ patient_first_name+"','"+ patient_last_name+"','"+ patient_gender +"',"+ str(person_type_id)+")"):
@@ -129,7 +129,7 @@ def insert_Patient_Information(patient_first_name, patient_last_name, patient_ge
 
 def insert_Provider_Information(provider_first_name, provider_last_name, gender, username, password, person_type_id, provider_status):
     if(isinstance(provider_first_name,str) and isinstance(provider_last_name,str) and isinstance(username,str) and isinstance(password,str) and isinstance(person_type_id,int) and isinstance(provider_status,str)):
-        person_type_id_row = cursor.execute("SELECT * FROM Person_Type WHERE person_type_id = " + person_type_id)
+        person_type_id_row = cursor.execute("SELECT * FROM Person_Type WHERE person_type_id = " + str(person_type_id))
         if(person_type_id_row.fetchall() > 0):
             if(isinstance(gender,str)):
                 with cursor.execute("INSERT INTO Provider_Information VALUES ('"+ provider_first_name +"','"+ provider_last_name +"', '"+ gender +"', '"+ username +"', '"+ password +"',"+ str(person_type_id) +", '"+ provider_status+"')"):
@@ -179,8 +179,8 @@ def insert_Survey_Activity(patient_id, rating, rating_date, question_id):
             # make sure the foreign key for patient_id and question_id exists
             row_patient_id= cursor.execute("SELECT * FROM Patient_Information WHERE patient_id="+str(patient_id))
             row_question_id= cursor.execute("SELECT * FROM Question WHERE question_id="+str(question_id))
-            if len(row_patient_id.fetchall())>0:   
-                if len(row_question_id.fecthall)>0:
+            if row_patient_id != None:   
+                if row_question_id != None:
                     
                     with cursor.execute("INSERT INTO Survey_Activity (patient_id, rating, rating_date, question_id) VALUES (" + str(patient_id) +","+str(rating)+",'"+rating_date  +"',"+ str(question_id)+")"):
                        
@@ -223,13 +223,13 @@ def insert_Action_Performed(action_id, action_date, patient_id, room_id, time_ta
                 final_patient_id="''"
                 patient_id_count=0
             else:
-                row_patient_id= cursor.execute("SELECT * FROM Patient_Information WHERE room_id="+str(patient_id))
+                row_patient_id= cursor.execute("SELECT * FROM Patient_Information WHERE patient_id="+str(patient_id))
                 patient_id_count= len(row_patient_id.fetchall())
             if provider_id==None:
                 final_provider_id="''"
                 provider_id_count=0
             else:
-                row_provider_id= cursor.execute("SELECT * FROM Patient_Information WHERE room_id="+str(provider_id))
+                row_provider_id= cursor.execute("SELECT * FROM Provider_Information WHERE provider_id="+str(provider_id))
                 provider_id_count= len(row_provider_id.fetchall())
             if provider_id_count>0 and patient_id_count>0 and room_id_count>0:
         
