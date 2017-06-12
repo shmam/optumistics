@@ -26,3 +26,12 @@ def select_times_for_action_date(action_id,date1, date2):
         return cursor.execute("SELECT time_taken FROM dbo.Action_Performed WHERE action_id = "+ action_id +" AND action_date BETWEEN " + date1 + " AND " + date2 )
     else: 
         print("action_id needs to be an int and not null")
+
+
+def if_appointment_id_exists(appointment_id){
+    appointment_id_row = cursor.execute("SELECT * FROM Appointment_Type WHERE appointment_id =" + appointment_id)
+    if(appointment_id_row.fetchall() > 0):
+        return true
+    else:
+        return false
+}
