@@ -198,7 +198,7 @@ def insert_Survey_Activity(patient_id, rating, rating_date, question_id):
 
 
 #insert into action_performed table
-def insert_Action_Performed(action_id, action_date, room_id, patient_id, time_taken, provider_id):
+def insert_Action_Performed(action_id, action_date, patient_id, room_id, time_taken, provider_id):
        #date needs to be in format of YYYY-MM-DD
     
     #check if the values are of the correct type. For nullable values, check if they are either null or correct value
