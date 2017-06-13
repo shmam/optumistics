@@ -75,6 +75,7 @@ function select_AVG_Time_AD_dates(date1,date2,action_id){
             })
         })
     }
+    else console.log("ERROR: dates have to be a string")
 }
 
 function select_status_id(status_name){
@@ -100,6 +101,31 @@ function select_person_type_id(person_type_name){
             })
         })
     }
+    else console.log("ERROR: person_type_name has to be a string")
+}
+
+function select_patient_id(patient_first_name){
+    if(typeof patient_first_name === "string"){
+        db.open(cn,function(err){
+            if(err) return console.log(err)
+            else db.query("SELECT patient_id FROM Patient_Information WHERE patient_first_name = '"+ patient_first_name +"'",function(err,data){
+                if(err) return console/log(err)
+                else return data
+            })
+        })
+    }
+    else console.log("ERROR: patient_first_name has to be a string")
+}
+
+function select_question_id(question){
+    if(typeof question === "string"){
+        db.open(cn,function(err){
+            if(err) return console.log(err)
+            else db.query("",function(err,data){
+                
+            })
+        })
+    }
 }
 
 module.exports = {
@@ -108,5 +134,6 @@ module.exports = {
     select_Avg_Time_AD_action_name,
     select_AVG_Time_AD_dates, 
     select_status_id,
-    select_person_type_id
+    select_person_type_id,
+    select_patient_id
 }
