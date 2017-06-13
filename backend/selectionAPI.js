@@ -77,9 +77,23 @@ function select_AVG_Time_AD_dates(date1,date2,action_id){
     }
 }
 
+function select_status_id(status_name){
+    if(typeof status_name === 'string'){
+        db.open(cn,function(err){
+            if(err) return console.log(err);
+            db.query("SELECT status_id FROM Status WHERE status_name = '" + status_name +"'",function(err,data){
+                if(err) return console.log(err);
+                else return data
+            })
+        });
+    }
+    else console.log("Error: status_name has to be string")
+}
+
 module.exports = {
     select_Avg_Time_AD, 
     select_Avg_Time_AD_action_id,
     select_Avg_Time_AD_action_name,
-    select_AVG_Time_AD_dates
+    select_AVG_Time_AD_dates, 
+    select_status_id
 }
