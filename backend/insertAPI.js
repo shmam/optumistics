@@ -360,12 +360,3 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, s
 		console.log("Unsuccessful insertion into Actions table. One or more of these non-nullable values are null")
 }
 
-
-
-
-<<<<<<< HEAD:backend/insertFunctions.js
-insert_Question("Are you feeling it now mr Krabs")
-=======
-
-
->>>>>>> d52cd369e7e906b0eaac544d5ff33fd803874752:backend/insertAPI.js
