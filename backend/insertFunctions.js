@@ -1,10 +1,7 @@
-var server = 'DBSED3646.ms.ds.uhc.com'
-var driver = '{ODBC Driver 13 for SQL Server}'
-var database = 'SQUAD_DB'
+var config = require('./config.js')
 
-var db = require('odbc')(), cn = 'DRIVER=' + driver + ';PORT=1433;SERVER='
-		+ server + ';PORT=1443;DATABASE=' + database
-		+ ';Trusted_Connection=yes';
+var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
+    + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
 
 //TESTED AND WORKS 
@@ -366,4 +363,4 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, a
 
 
 
-
+insert_Question("Are you feeling it now mr Krabs")
