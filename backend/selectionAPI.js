@@ -2,11 +2,10 @@ var config = require('./config.js')
 
 var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
     + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
-    
+
 // Date convention
 // var today = new Date();
 // today.toISOString().substring(0, 10);
-
 
 //NOT TESTED YET 
 //Select average time for all doctors for an individual task given an action name
@@ -76,4 +75,11 @@ function select_AVG_Time_AD_dates(date1,date2,action_id){
             })
         })
     }
+}
+
+module.exports = {
+    select_Avg_Time_AD, 
+    select_Avg_Time_AD_action_id,
+    select_Avg_Time_AD_action_name,
+    select_AVG_Time_AD_dates
 }

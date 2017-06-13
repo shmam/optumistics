@@ -360,3 +360,19 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, s
 		console.log("Unsuccessful insertion into Actions table. One or more of these non-nullable values are null")
 }
 
+module.exports = {
+	insert_Appointment_Type,
+	insert_Question,
+	insert_Survey_Activity,
+	insert_Action_Performed,
+	insert_ActivatedNFC_Patient,
+	insert_ActivatedNFC_Provider,
+	insert_person_type,
+	insert_Status,
+	insert_Room,
+	insert_NFC_Bracelet,
+	insert_Patient_Information,
+	insert_Provider_Information,
+	insert_Actions
+}
+
