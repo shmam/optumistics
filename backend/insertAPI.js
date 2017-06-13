@@ -201,27 +201,27 @@ function insert_person_type(person_type_name){
 }
 
 //TESTED AND PASSED
-function insert_NFC_Status(nfc_status_name){
-	if(nfc_status_name!= null){
-		if(typeof nfc_status_name=="string"){
+function insert_Status(status_name){
+	if(status_name!= null){
+		if(typeof status_name=="string"){
 			db.open(cn, function(err) {
 				if (err)
 					return console.log(err);
 				else
-					db.query("SELECT * FROM NFC_Status WHERE nfc_status_name='"+nfc_status_name+"'", function(err, data) {
+					db.query("SELECT * FROM Status WHERE status_name='"+status_name+"'", function(err, data) {
 						
 						if (err)
 							console.log(err);
 						else
 							if(data.length>0){
-								console.log("Unsuccessful insertion into NFC Status table. The NFC Status name must be unique.")
+								console.log("Unsuccessful insertion into Status table. The Status name must be unique.")
 							}else
-								db.query("INSERT INTO NFC_Status VALUES('"+nfc_status_name+"')", function(err, data) {
+								db.query("INSERT INTO Status VALUES('"+status_name+"')", function(err, data) {
 									
 									if (err)
 										console.log(err);
 									else
-										console.log("Successful insertion into NFC Status table")
+										console.log("Successful insertion into Status table")
 								})
 					})
 			});
@@ -232,15 +232,15 @@ function insert_NFC_Status(nfc_status_name){
 }
 
 //TESTED AND PASSED
-function insert_Room(room_name, room_status){
-	if(room_name!= null && room_status!= null){
-		if(typeof room_name =="string" && typeof room_status =="string"){
+function insert_Room(room_name, status_id){
+	if(room_name!= null && status_id!= null){
+		if(typeof room_name =="string" && typeof status_id =="number"){
 			db.open(cn, function(err) {
 				if (err)
 					return console.log(err);
 				else
 
-					db.query("INSERT INTO Room (room_name, room_status) VALUES ('"+ room_name+"','"+ room_status+"')", function(err, data) {
+					db.query("INSERT INTO Room (room_name, status_id) VALUES ('"+ room_name+"',"+ status_id.toString()+")", function(err, data) {
 						
 						if (err)
 							console.log(err);
@@ -256,15 +256,15 @@ function insert_Room(room_name, room_status){
 }
 
 //TESTED AND PASSED
-function insert_NFC_Bracelet(nfc_status_id){
-	if(nfc_status_id!=null){
-		if(typeof nfc_status_id=="number"){
+function insert_NFC_Bracelet(status_id){
+	if(status_id!=null){
+		if(typeof status_id=="number"){
 			db.open(cn, function(err) {
 				if (err)
 					return console.log(err);
 				else
 
-					db.query("INSERT INTO NFC_Bracelet (nfc_status_id) VALUES ("+ nfc_status_id+")", function(err, data) {
+					db.query("INSERT INTO NFC_Bracelet (status_id) VALUES ("+ status_id.toString()+")", function(err, data) {
 						
 						if (err)
 							console.log(err);
@@ -274,9 +274,9 @@ function insert_NFC_Bracelet(nfc_status_id){
 
 			});
 		}else
-			console.log("Unsuccessful insertion into NFC Bracelet table. NFC Status id entered is not a number")
+			console.log("Unsuccessful insertion into NFC Bracelet table. Status id entered is not a number")
 	}else
-		console.log("Unsuccessful insertion into NFC Bracelet table. NFC Status name null")
+		console.log("Unsuccessful insertion into NFC Bracelet table. Status id entered is null")
 }
 
 //TESTED AND PASSED
@@ -308,9 +308,9 @@ function insert_Patient_Information(patient_first_name, patient_last_name, patie
 }
 
 //TESTED AND PASSED
-function insert_Provider_Information(provider_first_name, provider_last_name, provider_gender,username,password,person_type_id, provider_status){
-	if(provider_first_name!= null && provider_last_name!= null && person_type_id != null && username!= null && password != null && provider_status!= null){
-		if( typeof provider_first_name=="string"&& typeof provider_last_name =="string" && (provider_gender==null || typeof provider_gender =="string") && typeof person_type_id=="number" && typeof username=="string" && typeof password=="string" && typeof provider_status=="string"){
+function insert_Provider_Information(provider_first_name, provider_last_name, provider_gender,username,password,person_type_id, status_id){
+	if(provider_first_name!= null && provider_last_name!= null && person_type_id != null && username!= null && password != null && status_id!= null){
+		if( typeof provider_first_name=="string"&& typeof provider_last_name =="string" && (provider_gender==null || typeof provider_gender =="string") && typeof person_type_id=="number" && typeof username=="string" && typeof password=="string" && typeof status_id=="number"){
 			db.open(cn, function(err) {
 				if (err)
 					return console.log(err);
@@ -319,7 +319,7 @@ function insert_Provider_Information(provider_first_name, provider_last_name, pr
 					if(provider_gender !=null) 
 						final_provider_gender= "'"+provider_gender +"'"
 
-					db.query("INSERT INTO Provider_Information (first_name, last_name, gender,username,password,person_type_id,provider_status) VALUES ('"+ provider_first_name+"','"+ provider_last_name+"',"+final_provider_gender+",'"+ username+"','"+ password+"',"+person_type_id.toString()+",'"+provider_status+"')", function(err, data) {
+					db.query("INSERT INTO Provider_Information (first_name, last_name, gender,username,password,person_type_id,status_id) VALUES ('"+ provider_first_name+"','"+ provider_last_name+"',"+final_provider_gender+",'"+ username+"','"+ password+"',"+person_type_id.toString()+","+status_id.toString()+")", function(err, data) {
 						
 						if (err)
 							console.log(err);
@@ -336,9 +336,9 @@ function insert_Provider_Information(provider_first_name, provider_last_name, pr
 }
 
 //TESTED AND PASSED
-function insert_Actions(action_name, flag_color,button_label, action_duration, action_status, icon){
-	if(action_name!= null &&  flag_color != null && button_label!= null &&  action_duration!= null &&  action_status!= null ){
-		if( typeof action_name =="string" && typeof flag_color =="string" && typeof button_label =="string" &&  typeof action_duration =="number" &&  typeof action_status =="string" && (typeof icon =="string" || icon==null)){
+function insert_Actions(action_name, flag_color,button_label, action_duration, status_id, icon){
+	if(action_name!= null &&  flag_color != null && button_label!= null &&  action_duration!= null &&  status_id!= null ){
+		if( typeof action_name =="string" && typeof flag_color =="string" && typeof button_label =="string" &&  typeof action_duration =="number" &&  typeof status_id =="number" && (typeof icon =="string" || icon==null)){
 			db.open(cn, function(err) {
 				if (err)
 					return console.log(err);
@@ -347,7 +347,7 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, a
 					if(icon !=null) 
 						final_icon= "'"+icon +"'"
 
-					db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, action_status, icon) VALUES ('"+ action_name+"','"+ flag_color+"','"+button_label+"',"+ action_duration+",'"+ action_status+"',"+final_icon+")", function(err, data) {
+					db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, status_id, icon) VALUES ('"+ action_name+"','"+ flag_color+"','"+button_label+"',"+ action_duration+","+ status_id.toString()+","+final_icon+")", function(err, data) {
 						
 						if (err)
 							console.log(err);
@@ -362,6 +362,7 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, a
 	}else
 		console.log("Unsuccessful insertion into Actions table. One or more of these non-nullable values are null")
 }
+
 
 
 
