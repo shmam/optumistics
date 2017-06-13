@@ -2,6 +2,9 @@
   <head>
     <style>
     @import "http://fonts.googleapis.com/css?family=Raleway";
+    /*
+    The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+    */
     #abc {
     width:100%;
     height:100%;
@@ -13,7 +16,9 @@
     background-color:#a8a8a8;
     overflow:auto
     }
-
+    /*
+    The following is the style for the popout screen.
+    */
     div#popupContact {
     position:absolute;
     left:50%;
@@ -21,10 +26,16 @@
     margin-left:-202px;
     font-family:'Raleway',sans-serif
     }
+    /*
+    The following is the styling for the minutes, seconds, and miliseconds part of the popup screen
+    */
     #timeStamp{
       text-align: center;
       color: #ffffff
     }
+    /*
+      The following the style for the start button.
+    */
     #button-start {
     text-decoration:none;
     width:50%;
@@ -50,6 +61,9 @@
 
 
     }
+    /*
+      The following the style for the stop button.
+    */
     #button-stop {
 
     text-decoration:none;
@@ -65,7 +79,9 @@
     cursor:pointer;
     border-radius:5px
     }
-
+    /*
+      The following the style for the stop button.
+    */
     #button-reset{
     text-decoration:none;
     width:50%;
@@ -80,6 +96,9 @@
     cursor:pointer;
     border-radius:5px
     }
+    /*
+      The following the style for the button that comes out.
+    */
     #newWindow{
       width: 800px;
       height: 600px;
@@ -89,6 +108,9 @@
       border-radius: 5%;
       border:4px solid #fff;
     }
+    /*
+      The following closes the popout screen.
+    */
     #button-close{
       background-color: #e74c3c;
       color: #ffffff;
@@ -107,7 +129,9 @@
     #container{
         margin-right: 20px;
     }
-
+    /*
+      The following contentPages 1-6 are the background pictures for each div.
+      */
     #contentPage{
       background-image: url("step1.jpg");
       z-index: -2;
@@ -132,7 +156,9 @@
       background-image: url("step6.jpg");
       z-index: -2;
     }
-
+    /*
+    The following layer styles (layer 1-6) and (layer1-6:hover) are the color overlay for the divs. The hover tags include the transition hover of the div.
+    */
     #layer1{
     z-index: -1;
     background: rgba(231, 76, 60, 0.5);
@@ -246,6 +272,7 @@
 
     }
     </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -282,13 +309,14 @@
     <div id="popupContact">
 
     <!-- Contact Us Form -->
+    <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
     <div id = "newWindow" class = "animated zoomIn">
       <div id = "wrapper">
         <button id = "button-close" onclick ="div_hide()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
         <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
 
         <img src="graphic.jpg" id = "graphic" alt="graphic" style="width:250px;height:250px;border-radius:50%;margin-top:2%">
-
+        <!--Time stamp is the minutes, seconds, miliseconds-->
         <p id = "timeStamp" style>
           <span id="mins" style = "font-size: 48px;color: #ffffff;">00</span>:
           <span id="seconds" style = "font-size: 48px;color: #ffffff">00</span>:
@@ -296,6 +324,7 @@
         </p>
       </div>
     <hr>
+      <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
       <div id = "groupButton">
     <a href="javascript:%20check_empty()" id="button-start">START</a><br>
     <a href="javascript:%20check_empty()" id="button-stop">STOP</a><br>
@@ -303,14 +332,12 @@
     </div>
      </div>
 
-
-    </form>
     </div>
     <!-- Popup Div Ends Here -->
     </div>
     <!-- Display Popup Button -->
     <!-- Navigation -->
-
+    <!--The following content pages are the different div and secotions that you can click. By clicking it will bring up the popup - timer window-->
     <div a href = " " onclick = "div_show()" id = "contentPage" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
           <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>physical timer</b></h1>
             <div id = "layer1" style = "z-index: -1;">
@@ -353,7 +380,7 @@
 
         </div>
     </div>
-
+  <!-- THIS IS THE END OF THE DIV BUTTONS FOR THE DASHBOARD-->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -399,15 +426,17 @@ var buttonStop = document.getElementById('button-stop');
 var buttonReset = document.getElementById('button-reset');
 var Interval ;
 
+//This function clears the interval for the minutes and starts the timer.
 buttonStart.onclick = function() {
 
    clearInterval(Interval);
    Interval = setInterval(startTimer, 10);
 }
-
-  buttonStop.onclick = function() {
+//This stops the interval.
+buttonStop.onclick = function() {
      clearInterval(Interval);
 }
+//This function resets the timer.
 buttonReset.onclick = function() {
    clearInterval(Interval);
   tens = "00";
@@ -417,6 +446,7 @@ buttonReset.onclick = function() {
   appendSeconds.innerHTML = seconds;
   appendMinute.innerHTML = minute;
 }
+//THE FOLLOWING FUNCTION IS THE TIMER ALGORITHM TO MAKE IT COUNT UP.
 function startTimer () {
   tens++;
 
@@ -450,14 +480,8 @@ function startTimer () {
 
 }
 }
-function check_empty() {
-if (document.getElementById('name').value == "" || document.getElementById('email').value == "" || document.getElementById('msg').value == "") {
-alert("Fill All Fields !");
-} else {
-document.getElementById('form').submit();
-alert("Form Submitted Successfully...");
-}
-}
+//THIS IS THE END OF THE startTIMER METHOD.
+
 //Function To Display Popup
 function div_show() {
 document.getElementById('abc').style.display = "block";
