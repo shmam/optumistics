@@ -4,7 +4,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'></script>
   <style>
   @import "http://fonts.googleapis.com/css?family=Raleway";
   #abc {
@@ -129,7 +129,7 @@
     <button style = "float: right; border-radius: 50%;border:1px solid #000;"type="button" class="btn btn-danger btn-xs" onclick="w3_close()">X</button><br/>
 
     <a href="newDash.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">home<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
-    <a href="settings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
+    <a href="newSettings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
 
     <a href="statistics.HTML" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
   </div>
@@ -150,29 +150,40 @@
 
         <div class="dropdown">
 
-
+            <p style = "text-align: center;font-size: 14px;"><u>comphrensive data</u></p>
           <canvas style = "margin-left: 24%;" id="myChart"></canvas></br>
           <p style = "margin-left: 35%; margin-top: 2%; font-size: 16px;">please select a data set you would like to view:</p>
           <select style = "margin-left: 40%;" id="chartType">
             <option value="line">average blood draw time per month</option>
             <option value="line2">average physical time per month</option>
             <option value = "line3">average appointment time per month</option>
+          </select>
           </div>
 
-          <div class="dropdown2">
+        </div><br/>
+          <hr style = "margin:5px 5px; margin-left: 20%; margin-right: 20%;border:0;border-top:1px solid #000;"/></br>
+        <div class ="dropdown2">
 
-
-            <canvas style = id="myChart2"></canvas></br>
-            <select id="chartType2">
-              <option value="pie">average blood draw time per month</option>
-              <option value="pie2">average physical time per month</option>
-              <option value = "pie3">average appointment time per month</option>
-            </div>
+          <p style = "text-align: center;font-size: 14px;"><u>real-time data</u></p>
+          <canvas style = "margin-left: 32%;" id="myPieChart"></canvas></br>
+          <p style = "margin-left: 40%; margin-top: 2%; font-size: 16px;">please select a data set you would like to view:</p>
+          <select style = "margin-left: 43%;" id="chartPieType">
+            <option value="pie">time distribution spent on each operation</option>
+            <option value="pie2">time distribution for doctor A</option>
+            <option value = "pie3">time distribution for doctor B</option>
+          </select>
+        </div><br/>
+        <hr style = "margin:5px 5px; margin-left: 20%; margin-right: 20%;border:0;border-top:1px solid #000;"/></br>
+        <div class = "overview">
+            <p style = "text-align: center;font-size: 14px;"><u>overview data</u></p>
+            <p style = "font-size: 16px; text-align: center;"> number of patients in a day: 10 patients.</p>
+            <p style = "font-size: 16px; text-align: center;"> average time on each operation: 5:32 minutes.</p>
+            <p style = "font-size: 16px; text-align: center;"> number of championship rings: 5 rings.</p>
+            <p style = "font-size: 16px; text-align: center;"> number of super bowl wins: 10 wins.</p>
 
         </div>
-
-
       </div>
+
     </div>
     <script>
 
@@ -193,7 +204,10 @@
     var ctx = document.getElementById("myChart").getContext("2d");
     ctx.canvas.width = 600;
     ctx.canvas.height = 200;
-
+    //GRAPH FOR PIE Chart
+    var ctx2 = document.getElementById("myPieChart").getContext("2d");
+    ctx2.canvas.width = 600;
+    ctx2.canvas.height = 200;
 
 
     var dataMap = {
@@ -256,6 +270,85 @@
       $('#chartType').on('change', updateChart)
       updateChart();
       //THIS IS THE END OF THE GRAPH script
+      //THIS IS THE START OF THE PIE GRAPH SCRIPT
+      var dataMap2 = {
+
+       'pie': {
+           method: 'Pie',
+           data: [{
+               value: 300,
+               color: "#F7464A",
+               highlight: "#FF5A5E",
+               label: "operation"
+           }, {
+               value: 50,
+               color: "#46BFBD",
+               highlight: "#5AD3D1",
+               label: "physical"
+           }, {
+               value: 100,
+               color: "#FDB45C",
+               highlight: "#FFC870",
+               label: "blood time"
+           }]
+       },
+
+       'pie2': {
+           method: 'Pie',
+           data: [{
+               value: 350,
+               color: "#F7464A",
+               highlight: "#FF5A5E",
+               label: "operation"
+           }, {
+               value: 100,
+               color: "#46BFBD",
+               highlight: "#5AD3D1",
+               label: "physical"
+           }, {
+               value: 20,
+               color: "#FDB45C",
+               highlight: "#FFC870",
+               label: "blood time"
+           }]
+       },
+       'pie3': {
+           method: 'Pie',
+           data: [{
+               value: 210,
+               color: "#F7464A",
+               highlight: "#FF5A5E",
+               label: "operation"
+           }, {
+               value: 170,
+               color: "#46BFBD",
+               highlight: "#5AD3D1",
+               label: "physical"
+           }, {
+               value: 50,
+               color: "#FDB45C",
+               highlight: "#FFC870",
+               label: "blood time"
+           }]
+       }
+   };
+
+
+        var currentPieChart;
+
+        function updatePieChart() {
+          if(currentPieChart){currentPieChart.destroy();}
+
+          var determinePieChart = $("#chartPieType").val();
+
+          var params1 = dataMap2[determinePieChart]
+          currentPieChart = new Chart(ctx2)[params1.method](params1.data, {});
+        }
+
+        $('#chartPieType').on('change', updatePieChart)
+        updatePieChart();
+
+        //THIS IS THE END OF THE PIE GRAPH script
 
 
       </script>
