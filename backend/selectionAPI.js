@@ -81,7 +81,7 @@ function select_status_id(status_name){
     if(typeof status_name === 'string'){
         db.open(cn,function(err){
             if(err) return console.log(err);
-            db.query("SELECT status_id FROM Status WHERE status_name = '" + status_name +"'",function(err,data){
+            else db.query("SELECT status_id FROM Status WHERE status_name = '" + status_name +"'",function(err,data){
                 if(err) return console.log(err);
                 else return data
             })
@@ -90,10 +90,23 @@ function select_status_id(status_name){
     else console.log("Error: status_name has to be string")
 }
 
+function select_person_type_id(person_type_name){
+    if(typeof person_type_name === 'string'){
+        db.open(cn,function(err){
+            if(err) return console.log(err)
+            else db.query("SELECT person_type_id FROM Person_Type WHERE person_type_name = '"+ person_type_name +"'", function(err,data){
+                if(err) return console.log(err)
+                else return data
+            })
+        })
+    }
+}
+
 module.exports = {
     select_Avg_Time_AD, 
     select_Avg_Time_AD_action_id,
     select_Avg_Time_AD_action_name,
     select_AVG_Time_AD_dates, 
-    select_status_id
+    select_status_id,
+    select_person_type_id
 }

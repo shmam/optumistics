@@ -32,4 +32,4 @@ insert.insert_Question("test_question")
 
 insert.insert_Actions("test_action_name","test_flag_color","test_button_label", "test_action_duration",select.select_status_id("test_status_name"),"test_icon")
 insert.insert_person_type("test_person_type_name")
-insert.insert_Patient_Information("test_patient_first_name", "test_patient_last_name","test_patient_gender",)
+insert.insert_Patient_Information("test_patient_first_name", "test_patient_last_name","test_patient_gender",select.select_person_type_id("test_person_type_name"))
