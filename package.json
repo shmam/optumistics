@@ -5,8 +5,7 @@
   "main": "run.js",
   "dependencies": {
     "odbc": "^1.2.1",
-    "mssql": "^4.0.4",
-    "tedious": "^2.0.0"
+    "mssql": "^4.0.4"
   },
   "devDependencies": {},
   "scripts": {
