@@ -6,7 +6,7 @@ var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER=
 
 //TESTED AND WORKS
 function insert_Appointment_Type(appointment_name, appointment_duration){
-	if(typeof appointment_name === 'string' && appointment_duration === undefined) {
+	if(typeof appointment_name === 'string' && appointment_duration === null) {
 		db.open(cn,function(err) {
 			if(err) return console.log(err);
 			db.query("INSERT INTO Appointment_Type VALUES ('" +appointment_name +"', null)", function(err) {
@@ -73,8 +73,7 @@ function insert_Survey_Activity(patient_id, rating, rating_date, question_id){
 			console.log("Unsuccessful insertion into Survey Activity table. One of these values is incorrect type")
 		
 	}else
-		console.log("Unsuccessful insertion into Survey Activity table. One or more of these values are null")
-		
+		console.log("Unsuccessful insertion into Survey Activity table. One or more of these values are null")		
 }
 
 //TESTED AND PASSED
