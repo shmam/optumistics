@@ -348,22 +348,34 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, s
 				if (err)
 					return console.log(err);
 				else
-					var final_icon=icon
-					if(icon !=null) 
-						final_icon= "'"+icon +"'"
-
-					db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, status_id, icon) VALUES ('"+ action_name+"','"+ flag_color+"','"+button_label+"',"+ action_duration+","+ status_id.toString()+","+final_icon+")", function(err, data) {
+					db.query("SELECT action_id FROM Actions WHERE action_name='"+action_name+"'", function(err, data) {
 						
 						if (err)
 							console.log(err);
-						else
-							console.log("Successful insertion into Actions table")
-					})
+						else{
 
+						
+							if(data.length>0){
+								console.log("Unsuccessful insertion into Actions table. Action name must be unique.")
+							}else{
+								console.log("here")
+								var final_icon=icon
+									if(icon !=null) 
+										final_icon= "'"+icon +"'"
+
+									db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, status_id, icon) VALUES ('"+ action_name+"','"+ flag_color+"','"+button_label+"',"+ action_duration+","+ status_id.toString()+","+final_icon+")", function(err, data) {
+										
+										if (err)
+											console.log(err);
+										else
+											console.log("Successful insertion into Actions table")
+									})
+							}
+						}							
+					})
 			});
 		}else
-			console.log("Unsuccessful insertion into Actions table. One of these values is incorrect type")
-		
+			console.log("Unsuccessful insertion into Actions table. One of these values is incorrect type")	
 	}else
 		console.log("Unsuccessful insertion into Actions table. One or more of these non-nullable values are null")
 }
@@ -384,4 +396,5 @@ module.exports = {
 	insert_Actions
 }
 
+insert_Actions("Bloode Draw", "yello","blood draw", 30, 74, null)
 //this is a test
