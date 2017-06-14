@@ -9,11 +9,11 @@ module.exports = function(app) {
 
   //routing convention: where/why/what/how
 
-  app.route('/dashboard/present/actions/:status_id')//Tony get all actions where status is active
+  app.route('/dashboard/present/actions/:status_name')//Tony get all actions where status is active
 
   app.route('dashboard/present/actions') //Tony get all actions
 
-  app.route('portal/present/providers/:status_id') //Tony get all providers
+  app.route('portal/present/providers/:status_name') //Tony get all providers
 
   app.route('portal/present/duration/:action_name') //Tony get all expected durations for each task
 
