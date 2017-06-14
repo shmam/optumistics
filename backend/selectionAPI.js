@@ -82,14 +82,16 @@ function select_status_id(status_name){
     if(typeof status_name === 'string'){
         db.open(cn,function(err){
             if(err) return console.log(err);
-            else db.query("SELECT status_id FROM Status WHERE status_name = '" + status_name +"'",function(err,data){
+            else db.query("SELECT status_id FROM dbo.Status WHERE status_name = '" + status_name +"'",function(err,data){
+                //console.log(data[0].status_id)
                 if(err) return console.log(err);
-                else return data[0]
+                else return data
             })
         });
     }
     else console.log("Error: status_name has to be string")
 }
+
 
 function select_person_type_id(person_type_name){
     if(typeof person_type_name === 'string'){
@@ -97,46 +99,52 @@ function select_person_type_id(person_type_name){
             if(err) return console.log(err)
             else db.query("SELECT person_type_id FROM Person_Type WHERE person_type_name = '"+ person_type_name +"'", function(err,data){
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].person_type_id
             })
         })
     }
     else console.log("ERROR: person_type_name has to be a string")
 }
 
+
 function select_patient_id(patient_first_name){
     if(typeof patient_first_name === "string"){
         db.open(cn,function(err){
             if(err) return console.log(err)
-            else db.query("SELECT patient_id FROM Patient_Information WHERE patient_first_name = '"+ patient_first_name +"'",function(err,data){
-                if(err) return console/log(err)
-                else return data[0]
+            else db.query("SELECT patient_id FROM Patient_Information WHERE first_name = '"+ patient_first_name +"'",function(err,data){
+                //console.log(data[0].patient_id)
+                if(err) return console.log(err)
+                else return data[0].patient_id
             })
         })
     }
     else console.log("ERROR: patient_first_name has to be a string")
 }
 
+
 function select_question_id(question){
     if(typeof question === "string"){
         db.open(cn,function(err){
             if(err) return console.log(err)
-            else db.query("SELECT question_id FROM Quesiton WHERE question = '"+ question +"'",function(err,data){
+            else db.query("SELECT question_id FROM Question WHERE question = '"+ question +"'",function(err,data){
+                //console.log(data[0].question_id)
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].question_id
             })
         })
     }
     else console.log("ERROR: question has to be a string")
 }
 
+
 function select_action_id(action_name){
     if(typeof action_name === "string"){
         db.open(cn,function(err){
             if(err) return console.log(err)
             else db.query("SELECT action_id FROM Actions WHERE action_name = '"+ action_name +"'",function(err,data){
+                //console.log(data[0].action_id)
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].action_id
             })
         })
     }
@@ -148,54 +156,59 @@ function select_room_id(room_name){
         db.open(cn,function(err){
             if(err) return console.log(err)
             else db.query ("SELECT room_id FROM Room WHERE room_name = '"+ room_name + "'", function(err,data){
+                //console.log(data[0].room_id)
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].room_id
             })
         })
     }
     else console.log("ERROR: room_name has to be a string ")
 }
 
+
 function select_provider_id(provider_first_name){
     if(typeof provider_first_name === "string"){
         db.open(cn,function(err){
             if(err) return console.log(err)
-            else db.query("SELECT provider_id FROM Provider_Information WHERE provider_first_name = '"+ provider_first_name +"'",function(err,data){
+            else db.query("SELECT provider_id FROM Provider_Information WHERE first_name = '"+ provider_first_name +"'",function(err,data){
+                //console.log(data[0].provider_id)
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].provider_id
             })
         })
     }
     else console.log("ERROR: provider_first_name has to be a string")
 }
 
+
 function select_NFC_id(status_id){
     if(typeof status_id === "number"){
         db.open(cn,function(err){
             if(err) return console.log(err)
             else db.query("SELECT nfc_id FROM NFC_Bracelet WHERE status_id = " + status_id.toString(),function(err,data){
+                console.log(data[0].nfc_id)
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].nfc_id
             })
         })
     }
     else console.log("ERROR: status_id has to be a number")
 }
 
+
 function select_appointment_id(appointment_name){
     if(typeof appointment_name === "string"){
         db.open(cn,function(err){
             if(err) return console.log(err)
-            else db.query("SELECT appointment_id FROM Appointment_Type WHERE appointment_name = '"+ appointment_name + "'",function(err,data){
+            else db.query("SELECT appt_id FROM Appointment_Type WHERE appt_name = '"+ appointment_name + "'",function(err,data){
+                //console.log(data[0].appt_id)
                 if(err) return console.log(err)
-                else return data[0]
+                else return data[0].appt_id
             })
         })
     }
     else console.log("ERROR: appointment_name has to be a string")
 }
-
-console.log(select_status_id("active"))
 
 
 module.exports = {
