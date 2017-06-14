@@ -32,6 +32,7 @@ insert.insert_Appointment_Type("test_appointemnt_name",10)
 
 insert.insert_Question("test_question")
 
+
 var test_status_id = select.select_status_id("test_status_name")
 insert.insert_Actions("test_action_name","test_flag_color","test_button_label", "test_action_duration",test_status_id,"test_icon")
 

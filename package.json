@@ -1,0 +1,20 @@
+{
+  "name": "iot-reveal",
+  "version": "1.0.0",
+  "description": "The idea of this project is using a connected system of small microcontrollers that register clinical protocol activities with NFC bracelets, sends the data to a databse that can be called back for real time analysis. The goal that this would accomplish is giving providers the ability to augment their procedures in real time, to improve and reach a better level of efficiency. We are putting equal focus on the patient and provider experice in order to make a product that improves the overall clinical experience.",
+  "main": "run.js",
+  "dependencies": {
+    "odbc": "^1.2.1",
+    "mssql": "^4.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://scrochet@codehub.optum.com/raleigh-tdp/iot-reveal.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
