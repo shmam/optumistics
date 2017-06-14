@@ -395,6 +395,3 @@ module.exports = {
 	insert_Provider_Information,
 	insert_Actions
 }
-
-insert_Actions("Bloode Draw", "yello","blood draw", 30, 74, null)
-//this is a test
