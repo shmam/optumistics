@@ -154,12 +154,6 @@ function getTimeAllDoctorsDates_C(req,res){
 
 }
 
-var config = require('../../config.js') 
- 
- var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
-+ config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
-
-
 function select_active_actions(req,res) {
 	if (req.params.status_name != null) {
     	db.open(cn,function(err){
@@ -311,4 +305,5 @@ module.exports = {
 	select_expected_duration,
 	total_time_for_each_doctor,
 	total_time_each_doctor_range
+
 }
