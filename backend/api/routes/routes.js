@@ -48,7 +48,7 @@ module.exports = function(app) {
     app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_gender/:username/:password/:person_type_id/:status_id') 
         .post(insertAPI.insert_Provider_Information)
 
-    app.route('/general/insert/Actions/:action_name/:flag_id/:button_label/:action_duration/:status_id/:icon') 
+    app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon') 
         .post(insertAPI.insert_Actions)
 
     app.route('/general/insert/ActivatedNFC_Patient/:patient_id/:room_id/:appointment_id/:nfc_id') 
@@ -77,6 +77,9 @@ module.exports = function(app) {
 
     app.route('/general/insert/Status/:status_name') 
         .post(insertAPI.insert_Status)
+    
+    app.route('/general/insert/Flag_Color/:flag_color_name')
+        .post(insertAPI.insert_Flag_Color)
 
 }
 

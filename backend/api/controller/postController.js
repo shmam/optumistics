@@ -142,7 +142,7 @@ function insert_Provider_Information(req,res){
 
 // //TESTED AND PASSED
 function insert_Actions(req,res){
-	if(req.params.action_name!= null &&  req.params.flag_id != null && req.params.button_label!= null &&  req.params.action_duration!= null &&  req.params.status_id!= null ){
+	if(req.params.action_name!= null &&  req.params.flag_color_id != null && req.params.button_label!= null &&  req.params.action_duration!= null &&  req.params.status_id!= null ){
 			db.open(cn, function(err) {
 				if (err){
 					console.log(err);
@@ -167,7 +167,7 @@ function insert_Actions(req,res){
 									if(req.params.icon !=null) 
 										final_icon= "'"+req.params.icon +"'"
 
-									db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, status_id, icon) VALUES ('"+ req.params.action_name+"','"+ req.params.flag_id+"','"+req.params.button_label+"',"+ req.params.action_duration+","+ req.params.status_id+","+final_icon+")", function(err, data) {
+									db.query("INSERT INTO Actions (action_name, flag_color_id,button_label, action_duration, status_id, icon) VALUES ('"+ req.params.action_name+"','"+ req.params.flag_color_id+"','"+req.params.button_label+"',"+ req.params.action_duration+","+ req.params.status_id+","+final_icon+")", function(err, data) {
 										
 										if (err){
 											console.log(err);
@@ -228,6 +228,20 @@ function insert_Question(req,res) {
 		});
 	} else
 		res.send("Unsuccessful insertion into Question table, Question cannot be null")
+
+}
+
+function insert_Flag_Color(req,res) {
+	if (req.params.flag_color_name != null) {
+		db.open(cn, function(err) {
+			if (err) res.send(err);
+			else db.query("INSERT INTO Flag_Color(flag_color_name) VALUES('"+ req.params.flag_color_name + "')", function(err, data) {
+				if (err) res.send(err);	
+				else res.send("Successful insertion into Flag Color table" )	
+			})
+		});
+	} else
+		res.send("Unsuccessful insertion into Flag Color table, flag color cannot be null")
 
 }
 
@@ -403,6 +417,7 @@ module.exports = {
 	insert_Question,
 	insert_Survey_Activity,
 	insert_Action_Performed,
-	insert_Room
+	insert_Room,
+	insert_Flag_Color
 
 }
