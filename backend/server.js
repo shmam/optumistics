@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/routesTemp.js');
+var routes = require('./api/routes/jenny_routes.js');
 
 
 routes(app);
