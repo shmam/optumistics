@@ -24,12 +24,40 @@ ORDER OF THE INSERT CASES
 13. ActivatedNFC_Patient
 */
 
-
+//RUN THROUGH AND MAKE SURE THE ARGUMENTS MATCH UP 
 test.testConnection()
 insert.insert_Status("test_status_name")
-insert.insert_Appointment_Type("test_appointemnt_type",10)
+
+insert.insert_Appointment_Type("test_appointemnt_name",10)
+
 insert.insert_Question("test_question")
 
-insert.insert_Actions("test_action_name","test_flag_color","test_button_label", "test_action_duration",select.select_status_id("test_status_name"),"test_icon")
+
+var test_status_id = select.select_status_id("test_status_name")
+insert.insert_Actions("test_action_name","test_flag_color","test_button_label", "test_action_duration",test_status_id,"test_icon")
+
 insert.insert_person_type("test_person_type_name")
-insert.insert_Patient_Information("test_patient_first_name", "test_patient_last_name","test_patient_gender",)
+
+var test_person_type_id = select.select_person_type_id("test_person_type_name")
+insert.insert_Patient_Information("test_patient_first_name", "test_patient_last_name","test_patient_gender",test_person_type_id)
+
+insert.insert_Provider_Information("test_provider_first_name","test_provider_last_name","test_provider_gender","test_provider_username","test_provider_password",test_person_type_id,test_status_id)
+
+var test_patient_id = select.select_patient_id("test_patient_first_name")
+var test_question_id = select.select_question_id("test_question")
+insert.insert_Survey_Activity(test_patient_id,"test_rating","test_rating_date",test_question_id)
+
+insert.insert_Room("test_room_name",test_status_id)
+
+var test_action_id = select.select_action_id("test_action_name")
+var test_room_id = select.select_room_id("test_room_name")
+var test_provider_id = select.select_provider_id("test_provider_first_name")
+insert.insert_Action_Performed(test_action_id,"test_action_date", test_room_id, test_patient_id,"test_time_taken",test_provider_id)
+
+insert.insert_NFC_Bracelet(test_status_id)
+
+var test_NFC_id = select.select_NFC_id(test_status_id)
+insert.insert_ActivatedNFC_Provider(test_provider_id,test_room_id,test_NFC_id)
+
+var test_appointment_id = select.select_appointment_id("test_appointment_name")
+insert.insert_ActivatedNFC_Patient(test_patient_id,test_room_id,test_appointment_id,test_NFC_id)

@@ -3,15 +3,24 @@ var config = require('./config.js')
 var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
     + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
-
-//TESTED AND WORKS 
+//ALRIGHT
+//TESTED AND WORKS
 function insert_Appointment_Type(appointment_name, appointment_duration){
-     if(typeof appointment_name === 'string' && typeof appointment_duration === 'number'){
+	if(typeof appointment_name === 'string' && appointment_duration == null) {
+		db.open(cn,function(err) {
+			if(err) return console.log(err);
+			db.query("INSERT INTO Appointment_Type VALUES ('" +appointment_name +"', null)", function(err) {
+				if(err) console.log(err);
+				else console.log("Successful insertion into Appointment_Type");
+			});
+		});
+	}
+    else if(typeof appointment_name === 'string' && typeof appointment_duration === 'number'){
         db.open(cn, function (err) {
             if (err) return console.log(err);
             db.query("INSERT INTO Appointment_Type VALUES ('"+ appointment_name +"'," + appointment_duration.toString() + ")", function (err) {
                 if (err) console.log(err);
-                else console.log("Sucessful insertion into Appointment_Type ")
+                else console.log("Successful insertion into Appointment_Type ")
             //db.close();
             });
         });
@@ -64,8 +73,7 @@ function insert_Survey_Activity(patient_id, rating, rating_date, question_id){
 			console.log("Unsuccessful insertion into Survey Activity table. One of these values is incorrect type")
 		
 	}else
-		console.log("Unsuccessful insertion into Survey Activity table. One or more of these values are null")
-		
+		console.log("Unsuccessful insertion into Survey Activity table. One or more of these values are null")		
 }
 
 //TESTED AND PASSED
@@ -340,34 +348,41 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, s
 				if (err)
 					return console.log(err);
 				else
-					var final_icon=icon
-					if(icon !=null) 
-						final_icon= "'"+icon +"'"
-
-					db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, status_id, icon) VALUES ('"+ action_name+"','"+ flag_color+"','"+button_label+"',"+ action_duration+","+ status_id.toString()+","+final_icon+")", function(err, data) {
+					db.query("SELECT action_id FROM Actions WHERE action_name='"+action_name+"'", function(err, data) {
 						
 						if (err)
 							console.log(err);
-						else
-							console.log("Successful insertion into Actions table")
-					})
+						else{
 
+						
+							if(data.length>0){
+								console.log("Unsuccessful insertion into Actions table. Action name must be unique.")
+							}else{
+								console.log("here")
+								var final_icon=icon
+									if(icon !=null) 
+										final_icon= "'"+icon +"'"
+
+									db.query("INSERT INTO Actions (action_name, flag_color,button_label, action_duration, status_id, icon) VALUES ('"+ action_name+"','"+ flag_color+"','"+button_label+"',"+ action_duration+","+ status_id.toString()+","+final_icon+")", function(err, data) {
+										
+										if (err)
+											console.log(err);
+										else
+											console.log("Successful insertion into Actions table")
+									})
+							}
+						}							
+					})
 			});
 		}else
-			console.log("Unsuccessful insertion into Actions table. One of these values is incorrect type")
-		
+			console.log("Unsuccessful insertion into Actions table. One of these values is incorrect type")	
 	}else
 		console.log("Unsuccessful insertion into Actions table. One or more of these non-nullable values are null")
 }
 
+
 module.exports = {
-	insert_Appointment_Type,
-	insert_Question,
-	insert_Survey_Activity,
-	insert_Action_Performed,
-	insert_ActivatedNFC_Patient,
-	insert_ActivatedNFC_Provider,
-	insert_person_type,
+	
 	insert_Status,
 	insert_Room,
 	insert_NFC_Bracelet,
@@ -376,3 +391,24 @@ module.exports = {
 	insert_Actions
 }
 
+// insert_Action_Performed(116, '2017-06-15',10,1147,30,2290)
+// insert_Action_Performed(117, '2017-06-15',10,1147,20,2290)
+// insert_Action_Performed(122, '2017-06-15',10,1147,15,2290)
+// insert_Action_Performed(117, '2017-06-15',10,1147,30,2290)
+// insert_Action_Performed(116, '2017-06-15',10,1147,40,2290)
+// insert_Action_Performed(122, '2017-06-15',10,1147,70,2290)
+// insert_Action_Performed(116, '2017-06-15',10,1147,122,2290)
+// insert_Action_Performed(117, '2017-06-15',10,1147,40,2290)
+// insert_Action_Performed(116, '2017-06-15',10,1147,22,2290)
+// insert_Action_Performed(117, '2017-06-15',10,1147,44,2290)
+
+// insert_Action_Performed(116, '2017-06-15',10,1147,10,2291)
+// insert_Action_Performed(117, '2017-06-15',10,1147,90,2291)
+// insert_Action_Performed(122, '2017-06-15',10,1147,15,2291)
+// insert_Action_Performed(117, '2017-06-15',10,1147,30,2291)
+// insert_Action_Performed(116, '2017-06-15',10,1147,30,2291)
+// insert_Action_Performed(122, '2017-06-15',10,1147,20,2291)
+// insert_Action_Performed(116, '2017-06-15',10,1147,31,2291)
+// insert_Action_Performed(117, '2017-06-15',10,1147,40,2291)
+// insert_Action_Performed(116, '2017-06-15',10,1147,26,2291)
+// insert_Action_Performed(117, '2017-06-15',10,1147,25,2291)
