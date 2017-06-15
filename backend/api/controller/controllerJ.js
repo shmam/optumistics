@@ -1,10 +1,93 @@
-var config = require('./config.js')
+var config = require('../../config.js') 
+ 
+ var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
++ config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
-var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
-    + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
+//TESTED AND PASSED
+function insert_Question(req,res) {
+	if (req.params.question_name != null && typeof req.params.question_name == "string") {
+		db.open(cn, function(err) {
+			if (err)
+				return console.log(err);
+			else
+				db.query("INSERT INTO Question(question) VALUES('"+ req.params.question_name+ "')", function(err, data) {
+					if (err){
+                        console.log(err);
+                        res.send(err);
+                    }	
+					else{
+                        res.send("Successful insertion into Question table" )
+                        
+                    }
+						
+				})
 
-//ALRIGHT
-//TESTED AND WORKS
+		});
+	} else
+		console.log("Unsuccessful insertion into Question table. The question name is incorrect type")
+
+}
+
+//Jenny time for each doctor for each tasks (RT)
+
+
+function add_time_provider_task_rt(req,res){
+    var today = new Date();
+	today= today.toISOString().substring(0, 10);
+
+    if(req.params.provider_id != null && req.params.action_id != null){
+       db.open(cn, function(err) {
+			if (err)
+				return console.log(err);
+			else
+				db.query("SELECT SUM(time_taken) FROM Action_Performed WHERE provider_id="+req.params.provider_id+" AND action_id="+req.params.action_id+" AND action_date='"+today+"'", function(err, data) {
+					if (err){
+                        console.log(err);
+                        res.send(err);
+                    }	
+					else{
+                        console.log("Successful insertion into Question table")
+                        res.json(data)
+                        
+                    }
+						
+				})
+
+		}); 
+    }else{
+        res.send("Unsuccessful query. One of these value was null")
+    }
+}
+
+function add_time_provider_task_c(req,res){
+   
+    var today = new Date();
+	today= today.toISOString().substring(0, 10);
+
+    if(req.params.provider_id != null && req.params.action_id != null){
+       
+        db.open(cn, function(err) {
+			if (err)
+				return console.log(err);
+			else{
+
+				db.query("SELECT sum(time_taken) from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
+					if (err){
+                        res.send(err)        
+                    }	
+					else{
+                        res.json(data)
+                        
+                    }
+						
+				})
+            }
+		}); 
+    }else{
+        res.send("Unsuccessful query. One of these value was null")
+    }
+}
+
 function insert_Appointment_Type(appointment_name, appointment_duration){
 	if(typeof appointment_name === 'string' && appointment_duration == null) {
 		db.open(cn,function(err) {
@@ -380,41 +463,40 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, s
 		console.log("Unsuccessful insertion into Actions table. One or more of these non-nullable values are null")
 }
 
+/*
+**************  OUR FIRST API CALL<3  **************
 
-module.exports = {
-	insert_Appointment_Type,
-	insert_Question,
-	insert_Survey_Activity,
-	insert_Action_Performed,
-	insert_ActivatedNFC_Patient,
-	insert_ActivatedNFC_Provider,
-	insert_person_type,
-	insert_Status,
-	insert_Room,
-	insert_NFC_Bracelet,
-	insert_Patient_Information,
-	insert_Provider_Information,
-	insert_Actions
+
+function select_question(req, res){
+
+    db.open(cn, function(err) {
+			if (err){
+                return console.log(err);
+            }
+			else{
+                db.query("SELECT * FROM Question WHERE question_id="+req.params.question_id, function(err, data) {
+					if (err){
+                        console.log(err);
+                        res.send(err);
+
+                    }else{
+                        console.log(data);
+                        res.json(data);
+
+                    }
+                        
+				})
+            }
+				
+
+	});
 }
 
-// insert_Action_Performed(116, '2017-06-15',10,1147,30,2290)
-// insert_Action_Performed(117, '2017-06-15',10,1147,20,2290)
-// insert_Action_Performed(122, '2017-06-15',10,1147,15,2290)
-// insert_Action_Performed(117, '2017-06-15',10,1147,30,2290)
-// insert_Action_Performed(116, '2017-06-15',10,1147,40,2290)
-// insert_Action_Performed(122, '2017-06-15',10,1147,70,2290)
-// insert_Action_Performed(116, '2017-06-15',10,1147,122,2290)
-// insert_Action_Performed(117, '2017-06-15',10,1147,40,2290)
-// insert_Action_Performed(116, '2017-06-15',10,1147,22,2290)
-// insert_Action_Performed(117, '2017-06-15',10,1147,44,2290)
+*/
+module.exports = {
+	insert_Question,
+    add_time_provider_task_rt,
+    add_time_provider_task_c
+}
 
-// insert_Action_Performed(116, '2017-06-15',10,1147,10,2291)
-// insert_Action_Performed(117, '2017-06-15',10,1147,90,2291)
-// insert_Action_Performed(122, '2017-06-15',10,1147,15,2291)
-// insert_Action_Performed(117, '2017-06-15',10,1147,30,2291)
-// insert_Action_Performed(116, '2017-06-15',10,1147,30,2291)
-// insert_Action_Performed(122, '2017-06-15',10,1147,20,2291)
-// insert_Action_Performed(116, '2017-06-15',10,1147,31,2291)
-// insert_Action_Performed(117, '2017-06-15',10,1147,40,2291)
-// insert_Action_Performed(116, '2017-06-15',10,1147,26,2291)
-// insert_Action_Performed(117, '2017-06-15',10,1147,25,2291)
+

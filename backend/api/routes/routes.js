@@ -29,7 +29,7 @@ module.exports = function(app) {
 
   app.route('portal/add/time/:provider_id') //Jenny time for each doctor (RT)
 
-   app.route('portal/add/time/:provider_id/:action_id/:start_date/:end_date') //Jenny time for each doctor for each tasks (C)
+  app.route('portal/add/time/:provider_id/:action_id/:start_date/:end_date') //Jenny time for each doctor for each tasks (C)
 
   app.route('portal/add/time/:provider_id/:start_date/:end_date') //Jenny time for each doctor (C)
 
