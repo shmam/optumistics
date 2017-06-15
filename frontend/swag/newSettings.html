@@ -1,27 +1,8 @@
 <html>
   <head>
+    <!-- THIS PAGE IS PRETTY SELF EXPLAANATORY.....SAME AS OTHERS BUT THERE ARE TOGGLE BUTTONS FOR THE DIFFERENT PICTURES-->
     <style>
     @import "http://fonts.googleapis.com/css?family=Raleway";
-    #abc {
-    width:100%;
-    height:100%;
-    opacity:.85;
-    top:0;
-    left:0;
-    display:none;
-    position:fixed;
-    background-color:#a8a8a8;
-    overflow:auto
-    }
-
-    div#popupContact {
-    position:absolute;
-    left:50%;
-    top:17%;
-    margin-left:-202px;
-    font-family:'Raleway',sans-serif
-    }
-
     hr {
     margin:10px 60px;
     margin-left: 8%;
@@ -29,79 +10,11 @@
     border-top:1px solid #ccc
     }
 
-
-    #timeStamp{
-      text-align: center;
-      color: #ffffff
-    }
-    #button-start {
-    text-decoration:none;
-    width:50%;
-    margin-left: 25%;
-    text-align:center;
-    display:block;
-    background-color:#2ecc71;
-    color:#fff;
-    border:1px solid #FFCB00;
-
-    font-size:20px;
-    cursor:pointer;
-    border-radius:5px
-    }
-
-    #popupContact{
-      align-content: bottom;
-    }
     #wrapper{
       text-align: center;
       align-content: center;
-
-
-
-    }
-    #button-stop {
-
-    text-decoration:none;
-    width:50%;
-    margin-left: 25%;
-    text-align:center;
-    display:block;
-    background-color:#e74c3c;
-    color:#fff;
-    border:1px solid #FFCB00;
-
-    font-size:20px;
-    cursor:pointer;
-    border-radius:5px
     }
 
-    #button-reset{
-    text-decoration:none;
-    width:50%;
-    margin-left: 25%;
-    text-align:center;
-    display:block;
-    background-color:#e9d460;
-    color:#fff;
-    border:1px solid #FFCB00;
-
-    font-size:20px;
-    cursor:pointer;
-    border-radius:5px
-    }
-    #newWindow{
-      width: 800px;
-      height: 600px;
-      background-color: #36454F;
-      left: 50%;
-      margin-left: -25%;
-      border-radius: 5%;
-      border:4px solid #fff;
-    }
-    #button-close{
-      background-color: #e74c3c;
-      color: #ffffff;
-      float: right;
     }
     #content{
       margin-top: 50%;
@@ -119,94 +32,77 @@
       margin-bottom: 50px
 
     }
-
     #toggle-one{
       height: 75px;
       width: 75px;
     }
 
-    /*.image-icon {
-      background-color: black;
-      border:4px solid #ff9c33;
-      border-radius:50%;
-      margin-left: 250px;
+    .circle{
+      border:2px solid #000;
+      border-radius: 50%;
+      width: 75px;
+      height: 75px;
+      background-color: red;
+    }
+
+    .selectpicker{
+      height: 30px;
+      width: 100px;
+      margin-left: 400px;
+
+
+    }
+
+    #color-display {
+      align-content: center;
       height: 100px;
-      width:100px;
+      width: 100px;
+      border: 5px solid #000;
+      border-radius: 30%;
+      margin-left: 550px;
+      margin-bottom: 25px;
+      margin-top: -35px;
+    }
 
-    }*/
+    .segmented-control input[type="radio"] {
+  display: none;
+}
 
-
-    * The switch - the box around the slider */
-.switch {
-  position: relative;
+.segmented-control .list-group-item {
   display: inline-block;
-  width: 60px;
-  height: 34px;
+}
+.segmented-control .list-group-item {
+margin-bottom: 0;
+margin-left:-4px;
+margin-right: 0;
+
+}
+.segmented-control .list-group-item:first-child {
+border-top-right-radius:0;
+border-bottom-left-radius:4px;
+
+}
+.segmented-control .list-group-item:last-child {
+border-top-right-radius:4px;
+border-bottom-left-radius:0;
 }
 
-/* Hide default HTML checkbox*/
-.switch input {display:none;}
-
-/* The slider */
-.slider {
-  position: relative;
-  cursor: pointer;
-  width:80px;
-  height: 40px;
-  left: 125px;
-  top: 65px;
-  right: 150px;
 
 
-  /*top: 420;
-  left: 360;
-  right: 412;
-  bottom: 415;*/
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(40px);
-  transform: translateX(40px);
-}
-
-/* Rounded sliders*/
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
 
     </style>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -234,87 +130,121 @@ input:checked + .slider:before {
     <h1 style = "text-align: center;">settings</h1>
     <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
     <br/>
-    <!--<br/>
-    <h3 style="text=align:left;margin-left: 50px"> Toggle the activities to be displayed on the dashboard </h3>-->
+    <div id = "changeMecFlags">
+      <p style = "text-align: center;font-size: 14px;"><u>change flag color</u></p>
+      <h3 style="margin-left: 45%;margin-bottom: 20px; font-size: 16px;"> select a color for this flag: </h3></br>
+
+    </div>
+      <div id="color-display" style = "margin-left: 47%;">
+
+      </div>
+
+      <select class= "selectpicker" style = "margin-left: 47%;">
+
+        <option onclick="changeColorPreview(1)" style="background-color: #FFFF00; color: #000;">yellow</option>
+        <option onclick="changeColorPreview(2)" style="background: #0000ff; color: #FFF;"> blue</option>
+        <option onclick="changeColorPreview(3)" style ="background: #FFA500; color:#000;">orange</option>
+        <option onclick="changeColorPreview(4)" style="background :#FF0000; color:#FFF;">red</option>
+        <option onclick="changeColorPreview(5)" style="background :#FFFFFF; color:#000;">white</option>
+        <option onclick="changeColorPreview(6)" style= "background :#000000; color:#FFFFFF;">black</option>
+
+
+      </select></br>
+
+<button class="btn btn-default" style="margin-top: 2%;text-align:center;margin-left: 47%;height: 35px; width: 100px; border-radius: 10%; border: #black, 2px" type="button">apply</button></br>
+
+          <div class="input-group">
+
+
+          </div>
+      <div class="list-group segmented-control" style = "margin-left: 38%; margin-top: 2%;">
+          <a href="#" class="list-group-item active">
+              flag 1
+              <input type="radio" checked name="items" value="item-1"/>
+          </a>
+          <a href="#" class="list-group-item">
+              flag 2
+              <input type="radio" name="items" value="item-2"/>
+          </a>
+          <a href="#" class="list-group-item">
+              flag 3
+              <input type="radio" name="items" value="item-3"/>
+          </a>
+          <a href="#" class="list-group-item">
+              flag 4
+              <input type="radio" name="items" value="item-4"/>
+          </a>
+          <a href="#" class="list-group-item">
+              flag 5
+              <input type="radio" name="items" value="item-5"/>
+          </a>
+          <a href="#" class="list-group-item">
+              flag 6
+              <input type="radio" name="items" value="item-6"/>
+          </a>
+          <a href="#" class="list-group-item">
+              flag 7
+              <input type="radio" name="items" value="item-7"/>
+          </a>
+      </div>
+    </div>
+      <hr style = "margin:5px 5px; margin-left: 20%; margin-right: 20%;border:0;border-top:1px solid #000;"/></br>
+      <div id = "changeImage" style = "height: 30%; margin-left: 44%; font-family:'Raleway',sans-serif">
+        <p style = "text-align: center;font-size: 14px; margin-left: -77%;"><u>customize flag operation</u></p></br>
+        <p>flag 1: <input type = "text" id = "flag1" style = "border-radius: 10%;"></input>
+        <p>flag 2: <input type = "text" id = "flag2" style = "border-radius: 10%;"></input>
+        <p>flag 3: <input type = "text" id = "flag3" style = "border-radius: 10%;"></input>
+        <p>flag 4: <input type = "text" id = "flag4" style = "border-radius: 10%;"></input>
+        <p>flag 5: <input type = "text" id = "flag5" style = "border-radius: 10%;"></input>
+        <p>flag 6: <input type = "text" id = "flag6" style = "border-radius: 10%;"></input></br>
+          <button class="btn btn-default" style="margin-left: 7%;margin-top: 1%;text-align:center;height: 35px; width: 100px; border-radius: 10%; border: #black, 2px" type="button">apply</button></br>
+      </div>
+
+
   </div>
 
-  <div id="toggleButtons">
-  <!--  <label style="font-size:30px;margin-left: 50px; margin-bottom; 50px"> <input id="toggle-one" checked type="checkbox"> Blood Draw </label>
-    <input data-toggle="toggle" data-on="Enabled" data-off="Disabled" type="checkbox">
-    <input id="toggle-two" type="checkbox">-->
-  <div>
-    <!-- Rounded switch -->
-<label class="switch">
-  <input type="checkbox">
-  <div class="slider round"></div> <img class="icon-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxcn4oZ5CjeBnc3WxJHmIJk97oofL3DMVwL5MdxRZ7-_3tnAs4" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-</label>
-
-<label class="switch">
-  <input type="checkbox">
-  <div class="slider round"></div> <img src="http://images.cdn4.stockunlimited.net/clipart/test-tube-with-blood-sample_1301770.jpg" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-</label>
-
-<label class="switch">
-  <input type="checkbox">
-  <div class="slider round"></div> <img src="http://img-new.cgtrader.com/items/86383/large_bathroom_weight_scale_3d_model_3ds_fbx_obj_blend_a7c92ec4-52a4-4f9d-bec7-6c8e50146675.jpg" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-</label>
-
-  </div>
-
-  <div>
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img class="icon-image" src="http://elishagoldstein.com/assets/Icon-WaitingArea.jpg" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img src="https://maxcdn.icons8.com/Share/icon/Household//open_sign1600.png" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img src="http://images.all-free-download.com/images/graphiclarge/cleaning_tools_clip_art_10608.jpg" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-  </div>
-
-  <div>
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img class="icon-image" src="https://www.radiologyinfo.org/gallery-items/images/bone-xray-hands.jpg" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_nS5hfoCc1t1PXzFMW7L8fSJRmB1T7W2i2aVFoQz3iSg439Pe" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img src="https://api.kramesstaywell.com/Content/6066ca30-310a-4170-b001-a4ab013d61fd/ucr-images-v1/Images/healthcare-provider-using-transfer-belt-to-move-patient-from-hospital-bed-t" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-  </div>
-
-  <div style="margin-bottom: 50px">
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img class="icon-image" src="http://99percentinvisible.org/app/uploads/2016/03/biohazard-warning-symbol.jpg" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img src="https://www.discoverferndale.com/wp-content/uploads/2015/12/closed-sign-stock-graphic.png" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider round"></div> <img src="http://media.istockphoto.com/illustrations/container-with-urine-for-analysis-illustration-id500896566?k=6&m=500896566&s=612x612&w=0&h=S0s_GzmqaW1NUiBL-xJ6BcwI-xC8Nr4fo2K2ChHcfiM=" alt="" style="border:4px solid #000;border-radius:50%;margin-left: 250px; height: 125px; width:125px;">
-    </label>
-  </div>
-  </div>
   </div>
 
 <script>
+
+
+$('div.segmented-control a').on('click', function(){
+
+  $('div.segmented-control a').each(function(i,e){
+      $(e).removeClass('active');
+  });
+
+  $(this).addClass('active');
+  $(this).find('input').prop('checked',true);
+  return false;
+
+});
+
+function changeColorPreview(colorVal)
+{
+
+
+  if(colorVal === 1)
+    document.getElementById("color-display").style.background = "#FFFF00";
+
+
+
+  else if(colorVal === 2)
+    document.getElementById("color-display").style.background = "#0000ff";
+
+  else if(colorVal=== 3)
+    document.getElementById("color-display").style.background = "#FFA500";
+
+  else if(colorVal=== 4)
+    document.getElementById("color-display").style.background = "#F00";
+  else if(colorVal=== 5)
+    document.getElementById("color-display").style.background = "#FFF";
+  else
+      document.getElementById("color-display").style.background = "#000";
+
+
+
+}
 
 /*$(function() {
     $('#toggle-one').bootstrapToggle();
