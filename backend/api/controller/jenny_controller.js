@@ -5,6 +5,45 @@ var config = require('../../config.js')
 
 
 //TESTED AND PASSED
+function insert_ActivatedNFC_Patient( req,res){
+	//nullable values are room_id
+	//check if any non nullable values are null
+	if(req.params.patient_id!= null && req.params.appointment_id != null && req.params.nfc_id != null){
+			db.open(cn, function(err) {
+				if (err){
+					console.log(err);
+					res.send(err);
+				}
+				else{
+					var final_room_id=req.params.room_id
+					if(req.params.room_id!=null) 
+						final_room_id= "'"+req.params.room_id +"'"
+				}
+					
+					db.query("INSERT INTO ActivatedNFC_Patient (patient_id, room_id, appt_id, nfc_id) VALUES ("+ req.params.patient_id+","+ final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
+						
+						if (err){
+							console.log(err);
+							res.send(err)
+						}
+						else{
+							console.log("Successful insertion into Activated NFC Patient table")
+							res.send("Successful insertion into Activated NFC Patient table")
+
+						}
+					})
+
+			});
+			
+		
+	}else{
+		console.log("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null")
+		res.send("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null")
+
+	}
+}
+
+//TESTED AND PASSED
 function insert_NFC_Bracelet(req,res){
 	if(req.params.status_id!=null){
 		
@@ -188,7 +227,8 @@ module.exports = {
     insert_NFC_Bracelet,
 	insert_Patient_Information,
 	insert_Provider_Information,
-	insert_Actions
+	insert_Actions,
+	insert_ActivatedNFC_Patient
 }
 
 

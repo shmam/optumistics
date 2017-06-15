@@ -15,6 +15,8 @@ app.route('/general/insert/Provider_Information/:provider_first_name/:provider_l
 app.route('/general/insert/Actions/:action_name/:flag_color/:button_label/:action_duration/:status_id/:icon') 
     .post(api.insert_Actions)
 
+app.route('/general/insert/ActivatedNFC_Patient/:patient_id/:room_id/:appointment_id/:nfc_id') 
+    .post(api.insert_ActivatedNFC_Patient)
 
 
 }
