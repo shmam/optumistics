@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/routesJ.js');
+var routes = require('./api/routes/routesTemp.js');
 
 
 routes(app);
@@ -27,4 +27,4 @@ module.exports = {
 }
 
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('RESTful API server started on: ' + port);

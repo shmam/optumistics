@@ -382,13 +382,7 @@ function insert_Actions(action_name, flag_color,button_label, action_duration, s
 
 
 module.exports = {
-	insert_Appointment_Type,
-	insert_Question,
-	insert_Survey_Activity,
-	insert_Action_Performed,
-	insert_ActivatedNFC_Patient,
-	insert_ActivatedNFC_Provider,
-	insert_person_type,
+	
 	insert_Status,
 	insert_Room,
 	insert_NFC_Bracelet,
