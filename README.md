@@ -1,41 +1,35 @@
-# IOT-REVEAL
-The idea of this project is using a connected system of small microcontrollers that register clinical protocol activities with NFC bracelets, sends the data to a databse that can be called back for real time analysis. The goal that this would accomplish is giving providers the ability to augment their procedures in real time, to improve and reach a better level of efficiency. We are putting equal focus on the patient and provider experice in order to make a product that improves the overall clinical experience. 
+# Optumistics
 
-## Architecture (as of Jun 8th 2017) 
-[LINK HERE](https://docs.google.com/drawings/d/1yU5bx8NPWrrxemk3uijcvZSZAbNoPDtRd3Csm5I0-tA/edit)
+We want to provide clinical professionals with the ability to easily access analysis of thier clinical protocol, giving them the ability to improve their efficiency. Optumistics will provide realtime and comprehensive analysis in order to reduce patient wait times and provider experiences. 
 
-[Raspberry Pi NFC Shield] -> [Python throwing SQL Query]    -> [Azure SQL Database]
+## Architecture
 
-[Angular Frontend] <- [Python Computing Data for Analysis]   <-  [Database Callback Query]       
+Currently we are employing a scalable centralized network for storing information. All devices, both the tracking devices and the web portal pulling information is utilizing a robust api that communicates to our MS SQL database. 
+
+![network](http://i.imgur.com/Op4pVoe.png) 
+      
 
 ## Installation 
-Follow these steps to install the modules needed to communicate with the Azure SQL Databse. 
- 
-#### MAC OSX 
-1. Download Python 3 directly from the website at [python.org/download.](https://www.python.org/download)
-2. Open terminal and type `sudo easy_install pip`
-3. Then, type `sudo pip install pyodbc`
+Follow these steps to run the developmental server and api on your own machine
+
+### MAC OSX 
+
+| Requirement  | Version |
+|:-------------:| :-----:|
+|  node.js | 6.11.0|
+| npm | 3.10.10 |
+
+1. Clone the codehub repository `git clone <link>`
+2. Install the included dependencies `npm install`
+3. Run the local server `npm run start`
+4. The server should be running now at [localhost:3000](https://localhost:3000)
+
+![terminal running the server](http://i.imgur.com/i1DQD1P.png)
 
 
-#### RASPBERRY PI (RASPBIAN) [IN PROGRESS]
-1. Boot up NOOBS and install Raspbian 
-(Python 3 should come with the most current of Raspbian)
-2. Open terminal and type `sudo easy install pip`
-3. Then, type `sudo pip install pyodbc`
-4. Install ODBC Driver by typing ...
+### RASPBERRY PI [to come]
 
 
-## PROGRESS
-
-✓ : Sprint 1 (Buisness model canvas and use case) 
-
-✓ : Setup Azure hostes SQL Database [DATABASE MAP AND GUIDE HERE](https://docs.google.com/drawings/d/1bGvgUyuUlZeVZPlfvcJQgDw7W7cnx_SUfNHcNOJASa0/edit)
-
-✓ : Connect macs and throw querys at the databse with python 
-  
-  : Connect the raspberry pi and throw queries to the database
-
-  : Connect the NFC components to the RP3
 
 
 
