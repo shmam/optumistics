@@ -6,7 +6,7 @@ We want to provide clinical professionals with the ability to easily access anal
 
 Currently we are employing a scalable centralized network for storing information. All devices, both the tracking devices and the web portal pulling information is utilizing a robust api that communicates to our MS SQL database. 
 
-![network](http://i.imgur.com/Op4pVoe.png) 
+![network](http://i.imgur.com/p16rf1x.jpg) 
       
 
 ## Installation 
@@ -24,7 +24,7 @@ Follow these steps to run the developmental server and api on your own machine
 3. Run the local server `npm run start`
 4. The server should be running now at [localhost:3000](https://localhost:3000)
 
-![terminal running the server](http://i.imgur.com/i1DQD1P.png)
+![terminal running the server](http://i.imgur.com/ituDiuu.png)
 
 
 ### RASPBERRY PI [to come]
