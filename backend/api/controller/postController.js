@@ -15,11 +15,10 @@ function insert_ActivatedNFC_Patient( req,res){
 					res.send(err);
 				}
 				else{
-					var final_room_id=req.params.room_id
-					if(req.params.room_id!=null) 
+					var final_room_id= req.params.room_id
+					if(req.params.room_id!=null)
 						final_room_id= "'"+req.params.room_id +"'"
-				}
-					
+										
 					db.query("INSERT INTO ActivatedNFC_Patient (patient_id, room_id, appt_id, nfc_id) VALUES ("+ req.params.patient_id+","+ final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
 						
 						if (err){
@@ -29,13 +28,10 @@ function insert_ActivatedNFC_Patient( req,res){
 						else{
 							console.log("Successful insertion into Activated NFC Patient table")
 							res.send("Successful insertion into Activated NFC Patient table")
-
 						}
 					})
-
-			});
-			
-		
+				}
+			});		
 	}else{
 		console.log("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null")
 		res.send("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null")

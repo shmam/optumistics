@@ -11,7 +11,7 @@ function add_time_provider_task_rt(req,res){
     if(req.params.provider_id != null && req.params.action_id != null){
        db.open(cn, function(err) {
 			if (err)
-				return console.log(err);
+				res.send(err);
 			else
 				db.query("SELECT SUM(time_taken) FROM Action_Performed WHERE provider_id="+req.params.provider_id+" AND action_id="+req.params.action_id+" AND action_date='"+today+"'", function(err, data) {
 					if (err){
@@ -31,6 +31,7 @@ function add_time_provider_task_rt(req,res){
         res.send("Unsuccessful query. One of these value was null")
     }
 }
+
 
 //total time for each doctor for each task (for pie chart) (comprehensive)
 function add_time_provider_task_c(req,res){  
