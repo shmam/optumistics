@@ -208,7 +208,6 @@ function select_all_actions(req,res) {
 
 //select all providers whose status is active
 function select_active_providers(req,res) {
-	console.log("here")
 	if (req.params.status_name != null) {
     	db.open(cn,function(err){
         	if(err) return console.log(err);
