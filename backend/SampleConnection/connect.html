@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <h1>TIME TO TEST THIS CONNECTION</h1>
+    <h2>These are my list of friends</h2>
+    <ul id = "friends">
+    </ul>
+    <button id = "see">See my friends!</button>
+    <p>Please input a new friend! <input type = "text" id = "name"></p>
+    <button id = "add">Add my friend!</button>
+    <script>
+
+    $('#add').click(function()
+    {
+      var $friends = $("#friends");
+      var $newName = $('#name');
+      $.ajax({
+        type: 'POST',
+        url: 'http://rest.learncode.academy/api/jay/friends',
+        data: {name: 'Freddy', age: 27},
+        success: function(data) {
+        alert("Your friend..." + data.name + " was added to the list!");
+
+        //$friends.append(data.name);
+        //the new item is returned with an ID
+      }
+    });
+
+    });
+
+     $('#see').click(function()
+    {
+      var $friends = $("#friends");
+      $.ajax({
+        type: 'GET',
+        url: 'http://localhost:3000/portal/present/providers/active',
+        contentType: 'application/x-www-form-urlencoded',
+        jsonpCallback: 'callback', 
+        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        //crossDomain:true,
+        success: function(friends) {
+          console.log(friends)
+          
+          //returns all of johnbob's friends
+          console.log(friends[0].last_name);
+
+          $.each(friends, function(i, friend){
+            $friends.append(friend.last_name);
+            $friends.append("</br>");
+          });
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+
+    });
+    //  $.ajax({
+    //     type: 'POST',
+    //     url: 'http://localhost:3000/portal/present/providers/',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+          
+    //       //returns all of johnbob's friends
+    //       console.log(friends[0].last_name);
+
+    //       $.each(friends, function(i, friend){
+    //         $friends.append(friend.last_name);
+    //         $friends.append("</br>");
+    //       });
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
+
+    });
+
+
+
+    </script>
+  </body>
+
+</html>

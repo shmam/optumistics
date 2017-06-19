@@ -3,7 +3,7 @@ var config = require('../../config.js')
  var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
 + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
-function add_time_provider_task_rt(req,res){
+function add_time_provider_task_rt(req,res){ //total time for each doctor for each task
     var today = new Date();
 	today= today.toISOString().substring(0, 10);
 
@@ -19,7 +19,7 @@ function add_time_provider_task_rt(req,res){
                     }	
 					else{
                         console.log("Successful insertion into Question table")
-                        res.json(data)
+                        res.jsonp(data)
                         
                     }
 						
@@ -31,7 +31,7 @@ function add_time_provider_task_rt(req,res){
     }
 }
 
-function add_time_provider_task_c(req,res){
+function add_time_provider_task_c(req,res){ 
    
     var today = new Date();
 	today= today.toISOString().substring(0, 10);
@@ -48,7 +48,7 @@ function add_time_provider_task_c(req,res){
                         res.send(err)        
                     }	
 					else{
-                        res.json(data)
+                        res.jsonp(data)
                         
                     }
 						
@@ -77,7 +77,7 @@ function getTimeEachDoctor_RT(req,res){
                     }	
 					else{
                         console.log(data)
-                        res.json(data)
+                        res.jsonp(data)
                     }
                 })
             }
@@ -103,7 +103,7 @@ function getTimeAllDoctors_RT(req,res){
                     }	
 					else{
                         console.log(data)
-                        res.json(data)
+                        res.jsonp(data)
                     }
                 })
             }
@@ -124,7 +124,7 @@ function getTimeEachDoctorDates_C(req,res){
                     }	
 					else{
                         console.log(data)
-                        res.json(data)
+                        res.jsonp(data)
                     }
                 })
             }
@@ -145,7 +145,7 @@ function getTimeAllDoctorsDates_C(req,res){
                     }	
 					else{
                         console.log(data)
-                        res.json(data)
+                        res.jsonp(data)
                     }
                 })
             }
@@ -171,7 +171,7 @@ function select_active_actions(req,res) {
 								res.send(err);
 							}
 							else {
-								res.json(data2);
+								res.jsonp(data2);
 							}
 						})
 					}
@@ -193,7 +193,7 @@ function select_all_actions(req,res) {
 					res.send(err);
 				}
 				else {
-					res.json(data)
+					res.jsonp(data)
 				}
 			});
 		}
@@ -201,10 +201,12 @@ function select_all_actions(req,res) {
 }
 
 function select_active_providers(req,res) {
+	console.log("here")
 	if (req.params.status_name != null) {
     	db.open(cn,function(err){
         	if(err) return console.log(err);
         	else {
+				console.log(req.params.status_name)
 				db.query("SELECT status_id FROM Status WHERE status_name = '" +req.params.status_name +"'", function(err, data) {
 					if(err) {
 						console.log(err);
@@ -217,7 +219,7 @@ function select_active_providers(req,res) {
 								res.send(err);
 							}
 							else {
-								res.json(data2);
+								res.jsonp(data2);
 							}
 						})
 					}
@@ -240,7 +242,7 @@ function select_expected_duration(req,res) {
 						res.send(err);
 					}
 					else {
-						res.json(data);
+						res.jsonp(data);
 					}
 				});
 			}
@@ -262,7 +264,7 @@ function total_time_for_each_doctor(req,res) {
 						res.send(err);
 					}
 					else {
-						res.json(data);
+						res.jsonp(data);
 					}
 				});
 			}
@@ -283,7 +285,7 @@ function total_time_each_doctor_range(req,res) {
 						res.send(err);
 					}
 					else {
-						res.json(data);
+						res.jsonp(data);
 					}
 				});
 			}
