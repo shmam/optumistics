@@ -29,6 +29,8 @@ Follow these steps to run the developmental server and api on your own machine
 
 ### RASPBERRY PI [to come]
 
+1. Use NVM to install node v6 `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash`
+2. Install node `nvm install 6`
 
 
 
