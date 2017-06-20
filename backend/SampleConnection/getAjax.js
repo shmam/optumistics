@@ -72,7 +72,7 @@ $(document).ready(function(){
     /**
      *  summary: get the average time for actions performed today for each doctor and each task
      *           ajax call listening for component with id AvgTimeEDEA
-     *  route:   
+     *  route:   /portal/average/time/:action_id/:provider_id
      *  params:  provider_id, action_id 
      *  author:  Sam Crochet
      * 
@@ -104,6 +104,37 @@ $(document).ready(function(){
     /**
      *  summary: get the average time for actions performed today for ALL DOCTORS and each task
      *           ajax call listening for component with id AvgTimeEA
+     *  route:   /portal/average/time/:action_id
+     *  params:  action_id 
+     *  author:  Sam Crochet
+     *  
+     */
+     $("#AvgTimeEA").click(function(){
+        
+        // CHANGE THESE
+        // Variables that are used in the URL call
+        var action_id
+
+        $.ajax({
+            type: 'GET',
+            url:  host + '/portal/average/time/'+action_id,
+            contentType: 'application/x-www-form-urlencoded',
+            jsonpCallback: 'callback', 
+            dataType : 'jsonp', 
+            success: function(data) {
+                //CHANGE THIS TO RETURN HOWEVER YOU WANT
+                console.log(data)
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        })
+     })
+
+
+     /**
+     *  summary: get average time for each tas
+     *  route:   /portal/average/time/:action_id/:provider_id/:start_date/:end_date'
      *  params:  action_id 
      *  author:  Sam Crochet
      *  
