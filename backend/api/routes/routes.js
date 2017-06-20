@@ -39,6 +39,12 @@ module.exports = function(app) {
     app.route('/portal/add/time/:provider_id/:start_date/:end_date') // time for each doctor (C)
         .get(selectAPI.total_time_each_doctor_range)
 
+    app.route('/portal/signin/Provider_Information/:username') //get the password from provider_information to match username
+        .get(selectAPI.provider_sign_in)
+    
+    app.route('/portal/present/Person_Type')    //get all provider person types
+        .get(selectAPI.select_person_type)
+
     app.route('/general/insert/NFC_Bracelet/:status_id') 
         .post(insertAPI.insert_NFC_Bracelet)
 
@@ -80,6 +86,8 @@ module.exports = function(app) {
     
     app.route('/general/insert/Flag_Color/:flag_color_name')
         .post(insertAPI.insert_Flag_Color)
+    
+   
 
 }
 

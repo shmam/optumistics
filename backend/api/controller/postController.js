@@ -106,26 +106,33 @@ function insert_Provider_Information(req,res){
 				if (err){
 					console.log(err);
 					res.send(err)
-				}
-					
+				}					
 				else{
-					var final_provider_gender=req.params.provider_gender
-					if(req.params.provider_gender !=null) 
-						final_provider_gender= "'"+req.params.provider_gender +"'"
-
-					db.query("INSERT INTO Provider_Information (first_name, last_name, gender,username,password,person_type_id,status_id) VALUES ('"+ req.params.provider_first_name+"','"+ req.params.provider_last_name+"',"+final_provider_gender+",'"+ req.params.username+"','"+ req.params.password+"',"+req.params.person_type_id+","+req.params.status_id+")", function(err, data) {
-						
-						if (err){
-							console.log(err);
+					db.query("SELECT username FROM Provider_Information WHERE username='"+ req.params.username+"'",function(err,data){
+						if(err){
+							console.log(err)
 							res.send(err)
-						}
-							
-						else{
+						}else if(data.length==0){
+							var final_provider_gender=req.params.provider_gender
+							if(req.params.provider_gender !=null) 
+								final_provider_gender= "'"+req.params.provider_gender +"'"
 
-							console.log("Successful insertion into Provider Information table")
-							res.send("Successful insertion into Provider Information table")
+							db.query("INSERT INTO Provider_Information (first_name, last_name, gender,username,password,person_type_id,status_id) VALUES ('"+ req.params.provider_first_name+"','"+ req.params.provider_last_name+"',"+final_provider_gender+",'"+ req.params.username+"','"+ req.params.password+"',"+req.params.person_type_id+","+req.params.status_id+")", function(err, data) {
+								
+								if (err){
+									console.log(err);
+									res.send(err)
+								}			
+								else{
+									console.log("Successful insertion into Provider Information table")
+									res.send("Successful insertion into Provider Information table")
+								}
+							})
+						}else{
+							console.log("The username must be unique")
+							res.send("The username must be unique")
 						}
-					})
+					});		
 				}
 			});
 	}else{
