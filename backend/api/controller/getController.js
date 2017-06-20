@@ -303,6 +303,42 @@ function total_time_each_doctor_range(req,res) {
 	else { res.send("Unsuccessful selection of data. One of the parameters is null"); }
 }
 
+function provider_sign_in(req,res){
+	console.log(req.params.username)
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT password FROM Provider_Information WHERE username='"+req.params.username+"'", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+
+}
+
+function select_person_type(req,res){
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT * FROM Person_Type WHERE NOT person_type_name = 'patient'", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+}
+
 module.exports = {
     getTimeEachDoctor_RT,
     getTimeAllDoctors_RT,
@@ -315,6 +351,8 @@ module.exports = {
 	select_active_providers,
 	select_expected_duration,
 	total_time_for_each_doctor,
-	total_time_each_doctor_range
+	total_time_each_doctor_range,
+	provider_sign_in,
+	select_person_type
 
 }
