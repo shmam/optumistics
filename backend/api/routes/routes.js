@@ -39,7 +39,7 @@ module.exports = function(app) {
     app.route('/portal/add/time/:provider_id/:start_date/:end_date') // time for each doctor (C)
         .get(selectAPI.total_time_each_doctor_range)
 
-    app.route('/portal/signin/Provider_Information/:username') //get the password from provider_information to match username
+    app.route('/portal/signin/providers/:username') //get the password from provider_information to match username
         .get(selectAPI.provider_sign_in)
     
     app.route('/portal/present/Person_Type')    //get all provider person types

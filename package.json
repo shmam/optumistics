@@ -18,7 +18,10 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "bower": "^1.8.0",
+    "crypto-js": "^3.1.9-1",
     "express": "^4.15.3",
+    "js-sha256": "^0.5.0",
     "json": "^9.0.6",
     "jsonp": "^0.2.1",
     "odbc": "^1.2.1"
