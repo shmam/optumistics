@@ -16,12 +16,13 @@ function here(){
     
    //these are the variables that need to be assigned in order for the query to run
    //provider gender can be assigned null
-    var provider_first_name;
-    var provider_last_name;
-    var provider_gender;
-    var provider_username;
-    var person_type_id;
-    var status_id;
+    var provider_first_name='Sam';
+    var provider_last_name='Crochet';
+    var provider_gender='M';
+    var provider_username='lmao';
+    var person_type_id=20;
+    var status_id=74;
+    var password="hello"
 
     //the next two lines encrypt the password
     var encryptedData = CryptoJS.SHA256(password); 
@@ -57,6 +58,7 @@ function signIn(){
     var password_hash=encryptedData.toString(CryptoJS.enc.Hex);
     console.log(password_hash)
     
+
     
     $.ajax({
         type: 'GET',
@@ -89,3 +91,4 @@ function signIn(){
     });
 
 }
+
