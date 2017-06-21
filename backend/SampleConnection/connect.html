@@ -18,16 +18,17 @@
     {
       var $friends = $("#friends");
       var $newName = $('#name');
-      $.ajax({
-        type: 'POST',
-        url: 'http://rest.learncode.academy/api/jay/friends',
-        data: {name: 'Freddy', age: 27},
-        success: function(data) {
-        alert("Your friend..." + data.name + " was added to the list!");
+   $.ajax({
+        type: "POST",
+        url: 'http://localhost:3000/general/insert/Question/how is it going',
+        success: function(friends) {
 
-        //$friends.append(data.name);
-        //the new item is returned with an ID
-      }
+         console.log("SUCCESS!!!!")
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+
     });
 
     });
@@ -58,29 +59,7 @@
         },
 
     });
-    //  $.ajax({
-    //     type: 'POST',
-    //     url: 'http://localhost:3000/portal/present/providers/',
-    //     contentType: 'application/x-www-form-urlencoded',
-    //     jsonpCallback: 'callback', 
-    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
-    //     //crossDomain:true,
-    //     success: function(friends) {
-    //       console.log(friends)
-          
-    //       //returns all of johnbob's friends
-    //       console.log(friends[0].last_name);
-
-    //       $.each(friends, function(i, friend){
-    //         $friends.append(friend.last_name);
-    //         $friends.append("</br>");
-    //       });
-    //     },
-    //     error: function (xhr, status, error) {
-    //         console.log('Error: ' + error.message);
-    //     },
-
-    // });
+     
 
     });
 
