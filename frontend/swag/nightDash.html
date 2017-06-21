@@ -271,6 +271,57 @@
 
     transition:.5s;
     }
+    .overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay button {
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    align-content: center;
+    font-size: 36px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay button:hover, .overlay button:focus {
+
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
 
     }
     </style>
@@ -305,6 +356,12 @@
     <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
     <br/>
     <br/>
+    <div id="myNav" class="overlay">
+
+  <div class="overlay-content">
+    <button style = "margin-left: 42%;border-radius: 3%;background-color: transparent; border: 2px solid;" onclick = "closeNav()" href="#">check completed</button>
+  </div>
+</div>
     <div id="abc">
 
     <!-- Popup Div Starts Here -->
@@ -320,7 +377,7 @@
         <img src="graphic.jpg" id = "graphic" alt="graphic" style="width:250px;height:250px;border-radius:50%;margin-top:2%">
         <!--Time stamp is the minutes, seconds, miliseconds-->
         <p id = "timeStamp" style>
-          <span id="mins" style = "font-size: 48px;color: #ffffff;">00</span>:
+          <span id="mins" style = "font-size: 48px;color: #ffffff;">00</span>
           <span id="seconds" style = "font-size: 48px;color: #ffffff">00</span>:
           <span id = "tens" style = "font-size:48px;color: #ffffff">00</span>
         </p>
@@ -340,44 +397,58 @@
     <!-- Display Popup Button -->
     <!-- Navigation -->
     <!--The following content pages are the different div and secotions that you can click. By clicking it will bring up the popup - timer window-->
-    <div a href = " " onclick = "div_show()" id = "contentPage" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
+    <div a href = " " id = "contentPage" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
+
           <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>physical timer</b></h1>
+          <button style="margin-right: -15%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(1)">call</button>
             <div id = "layer1" style = "z-index: -1;">
+
+              <span id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
+              <span id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
 
             </div>
 
 
     </div>
-    <div a href = " " onclick = "div_show()" id = "contentPage2" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
+    <div a href = " " id = "contentPage2" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
       <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>operation timer</b></h1>
+      <button style="margin-right: -16%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(2)">call</button>
         <div id = "layer2" style = "z-index: -1;">
+          <span id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
+          <span id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
 
         </div>
     </div>
 
-    <div a href = " " onclick = "div_show()" id = "contentPage3" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
+    <div a href = " " id = "contentPage3" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
       <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>blood timer</b></h1>
+      <button style="margin-right: -12%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(3)">call</button>
         <div id = "layer3" style = "z-index: -1;">
+          <span id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
+          <span id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
 
         </div>
     </div>
 
-    <div a href = " " onclick = "div_show()" id = "contentPage4" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
+    <div a href = " "  id = "contentPage4" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
       <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>vital timer</b></h1>
+      <button style="margin-right: -10%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(4)">call</button>
         <div id = "layer4" style = "z-index: -1;">
 
         </div>
     </div>
 
-    <div a href = " " onclick = "div_show()" id = "contentPage5" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
+    <div a href = " " id = "contentPage5" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
       <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>x-ray timer</b></h1>
+      <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(5)">call</button>
         <div id = "layer5" style = "z-index: -1;">
 
         </div>
     </div>
 
-    <div a href = " " onclick = "div_show()" id = "contentPage6" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
+    <div a href = " " id = "contentPage6" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
       <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>diagnostic timer</b></h1>
+      <button style="margin-right: -17%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(6)">call</button>
         <div id = "layer6" style = "z-index: -1;">
 
         </div>
@@ -415,24 +486,35 @@ function w3_close() {
 //THE FOLLOWING SCRIPT IS FOR THE ANIMATION AND TIMER ONCE YOU CLICK THE BUTTON
 //
 // Validating Empty Field
+var counter = 0;
+var isDisplayed = false;
 window.onload = function () {
 
 var seconds = 00;
 var tens = 00;
-var minute = 00;
-var appendMinute = document.getElementById("mins")
-var appendTens = document.getElementById("tens")
-var appendSeconds = document.getElementById("seconds")
-var buttonStart = document.getElementById('button-start');
+
+
+var appendTens = document.getElementById("tenss")
+var appendSeconds = document.getElementById("secondss")
+var buttonStart = document.getElementById('contentPage');
 var buttonStop = document.getElementById('button-stop');
 var buttonReset = document.getElementById('button-reset');
 var Interval ;
 
-//This function clears the interval for the minutes and starts the timer.
-buttonStart.onclick = function() {
 
+//This function clears the interval for the minutes and starts the timer.
+contentPage.onclick = function()
+{
+  isDisplayed = true;
+  counter++;
+  if (counter % 2 !== 0){
    clearInterval(Interval);
-   Interval = setInterval(startTimer, 10);
+   Interval = setInterval(startTimer, 1000);
+ }
+ else {
+   clearInterval(Interval);
+   isDisplayed = false;
+ }
 }
 //This stops the interval.
 buttonStop.onclick = function() {
@@ -440,19 +522,19 @@ buttonStop.onclick = function() {
 }
 //This function resets the timer.
 buttonReset.onclick = function() {
-   clearInterval(Interval);
+ clearInterval(Interval);
   tens = "00";
   seconds = "00";
-  minute = "00";
+
   appendTens.innerHTML = tens;
   appendSeconds.innerHTML = seconds;
-  appendMinute.innerHTML = minute;
+
 }
 //THE FOLLOWING FUNCTION IS THE TIMER ALGORITHM TO MAKE IT COUNT UP.
 function startTimer () {
   tens++;
 
-  if(tens < 9){
+  if(tens <= 9){
     appendTens.innerHTML = "0" + tens;
   }
 
@@ -460,15 +542,8 @@ function startTimer () {
     appendTens.innerHTML = tens;
 
   }
-  if (seconds === 60)
-  {
-    console.log("minutes");
-    minute++;
-    appendMinute.innerHTML = "0" + minute;
-    seconds = 0;
-    appendSeconds.innerHTML = "0" + 0;
-  }
-  if (tens > 99) {
+
+  if (tens > 59) {
     console.log("seconds");
     seconds++;
     appendSeconds.innerHTML = "0" + seconds;
@@ -493,6 +568,46 @@ function div_hide(){
 document.getElementById('abc').style.display = "none";
 }
 //END OF THE FOLLOWING SCRIPT THAT WORKS FOR THE POPUP!!!!
+
+function openNav(number) {
+  counter = counter + 1;
+  if (isDisplayed === false){
+    document.getElementById("myNav").style.height = "100%";
+
+  }
+  if (number === 1){
+
+    document.getElementById("myNav").style.background = "rgba(231, 76, 60, 1)";
+  }
+  else if (number === 2){
+
+    document.getElementById("myNav").style.background = "rgba(52, 152, 219, 1)";
+  }
+  else if (number === 3){
+    document.getElementById("myNav").style.background = "rgba(46, 204, 113, 1)";
+  }
+  else if (number === 4)
+  {
+    document.getElementById("myNav").style.background = "rgba(155, 89, 182, 1)";
+  }
+  else if (number === 5)
+  {
+    document.getElementById("myNav").style.background = "rgba(241, 196, 15, 1)";
+  }
+  else if (number === 6)
+  {
+    document.getElementById("myNav").style.background = "rgba(52, 73, 94, 1)";
+  }
+}
+
+
+
+
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+
+}
 </script>
 
   </body>
