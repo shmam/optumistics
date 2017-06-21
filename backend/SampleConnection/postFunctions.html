@@ -18,6 +18,7 @@
     <p> First Name <input type = "text" id = "patient_first_name"></p>
     <p> Last Name <input type = "text" id = "patient_last_name"></p>
     <p> Gender <input type = "text" id = "patient_gender"></p>
+    <p> Person Type ID <input type = "text" id = "patient_person_type_id"></p>
     <button id = "patient_button">Add Patient</button>
 
     <!-- Insert Status Info -->
@@ -83,213 +84,37 @@
     <p> Appointment ID <input type = "text" id = "activatednfc_patient_appointment_id"></p>
     <p> NFC ID <input type = "text" id = "activatednfc_patient_nfc_id"></p>
     <button id = "activatednfc_patient_button">Add Activated Patient NFC</button>
-    
+
     <!-- ................................................................................. -->
 
     <script>
-
-    $('#activatednfc_patient_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $activatednfc_patient_id; /* = $("#activatednfc_patient_id"); */
-        var $activatednfc_patient_room_id; /* = $("#activatednfc_patient_room_id"); */
-        var $activatednfc_patient_appointment_id; /* = $('#activatednfc_patient_appointment_id'); */
-        var $activatednfc_patient_nfc_id; /* = $("#activatednfc_patient_nfc_id"); */
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/ActivatedNFC_Patient/1147/10/20/20",
-            /* <--- $activatednfc_patient_id AND $activatednfc_patient_room_id 
-            AND $activatednfc_patient_appointment_id AND $activatednfc_patient_nfc_id */
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Acitvated Patient NFC</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#activatednfc_provider_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $activatednfc_provider_id; /* = $("#activatednfc_provider_id"); */
-        var $activatednfc_provider_room_id; /* = $("#activatednfc_provider_room_id"); */
-        var $activatednfc_provider_nfc_id; /* = $("#activatednfc_provider_nfc_id"); */
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/ActivatedNFC_Provider/2288/10/20",
-            /* <--- $activatednfc_provider_id AND $activatednfc_provider_room_id AND $activatednfc_provider_nfc_id */
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Acitvated Provider NFC</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#room_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $room_name = $('#room_name');
-        var $room_status_id; /* = $('#room_status_id'); */
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/Room/" +$room_name.val() +'/74' /* <--- $room_status_id */,
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Room</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#action_performed_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $action_performed_action_id; /* = $("#action_performed_action_id"); */
-        var $action_date = $("#action_date");
-        var $action_performed_room_id; /* = $("#action_performed_room_id"); */
-        var $action_performed_patient_id; /* = $("#action_performed_patient_id"); */
-        var $time_taken = $("#time_taken");
-        var $action_performed_provider_id; /* = $("#action_performed_provider_id");*/
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/Action_Performed/130/" /* <--- $action_performed_action_id */
-            +$action_date.val() +'/13/1147/'/* <--- $action_performed_room_id AND $action_performed_patient_id */
-            +$time_taken.val() +'/2288' /* <--- $action_performed_provider_id */,
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Action Performed</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#actions_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $action_name = $('#action_name');
-        var $action_flag_color_id; /* = $("#action_flag_color_id"); */
-        var $button_label = $("#button_label");
-        var $action_duration = $("#action_duration");
-        var $action_status_id; /* = $("#action_status_id"); */
-        var $icon = $("#icon");
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/Actions/" +$action_name.val() +'/2/' /* <--- $action_flag_color_id */
-            +$button_label.val() + '/' +$action_duration.val() +'/74/' /* <--- $action_status_id */ +$icon.val(),
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Action</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#survey_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $survey_patient_id; /* = $('#survey_patient_id'); */
-        var $rating = $('#rating');
-        var $rating_date = $('#rating_date');
-        var $survey_question_id; /* = $('#survey_question_id'); */
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/Survey_Activity/1147" /* <--- $survey_patient_id */
-            + '/' +$rating.val() +'/' +$rating_date.val() + '/7' /* <--- $survey_question_id */,
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Survey</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#nfc_bracelet_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $nfc_status_id; /* = $('#nfc_status_id');*/
-        $.ajax({
-            type:"POST",
-            url: 'http://localhost:3000/general/insert/NFC_Bracelet/75' /* <--- $nfc_status_id */,
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of NFC Bracelet</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#question_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $question = $('#question');
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/general/insert/Question/' +$question.val(),
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Question</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#flag_color_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $flag_color_name = $('#flag_color_name');
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/general/insert/Flag_Color/' +$flag_color_name.val(),
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Flag Color</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    $('#appointment_type_button').click(function() {
-        var $insert_status = $("#insert_status");
-        var $appointment_name = $('#appointment_name');
-        var $appointment_duration = $('#appointment_duration');
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/general/insert/Appointment_Type/' +$appointment_name.val() +'/' +$appointment_duration.val(),
-            success: function (insert_status) {
-                $insert_status.append("Successful Insertion of Appointment Type</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
+    
+    // Adding Person Type
     $('#person_type_button').click(function () {
-            var $insert_status = $("#insert_status");
-            var $add_person_type = $("#add_person_type");
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:3000/general/insert/Person_Type/' + $add_person_type.val(),
-                success: function (insert_status) {
-                    $insert_status.append("Successful Insertion of Person Type</br>");
-                },
-                error: function (xhr, status, error) {
-                    console.log('Error: ' + error.message);
-                },
-            });
+        var add_person_type = $("#add_person_type").val(); // getting Person Type val()
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Person_Type/' +add_person_type,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Person Type</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
         });
+    });
 
+    // Adding Patient Information
     $('#patient_button').click(function() {
-        var $insert_status = $('#insert_status');
-        var $patient_first_name = $('#patient_first_name');
-        var $patient_last_name = $('#patient_last_name');
-        var $patient_gender = $('#patient_gender');
+        var patient_first_name = $('#patient_first_name').val(); // getting Patient First Name val()
+        var patient_last_name = $('#patient_last_name').val(); // getting Patient Last Name val()
+        var patient_gender = $('#patient_gender').val(); // getting Patient Gender val(). If null, type in null.
+        var patient_person_type_id; /* = $('#patient_person_type_id').val(); */ // getting Patient Person Type ID val()
         $.ajax({
            type: "POST",
-           url: 'http://localhost:3000/general/insert/Patient_Information/' + $patient_first_name.val() +'/' +$patient_last_name.val() +'/' +$patient_gender.val() +'/18',
+           url: 'http://localhost:3000/general/insert/Patient_Information/' +patient_first_name +'/' +patient_last_name +'/' +patient_gender +'/' +patient_person_type_id,
            success: function(insert_status) {
-               $insert_status.append("Successful Insertion of Patient</br>");
+               $('#insert_status').append("Successful Insertion of Patient</br>");
            },
            error: function(xhr, status, error) {
                console.log('Error: ' +error.message);
@@ -297,17 +122,193 @@
         });
     });
 
+    // Adding Status
     $('#status_button').click(function() {
-        var $insert_status = $('#insert_status');
-        var $status_name = $('#status_name');
+        var status_name = $('#status_name').val(); // getting Status Name val()
         $.ajax({
             type: "POST",
-            url:'http://localhost:3000/general/insert/Status/' +$status_name.val(),
+            url:'http://localhost:3000/general/insert/Status/' +status_name,
             success: function(insert_status) {
-               $insert_status.append("Successful Insertion of NFC Status</br>");
+               $('#insert_status').append("Successful Insertion of NFC Status</br>");
             },
             error: function(xhr, status, error) {
                console.log('Error: ' +error.message);
+            },
+        });
+    });
+
+    // Adding Appointment Type
+    $('#appointment_type_button').click(function() {
+        var appointment_name = $('#appointment_name').val(); // getting Appointment Name val()
+        var appointment_duration = $('#appointment_duration').val(); // getting Appointment Duration val(). If null, type in null.
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Appointment_Type/' +appointment_name +'/' +appointment_duration,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Appointment Type</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Flag Color
+    $('#flag_color_button').click(function() {
+        var flag_color_name = $('#flag_color_name').val(); // getting Flag Color Name val()
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Flag_Color/' +flag_color_name,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Flag Color</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Question
+    $('#question_button').click(function() {
+        var question = $('#question').val(); // getting Question val()
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Question/' +question,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Question</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding NFC Bracelet
+    $('#nfc_bracelet_button').click(function() {
+        var nfc_status_id; /* = $('#nfc_status_id').val(); */ // getting NFC Status ID val()
+        $.ajax({
+            type:"POST",
+            url: 'http://localhost:3000/general/insert/NFC_Bracelet/' +nfc_status_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of NFC Bracelet</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Survey Activity
+    $('#survey_button').click(function() {
+        var survey_patient_id; /* = $('#survey_patient_id').val(); */ //getting Survey Patient ID val()
+        var rating = $('#rating').val(); // getting Survey Rating val()
+        var rating_date = $('#rating_date').val(); // getting Survey Rating Date val()
+        var survey_question_id; /* = $('#survey_question_id').val(); */ // getting Survey Question ID val()
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Survey_Activity/" +survey_patient_id
+            + '/' +rating +'/' +rating_date + '/' +survey_question_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Survey</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Actions
+    $('#actions_button').click(function() {
+        var action_name = $('#action_name').val(); // getting Action Name val()
+        var action_flag_color_id; /* = $("#action_flag_color_id").val(); */ // getting Action Flag Color ID val()
+        var button_label = $("#button_label").val(); // getting Button Label val()
+        var action_duration = $("#action_duration").val(); // getting Action Duration val()
+        var action_status_id; /* = $("#action_status_id").val(); */ // getting Action Status ID val()
+        var icon = $("#icon").val(); // getting Icon val(). If null, type in null.
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
+            +button_label + '/' +action_duration +'/' +action_status_id +'/' +icon,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Action</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Action Performed
+    $('#action_performed_button').click(function() {
+        var action_performed_action_id; /* = $("#action_performed_action_id").val(); */ // getting Action Performed Action ID val()
+        var action_date = $("#action_date").val(); // getting Action Performed Date val()
+        var action_performed_room_id; /* = $("#action_performed_room_id").val(); */ // getting Room ID val() If null, type in null.
+        var action_performed_patient_id; /* = $("#action_performed_patient_id").val(); */ // getting Patient ID val() If null, type in null.
+        var time_taken = $("#time_taken").val(); // getting Action Performed Time Taken val()
+        var action_performed_provider_id; /* = $("#action_performed_provider_id").val();*/ // getting Provider ID val() If null, type in null.
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Action_Performed/" +action_performed_action_id +'/'
+            +action_date +'/' +action_performed_room_id +'/' +action_performed_patient_id +'/'
+            +time_taken +'/' +action_performed_provider_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Action Performed</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Room Information
+    $('#room_button').click(function() {
+        var room_name = $('#room_name').val(); // getting Room Name val()
+        var room_status_id; /* = $('#room_status_id').val(); */ // getting Room Status ID val()
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Room/" +room_name +'/' +room_status_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Room</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Activated NFC Provider
+    $('#activatednfc_provider_button').click(function() {
+        var activatednfc_provider_id; /* = $("#activatednfc_provider_id").val(); */ // getting Provider ID val()
+        var activatednfc_provider_room_id; /* = $("#activatednfc_provider_room_id").val(); */ // getting Room ID val() If null, type in null.
+        var activatednfc_provider_nfc_id; /* = $("#activatednfc_provider_nfc_id").val(); */ // getting Provider NFC ID val()
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/ActivatedNFC_Provider/" +activatednfc_provider_id +'/'
+            +activatednfc_provider_room_id +'/' +activatednfc_provider_nfc_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Acitvated Provider NFC</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Activated NFC Patient
+    $('#activatednfc_patient_button').click(function() {
+        var activatednfc_patient_id; /* = $("#activatednfc_patient_id").val(); */ // getting Patient ID val()
+        var activatednfc_patient_room_id; /* = $("#activatednfc_patient_room_id").val(); */ // getting Room ID val() If null, type in null.
+        var activatednfc_patient_appointment_id; /* = $('#activatednfc_patient_appointment_id').val(); */ // getting Appointment ID val()
+        var activatednfc_patient_nfc_id; /* = $("#activatednfc_patient_nfc_id").val(); */ // getting Patient NFC ID val()
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/ActivatedNFC_Patient/" +activatednfc_patient_id +'/'
+            +activatednfc_patient_room_id +'/' +activatednfc_patient_appointment_id +'/' +activatednfc_patient_nfc_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Acitvated Patient NFC</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
             },
         });
     });
