@@ -19,7 +19,7 @@ function insert_ActivatedNFC_Patient( req,res){
 					if(req.params.room_id!=null)
 						final_room_id= "'"+req.params.room_id +"'"
 										
-					db.query("INSERT INTO ActivatedNFC_Patient (patient_id, room_id, appt_id, nfc_id) VALUES ("+ req.params.patient_id+","+ final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
+					db.query("INSERT INTO ActivatedNFC_Patient (patient_id, room_id, appointment_id, nfc_id) VALUES ("+ req.params.patient_id+","+ final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
 						
 						if (err){
 							console.log(err);
@@ -415,7 +415,7 @@ function insert_Appointment(req,res) {
 			}
 			else {
 				db.query("INSERT INTO Appointment VALUES ( '" +req.params.start_time +"','" +req.params.end_time +"','" +req.params.time_waited +"','"
-				+req.params.patient_id +"','" +req.params.appt_type_id +"','" +req.params.status_id +"')", function(err,data) {
+				+req.params.patient_id +"','" +req.params.appointment_type_id +"','" +req.params.status_id +"')", function(err,data) {
 					if(err) {
 						console.log(err);
 						res.send(err);
