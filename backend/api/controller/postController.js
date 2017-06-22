@@ -406,6 +406,33 @@ function insert_Status(req,res) {
 	}
 }
 
+function insert_Appointment(req,res) {
+	if(req.params.start_time != null && req.params.end_time != null && req.params.time_waited != null && req.params.patient_id != null && req.params.status_id != null) {
+		db.open(cn, function(err) {
+			if(err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO Appointment VALUES ( '" +req.params.start_time +"','" +req.params.end_time +"','" +req.params.time_waited +"','"
+				+req.params.patient_id +"','" +req.params.appt_type_id +"','" +req.params.status_id +"')", function(err,data) {
+					if(err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						res.send("Successful insertion into Appointment");
+					}
+				});
+			}
+		});
+	}
+	else {
+		console.log("Unsuccessful insertion into Status table. One of the values is null");
+		res.send("Unsuccessful insertion into Status table. One of the values is null");
+	}
+}
+
 
 module.exports = {
     insert_NFC_Bracelet,
@@ -421,6 +448,7 @@ module.exports = {
 	insert_Survey_Activity,
 	insert_Action_Performed,
 	insert_Room,
-	insert_Flag_Color
+	insert_Flag_Color,
+	insert_Appointment
 
 }

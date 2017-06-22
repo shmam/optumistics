@@ -87,7 +87,8 @@ module.exports = function(app) {
     app.route('/general/insert/Flag_Color/:flag_color_name')
         .post(insertAPI.insert_Flag_Color)
     
-   
+    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appt_type_id/:status_id')
+        .post(insertAPI.insert_Appointment)
 
 }
 
