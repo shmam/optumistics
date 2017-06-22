@@ -138,7 +138,7 @@
             type: "POST",
             url:'http://localhost:3000/general/insert/Status/' +status_name,
             success: function(insert_status) {
-               $('#insert_status').append("Successful Insertion of NFC Status</br>");
+               $('#insert_status').append("Successful Insertion of Status</br>");
             },
             error: function(xhr, status, error) {
                console.log('Error: ' +error.message);
@@ -322,6 +322,7 @@
         });
     });
 
+    // Adding Appointment
     $('#appointment_button').click(function() {
         var appointment_start_time = $('#appointment_start_time').val();
         var appointment_end_time = $('#appointment_end_time').val();

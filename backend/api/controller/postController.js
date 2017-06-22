@@ -78,7 +78,7 @@ function insert_Patient_Information(req,res){
 					if(req.params.patient_gender !=null)
 						final_patient_gender= "'"+req.params.patient_gender +"'";
 
-					db.query("INSERT INTO Patient_Information (first_name, last_name, gender,person_type_id) VALUES ('"+ req.params.patient_first_name+"','"+ req.params.patient_last_name+"',"+final_patient_gender+","+req.params.person_type_id+")", function(err, data) {
+					db.query("INSERT INTO Patient_Information (patient_first_name, patient_last_name, patient_gender,person_type_id) VALUES ('"+ req.params.patient_first_name+"','"+ req.params.patient_last_name+"',"+final_patient_gender+","+req.params.person_type_id+")", function(err, data) {
 						
 						if (err){
 							console.log(err);
