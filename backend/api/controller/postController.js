@@ -73,7 +73,7 @@ function insert_Question(req, res) {
 	}
 }
 
-//TESTED AND PASSED
+// TESTED AND PASSED
 function insert_Flag_Color(req, res) {
 	if (req.params.flag_color_name != null) {
 		db.open(cn, function (err) {
@@ -101,7 +101,7 @@ function insert_Flag_Color(req, res) {
 	}
 }
 
-//TESTED AND PASSED
+// TESTED AND PASSED
 function insert_Appointment_Type(req, res) {
 	if (req.params.appointment_duration == null && req.params.appointment_name != null) {
 		db.open(cn, function (err) {
@@ -306,7 +306,7 @@ function insert_Patient_Information(req, res) {
 	}
 }
 
-//TESTED AND PASSED
+// TESTED AND PASSED
 function insert_Provider_Information(req, res) {
 	if (req.params.provider_first_name != null && req.params.provider_last_name != null && req.params.person_type_id != null && req.params.provider_username != null && req.params.provider_password != null && req.params.status_id != null) {
 		db.open(cn, function (err) {
@@ -349,7 +349,7 @@ function insert_Provider_Information(req, res) {
 	}
 }
 
-//TESTED AND PASSED
+// TESTED AND PASSED
 function insert_Actions(req, res) {
 	if (req.params.action_name != null && req.params.flag_color_id != null && req.params.button_label != null && req.params.action_duration != null && req.params.status_id != null) {
 		db.open(cn, function (err) {
@@ -395,20 +395,22 @@ function insert_Actions(req, res) {
 	}
 }
 
-function insert_ActivatedNFC_Provider (req,res) {
-	if(req.params.provider_id != null && req.params.nfc_id != null) {
-		db.open(cn,function(err) {
-			if(err) {
-				return console.log(err);
+function insert_ActivatedNFC_Provider(req, res) {
+	if (req.params.provider_id != null && req.params.nfc_id != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
 			}
 			else {
-				db.query("INSERT INTO ActivatedNFC_Provider (provider_id, room_id, nfc_id) VALUES ('" +req.params.provider_id +"','" +req.params.room_id +"','" +req.params.nfc_id +"')", function(err,data) {
-					if(err) {
+				db.query("INSERT INTO ActivatedNFC_Provider (provider_id, room_id, nfc_id) VALUES ('" + req.params.provider_id + "','" + req.params.room_id + "','" + req.params.nfc_id + "')", function (err, data) {
+					if (err) {
 						console.log(err);
 						res.send(err);
 					}
 					else {
-						res.send("Successful insertion into ActivatedNFC_Provider_Table")
+						console.log("Successful insertion into ActivatedNFC Provider Table");
+						res.send("Successful insertion into ActivatedNFC Provider Table");
 					}
 				});
 			}

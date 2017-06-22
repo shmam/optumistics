@@ -82,10 +82,10 @@ module.exports = function(app) {
     app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon') 
         .post(insertAPI.insert_Actions)
 
-    // EDIT UNTIL HERE
-
     app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Provider)
+
+    // EDIT UNTIL HERE
 
     app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id')
         .post(insertAPI.insert_Appointment)

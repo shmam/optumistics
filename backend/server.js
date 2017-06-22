@@ -1,10 +1,7 @@
 var express = require('express'),
   app = express(),
-<<<<<<< HEAD
+
   port = process.env.PORT || 3000,
-=======
-  port = process.env.PORT || 443,
->>>>>>> 781f940026cdd2d9165b8eec33e7ab653596f8eb
 
   bodyParser = require('body-parser');
   
