@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/crypto-js/crypto-js.js"></script> 
   </head>
   <body>
 
@@ -27,13 +28,6 @@
     <p> Appointment Duration <input type = "text" id = "appointment_duration"></p>
     <button id = "appointment_type_button">Add Appointment Type</button>
 
-    <!-- Insert Patient Info -->
-    <p> First Name <input type = "text" id = "patient_first_name"></p>
-    <p> Last Name <input type = "text" id = "patient_last_name"></p>
-    <p> Gender <input type = "text" id = "patient_gender"></p>
-    <p> Person Type ID <input type = "text" id = "patient_person_type_id"></p>
-    <button id = "patient_button">Add Patient</button>
-
     <!-- Insert Status Info -->
     <p> Status Name <input type = "text" id = "status_name"></p>
     <button id = "status_button">Add Status</button>
@@ -42,12 +36,34 @@
     <p> Status ID <input type = "text" id = "nfc_status_id"></p>
     <button id = "nfc_bracelet_button">Add NFC Bracelet</button>
 
+    <!-- Insert Room Info -->
+    <p> Room Name <input type = "text" id = "room_name"></p>
+    <p> Status ID <input type = "text" id = "room_status_id"></p>
+    <button id = "room_button">Add Room</button>
+
     <!-- Insert Survey Activity Info -->
     <p> Patient ID <input type = "text" id = "survey_patient_id"></p>
     <p> Rating <input type = "text" id = "rating"></p>
     <p> Rating Date <input type = "text" id = "rating_date"></p>
     <p> Question ID <input type = "text" id = "survey_question_id"></p>
     <button id = "survey_button">Add Survey</button>
+
+    <!-- Insert Patient Info -->
+    <p> First Name <input type = "text" id = "patient_first_name"></p>
+    <p> Last Name <input type = "text" id = "patient_last_name"></p>
+    <p> Gender <input type = "text" id = "patient_gender"></p>
+    <p> Person Type ID <input type = "text" id = "patient_person_type_id"></p>
+    <button id = "patient_button">Add Patient</button>
+
+    <!-- Insert Provider Info -->
+    <p> First Name <input type = "text" id = "provider_first_name"></p>
+    <p> Last Name <input type = "text" id = "provider_last_name"></p>
+    <p> Gender <input type = "text" id = "provider_gender"></p>
+    <p> Username <input type = "text" id = "provider_username"></p>
+    <p> Password <input type = "text" id = "provider_password"></p>
+    <p> Person Type ID <input type = "text" id = "provider_person_type_id"></p>
+    <p> Status ID <input type = "text" id = "provider_status_id"></p>
+    <button id = "provider_button">Add Provider</button>
 
     <!-- Insert Actions Info -->
     <p> Action Name <input type = "text" id = "action_name"></p>
@@ -58,32 +74,11 @@
     <p> Icon <input type = "text" id = "icon"></p>
     <button id = "actions_button">Add Action</button>
 
-    <!-- Insert Action Performed Info -->
-    <p> Action ID <input type = "text" id = "action_performed_action_id"></p>
-    <p> Action Date <input type = "text" id = "action_date"></p>
-    <p> Room ID <input type = "text" id = "action_performed_room_id"></p>
-    <p> Appointment ID <input type = "text" id = "action_performed_appointment_id"></p>
-    <p> Start Time <input type = "text" id = "action_performed_start_time"></p>
-    <p> End Time <input type = "text" id = "action_performed_end_time"></p>
-    <p> Provider ID <input type = "text" id = "action_performed_provider_id"></p>
-    <button id = "action_performed_button">Add Action Performed</button>
-
-    <!-- Insert Room Info -->
-    <p> Room Name <input type = "text" id = "room_name"></p>
-    <p> Status ID <input type = "text" id = "room_status_id"></p>
-    <button id = "room_button">Add Room</button>
-
     <!-- Insert ActivatedNFC Provider Info -->
     <p> Provider ID <input type = "text" id = "activatednfc_provider_id"></p>
     <p> Room ID <input type = "text" id = "activatednfc_provider_room_id"></p>
     <p> NFC ID <input type = "text" id = "activatednfc_provider_nfc_id"></p>
     <button id = "activatednfc_provider_button">Add Activated Provider NFC</button>
-
-    <!-- Insert ActivatedNFC Patient Info -->
-    <p> Room ID <input type = "text" id = "activatednfc_patient_room_id"></p>
-    <p> Appointment ID <input type = "text" id = "activatednfc_patient_appointment_id"></p>
-    <p> NFC ID <input type = "text" id = "activatednfc_patient_nfc_id"></p>
-    <button id = "activatednfc_patient_button">Add Activated Patient NFC</button>
 
     <!-- Insert Appointment Info -->
     <p> Start Time <input type = "text" id = "appointment_start_time"></p>
@@ -93,6 +88,22 @@
     <p> Appointment Type ID <input type = "text" id = "appointment_appointment_type_id"></p>
     <p> Status ID <input type = "text" id = "appointment_status_id"></p>
     <button id = "appointment_button">Add Appointment</button>
+
+    <!-- Insert ActivatedNFC Patient Info -->
+    <p> Room ID <input type = "text" id = "activatednfc_patient_room_id"></p>
+    <p> Appointment ID <input type = "text" id = "activatednfc_patient_appointment_id"></p>
+    <p> NFC ID <input type = "text" id = "activatednfc_patient_nfc_id"></p>
+    <button id = "activatednfc_patient_button">Add Activated Patient NFC</button>
+
+    <!-- Insert Action Performed Info -->
+    <p> Action ID <input type = "text" id = "action_performed_action_id"></p>
+    <p> Action Date <input type = "text" id = "action_date"></p>
+    <p> Room ID <input type = "text" id = "action_performed_room_id"></p>
+    <p> Appointment ID <input type = "text" id = "action_performed_appointment_id"></p>
+    <p> Start Time <input type = "text" id = "action_performed_start_time"></p>
+    <p> End Time <input type = "text" id = "action_performed_end_time"></p>
+    <p> Provider ID <input type = "text" id = "action_performed_provider_id"></p>
+    <button id = "action_performed_button">Add Action Performed</button>
 
     <!-- ................................................................................. -->
 
@@ -159,24 +170,6 @@
         });
     });
 
-    // Adding Patient Information
-    $('#patient_button').click(function() {
-        var patient_first_name = $('#patient_first_name').val(); // getting Patient First Name val()
-        var patient_last_name = $('#patient_last_name').val(); // getting Patient Last Name val()
-        var patient_gender = $('#patient_gender').val(); // getting Patient Gender val(). If null, type in null.
-        var patient_person_type_id; /* = $('#patient_person_type_id').val(); */ // getting Patient Person Type ID val()
-        $.ajax({
-           type: "POST",
-           url: 'http://localhost:3000/general/insert/Patient_Information/' +patient_first_name +'/' +patient_last_name +'/' +patient_gender +'/' +patient_person_type_id,
-           success: function(insert_status) {
-               $('#insert_status').append("Successful Insertion of Patient</br>");
-           },
-           error: function(xhr, status, error) {
-               console.log('Error: ' +error.message);
-           },
-        });
-    });
-
     // Adding Status
     $('#status_button').click(function() {
         var status_name = $('#status_name').val(); // getting Status Name val()
@@ -207,6 +200,22 @@
         });
     });
 
+    // Adding Room Information
+    $('#room_button').click(function() {
+        var room_name = $('#room_name').val(); // getting Room Name val()
+        var room_status_id; /* = $('#room_status_id').val(); */ // getting Room Status ID val()
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Room/" +room_name +'/' +room_status_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Room</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
     // Adding Survey Activity
     $('#survey_button').click(function() {
         var survey_patient_id; /* = $('#survey_patient_id').val(); */ //getting Survey Patient ID val()
@@ -219,6 +228,49 @@
             + '/' +rating +'/' +rating_date + '/' +survey_question_id,
             success: function (insert_status) {
                 $("#insert_status").append("Successful Insertion of Survey</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Patient Information
+    $('#patient_button').click(function() {
+        var patient_first_name = $('#patient_first_name').val(); // getting Patient First Name val()
+        var patient_last_name = $('#patient_last_name').val(); // getting Patient Last Name val()
+        var patient_gender = $('#patient_gender').val(); // getting Patient Gender val(). If null, type in null.
+        var patient_person_type_id; /* = $('#patient_person_type_id').val(); */ // getting Patient Person Type ID val()
+        $.ajax({
+           type: "POST",
+           url: 'http://localhost:3000/general/insert/Patient_Information/' +patient_first_name +'/' +patient_last_name +'/' +patient_gender +'/' +patient_person_type_id,
+           success: function(insert_status) {
+               $('#insert_status').append("Successful Insertion of Patient</br>");
+           },
+           error: function(xhr, status, error) {
+               console.log('Error: ' +error.message);
+           },
+        });
+    });
+
+    // Adding Provider Information
+    $('#provider_button').click(function() {
+        var provider_first_name = $('#provider_first_name').val(); // getting Provider First Name val()
+        var provider_last_name = $('#provider_last_name').val(); // getting Provider Last Name val()
+        var provider_gender = $('#provider_gender').val(); // getting Provider Gender val(). If null, type in null.
+        var provider_username = $('#provider_username').val(); // getting Provider Username val()
+        var provider_password = $('#provider_password').val(); // getting Provider Password val()
+        var provider_person_type_id; /* = $('#provider_person_type_id').val(); */ // getting Provider Person Type ID val()
+        var provider_status_id; /* = $('#provider_status_id').val(); */ // getting Provider Status ID val()
+        //the next two lines encrypt the password
+        var encryptedData = CryptoJS.SHA256(provider_password); 
+        var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Provider_Information/" +provider_first_name +'/' +provider_last_name +'/' +provider_gender +'/' +provider_username +'/'
+            +password_hash +'/' +provider_person_type_id +'/' +provider_status_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Provider</br>");
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + error.message);
@@ -247,45 +299,6 @@
         });
     });
 
-    // Adding Action Performed
-    $('#action_performed_button').click(function() {
-        var action_performed_action_id; /* = $("#action_performed_action_id").val(); */ // getting Action Performed Action ID val()
-        var action_date = $("#action_date").val(); // getting Action Performed Date val()
-        var action_performed_room_id; /* = $("#action_performed_room_id").val(); */ // getting Room ID val() If null, type in null.
-        var action_performed_appointment_id; /* = $("#action_performed_appointment_id").val(); */ // getting Appointment ID val() If null, type in null.
-        var action_performed_start_time = $("#action_performed_start_time").val(); // getting Action Performed Start Time val()
-        var action_performed_start_time = $("#action_performed_start_time").val(); // getting Action Performed End Time val()
-        var action_performed_provider_id; /* = $("#action_performed_provider_id").val();*/ // getting Provider ID val() If null, type in null.
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/Action_Performed/" +action_performed_action_id +'/'
-            +action_date +'/' +action_performed_room_id +'/' +action_performed_appointment_id +'/'
-            +action_performed_start_time +'/' +action_performed_start_time +'/' +action_performed_provider_id,
-            success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Action Performed</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    // Adding Room Information
-    $('#room_button').click(function() {
-        var room_name = $('#room_name').val(); // getting Room Name val()
-        var room_status_id; /* = $('#room_status_id').val(); */ // getting Room Status ID val()
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/general/insert/Room/" +room_name +'/' +room_status_id,
-            success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Room</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
     // Adding Activated NFC Provider
     $('#activatednfc_provider_button').click(function() {
         var activatednfc_provider_id; /* = $("#activatednfc_provider_id").val(); */ // getting Provider ID val()
@@ -297,6 +310,27 @@
             +activatednfc_provider_room_id +'/' +activatednfc_provider_nfc_id,
             success: function (insert_status) {
                 $("#insert_status").append("Successful Insertion of Acitvated Provider NFC</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Appointment
+    $('#appointment_button').click(function() {
+        var appointment_start_time = $('#appointment_start_time').val();
+        var appointment_end_time = $('#appointment_end_time').val();
+        var appointment_time_waited = $('#appointment_time_waited').val();
+        var appointment_patient_id = $('#appointment_patient_id').val();
+        var appointment_appointment_type_id = $('#appointment_appointment_type_id').val();
+        var appointment_status_id = $('#appointment_status_id').val();
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/general/insert/Appointment/" +appointment_start_time +'/' +appointment_end_time +'/' +appointment_time_waited +'/'
+            +appointment_patient_id +'/' +appointment_appointment_type_id +'/' +appointment_status_id,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Appointment</br>");
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + error.message);
@@ -322,20 +356,22 @@
         });
     });
 
-    // Adding Appointment
-    $('#appointment_button').click(function() {
-        var appointment_start_time = $('#appointment_start_time').val();
-        var appointment_end_time = $('#appointment_end_time').val();
-        var appointment_time_waited = $('#appointment_time_waited').val();
-        var appointment_patient_id = $('#appointment_patient_id').val();
-        var appointment_appointment_type_id = $('#appointment_appointment_type_id').val();
-        var appointment_status_id = $('#appointment_status_id').val();
+    // Adding Action Performed
+    $('#action_performed_button').click(function() {
+        var action_performed_action_id; /* = $("#action_performed_action_id").val(); */ // getting Action Performed Action ID val()
+        var action_date = $("#action_date").val(); // getting Action Performed Date val()
+        var action_performed_room_id; /* = $("#action_performed_room_id").val(); */ // getting Room ID val() If null, type in null.
+        var action_performed_appointment_id; /* = $("#action_performed_appointment_id").val(); */ // getting Appointment ID val() If null, type in null.
+        var action_performed_start_time = $("#action_performed_start_time").val(); // getting Action Performed Start Time val()
+        var action_performed_start_time = $("#action_performed_start_time").val(); // getting Action Performed End Time val()
+        var action_performed_provider_id; /* = $("#action_performed_provider_id").val();*/ // getting Provider ID val() If null, type in null.
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/general/insert/Appointment/" +appointment_start_time +'/' +appointment_end_time +'/' +appointment_time_waited +'/'
-            +appointment_patient_id +'/' +appointment_appointment_type_id +'/' +appointment_status_id,
+            url: "http://localhost:3000/general/insert/Action_Performed/" +action_performed_action_id +'/'
+            +action_date +'/' +action_performed_room_id +'/' +action_performed_appointment_id +'/'
+            +action_performed_start_time +'/' +action_performed_start_time +'/' +action_performed_provider_id,
             success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Appointment</br>");
+                $("#insert_status").append("Successful Insertion of Action Performed</br>");
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + error.message);
