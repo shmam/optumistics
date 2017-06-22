@@ -2,7 +2,7 @@
   "name": "testapi",
   "version": "1.0.0",
   "description": "RESTful API test",
-  "main": "server.js",
+  "main": "backend/SampleConnection/connect.html",
   "scripts": {
     "test": "jest",
     "start": "node backend/server.js"
