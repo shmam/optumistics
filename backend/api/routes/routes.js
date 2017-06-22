@@ -87,7 +87,7 @@ module.exports = function(app) {
 
     // EDIT UNTIL HERE
 
-    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id')
+    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id/:appointment_date')
         .post(insertAPI.insert_Appointment)
 
     app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id') 

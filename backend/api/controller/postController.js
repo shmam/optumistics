@@ -422,6 +422,8 @@ function insert_ActivatedNFC_Provider(req, res) {
 	}
 }
 
+// REWRITE THIS APPOINTMENT FUNCTION. START HERE!
+
 function insert_Appointment(req,res) {
 	if(req.params.start_time != null && req.params.end_time != null && req.params.time_waited != null && req.params.patient_id != null && req.params.status_id != null) {
 		db.open(cn, function(err) {
