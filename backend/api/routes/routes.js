@@ -57,7 +57,7 @@ module.exports = function(app) {
     app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon') 
         .post(insertAPI.insert_Actions)
 
-    app.route('/general/insert/ActivatedNFC_Patient/:patient_id/:room_id/:appointment_id/:nfc_id') 
+    app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Patient)
 
     app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') 
