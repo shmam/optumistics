@@ -5,10 +5,10 @@ var config = require('../../config.js')
 
 
 //TESTED AND PASSED
-function insert_ActivatedNFC_Patient( req,res){
+function insert_ActivatedNFC_Patient(req,res){
 	//nullable values are room_id
 	//check if any non nullable values are null
-	if(req.params.patient_id!= null && req.params.appointment_id != null && req.params.nfc_id != null){
+	if(req.params.appointment_id != null && req.params.nfc_id != null){
 			db.open(cn, function(err) {
 				if (err){
 					console.log(err);
@@ -19,7 +19,7 @@ function insert_ActivatedNFC_Patient( req,res){
 					if(req.params.room_id!=null)
 						final_room_id= "'"+req.params.room_id +"'"
 										
-					db.query("INSERT INTO ActivatedNFC_Patient (patient_id, room_id, appt_id, nfc_id) VALUES ("+ req.params.patient_id+","+ final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
+					db.query("INSERT INTO ActivatedNFC_Patient (room_id, appointment_id, nfc_id) VALUES ("+final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
 						
 						if (err){
 							console.log(err);
@@ -78,7 +78,7 @@ function insert_Patient_Information(req,res){
 					if(req.params.patient_gender !=null)
 						final_patient_gender= "'"+req.params.patient_gender +"'";
 
-					db.query("INSERT INTO Patient_Information (first_name, last_name, gender,person_type_id) VALUES ('"+ req.params.patient_first_name+"','"+ req.params.patient_last_name+"',"+final_patient_gender+","+req.params.person_type_id+")", function(err, data) {
+					db.query("INSERT INTO Patient_Information (patient_first_name, patient_last_name, patient_gender,person_type_id) VALUES ('"+ req.params.patient_first_name+"','"+ req.params.patient_last_name+"',"+final_patient_gender+","+req.params.person_type_id+")", function(err, data) {
 						
 						if (err){
 							console.log(err);
@@ -266,25 +266,24 @@ function insert_Survey_Activity(req,res){
 
 
 function insert_Action_Performed(req,res){
-	if( req.params.action_id != null && req.params.time_taken != null && req.params.action_date != null){
+	if( req.params.action_id != null && req.params.start_time != null && req.params.end_time != null && req.params.action_date != null){
 		db.open(cn, function(err) {
 			if (err) res.send(err);
 			else
 				var final_room_id= req.params.room_id
 				var final_provider_id=req.params.provider_id
-				var final_patient_id= req.params.patient_id
+				var final_appointment_id= req.params.appointment_id
 				if(req.params.room_id!=null) 
 					final_room_id=req.params.room_id
 				if(req.params.provider_id!=null) 
 					final_provider_id= req.params.provider_id
-				if(req.params.patient_id!=null) 
-					final_patient_id=req.params.patient_id
+				if(req.params.appointment_id!=null) 
+					final_appointment_id=req.params.appointment_id
 
-				db.query("INSERT INTO Action_Performed (action_id, action_date, room_id, patient_id, time_taken, provider_id) VALUES (" + req.params.action_id+ ",'" +req.params.action_date+"',"+ final_room_id+","+final_patient_id+","+req.params.time_taken+","+final_provider_id+")", function(err, data) {
+				db.query("INSERT INTO Action_Performed (action_id, action_date, room_id, appointment_id, start_time, end_time, provider_id) VALUES (" + req.params.action_id+ ",'" +req.params.action_date+"',"+ final_room_id+","+final_appointment_id+","+req.params.start_time+","+req.params.end_time+","+final_provider_id+")", function(err, data) {
 					if (err) res.send(err);
 					else res.send("Successful insertion into Action Performed table")
 				})
-
 		});
 	}else
 		res.send("Unsuccessful insertion into Action Performed table. One or more of these values are null")
@@ -414,8 +413,8 @@ function insert_Appointment(req,res) {
 				res.send(err);
 			}
 			else {
-				db.query("INSERT INTO Appointment VALUES ( '" +req.params.start_time +"','" +req.params.end_time +"','" +req.params.time_waited +"','"
-				+req.params.patient_id +"','" +req.params.appt_type_id +"','" +req.params.status_id +"')", function(err,data) {
+				db.query("INSERT INTO Appointment VALUES (" +req.params.start_time +"," +req.params.end_time +"," +req.params.time_waited +","
+				+req.params.patient_id +"," +req.params.appointment_type_id +"," +req.params.status_id +")", function(err,data) {
 					if(err) {
 						console.log(err);
 						res.send(err);
