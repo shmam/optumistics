@@ -69,7 +69,7 @@ module.exports = function(app) {
     app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id') 
         .post(insertAPI.insert_Survey_Activity)
 
-    app.route('/general/insert/Action_Performed/:action_id/:action_date/:room_id/:patient_id/:time_taken/:provider_id') 
+    app.route('/general/insert/Action_Performed/:action_id/:action_date/:room_id/:appointment_id/:start_time/:end_time/:provider_id') 
         .post(insertAPI.insert_Action_Performed)
 
     app.route('/general/insert/Room/:room_name/:status_id') 
@@ -87,7 +87,8 @@ module.exports = function(app) {
     app.route('/general/insert/Flag_Color/:flag_color_name')
         .post(insertAPI.insert_Flag_Color)
     
-   
+    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id')
+        .post(insertAPI.insert_Appointment)
 
 }
 
