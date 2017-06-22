@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style>
+      body{
+        background-image: url("stethbackground.jpg");
+
+
+      }
+      #pwd {
+        width: 200px;
+
+        position: relative;
+        float: right;
+        margin-right: 44%;
+        margin-top: -30px;
+
+      }
+
+      #title {
+        color:white;
+        font-size: 50px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+    </style>
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+<div class="logo">
+    <img src="optum.png" alt="optum" style="width:250px;height:80px;float:left;">
+  </div>
+    <div class="main-content">
+
+      <div>
+        <h3 style="color:white; float: right; margin-right: 37%;margin-top: 325px;"> ENTER PIN OR SCAN BADGE TO LOG IN </h3>
+      </div>
+      <form>
+      <div class="form-group">
+
+        <label style="color: white; float: right; margin-right: 58%;margin-top: 25px;" for="pwd">PIN:</label>
+        <input type="password" class="form-control" id="pwd">
+      </div>
+    </form>
+      <!--<h1 id="title"> Optumistics <h1>-->
+    </div>
+
+
+
+
+    <script>
+    //Function To Display keyboard
+    function div_show() {
+    document.getElementById('abc').style.display = "block";
+    }
+    //Function to Hide keyboard
+    function div_hide(){
+    document.getElementById('abc').style.display = "none";
+    }
+    </script>
+  </body>
+
+
+
+
+
+
+
+
+</html>
