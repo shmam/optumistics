@@ -45,6 +45,22 @@ module.exports = function(app) {
     app.route('/portal/present/Person_Type')    //get all provider person types
         .get(selectAPI.select_person_type)
 
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    
+    //Post Functions Routes
+
+    app.route('/general/insert/Person_Type/:person_type_name') 
+        .post(insertAPI.insert_Person_Type)
+
+    app.route('/general/insert/Question/:question') 
+        .post(insertAPI.insert_Question)
+
+    app.route('/general/insert/Flag_Color/:flag_color_name')
+        .post(insertAPI.insert_Flag_Color)
+
+    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') 
+        .post(insertAPI.insert_Appointment_Type)
+
     app.route('/general/insert/NFC_Bracelet/:status_id') 
         .post(insertAPI.insert_NFC_Bracelet)
 
@@ -60,12 +76,6 @@ module.exports = function(app) {
     app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Patient)
 
-    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') 
-        .post(insertAPI.insert_Appointment_Type)
-
-    app.route('/general/insert/Question/:question') 
-        .post(insertAPI.insert_Question)
-
     app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id') 
         .post(insertAPI.insert_Survey_Activity)
 
@@ -78,14 +88,8 @@ module.exports = function(app) {
     app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Provider)
 
-    app.route('/general/insert/Person_Type/:person_type_name') 
-        .post(insertAPI.insert_Person_Type)
-
     app.route('/general/insert/Status/:status_name') 
         .post(insertAPI.insert_Status)
-    
-    app.route('/general/insert/Flag_Color/:flag_color_name')
-        .post(insertAPI.insert_Flag_Color)
     
     app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id')
         .post(insertAPI.insert_Appointment)

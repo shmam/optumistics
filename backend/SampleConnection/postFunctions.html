@@ -14,6 +14,19 @@
     <p>Please Input a Person Type <input type = "text" id = "add_person_type"></p>
     <button id = "person_type_button">Add Person Type</button>
 
+    <!-- Insert Question Info -->
+    <p> Question <input type = "text" id = "question"></p>
+    <button id = "question_button">Add Question</button>
+
+    <!-- Insert Flag Color Info -->
+    <p> Flag Color Name <input type = "text" id = "flag_color_name"></p>
+    <button id = "flag_color_button">Add Flag Color</button>
+
+    <!-- Insert Appointment Type Info -->
+    <p> Appointment Name <input type = "text" id = "appointment_name"></p>
+    <p> Appointment Duration <input type = "text" id = "appointment_duration"></p>
+    <button id = "appointment_type_button">Add Appointment Type</button>
+
     <!-- Insert Patient Info -->
     <p> First Name <input type = "text" id = "patient_first_name"></p>
     <p> Last Name <input type = "text" id = "patient_last_name"></p>
@@ -24,19 +37,6 @@
     <!-- Insert Status Info -->
     <p> Status Name <input type = "text" id = "status_name"></p>
     <button id = "status_button">Add Status</button>
-
-    <!-- Insert Appointment Type Info -->
-    <p> Appointment Name <input type = "text" id = "appointment_name"></p>
-    <p> Appointment Duration <input type = "text" id = "appointment_duration"></p>
-    <button id = "appointment_type_button">Add Appointment Type</button>
-
-    <!-- Insert Flag Color Info -->
-    <p> Flag Color Name <input type = "text" id = "flag_color_name"></p>
-    <button id = "flag_color_button">Add Flag Color</button>
-
-    <!-- Insert Question Info -->
-    <p> Question <input type = "text" id = "question"></p>
-    <button id = "question_button">Add Question</button>
 
     <!-- Insert NFC Bracelet Info -->
     <p> Status ID <input type = "text" id = "nfc_status_id"></p>
@@ -113,6 +113,52 @@
         });
     });
 
+    // Adding Question
+    $('#question_button').click(function() {
+        var question = $('#question').val(); // getting Question val()
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Question/' +question,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Question</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Flag Color
+    $('#flag_color_button').click(function() {
+        var flag_color_name = $('#flag_color_name').val(); // getting Flag Color Name val()
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Flag_Color/' +flag_color_name,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Flag Color</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
+    // Adding Appointment Type
+    $('#appointment_type_button').click(function() {
+        var appointment_name = $('#appointment_name').val(); // getting Appointment Name val()
+        var appointment_duration = $('#appointment_duration').val(); // getting Appointment Duration val(). If null, type in null.
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/general/insert/Appointment_Type/' +appointment_name +'/' +appointment_duration,
+            success: function (insert_status) {
+                $("#insert_status").append("Successful Insertion of Appointment Type</br>");
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error.message);
+            },
+        });
+    });
+
     // Adding Patient Information
     $('#patient_button').click(function() {
         var patient_first_name = $('#patient_first_name').val(); // getting Patient First Name val()
@@ -142,52 +188,6 @@
             },
             error: function(xhr, status, error) {
                console.log('Error: ' +error.message);
-            },
-        });
-    });
-
-    // Adding Appointment Type
-    $('#appointment_type_button').click(function() {
-        var appointment_name = $('#appointment_name').val(); // getting Appointment Name val()
-        var appointment_duration = $('#appointment_duration').val(); // getting Appointment Duration val(). If null, type in null.
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/general/insert/Appointment_Type/' +appointment_name +'/' +appointment_duration,
-            success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Appointment Type</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    // Adding Flag Color
-    $('#flag_color_button').click(function() {
-        var flag_color_name = $('#flag_color_name').val(); // getting Flag Color Name val()
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/general/insert/Flag_Color/' +flag_color_name,
-            success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Flag Color</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
-    });
-
-    // Adding Question
-    $('#question_button').click(function() {
-        var question = $('#question').val(); // getting Question val()
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:3000/general/insert/Question/' +question,
-            success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Question</br>");
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
             },
         });
     });
