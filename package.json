@@ -10,6 +10,7 @@
   "keywords": [
     "test"
   ],
+  "engines":{"node":"v6.11.0"},
   "author": "jhayne14",
   "license": "ISC",
   "devDependencies": {
