@@ -3,11 +3,154 @@ var config = require('../../config.js')
  var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
 + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
+// TESTED AND PASSED
+function insert_Person_Type(req, res) {
+	if (req.params.person_type_name != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("SELECT * FROM Person_Type WHERE person_type_name = '" + req.params.person_type_name + "'", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						if (data.length > 0) {
+							console.log("Unsuccessful insertion into Person Type table. The Person type name must be unique");
+							res.send("Unsuccessful insertion into Person Type table. The Person type name must be unique");
+						}
+						else {
+							db.query("INSERT INTO Person_Type (person_type_name) VALUES ('" + req.params.person_type_name + "')", function (err, data2) {
+								if (err) {
+									console.log(err);
+									res.send(err);
+								}
+								else {
+									console.log("Successful insertion into Person Type Table");
+									res.send("Successful insertion into Person Type Table");
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+	}
+	else {
+		console.log("Unsuccessful insertion into Person_Type table. Person_Type_Name is null");
+		res.send("Unsuccessful insertion into Person_Type table. Person_Type_Name is null");
+	}
+}
+
+// TESTED AND PASSED
+function insert_Question(req, res) {
+	if (req.params.question != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO Question (question) VALUES ('" + req.params.question + "')", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						console.log("Successful insertion into Question Table");
+						res.send("Successful insertion into Question Table");
+					}
+				});
+			}
+		});
+	}
+	else {
+		console.log("Unsuccessful insertion into Question table. Question cannot be null");
+		res.send("Unsuccessful insertion into Question table. Question cannot be null");
+	}
+}
+
+//TESTED AND PASSED
+function insert_Flag_Color(req, res) {
+	if (req.params.flag_color_name != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO Flag_Color (flag_color_name) VALUES ('" + req.params.flag_color_name + "')", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						console.log("Successful insertion into Flag Color Table");
+						res.send("Successful insertion into Flag Color Table");
+					}
+				});
+			}
+		});
+	}
+	else {
+		console.log("Unsuccessful insertion into Flag Color table. Flag color cannot be null");
+		res.send("Unsuccessful insertion into Flag Color table, flag color cannot be null");
+	}
+}
+
+//TESTED AND PASSED
+function insert_Appointment_Type(req, res) {
+	if (req.params.appointment_duration == null && req.params.appointment_name != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO Appointment_Type (appointment_name,appointment_duration) VALUES ('" + req.params.appointment_name + "', null)", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						console.log("Successful insertion into Appointment Type Table");
+						res.send("Successful insertion into Appointment Type Table");
+					}
+				});
+			}
+		});
+	}
+	else if (req.params.appointment_duration != null && req.params.appointment_name != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO Appointment_Type (appointment_name,appointment_duration) VALUES ('" + req.params.appointment_name + "'," + req.params.appointment_duration + ")", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						console.log("Successful insertion into Appointment Type Table");
+						res.send("Successful insertion into Appointment Type Table");
+					}
+				});
+			}
+		});
+	}
+	else {
+		console.log("Invalid Argument type for appointment_name or appointment_duration");
+		res.send("Invalid Argument type for appointment_name or appointment_duration");
+	}
+}
 
 //TESTED AND PASSED
 function insert_ActivatedNFC_Patient(req,res){
-	//nullable values are room_id
-	//check if any non nullable values are null
 	if(req.params.appointment_id != null && req.params.nfc_id != null){
 			db.open(cn, function(err) {
 				if (err){
@@ -195,58 +338,9 @@ function insert_Actions(req,res){
 	}
 }
 
-function insert_Appointment_Type(req,res){
-	if(req.params.appointment_duration == null && req.params.appointment_name != null) {
-		db.open(cn,function(err) {
-			if(err) return res.send(err);
-			db.query("INSERT INTO Appointment_Type VALUES ('" + req.params.appointment_name +"', null)", function(err,data) {
-				if(err) res.send(err);
-				else res.send("Successful insertion into Appointment_Type");
-			});
-		});
-	}
-    else if(req.params.appointment_duration != null && req.params.appointment_name != null){
-        db.open(cn, function (err) {
-            if (err) return res.send(err);
-            db.query("INSERT INTO Appointment_Type VALUES ('"+ req.params.appointment_name +"'," + req.params.appointment_duration + ")", function (err,data) {
-                if (err) res.send(err);
-                else res.send("Successful insertion into Appointment_Type");
-            });
-        });
-    }
-    else{ 
-        res.send("Invalid Argument type for appointment_name or appointment_duration");
-    }
-}
 
-// TESTED AND WORKS
-function insert_Question(req,res) {
-	if (req.params.question != null) {
-		db.open(cn, function(err) {
-			if (err) res.send(err);
-			else db.query("INSERT INTO Question(question) VALUES('"+ req.params.question + "')", function(err, data) {
-				if (err) res.send(err);	
-				else res.send("Successful insertion into Question table" )	
-			})
-		});
-	} else
-		res.send("Unsuccessful insertion into Question table, Question cannot be null")
 
-}
 
-function insert_Flag_Color(req,res) {
-	if (req.params.flag_color_name != null) {
-		db.open(cn, function(err) {
-			if (err) res.send(err);
-			else db.query("INSERT INTO Flag_Color(flag_color_name) VALUES('"+ req.params.flag_color_name + "')", function(err, data) {
-				if (err) res.send(err);	
-				else res.send("Successful insertion into Flag Color table" )	
-			})
-		});
-	} else
-		res.send("Unsuccessful insertion into Flag Color table, flag color cannot be null")
-
-}
 
 //TESTED AND WORKS
 function insert_Survey_Activity(req,res){
@@ -327,44 +421,7 @@ function insert_ActivatedNFC_Provider (req,res) {
 	}
 }
 
-function insert_Person_Type(req,res){
-	if(req.params.person_type_name != null) {
-		db.open(cn, function(err) {
-			if(err) {
-				return console.log(err);
-			}
-			else {
-				db.query("SELECT * FROM Person_Type WHERE person_type_name = '" +req.params.person_type_name +"'", function(err,data) {
-					if(err) {
-						console.log(err);
-						res.send(err);
-					}
-					else {
-						if(data.length>0) {
-							console.log("Unsuccessful insertion into Person Type table. The Person type name must be unique");
-							res.send("Unsuccessful insertion into Person Type table. The Person type name must be unique");
-						}
-						else {
-							db.query("INSERT INTO Person_Type VALUES ('" +req.params.person_type_name +"')", function(err,data2) {
-								if(err) {
-									console.log(err);
-									res.send(err);
-								}
-								else {
-									res.send("Successful insertion into Person_Type_Table");
-								}
-							});
-						}
-					}
-				});
-			}
-		});
-	}
-	else {
-		console.log("Unsuccessful insertion into Person_Type table. Person_Type_Name is null");
-		res.send("Unsuccessful insertion into Person_Type table. Person_Type_Name is null");
-	}
-}
+
 
 function insert_Status(req,res) {
 	if(req.params.status_name != null) {
@@ -434,20 +491,19 @@ function insert_Appointment(req,res) {
 
 
 module.exports = {
+	insert_Person_Type,
+	insert_Question,
+	insert_Flag_Color,
+	insert_Appointment_Type,
     insert_NFC_Bracelet,
 	insert_Patient_Information,
 	insert_Provider_Information,
 	insert_Actions,
 	insert_ActivatedNFC_Patient,
 	insert_ActivatedNFC_Provider,
-	insert_Person_Type,
     insert_Status,
-	insert_Appointment_Type,
-	insert_Question,
 	insert_Survey_Activity,
 	insert_Action_Performed,
 	insert_Room,
-	insert_Flag_Color,
 	insert_Appointment
-
 }
