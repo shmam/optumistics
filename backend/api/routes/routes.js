@@ -45,50 +45,56 @@ module.exports = function(app) {
     app.route('/portal/present/Person_Type')    //get all provider person types
         .get(selectAPI.select_person_type)
 
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
+    
+    //Post Functions Routes
+
+    app.route('/general/insert/Person_Type/:person_type_name') 
+        .post(insertAPI.insert_Person_Type)
+
+    app.route('/general/insert/Question/:question') 
+        .post(insertAPI.insert_Question)
+
+    app.route('/general/insert/Flag_Color/:flag_color_name')
+        .post(insertAPI.insert_Flag_Color)
+
+    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') 
+        .post(insertAPI.insert_Appointment_Type)
+
+    app.route('/general/insert/Status/:status_name') 
+        .post(insertAPI.insert_Status)
+
     app.route('/general/insert/NFC_Bracelet/:status_id') 
         .post(insertAPI.insert_NFC_Bracelet)
+
+    app.route('/general/insert/Room/:room_name/:status_id') 
+        .post(insertAPI.insert_Room)
+
+    app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id') 
+        .post(insertAPI.insert_Survey_Activity)
 
     app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:patient_gender/:person_type_id') 
         .post(insertAPI.insert_Patient_Information)
 
-    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_gender/:username/:password/:person_type_id/:status_id') 
+    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_gender/:provider_username/:provider_password/:person_type_id/:status_id') 
         .post(insertAPI.insert_Provider_Information)
 
     app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon') 
         .post(insertAPI.insert_Actions)
 
-    app.route('/general/insert/ActivatedNFC_Patient/:patient_id/:room_id/:appointment_id/:nfc_id') 
-        .post(insertAPI.insert_ActivatedNFC_Patient)
-
-    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') 
-        .post(insertAPI.insert_Appointment_Type)
-
-    app.route('/general/insert/Question/:question') 
-        .post(insertAPI.insert_Question)
-
-    app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id') 
-        .post(insertAPI.insert_Survey_Activity)
-
-    app.route('/general/insert/Action_Performed/:action_id/:action_date/:room_id/:appointment_id/:start_time/:end_time/:provider_id') 
-        .post(insertAPI.insert_Action_Performed)
-
-    app.route('/general/insert/Room/:room_name/:status_id') 
-        .post(insertAPI.insert_Room)
-
     app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Provider)
 
-    app.route('/general/insert/Person_Type/:person_type_name') 
-        .post(insertAPI.insert_Person_Type)
+    // EDIT UNTIL HERE
 
-    app.route('/general/insert/Status/:status_name') 
-        .post(insertAPI.insert_Status)
-    
-    app.route('/general/insert/Flag_Color/:flag_color_name')
-        .post(insertAPI.insert_Flag_Color)
-    
-    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id')
+    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id/:appointment_date')
         .post(insertAPI.insert_Appointment)
+
+    app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id') 
+        .post(insertAPI.insert_ActivatedNFC_Patient)
+
+    app.route('/general/insert/Action_Performed/:action_id/:action_date/:room_id/:appointment_id/:start_time/:end_time/:provider_id') 
+        .post(insertAPI.insert_Action_Performed)
 
 }
 
