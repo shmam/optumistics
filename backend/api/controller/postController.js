@@ -3,7 +3,6 @@ var config = require('../../config.js')
  var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
 + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
-// TESTED AND PASSED
 function insert_Person_Type(req, res) {
 	if (req.params.person_type_name != null) {
 		db.open(cn, function (err) {
@@ -45,7 +44,6 @@ function insert_Person_Type(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Question(req, res) {
 	if (req.params.question != null) {
 		db.open(cn, function (err) {
@@ -73,7 +71,6 @@ function insert_Question(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Flag_Color(req, res) {
 	if (req.params.flag_color_name != null) {
 		db.open(cn, function (err) {
@@ -101,7 +98,6 @@ function insert_Flag_Color(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Appointment_Type(req, res) {
 	if (req.params.appointment_duration == null && req.params.appointment_name != null) {
 		db.open(cn, function (err) {
@@ -149,7 +145,6 @@ function insert_Appointment_Type(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Status(req, res) {
 	if (req.params.status_name != null) {
 		db.open(cn, function (err) {
@@ -191,7 +186,6 @@ function insert_Status(req, res) {
 	}
 }
 
-//TESTED AND PASSED
 function insert_NFC_Bracelet(req, res) {
 	if (req.params.status_id != null) {
 		db.open(cn, function (err) {
@@ -219,7 +213,6 @@ function insert_NFC_Bracelet(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Room(req, res) {
 	if (req.params.room_name != null && req.params.status_id != null) {
 		db.open(cn, function (err) {
@@ -247,7 +240,6 @@ function insert_Room(req, res) {
 	}
 }
 
-//TESTED AND PASSED
 function insert_Survey_Activity(req, res) {
 	if (req.params.patient_id != null && req.params.rating != null && req.params.rating_date != null && req.params.question_id != null) {
 		db.open(cn, function (err) {
@@ -275,7 +267,6 @@ function insert_Survey_Activity(req, res) {
 	}	
 }
 
-// TESTED AND PASSED
 function insert_Patient_Information(req, res) {
 	if (req.params.patient_first_name != null && req.params.patient_last_name != null && req.params.person_type_id != null) {
 		db.open(cn, function (err) {
@@ -306,7 +297,6 @@ function insert_Patient_Information(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Provider_Information(req, res) {
 	if (req.params.provider_first_name != null && req.params.provider_last_name != null && req.params.person_type_id != null && req.params.provider_username != null && req.params.provider_password != null && req.params.status_id != null) {
 		db.open(cn, function (err) {
@@ -349,7 +339,6 @@ function insert_Provider_Information(req, res) {
 	}
 }
 
-// TESTED AND PASSED
 function insert_Actions(req, res) {
 	if (req.params.action_name != null && req.params.flag_color_id != null && req.params.button_label != null && req.params.action_duration != null && req.params.status_id != null) {
 		db.open(cn, function (err) {
@@ -422,25 +411,25 @@ function insert_ActivatedNFC_Provider(req, res) {
 	}
 }
 
-// REWRITE THIS APPOINTMENT FUNCTION. START HERE!
-
-function insert_Appointment(req,res) {
-	if(req.params.start_time != null && req.params.end_time != null && req.params.time_waited != null && req.params.patient_id != null && req.params.status_id != null) {
-		db.open(cn, function(err) {
-			if(err) {
+function insert_Appointment(req, res) {
+	if (req.params.start_time != null && req.params.end_time != null && req.params.patient_id != null &&
+		req.params.status_id != null && req.params.appointment_date != null) {
+		db.open(cn, function (err) {
+			if (err) {
 				console.log(err);
 				res.send(err);
 			}
 			else {
-				db.query("INSERT INTO Appointment VALUES (" +req.params.start_time +"," +req.params.end_time +"," +req.params.time_waited +","
-				+req.params.patient_id +"," +req.params.appointment_type_id +"," +req.params.status_id +")", function(err,data) {
-					if(err) {
-						console.log(err);
-						res.send(err);
-					}
-					else {
-						res.send("Successful insertion into Appointment");
-					}
+				db.query("INSERT INTO Appointment (start_time, end_time, patient_id, appointment_type_id, status_id, appointment_date) VALUES ('" + req.params.start_time + "','" + req.params.end_time + "'," + req.params.patient_id
+					+ "," + req.params.appointment_type_id + "," + req.params.status_id + ",'" + req.params.appointment_date + "')", function (err, data) {
+						if (err) {
+							console.log(err);
+							res.send(err);
+						}
+						else {
+							console.log("Successful insertion into Appointment Table");
+							res.send("Successful insertion into Appointment Table");
+						}
 				});
 			}
 		});
@@ -452,60 +441,59 @@ function insert_Appointment(req,res) {
 }
 
 //TESTED AND PASSED
-function insert_ActivatedNFC_Patient(req,res){
-	if(req.params.appointment_id != null && req.params.nfc_id != null){
-			db.open(cn, function(err) {
-				if (err){
-					console.log(err);
-					res.send(err);
-				}
-				else{
-					var final_room_id= req.params.room_id
-					if(req.params.room_id!=null)
-						final_room_id= "'"+req.params.room_id +"'"
-										
-					db.query("INSERT INTO ActivatedNFC_Patient (room_id, appointment_id, nfc_id) VALUES ("+final_room_id+","+ req.params.appointment_id+","+req.params.nfc_id+")", function(err, data) {
-						
-						if (err){
-							console.log(err);
-							res.send(err)
-						}
-						else{
-							console.log("Successful insertion into Activated NFC Patient table")
-							res.send("Successful insertion into Activated NFC Patient table")
-						}
-					})
-				}
-			});		
-	}else{
-		console.log("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null")
-		res.send("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null")
-
+function insert_ActivatedNFC_Patient(req, res) {
+	if (req.params.appointment_id != null && req.params.nfc_id != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO ActivatedNFC_Patient (room_id, appointment_id, nfc_id) VALUES (" + req.params.room_id + ","
+				+ req.params.appointment_id + "," + req.params.nfc_id + ")", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						console.log("Successful insertion into Activated NFC Patient Table");
+						res.send("Successful insertion into Activated NFC Patient Table");
+					}
+				});
+			}
+		});
+	}
+	else {
+		console.log("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null");
+		res.send("Unsuccessful insertion into Activated NFC Patient table. One or more of these values are null");
 	}
 }
 
 function insert_Action_Performed(req,res){
 	if( req.params.action_id != null && req.params.start_time != null && req.params.end_time != null && req.params.action_date != null){
 		db.open(cn, function(err) {
-			if (err) res.send(err);
-			else
-				var final_room_id= req.params.room_id
-				var final_provider_id=req.params.provider_id
-				var final_appointment_id= req.params.appointment_id
-				if(req.params.room_id!=null) 
-					final_room_id=req.params.room_id
-				if(req.params.provider_id!=null) 
-					final_provider_id= req.params.provider_id
-				if(req.params.appointment_id!=null) 
-					final_appointment_id=req.params.appointment_id
-
-				db.query("INSERT INTO Action_Performed (action_id, action_date, room_id, appointment_id, start_time, end_time, provider_id) VALUES (" + req.params.action_id+ ",'" +req.params.action_date+"',"+ final_room_id+","+final_appointment_id+","+req.params.start_time+","+req.params.end_time+","+final_provider_id+")", function(err, data) {
-					if (err) res.send(err);
-					else res.send("Successful insertion into Action Performed table")
-				})
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("INSERT INTO Action_Performed (action_id, room_id, appointment_id, start_time, end_time, provider_id, action_date) VALUES (130,10,1,'10:00','11:00',2288,'2017-06-19')", function(err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						console.log("Successful insertion into Action Performed Table");
+						res.send("Successful insertion into Action Performed Table");
+					}
+				});
+			}
 		});
-	}else
-		res.send("Unsuccessful insertion into Action Performed table. One or more of these values are null")
+	}
+	else {
+		console.log("Unsuccessful insertion into Action Performed table. One or more of these values are null");
+		res.send("Unsuccessful insertion into Action Performed table. One or more of these values are null");
+	}
 }
 
 

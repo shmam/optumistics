@@ -85,15 +85,13 @@ module.exports = function(app) {
     app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Provider)
 
-    // EDIT UNTIL HERE
-
-    app.route('/general/insert/Appointment/:start_time/:end_time/:time_waited/:patient_id/:appointment_type_id/:status_id/:appointment_date')
+    app.route('/general/insert/Appointment/:start_time/:end_time/:patient_id/:appointment_type_id/:status_id/:appointment_date')
         .post(insertAPI.insert_Appointment)
 
     app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id') 
         .post(insertAPI.insert_ActivatedNFC_Patient)
 
-    app.route('/general/insert/Action_Performed/:action_id/:action_date/:room_id/:appointment_id/:start_time/:end_time/:provider_id') 
+    app.route('/general/insert/Action_Performed/:action_id/:room_id/:appointment_id/:start_time/:end_time/:provider_id/:action_date') 
         .post(insertAPI.insert_Action_Performed)
 
 }
