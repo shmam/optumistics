@@ -45,13 +45,13 @@ module.exports = function(app) {
     app.route('/portal/present/Person_Type')    //get all provider person types
         .get(selectAPI.select_person_type)
     
-    app.route('/portal/present/time_waited/:appointment_id') //select the time waited for appointment(RT)
+    app.route('/portal/present/time_waited/:patient_id') //select the time waited for appointment(RT)
         .get(selectAPI.select_time_waited_appointment_id_RT)
     
     app.route('/portal/present/avg/timme_waited/:appointment_type_id') //select the average time waited for a certain appointment type (RT)
         .get(selectAPI.select_time_waited_appointment_type_RT)
     
-     app.route('/portal/present/time_waited/:appointment_id/:start_date/:end_date') //select the time waited for appointment (C)
+     app.route('/portal/present/time_waited/:patient_id/:start_date/:end_date') //select the time waited for appointment (C)
         .get(selectAPI.select_time_waited_appointment_id_C)
     
     app.route('/portal/present/avg/timme_waited/:appointment_type_id/:start_date/:end_date') //select the average time waited for a certain appointment type (C)

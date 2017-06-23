@@ -339,8 +339,36 @@ function select_person_type(req,res){
 	});
 }
 
-function select_time_waited_appointment_id_RT(req,res){
-
+function select_time_waited_appointment_id_RT(req, res) {
+	var today = new Date();
+	today = today.toISOString().substring(0, 10);
+	if (req.params.patient_id != null) {
+		db.open(cn, function (err) {
+			if (err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				db.query("SELECT appointment_id FROM Appointment WHERE patient_id = " + req.params.patient_id + " AND appointment_date = '" + today
+				+ "'", function (err, data2) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						db.query("SELECT DATEDIFF(minute,a.start_time,a.end_time) - DATEDIFF(minute,ap.start_time,ap.end_time) AS Time_Waited FROM Appointment a,Action_Performed ap WHERE (a.appointment_id = "
+						+ data2[0].appointment_id + " AND ap.appointment_id = " + data2[0].appointment_id + " AND a.appointment_date = '" + today + "' AND ap.action_date = '" + today + "')"
+						, function (err, data3) {
+							res.jsonp(data3);
+						});
+					}
+				});
+			}
+		});
+	}
+	else {
+		res.send("Unsuccessful selection of data. One of the parameters is null");
+	}
 }
 
 function select_time_waited_appointment_type_RT(req,res){
