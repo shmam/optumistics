@@ -371,6 +371,7 @@ function select_time_waited_appointment_id_RT(req, res) {
 	}
 }
 
+
 function select_time_waited_appointment_type_RT(req,res){
 
 }
@@ -381,6 +382,104 @@ function select_time_waited_appointment_id_C(req,res){
 
 function select_time_waited_appointment_type_C(req,res){
 
+}
+
+//select list of NFCs for providers
+
+function select_NFC_Providers(req,res){
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=1", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+}
+
+//select list of NFCs for patients
+
+function select_NFC_Patients(req,res){
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=0", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+
+}
+//get appointments for todays date with no start time
+
+function select_current_appointments(req,res){
+
+	var today = new Date();
+	today= today.toISOString().substring(0, 10);
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT * FROM Appointment WHERE appointment_date='"+today+"' AND start_time IS NULL", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+}
+
+//get activated NFC patients
+
+function select_activated_NFC_Patients(req,res){
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT * FROM ActivatedNFC_Patient", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+}
+
+//get activated NFC providers
+
+function select_activated_NFC_Providers(req,res){
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT * FROM ActivatedNFC_Provider", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
 }
 
 module.exports = {
@@ -401,6 +500,13 @@ module.exports = {
 	select_time_waited_appointment_id_RT,
 	select_time_waited_appointment_type_RT,
 	select_time_waited_appointment_id_C,
-	select_time_waited_appointment_type_C
+	select_time_waited_appointment_type_C,
+	select_NFC_Providers,
+	select_NFC_Patients,
+	select_current_appointments,
+	select_activated_NFC_Patients,
+	select_activated_NFC_Providers
+
+
 
 }

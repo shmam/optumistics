@@ -57,6 +57,21 @@ module.exports = function(app) {
     app.route('/portal/present/avg/timme_waited/:appointment_type_id/:start_date/:end_date') //select the average time waited for a certain appointment type (C)
         .get(selectAPI.select_time_waited_appointment_type_C)
 
+    app.route('/portal/present/Activated_NFC_Patients') //select all of the activated NFC patients
+        .get(selectAPI.select_activated_NFC_Patients)
+    
+    app.route('/portal/present/Activated_NFC_Providers') //select all of the activated NFC providers
+        .get(selectAPI.select_activated_NFC_Providers)
+
+    app.route('/portal/present/Appointments') //select the appointments for today's date that haven't started yet
+        .get(selectAPI.select_current_appointments)
+
+    app.route('/portal/present/NFC_Bracelet/provider') //select the NFC bracelets designated for providers
+        .get(selectAPI.select_NFC_Patients)
+
+    app.route('/portal/present/NFC_Bracelet/patient') //select the NFC bracelets designated for providers
+        .get(selectAPI.select_NFC_Providers)
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
     
     //Post Functions Routes
