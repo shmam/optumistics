@@ -477,7 +477,9 @@ function insert_Action_Performed(req,res){
 				res.send(err);
 			}
 			else {
-				db.query("INSERT INTO Action_Performed (action_id, room_id, appointment_id, start_time, end_time, provider_id, action_date) VALUES (130,10,1,'10:00','11:00',2288,'2017-06-19')", function(err, data) {
+				db.query("INSERT INTO Action_Performed (action_id, room_id, appointment_id, start_time, end_time, provider_id, action_date) VALUES ("
+				+req.params.action_id +"," +req.params.room_id +"," +req.params.appointment_id +",'" +req.params.start_time +"','" +req.params.end_time +"',"
+				+req.params.provider_id +",'" +req.params.action_date +"')", function(err, data) {
 					if (err) {
 						console.log(err);
 						res.send(err);
