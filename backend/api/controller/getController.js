@@ -339,6 +339,22 @@ function select_person_type(req,res){
 	});
 }
 
+function select_time_waited_appointment_id_RT(req,res){
+
+}
+
+function select_time_waited_appointment_type_RT(req,res){
+
+}
+
+function select_time_waited_appointment_id_C(req,res){
+
+}
+
+function select_time_waited_appointment_type_C(req,res){
+
+}
+
 module.exports = {
     getTimeEachDoctor_RT,
     getTimeAllDoctors_RT,
@@ -353,6 +369,10 @@ module.exports = {
 	total_time_for_each_doctor,
 	total_time_each_doctor_range,
 	provider_sign_in,
-	select_person_type
+	select_person_type,
+	select_time_waited_appointment_id_RT,
+	select_time_waited_appointment_type_RT,
+	select_time_waited_appointment_id_C,
+	select_time_waited_appointment_type_C
 
 }
