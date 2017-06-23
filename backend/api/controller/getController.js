@@ -13,7 +13,7 @@ function add_time_provider_task_rt(req,res){
 			if (err)
 				res.send(err);
 			else
-				db.query("SELECT SUM(time_taken) FROM Action_Performed WHERE provider_id="+req.params.provider_id+" AND action_id="+req.params.action_id+" AND action_date='"+today+"'", function(err, data) {
+				db.query("SELECT SUM(DATEDIFF(HH,start_time, end_time)) FROM Action_Performed WHERE provider_id="+req.params.provider_id+" AND action_id="+req.params.action_id+" AND action_date='"+today+"'", function(err, data) {
 					if (err){
                         console.log(err);
                         res.send(err);
@@ -46,7 +46,7 @@ function add_time_provider_task_c(req,res){
 				return console.log(err);
 			else{
 
-				db.query("SELECT sum(time_taken) from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
+				db.query("SELECT sum(DATEDIFF(HH,start_time, end_time)) from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
 					if (err){
                         res.send(err)        
                     }	
@@ -73,7 +73,7 @@ function getTimeEachDoctor_RT(req,res){
         db.open(cn,function(err){
             if(err) return res.send(err)
             else{
-                db.query("SELECT AVG(time_taken) FROM Action_Performed WHERE (provider_id = "+ req.params.provider_id +") AND (action_id = "+req.params.action_id+") AND (action_date = '"+ today +"')", function(err,data){
+                db.query("SELECT AVG(DATEDIFF(HH,start_time, end_time))  FROM Action_Performed WHERE (provider_id = "+ req.params.provider_id +") AND (action_id = "+req.params.action_id+") AND (action_date = '"+ today +"')", function(err,data){
                     if (err){
                         console.log(err);
                         res.send(err);
@@ -99,7 +99,7 @@ function getTimeAllDoctors_RT(req,res){
         db.open(cn,function(err){
             if(err) return res.send(err)
             else{
-                db.query("SELECT AVG(time_taken) FROM Action_Performed WHERE (action_id = "+ req.params.action_id +") AND (action_date = '"+ today +"')", function(err,data){
+                db.query("SELECT AVG(DATEDIFF(HH,start_time, end_time))  FROM Action_Performed WHERE (action_id = "+ req.params.action_id +") AND (action_date = '"+ today +"')", function(err,data){
                     if (err){
                         console.log(err);
                         res.send(err);
@@ -120,7 +120,7 @@ function getTimeEachDoctorDates_C(req,res){
         db.open(cn,function(err){
             if (err) return res.send(err)
             else{
-                db.query("SELECT AVG(time_taken) FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id+" AND provider_id = "+ req.params.provider_id, function(err,data){
+                db.query("SELECT AVG(DATEDIFF(HH,start_time, end_time))  FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id+" AND provider_id = "+ req.params.provider_id, function(err,data){
                     if (err){
                         console.log(err);
                         res.send(err);
@@ -142,7 +142,7 @@ function getTimeAllDoctorsDates_C(req,res){
         db.open(cn,function(err){
             if (err) return res.send(err)
             else{
-                db.query("SELECT AVG(time_taken) FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
+                db.query("SELECT AVG(DATEDIFF(HH,start_time, end_time))  FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
                     if (err){
                         console.log(err);
                         res.send(err);
@@ -266,7 +266,7 @@ function total_time_for_each_doctor(req,res) {
 		db.open(cn,function(err) {
 			if(err) return console.log(err);
 			else {
-				db.query("SELECT SUM(time_taken) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id + " AND action_date = '" +today +"')", function(err,data) {
+				db.query("SELECT SUM(DATEDIFF(HH,start_time, end_time) ) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id + " AND action_date = '" +today +"')", function(err,data) {
 					if(err) {
 						console.log(err);
 						res.send(err);
@@ -287,7 +287,7 @@ function total_time_each_doctor_range(req,res) {
 		db.open(cn, function(err) {
 			if(err) return console.log(err);
 			else {
-				db.query("SELECT SUM(time_taken) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id +" AND action_date BETWEEN '" +req.params.start_date
+				db.query("SELECT SUM(DATEDIFF(HH,start_time, end_time)  AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id +" AND action_date BETWEEN '" +req.params.start_date
 				 +"' AND '" +req.params.end_date +"')", function(err,data) {
 					if(err) {
 						console.log(err);
