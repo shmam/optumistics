@@ -187,7 +187,7 @@ function insert_Status(req, res) {
 }
 
 function insert_NFC_Bracelet(req, res) {
-	if (req.params.provider_nfc != null && req.params.status_id != null) {
+	if (req.params.provider_nfc != null && req.params.status_id != null && (req.params.provider_nfc == '0' || req.params.provider_nfc == '1')) {
 		db.open(cn, function (err) {
 			if (err) {
 				console.log(err);
@@ -208,8 +208,8 @@ function insert_NFC_Bracelet(req, res) {
 		});
 	}
 	else {
-		console.log("Unsuccessful insertion into NFC Bracelet table. Status id entered is null");
-		res.send("Unsuccessful insertion into NFC Bracelet table. Status id entered is null");
+		console.log("Unsuccessful insertion into NFC Bracelet table. Status id entered is null or provider_nfc is not 0 or 1");
+		res.send("Unsuccessful insertion into NFC Bracelet table. Status id entered is null or provider_nfc is not 0 or 1");
 	}
 }
 
