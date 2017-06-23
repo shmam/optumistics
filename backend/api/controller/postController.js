@@ -187,14 +187,14 @@ function insert_Status(req, res) {
 }
 
 function insert_NFC_Bracelet(req, res) {
-	if (req.params.status_id != null) {
+	if (req.params.provider_nfc != null && req.params.status_id != null) {
 		db.open(cn, function (err) {
 			if (err) {
 				console.log(err);
 				res.send(err);
 			}
 			else {
-				db.query("INSERT INTO NFC_Bracelet (status_id) VALUES (" + req.params.status_id + ")", function (err, data) {
+				db.query("INSERT INTO NFC_Bracelet (provider_nfc,status_id) VALUES (" +req.params.provider_nfc +"," +req.params.status_id + ")", function (err, data) {
 					if (err) {
 						console.log(err);
 						res.send(err);
