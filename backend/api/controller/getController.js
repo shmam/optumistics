@@ -266,7 +266,7 @@ function total_time_for_each_doctor(req,res) {
 		db.open(cn,function(err) {
 			if(err) return console.log(err);
 			else {
-				db.query("SELECT SUM(DATEDIFF(HH,start_time, end_time) ) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id + " AND action_date = '" +today +"')", function(err,data) {
+				db.query("SELECT SUM(DATEDIFF(minute,start_time, end_time) ) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id + " AND action_date = '" +today +"')", function(err,data) {
 					if(err) {
 						console.log(err);
 						res.send(err);
@@ -287,7 +287,7 @@ function total_time_each_doctor_range(req,res) {
 		db.open(cn, function(err) {
 			if(err) return console.log(err);
 			else {
-				db.query("SELECT SUM(DATEDIFF(HH,start_time, end_time)  AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id +" AND action_date BETWEEN '" +req.params.start_date
+				db.query("SELECT SUM(DATEDIFF(minute,start_time, end_time))  AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id +" AND action_date BETWEEN '" +req.params.start_date
 				 +"' AND '" +req.params.end_date +"')", function(err,data) {
 					if(err) {
 						console.log(err);

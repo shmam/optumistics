@@ -5,7 +5,7 @@
   "main": "backend/SampleConnection/connect.html",
   "scripts": {
     "test": "jest",
-    "start": "node backend/server.js"
+    "start": "nodemon backend/server.js"
   },
   "keywords": [
     "test"
