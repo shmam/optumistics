@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>REVEAL TECHNOLOGY - TDP INTERN</title>
 
     <!-- Bootstrap core CSS -->
@@ -78,7 +78,7 @@
                   Username:<input type="text"/><br/>
                   Password:<input type="text"/>
                 </form>
-                <a class="btn btn-primary btn-xl" href="newsettings.HTML">LOGIN</a>
+                <a class="btn btn-primary btn-xl" href="nightDash.HTML">LOGIN</a>
             </div>
         </div>
     </header>
@@ -96,6 +96,38 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/creative.min.js"></script>
+    <script>
+    var nfcArray = [];
+    //LOAD THE ARRAY
+    $( document ).ready(function()
+    {
+      var $homeHeading = $("#homeHeading");
+      $.ajax({
+
+        type: 'GET',
+        dataType: 'jsonp',
+        url: 'http://localhost:3000/portal/present/NFC_Bracelet/provider', //Connect to db
+        success: function(bracelets) {
+          $.each(bracelets, function(i, brace)
+          { //Get every entry in the NFC db that are PROVIDERS
+            nfcArray.push(brace.nfc_hex); //Adds the NFC ID's for providers to be accessed
+            $homeHeading.append(brace.nfc_hex);
+
+          });
+          display_Array();
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+
+    });
+    
+});
+    function display_Array() {
+        console.log(nfcArray);
+    }
+
+    </script>
 
 </body>
 
