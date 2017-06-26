@@ -31,14 +31,17 @@
 
     });
 
-    });
+  });
+  
+
 
      $('#see').click(function()
     {
-      var $friends = $("#friends");
-      $.ajax({
+      //returns a list of providers
+      host='http://localhost:3000'
+       $.ajax({
         type: 'GET',
-        url: 'http://optumistics.mhars1.optum.com/portal/present/providers/active',
+        url: host+'/portal/present/providers/active',
         contentType: 'application/x-www-form-urlencoded',
         jsonpCallback: 'callback', 
         dataType : 'jsonp',   //you may use jsonp for cross origin request
@@ -59,7 +62,103 @@
         },
 
     });
+
+   
+
+    //**************get a list of activated NFC Patients*************
+    //  host='http://localhost:3000'
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: host+'/portal/present/Activated_NFC_Patients',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
+
+    //************get a list of activated NFC providers***************
+    //returns a list of activated NFC providers
+    //   host='http://localhost:3000'
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: host+'/portal/present/Activated_NFC_Providers',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
+
+//*************get a list of future appointments for the day*****************
+     //returns a list of future appointments for the day
+    //   host='http://localhost:3000'
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: host+'/portal/present/Appointments',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
      
+//************get a list of bracelets that can be assigned to provider***********
+
+ //returns a list of NFC bracelets that can be assigned to a provider
+    //   host='http://localhost:3000'
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: host+'/portal/present/NFC_Bracelet/provider',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
+  
+  //************get a list of bracelets that can be assigned to a patient**********
+  //returns a list of NFC bracelets that can be assigned to a patient
+    //   host='http://localhost:3000'
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: host+'/portal/present/NFC_Bracelet/patient',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
 
     });
 
