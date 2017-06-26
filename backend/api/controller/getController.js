@@ -390,7 +390,7 @@ function select_NFC_Providers(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT * FROM Status WHERE status_name=inactive", function(err,data) {
+			db.query("SELECT * FROM Status WHERE status_name='inactive'", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
@@ -419,7 +419,7 @@ function select_NFC_Patients(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT * FROM Status WHERE status_name=inactive", function(err,data) {
+			db.query("SELECT * FROM Status WHERE status_name='inactive'", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
