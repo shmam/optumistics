@@ -35,6 +35,7 @@
     <!-- Insert NFC Bracelet Info -->
     <p> Status ID <input type = "text" id = "nfc_status_id"></p>
     <p> Provider NFC (type 1) or Patient NFC (type 0) <input type = "text" id = "provider_nfc"></p>
+    <p> NFC Hex <input type = "text" id = "nfc_hex"></p>
     <button id = "nfc_bracelet_button">Add NFC Bracelet</button>
 
     <!-- Insert Room Info -->
@@ -190,9 +191,10 @@
     $('#nfc_bracelet_button').click(function() {
         var nfc_status_id = $('#nfc_status_id').val();  // getting NFC Status ID val()
         var provider_nfc = $('#provider_nfc').val(); // getting provider_nfc val()
+        var nfc_hex = $('#nfc_hex').val(); // getting nfc_hex val()
         $.ajax({
             type:"POST",
-            url: 'http://localhost:3000/general/insert/NFC_Bracelet/' +provider_nfc +'/' +nfc_status_id,
+            url: 'http://localhost:3000/general/insert/NFC_Bracelet/' +provider_nfc +'/' +nfc_status_id +'/' +nfc_hex,
             success: function (insert_status) {
                 $("#insert_status").append("Successful Insertion of NFC Bracelet</br>");
             },
@@ -205,7 +207,7 @@
     // Adding Room Information
     $('#room_button').click(function() {
         var room_name = $('#room_name').val(); // getting Room Name val()
-        var room_status_id; /* = $('#room_status_id').val(); */ // getting Room Status ID val()
+        var room_status_id = $('#room_status_id').val(); // getting Room Status ID val()
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/general/insert/Room/" +room_name +'/' +room_status_id,
@@ -220,10 +222,10 @@
 
     // Adding Survey Activity
     $('#survey_button').click(function() {
-        var survey_patient_id; /* = $('#survey_patient_id').val(); */ //getting Survey Patient ID val()
+        var survey_patient_id = $('#survey_patient_id').val(); //getting Survey Patient ID val()
         var rating = $('#rating').val(); // getting Survey Rating val()
         var rating_date = $('#rating_date').val(); // getting Survey Rating Date val()
-        var survey_question_id; /* = $('#survey_question_id').val(); */ // getting Survey Question ID val()
+        var survey_question_id = $('#survey_question_id').val(); // getting Survey Question ID val()
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/general/insert/Survey_Activity/" +survey_patient_id
@@ -242,7 +244,7 @@
         var patient_first_name = $('#patient_first_name').val(); // getting Patient First Name val()
         var patient_last_name = $('#patient_last_name').val(); // getting Patient Last Name val()
         var patient_gender = $('#patient_gender').val(); // getting Patient Gender val(). If null, type in null.
-        var patient_person_type_id; /* = $('#patient_person_type_id').val(); */ // getting Patient Person Type ID val()
+        var patient_person_type_id = $('#patient_person_type_id').val(); // getting Patient Person Type ID val()
         $.ajax({
            type: "POST",
            url: 'http://localhost:3000/general/insert/Patient_Information/' +patient_first_name +'/' +patient_last_name +'/' +patient_gender +'/' +patient_person_type_id,
@@ -262,8 +264,8 @@
         var provider_gender = $('#provider_gender').val(); // getting Provider Gender val(). If null, type in null.
         var provider_username = $('#provider_username').val(); // getting Provider Username val()
         var provider_password = $('#provider_password').val(); // getting Provider Password val()
-        var provider_person_type_id; /* = $('#provider_person_type_id').val(); */ // getting Provider Person Type ID val()
-        var provider_status_id; /* = $('#provider_status_id').val(); */ // getting Provider Status ID val()
+        var provider_person_type_id = $('#provider_person_type_id').val(); // getting Provider Person Type ID val()
+        var provider_status_id = $('#provider_status_id').val(); // getting Provider Status ID val()
         //the next two lines encrypt the password
         var encryptedData = CryptoJS.SHA256(provider_password); 
         var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
@@ -283,10 +285,10 @@
     // Adding Actions
     $('#actions_button').click(function() {
         var action_name = $('#action_name').val(); // getting Action Name val()
-        var action_flag_color_id; /* = $("#action_flag_color_id").val(); */ // getting Action Flag Color ID val()
+        var action_flag_color_id = $("#action_flag_color_id").val(); // getting Action Flag Color ID val()
         var button_label = $("#button_label").val(); // getting Button Label val()
         var action_duration = $("#action_duration").val(); // getting Action Duration val()
-        var action_status_id; /* = $("#action_status_id").val(); */ // getting Action Status ID val()
+        var action_status_id = $("#action_status_id").val(); // getting Action Status ID val()
         var icon = $("#icon").val(); // getting Icon val(). If null, type in null.
         $.ajax({
             type: "POST",
@@ -303,9 +305,9 @@
 
     // Adding Activated NFC Provider
     $('#activatednfc_provider_button').click(function() {
-        var activatednfc_provider_id; /* = $("#activatednfc_provider_id").val(); */ // getting Provider ID val()
-        var activatednfc_provider_room_id; /* = $("#activatednfc_provider_room_id").val(); */ // getting Room ID val() If null, type in null.
-        var activatednfc_provider_nfc_id; /* = $("#activatednfc_provider_nfc_id").val(); */ // getting Provider NFC ID val()
+        var activatednfc_provider_id = $("#activatednfc_provider_id").val(); // getting Provider ID val()
+        var activatednfc_provider_room_id = $("#activatednfc_provider_room_id").val(); // getting Room ID val() If null, type in null.
+        var activatednfc_provider_nfc_id = $("#activatednfc_provider_nfc_id").val(); // getting Provider NFC ID val()
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/general/insert/ActivatedNFC_Provider/" +activatednfc_provider_id +'/'
@@ -323,9 +325,9 @@
     $('#appointment_button').click(function() {
         var appointment_start_time = $('#appointment_start_time').val(); // getting Appointment Start Time val()
         var appointment_end_time = $('#appointment_end_time').val(); // getting Appointment End Time val()
-        var appointment_patient_id; /* = $('#appointment_patient_id').val(); */ // getting Appointment Patient ID val()
-        var appointment_appointment_type_id; /* = $('#appointment_appointment_type_id').val(); */ // getting Appointment Type ID val(). If null, type in null.
-        var appointment_status_id; /* = $('#appointment_status_id').val(); */ // getting Appointment Status ID val()
+        var appointment_patient_id = $('#appointment_patient_id').val(); // getting Appointment Patient ID val()
+        var appointment_appointment_type_id = $('#appointment_appointment_type_id').val(); // getting Appointment Type ID val(). If null, type in null.
+        var appointment_status_id = $('#appointment_status_id').val(); // getting Appointment Status ID val()
         var appointment_date = $('#appointment_date').val(); // getting Appointment Date val()
         $.ajax({
             type: "POST",

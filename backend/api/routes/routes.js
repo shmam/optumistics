@@ -2,12 +2,12 @@
 module.exports = function(app) {
   var insertAPI = require('../controller/postController.js');
   var selectAPI = require('../controller/getController.js')
-  
+
   app.route('/portal/add/time/:provider_id/:action_id') // time for each doctor for each tasks (RT)
-        .get(selectAPI.add_time_provider_task_rt) 
+        .get(selectAPI.add_time_provider_task_rt)
 
    app.route('/portal/add/time/:provider_id/:action_id/:start_date/:end_date')  //time for each doctor for each tasks (C)
-        .get(selectAPI.add_time_provider_task_c) 
+        .get(selectAPI.add_time_provider_task_c)
 
     app.route('/portal/average/time/:action_id/:provider_id') //get time taken for each task for each doctor (RT)
         .get(selectAPI.getTimeEachDoctor_RT)
@@ -41,19 +41,19 @@ module.exports = function(app) {
 
     app.route('/portal/signin/providers/:username') //get the password from provider_information to match username
         .get(selectAPI.provider_sign_in)
-    
+
     app.route('/portal/present/Person_Type')    //get all provider person types
         .get(selectAPI.select_person_type)
-    
+
     app.route('/portal/present/time_waited/:patient_id') //select the time waited for appointment(RT)
         .get(selectAPI.select_time_waited_appointment_id_RT)
-    
+
     app.route('/portal/present/avg/timme_waited/:appointment_type_id') //select the average time waited for a certain appointment type (RT)
         .get(selectAPI.select_time_waited_appointment_type_RT)
-    
+
      app.route('/portal/present/time_waited/:patient_id/:start_date/:end_date') //select the time waited for appointment (C)
         .get(selectAPI.select_time_waited_appointment_id_C)
-    
+
     app.route('/portal/present/avg/timme_waited/:appointment_type_id/:start_date/:end_date') //select the average time waited for a certain appointment type (C)
         .get(selectAPI.select_time_waited_appointment_type_C)
 
@@ -69,58 +69,56 @@ module.exports = function(app) {
     app.route('/portal/present/NFC_Bracelet/provider') //select the NFC bracelets designated for providers
         .get(selectAPI.select_NFC_Patients)
 
-    app.route('/portal/present/NFC_Bracelet/patient') //select the NFC bracelets designated for providers
+    app.route('/portal/present/NFC_Bracelet/patient') //select the NFC bracelets designated for patients
         .get(selectAPI.select_NFC_Providers)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
-    
+
     //Post Functions Routes
 
-    app.route('/general/insert/Person_Type/:person_type_name') 
+    app.route('/general/insert/Person_Type/:person_type_name')
         .post(insertAPI.insert_Person_Type)
 
-    app.route('/general/insert/Question/:question') 
+    app.route('/general/insert/Question/:question')
         .post(insertAPI.insert_Question)
 
     app.route('/general/insert/Flag_Color/:flag_color_name')
         .post(insertAPI.insert_Flag_Color)
 
-    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') 
+    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration')
         .post(insertAPI.insert_Appointment_Type)
 
-    app.route('/general/insert/Status/:status_name') 
+    app.route('/general/insert/Status/:status_name')
         .post(insertAPI.insert_Status)
 
-    app.route('/general/insert/NFC_Bracelet/:provider_nfc/:status_id') 
+    app.route('/general/insert/NFC_Bracelet/:provider_nfc/:status_id/:nfc_hex')
         .post(insertAPI.insert_NFC_Bracelet)
 
-    app.route('/general/insert/Room/:room_name/:status_id') 
+    app.route('/general/insert/Room/:room_name/:status_id')
         .post(insertAPI.insert_Room)
 
-    app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id') 
+    app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id')
         .post(insertAPI.insert_Survey_Activity)
 
-    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:patient_gender/:person_type_id') 
+    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:patient_gender/:person_type_id')
         .post(insertAPI.insert_Patient_Information)
 
-    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_gender/:provider_username/:provider_password/:person_type_id/:status_id') 
+    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_gender/:provider_username/:provider_password/:person_type_id/:status_id')
         .post(insertAPI.insert_Provider_Information)
 
-    app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon') 
+    app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon')
         .post(insertAPI.insert_Actions)
 
-    app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id') 
+    app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id')
         .post(insertAPI.insert_ActivatedNFC_Provider)
 
     app.route('/general/insert/Appointment/:start_time/:end_time/:patient_id/:appointment_type_id/:status_id/:appointment_date')
         .post(insertAPI.insert_Appointment)
 
-    app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id') 
+    app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id')
         .post(insertAPI.insert_ActivatedNFC_Patient)
 
-    app.route('/general/insert/Action_Performed/:action_id/:room_id/:appointment_id/:start_time/:end_time/:provider_id/:action_date') 
+    app.route('/general/insert/Action_Performed/:action_id/:room_id/:appointment_id/:start_time/:end_time/:provider_id/:action_date')
         .post(insertAPI.insert_Action_Performed)
 
 }
-
-
