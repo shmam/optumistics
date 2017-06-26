@@ -35,6 +35,7 @@
     <!-- Insert NFC Bracelet Info -->
     <p> Status ID <input type = "text" id = "nfc_status_id"></p>
     <p> Provider NFC (type 1) or Patient NFC (type 0) <input type = "text" id = "provider_nfc"></p>
+    <p> NFC Hex <input type = "text" id = "nfc_hex"></p>
     <button id = "nfc_bracelet_button">Add NFC Bracelet</button>
 
     <!-- Insert Room Info -->
@@ -190,9 +191,10 @@
     $('#nfc_bracelet_button').click(function() {
         var nfc_status_id = $('#nfc_status_id').val();  // getting NFC Status ID val()
         var provider_nfc = $('#provider_nfc').val(); // getting provider_nfc val()
+        var nfc_hex = $('#nfc_hex').val(); // getting nfc_hex val()
         $.ajax({
             type:"POST",
-            url: 'http://localhost:3000/general/insert/NFC_Bracelet/' +provider_nfc +'/' +nfc_status_id,
+            url: 'http://localhost:3000/general/insert/NFC_Bracelet/' +provider_nfc +'/' +nfc_status_id +'/' +nfc_hex,
             success: function (insert_status) {
                 $("#insert_status").append("Successful Insertion of NFC Bracelet</br>");
             },

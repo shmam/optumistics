@@ -91,7 +91,7 @@ module.exports = function(app) {
     app.route('/general/insert/Status/:status_name') 
         .post(insertAPI.insert_Status)
 
-    app.route('/general/insert/NFC_Bracelet/:provider_nfc/:status_id') 
+    app.route('/general/insert/NFC_Bracelet/:provider_nfc/:status_id/:nfc_hex') 
         .post(insertAPI.insert_NFC_Bracelet)
 
     app.route('/general/insert/Room/:room_name/:status_id') 
