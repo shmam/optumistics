@@ -1,10 +1,10 @@
-var config = require('../../config.js') 
- 
+var config = require('../../config.js')
+
  var db = require('odbc')(), cn = 'DRIVER=' + config.driver + ';PORT=1433;SERVER='
 + config.server + ';PORT=1443;DATABASE=' + config.database + ';Trusted_Connection=yes';
 
 //total time for each doctor for each task (for pie chart) (real time)
-function add_time_provider_task_rt(req,res){ 
+function add_time_provider_task_rt(req,res){
     var today = new Date();
 	today= today.toISOString().substring(0, 10);
 
@@ -17,16 +17,16 @@ function add_time_provider_task_rt(req,res){
 					if (err){
                         console.log(err);
                         res.send(err);
-                    }	
+                    }
 					else{
                         console.log("Successful insertion into Question table")
                         res.jsonp(data)
-                        
+
                     }
-						
+
 				})
 
-		}); 
+		});
     }else{
         res.send("Unsuccessful query. One of these value was null")
     }
@@ -34,13 +34,13 @@ function add_time_provider_task_rt(req,res){
 
 
 //total time for each doctor for each task (for pie chart) (comprehensive)
-function add_time_provider_task_c(req,res){  
-   
+function add_time_provider_task_c(req,res){
+
     var today = new Date();
 	today= today.toISOString().substring(0, 10);
 
     if(req.params.provider_id != null && req.params.action_id != null){
-       
+
         db.open(cn, function(err) {
 			if (err)
 				return console.log(err);
@@ -48,22 +48,22 @@ function add_time_provider_task_c(req,res){
 
 				db.query("SELECT sum(DATEDIFF(minute,start_time, end_time)) from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
 					if (err){
-                        res.send(err)        
-                    }	
+                        res.send(err)
+                    }
 					else{
                         res.jsonp(data)
-                        
+
                     }
-						
+
 				})
             }
-		}); 
+		});
     }else{
         res.send("Unsuccessful query. One of these value was null")
     }
 }
 
-//get average time for specific doctor for specific task (real time) 
+//get average time for specific doctor for specific task (real time)
 function getTimeEachDoctor_RT(req,res){
 
     var today = new Date();
@@ -77,7 +77,7 @@ function getTimeEachDoctor_RT(req,res){
                     if (err){
                         console.log(err);
                         res.send(err);
-                    }	
+                    }
 					else{
                         console.log(data)
                         res.jsonp(data)
@@ -103,7 +103,7 @@ function getTimeAllDoctors_RT(req,res){
                     if (err){
                         console.log(err);
                         res.send(err);
-                    }	
+                    }
 					else{
                         console.log(data)
                         res.jsonp(data)
@@ -114,7 +114,7 @@ function getTimeAllDoctors_RT(req,res){
     }
 }
 
-//get average time for specific doctor for specific task (comprehensive) 
+//get average time for specific doctor for specific task (comprehensive)
 function getTimeEachDoctorDates_C(req,res){
     if(req.params.action_id != null && req.params.provider_id != null && req.params.start_date != null && req.params.end_date != null){
         db.open(cn,function(err){
@@ -124,7 +124,7 @@ function getTimeEachDoctorDates_C(req,res){
                     if (err){
                         console.log(err);
                         res.send(err);
-                    }	
+                    }
 					else{
                         console.log(data)
                         res.jsonp(data)
@@ -146,7 +146,7 @@ function getTimeAllDoctorsDates_C(req,res){
                     if (err){
                         console.log(err);
                         res.send(err);
-                    }	
+                    }
 					else{
                         console.log(data)
                         res.jsonp(data)
@@ -409,7 +409,7 @@ function select_NFC_Patients(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=0", function(err,data) {
+			db.query("SELECT nfc_hex FROM NFC_Bracelet WHERE provider_nfc=0", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
