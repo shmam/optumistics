@@ -71,6 +71,9 @@ module.exports = function(app) {
 
     app.route('/portal/present/NFC_Bracelet/patient') //select the NFC bracelets designated for patients
         .get(selectAPI.select_NFC_Providers)
+    
+    app.route('/portal/present/Patient/:patient_id') //select the patients' name based on patient id
+        .get(selectAPI.select_Patient_Name)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
