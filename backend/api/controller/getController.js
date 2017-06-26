@@ -390,13 +390,23 @@ function select_NFC_Providers(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=1", function(err,data) {
+			db.query("SELECT * FROM Status WHERE status_name=inactive", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
 				}
 				else {
-					res.jsonp(data);
+					var id= data[0].status_id;
+					db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=1 AND status_id="+ id, function(err,data) {
+						if(err) {
+							console.log(err);
+							res.send(err);
+						}
+						else {
+							res.jsonp(data);
+							
+						}
+					});
 				}
 			});
 		}
@@ -409,13 +419,23 @@ function select_NFC_Patients(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=0", function(err,data) {
+			db.query("SELECT * FROM Status WHERE status_name=inactive", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
 				}
 				else {
-					res.jsonp(data);
+					var id= data[0].status_id;
+					db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=0 AND status_id="+ id, function(err,data) {
+						if(err) {
+							console.log(err);
+							res.send(err);
+						}
+						else {
+							res.jsonp(data);
+							
+						}
+					});
 				}
 			});
 		}
