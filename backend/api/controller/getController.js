@@ -322,7 +322,7 @@ function provider_sign_in(req,res){
 
 }
 
-function select_person_type(req,res){
+function select_	(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
@@ -390,23 +390,13 @@ function select_NFC_Providers(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT * FROM Status WHERE status_name='inactive'", function(err,data) {
+			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=1", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
 				}
 				else {
-					var id= data[0].status_id;
-					db.query("SELECT nfc_id,nfc_hex FROM NFC_Bracelet WHERE provider_nfc=1 AND status_id="+ id, function(err,data) {
-						if(err) {
-							console.log(err);
-							res.send(err);
-						}
-						else {
-							res.jsonp(data);
-							
-						}
-					});
+					res.jsonp(data);
 				}
 			});
 		}
@@ -419,23 +409,13 @@ function select_NFC_Patients(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT * FROM Status WHERE status_name='inactive'", function(err,data) {
+			db.query("SELECT nfc_hex FROM NFC_Bracelet WHERE provider_nfc=0", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
 				}
 				else {
-					var id= data[0].status_id;
-					db.query("SELECT nfc_id,nfc_hex FROM NFC_Bracelet WHERE provider_nfc=0 AND status_id="+ id, function(err,data) {
-						if(err) {
-							console.log(err);
-							res.send(err);
-						}
-						else {
-							res.jsonp(data);
-							
-						}
-					});
+					res.jsonp(data);
 				}
 			});
 		}
@@ -502,23 +482,6 @@ function select_activated_NFC_Providers(req,res){
 	});
 }
 
-function select_Patient_Name(req,res){
-	db.open(cn, function(err) {
-		if(err)  res.send(err);
-		else {
-			db.query("SELECT patient_first_name, patient_last_name FROM Patient_Information WHERE patient_id="+ req.params.patient_id, function(err,data) {
-				if(err) {
-					console.log(err);
-					res.send(err);
-				}
-				else {
-					res.jsonp(data);
-				}
-			});
-		}
-	});
-}
-
 module.exports = {
     getTimeEachDoctor_RT,
     getTimeAllDoctors_RT,
@@ -542,9 +505,5 @@ module.exports = {
 	select_NFC_Patients,
 	select_current_appointments,
 	select_activated_NFC_Patients,
-	select_activated_NFC_Providers,
-	select_Patient_Name
-
-
-
+	select_activated_NFC_Providers
 }

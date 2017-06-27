@@ -513,5 +513,5 @@ module.exports = {
 	insert_ActivatedNFC_Provider,
 	insert_Appointment,
 	insert_ActivatedNFC_Patient,
-	insert_Action_Performed
+	insert_Action_Performed,
 }
