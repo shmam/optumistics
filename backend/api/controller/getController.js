@@ -322,7 +322,7 @@ function provider_sign_in(req,res){
 
 }
 
-function select_	(req,res){
+function select_person_type	(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
@@ -482,6 +482,11 @@ function select_activated_NFC_Providers(req,res){
 	});
 }
 
+// get patient name based on patient id
+function select_Patient_Name(req, res) {
+
+}
+
 module.exports = {
     getTimeEachDoctor_RT,
     getTimeAllDoctors_RT,
@@ -505,5 +510,6 @@ module.exports = {
 	select_NFC_Patients,
 	select_current_appointments,
 	select_activated_NFC_Patients,
-	select_activated_NFC_Providers
+	select_activated_NFC_Providers,
+	select_Patient_Name
 }
