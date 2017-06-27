@@ -134,8 +134,8 @@
     /*
       The following contentPages 1-6 are the background pictures for each div.
       */
-    #contentPage{
-      background-image: url("step1.jpg");
+    #CleaningPage{
+      background-image: url("clean.jpeg");
       z-index: -2;
     }
     #contentPage2{
@@ -163,7 +163,7 @@
     */
     #layer1{
     z-index: -1;
-    background: rgba(231, 76, 60, 0.5);
+    background: rgba(135,206,250, 0.5);
     top: 0;
     left: 0;
     width: 100%;
@@ -172,7 +172,7 @@
     }
 
     #layer1:hover{
-      background: rgba(231, 76, 60, 0.8);
+      background: rgba(135,206,250, 0.8);
       -o-transition:.5s;
       -ms-transition:.5s;
       -moz-transition:.5s;
@@ -324,12 +324,51 @@
   }
 
     }
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 400px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
     </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -337,7 +376,7 @@
   <body id="body" style="overflow:hidden;">
     <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left animated fadeIn" style="display:none" id="mySidebar">
 
-
+      <button style = "float: right; border-radius: 50%;border:1px solid #000;"type="button" class="btn btn-danger btn-xs" onclick="w3_close()">X</button><br/>
 
     <a href="nightDash.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">home<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
 <a href="newSettings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif"> settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
@@ -347,99 +386,55 @@
 <div zclass="w3-main" id="main" class = "animated fadeIn">
 
 <div id = "topBar">
+  <button class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
   <img src="optum1.jpg" alt="optum" style="width:250px;height:80px;">
-  <button style = "float: right" id = "button-close" onclick = 'warnUser()'>end appointment</button>
   </div>
 
 
   <div id = "mainContent" style = "font-family:'Raleway',sans-serif">
-    <h1 style = "text-align: center;">activity dashboard</h1>
-
+    <h1 style = "text-align: center;">Cleaning in Progress</h1>
     <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
-
     <br/>
-
-
+    <br/>
     <div id="myNav" class="overlay">
 
-      <div class="overlay-content">
-        <button style = "margin-left: 42%;border-radius: 3%;background-color: transparent; border: 2px solid;" onclick = "closeNav()" href="#">check completed</button>
-    </div>
+  <div class="overlay-content">
+
+  <a href="landingpage.html" class= "button" style = "margin-left: 0%;border-radius: 3%;background-color: transparent; border: 2px solid;" onclick = "closeNav()" ><span>Cleaning Completed</span></a>
+
   </div>
+</div>
+
     <!-- Display Popup Button -->
     <!-- Navigation -->
-    <!--The following content pages are the different div and secotions that you can click. By clicking it will bring up the popup - timer window-->
+    <!--This is where the banner and the page for the cleaning will be implemented-->
+    <div a href = " " id = "CleaningPage" style = "height: 60%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
 
-    <div class = "div" a href = " " id = "contentPage" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
-
-          <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>physical</b></h1>
-          <button style="margin-right: -10%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(1)">call</button>
+          <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 28%; overflow: none;font-size:56px;"><b>cleaning</b></h1>
+          <button style="margin-right: -15%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:56px;cursor:pointer" onclick="openNav(1)">call</button>
             <div id = "layer1" style = "z-index: -1;">
 
-              <span class = "sec" id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
-              <span class = "ten" id = "tenss" style = "font-size:  128px;color: #ffffff">00</span></br>
-              <span style = "margin-top: -5%;font-size: 32px;color: #ffffff">start time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondTime"></span>
-            </br>
-                <span style = "font-size: 32px;color: #ffffff">stop time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondStopTime"></span>
+              <span id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
+              <span id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
+
             </div>
+<br>
+<br>
 
 
-    </div>
-    <div class = "div" a href = " " id = "contentPage2" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>operation</b></h1>
-      <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(2)">call</button>
-        <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(2)">call</button>
-        <div id = "layer2" style = "z-index: -1;">
-          <span class = "sec" id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
-          <span class = "ten" id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
 
-        </div>
-    </div>
 
-    <div class = "div" a href = " " id = "contentPage3" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>blood</b></h1>
-      <button style="margin-right: -7%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(3)">call</button>
-        <div id = "layer3" style = "z-index: -1;">
-          <span id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
-          <span id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
 
-        </div>
-    </div>
 
-    <div class = "div" a href = " "  id = "contentPage4" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>vital signs</b></h1>
-      <button style="margin-right: -10%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(4)">call</button>
-        <div id = "layer4" style = "z-index: -1;">
+<a href="landingpage.html" class="button" style="vertical-align:middle" ><span>Skip </span></a>
 
-        </div>
-    </div>
 
-    <div class = "div" a href = " " id = "contentPage5" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>x-ray</b></h1>
-      <button style="margin-right: -5%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(5)">call</button>
-        <div id = "layer5" style = "z-index: -1;">
 
-        </div>
-    </div>
 
-    <div class = "div" a href = " " id = "contentPage6" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>diagnostic</b></h1>
-      <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(6)">call</button>
-        <div id = "layer6" style = "z-index: -1;">
 
-        </div>
-    </div>
-  <!-- THIS IS THE END OF THE DIV BUTTONS FOR THE DASHBOARD-->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
-    <!--<button id="popup" onclick="div_show()" style = "margin-left: 48%; margin-top: 15%;">Click</button>-->
-  </div>
-  </div>
 <script>
 //THE FOLLOWING SCRIPT IS FOR THE ANIMATIONS FOR THE SIDE BAR NAV. THIS PUSHES EVERYTHING TO THE right
 //FUNCTION w3_OPEN() and w3_CLOSE()
@@ -469,37 +464,18 @@ window.onload = function () {
 var seconds = 00;
 var tens = 00;
 
-var timeDisplayed = false;
-var appendTens = document.getElementById("tenss");
-var appendSeconds = document.getElementById("secondss");
+
+var appendTens = document.getElementById("tenss")
+var appendSeconds = document.getElementById("secondss")
 var buttonStart = document.getElementById('contentPage');
 var buttonStop = document.getElementById('button-stop');
 var buttonReset = document.getElementById('button-reset');
-var appendHour = document.getElementById('hourTime');
-var appendMinute = document.getElementById('minuteTime');
-var appendSecond = document.getElementById('secondTime');
-var appendStopHour = document.getElementById('hourStopTime');
-var appendStopMinute = document.getElementById('minuteStopTime');
-var appendStopSecond = document.getElementById('secondStopTime');
-var Interval;
-var hour;
-var minute;
-var second;
+var Interval ;
 
 
 //This function clears the interval for the minutes and starts the timer.
-$('.div').click(function()
+contentPage.onclick = function()
 {
-  var date = new Date();
-  if (timeDisplayed === false){
-    hour = date.getHours();
-    minute = date.getMinutes();
-    second = date.getSeconds();
-    appendHour.innerHTML = hour;
-    appendMinute.innerHTML = minute;
-    appendSecond.innerHTML = second;
-    timeDisplayed = true;
-  }
   isDisplayed = true;
   counter++;
   if (counter % 2 !== 0){
@@ -507,17 +483,10 @@ $('.div').click(function()
    Interval = setInterval(startTimer, 1000);
  }
  else {
-   var date2 = new Date();
    clearInterval(Interval);
    isDisplayed = false;
-   hour2 = date2.getHours();
-   minute2 = date2.getMinutes();
-   second2 = date2.getSeconds();
-   appendStopHour.innerHTML = hour2;
-   appendStopMinute.innerHTML = minute2;
-   appendStopSecond.innerHTML = second2;
  }
-});
+}
 //This stops the interval.
 buttonStop.onclick = function() {
      clearInterval(Interval);
@@ -579,7 +548,7 @@ function openNav(number) {
   }
   if (number === 1){
 
-    document.getElementById("myNav").style.background = "rgba(231, 76, 60, 1)";
+    document.getElementById("myNav").style.background = "rgba(135,206,250, 1)";
   }
   else if (number === 2){
 
@@ -608,15 +577,6 @@ function openNav(number) {
 
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
-
-}
-
-function warnUser(){
-  var r = confirm("Are you sure you would like to end the appointment?");
-  if (r === true){
-    window.location.href = "clean.html";
-  }
-
 
 }
 </script>

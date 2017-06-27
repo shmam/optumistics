@@ -1,0 +1,350 @@
+<html>
+  <head>
+    <!-- THIS PAGE IS PRETTY SELF EXPLAANATORY.....SAME AS OTHERS BUT THERE ARE TOGGLE BUTTONS FOR THE DIFFERENT PICTURES-->
+    <style>
+    @import "http://fonts.googleapis.com/css?family=Raleway";
+    hr {
+    margin:10px 60px;
+    margin-left: 8%;
+    border:0;
+    border-top:1px solid #ccc
+    }
+
+    body {
+      font-family:'Raleway',sans-serif;
+    }
+    /*
+    The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+    */
+    #abc {
+    width:100%;
+    height:100%;
+    opacity:.9;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#a8a8a8;
+    overflow:auto
+    }
+
+    #registerNFC {
+    display:none;
+    overflow:auto
+    }
+    /*
+    The following is the style for the popout screen.
+    */
+    div#popupContact {
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+    }
+    /*
+    The following is the styling for the minutes, seconds, and miliseconds part of the popup screen
+    */
+    #timeStamp{
+      text-align: center;
+      color: #ffffff
+    }
+    /*
+      The following the style for the start button.
+    */
+    #button-start {
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#2ecc71;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+
+    #popupContact{
+      align-content: bottom;
+    }
+    #wrapper{
+      text-align: center;
+      align-content: center;
+
+
+
+    }
+    /*
+      The following the style for the stop button.
+    */
+    #button-stop {
+
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#e74c3c;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+    /*
+      The following the style for the stop button.
+    */
+    #button-reset{
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#e9d460;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+    /*
+      The following the style for the button that comes out.
+    */
+    #newWindow{
+      width: 800px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: #36454F;
+      left: 50%;
+      margin-left: -25%;
+      border-radius: 5%;
+      border:4px solid #fff;
+
+    }
+    /*
+      The following closes the popout screen.
+    */
+    #button-close{
+      background-color: #e74c3c;
+      color: #ffffff;
+      float: right;
+    }
+    #wrapper{
+      text-align: center;
+      align-content: center;
+    }
+
+    }
+    #content{
+      margin-top: 50%;
+    }
+    #graphic{
+      border:5px solid #fff;
+    }
+
+
+
+    /* The switch - the box around the slider */
+    .switch {
+
+     position: relative;
+     display: inline-block;
+     width: 60px;
+     height: 34px;
+     margin-left: 350px;
+
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {display:none;}
+
+    /* The slider */
+    .slider {
+     position: absolute;
+     cursor: pointer;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: #32CD32;
+     -webkit-transition: .4s;
+     transition: .4s;
+    }
+
+    .slider:before {
+     position: absolute;
+     content: "";
+     height: 26px;
+     width: 26px;
+     left: 4px;
+     bottom: 4px;
+     background-color: white;
+     -webkit-transition: .4s;
+     transition: .4s;
+    }
+
+    input:checked + .slider {
+     background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+     box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+     -webkit-transform: translateX(26px);
+     -ms-transform: translateX(26px);
+     transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+     border-radius: 34px;
+    }
+
+    .slider.round:before {
+     border-radius: 50%;
+    }
+    </style>
+  </style>
+
+
+
+
+
+
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+  </head>
+  <body id="body" style="overflow:hidden;">
+
+    <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left" style="display:none" id="mySidebar">
+
+      <button style = "float: right; border-radius: 50%;border:1px solid #000;"type="button" class="btn btn-danger btn-xs" onclick="w3_close()">X</button><br/>
+
+  <a href="nightDash.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">home<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
+  <a href="newSettings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center;font-family:'Raleway',sans-serif ">settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
+  <a href="statistics.HTML" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center;font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
+</div>
+
+<div zclass="w3-main" id="main" class = "animated fadeIn">
+
+<div id = "topBar">
+  <button class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <img src="optum1.jpg" alt="optum" style="width:250px;height:80px;">
+  </div>
+
+
+  <div id = "mainContent" style = "font-family:'Raleway',sans-serif">
+    <h1 style = "text-align: center;">Registery</h1>
+    <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
+    <br/>
+    <div id="abc">
+
+    <!-- Popup Div Starts Here -->
+    <div id="popupContact">
+
+    <!-- Contact Us Form -->
+    <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+    <div id = "newWindow" class = "animated zoomIn">
+      <div id = "wrapper">
+        <button id = "button-close" onclick ="div_hide()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+        <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+        <h1 style = "color: #ffffff; text-align: center;">NFC Band Registration</h1>
+
+
+      </div>
+    <hr>
+      <!-- Sliders for the color -->
+      <label class="switch">
+        <input type="checkbox" onclick="div_show2()">
+        <div class="slider round"></div>
+      </label>
+      <br>
+      <br>
+      <p id="nfc_hex"> </p>
+<a><button id="status" style="width:150px;margin-left:39%"> Submit</button>
+
+
+    </div>
+     </div>
+
+    </div>
+    <!-- Popup Div Ends Here -->
+    </div>
+    <button onclick = "div_show()" class="w3-button w3-round-xxlarge w3-large w3-wide" style="margin-left:43%"><b>NFC registration</b></button>
+  </div>
+
+
+
+  </div>
+
+<script>
+
+$("#status").click(function(){
+
+});
+//Function To Display Popup
+
+function div_show2() {
+document.getElementById('registerNFC').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide2(){
+document.getElementById('registerNFC').style.display = "none";
+}
+
+function div_show() {
+document.getElementById('abc').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide(){
+document.getElementById('abc').style.display = "none";
+}
+//END OF THE FOLLOWING SCRIPT THAT WORKS FOR THE POPUP!!!!
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "20%";
+  document.getElementById("mySidebar").style.width = "20%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+
+  </body>
+</html>

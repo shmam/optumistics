@@ -78,7 +78,7 @@
                   Username:<input type="text"/><br/>
                   Password:<input type="text"/>
                 </form>
-                <a class="btn btn-primary btn-xl" href="nightDash.HTML">LOGIN</a>
+                <a class="btn btn-primary btn-xl" href="register.html">LOGIN</a>
             </div>
         </div>
     </header>
@@ -98,35 +98,37 @@
     <script src="js/creative.min.js"></script>
     <script>
     var nfcArray = [];
+
     //LOAD THE ARRAY
     $( document ).ready(function()
     {
+
+
       var $homeHeading = $("#homeHeading");
       $.ajax({
 
         type: 'GET',
-        dataType: 'jsonp',
         url: 'http://localhost:3000/portal/present/NFC_Bracelet/provider', //Connect to db
-        success: function(bracelets) {
+          success: function(bracelets) {
+            nfcArray.push("lucky");
           $.each(bracelets, function(i, brace)
           { //Get every entry in the NFC db that are PROVIDERS
             nfcArray.push(brace.nfc_hex); //Adds the NFC ID's for providers to be accessed
             $homeHeading.append(brace.nfc_hex);
-
           });
-          display_Array();
         },
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
         },
 
     });
-    
-});
-    function display_Array() {
-        console.log(nfcArray);
-    }
+    printNFCArray();
+    });
 
+    function printNFCArray()
+    {
+      console.dir(nfcArray);
+    }
     </script>
 
 </body>

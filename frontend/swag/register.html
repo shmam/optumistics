@@ -1,0 +1,605 @@
+<html>
+  <head>
+    <!-- THIS PAGE IS PRETTY SELF EXPLAANATORY.....SAME AS OTHERS BUT THERE ARE TOGGLE BUTTONS FOR THE DIFFERENT PICTURES-->
+    <style>
+    @import "http://fonts.googleapis.com/css?family=Raleway";
+
+
+    body {
+      font-family:'Raleway',sans-serif;
+    }
+    .input-box{
+
+      margin-left: 2%;
+
+    }
+
+    .input-label {
+      color: white;
+      margin-left: 32%;
+    }
+    /*
+    The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+    */
+    #abc {
+    width:100%;
+    height:100%;
+    opacity:.9;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#a8a8a8;
+    overflow:auto
+    }
+
+    #popupContact2{
+      align-content: bottom;
+
+}
+    #abc2 {
+    width:100%;
+    height:100%;
+    opacity:.9;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#a8a8a8;
+    overflow:auto
+    }
+
+    div#popupContact2 {
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+    }
+    #nfc-avail {
+    display:none;
+    overflow:auto
+    }
+
+    #registerNFC {
+    display:none;
+    overflow:auto
+    }
+    /*
+    The following is the style for the popout screen.
+    */
+    div#popupContact {
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+    }
+    /*
+    The following is the styling for the minutes, seconds, and miliseconds part of the popup screen
+    */
+    #timeStamp{
+      text-align: center;
+      color: #ffffff
+    }
+    /*
+      The following the style for the start button.
+    */
+    #button-start {
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#2ecc71;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+
+    #popupContact{
+      align-content: bottom;
+    }
+    #wrapper{
+      text-align: center;
+      align-content: center;
+
+
+
+    }
+    /*
+      The following the style for the stop button.
+    */
+    #button-stop {
+
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#e74c3c;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+    /*
+      The following the style for the stop button.
+    */
+    #button-reset{
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#e9d460;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+    /*
+      The following the style for the button that comes out.
+    */
+    #newWindow{
+      width: 800px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: #36454F;
+      left: 50%;
+      margin-left: -25%;
+      border-radius: 5%;
+      border:4px solid #fff;
+
+    }
+    /*
+      The following closes the popout screen.
+    */
+    #button-close{
+      background-color: #e74c3c;
+      color: #ffffff;
+      float: right;
+    }
+    #wrapper{
+      text-align: center;
+      align-content: center;
+    }
+
+    }
+    #content{
+      margin-top: 50%;
+    }
+    #graphic{
+      border:5px solid #fff;
+    }
+
+
+
+
+
+    </style>
+
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+  </head>
+  <body id="body" style="overflow:hidden;">
+
+
+
+<div zclass="w3-main" id="main" class = "animated fadeIn">
+
+<div id = "topBar">
+  <img src="optum1.jpg" alt="optum" style="width:250px;height:80px;">
+  </div>
+
+
+  <div id = "mainContent" style = "font-family:'Raleway',sans-serif">
+    <h1 style = "text-align: center;">registry</h1>
+    <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
+    <br/>
+    <div id="abc">
+
+    <!-- Popup Div Starts Here -->
+    <div id="popupContact">
+
+    <!-- Contact Us Form -->
+    <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+    <div id = "newWindow" class = "animated zoomIn">
+      <div id = "wrapper">
+        <button id = "button-close" onclick ="div_hide()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+        <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+        <h1 style = "color: #ffffff; text-align: center;">appointment registration</h1>
+
+
+      </div>
+    <hr>
+      <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+      <p style = "margin-left: 30%; color: #ffffff; font-size: 24px;">please sign in the patient below</p>
+      <select id = "patientSignUp" style = "margin-left: 46%;">
+      </select></br>
+      <button id = "signInButton" style = "margin-top: 2%;margin-left: 46%;"onclick = "div_show2()">sign in</button></br>
+      <div id = "registerNFC" class = "animated fadeIn">
+    <hr style = "margin:10px 10px; margin-top: 5%;margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #fff;"/>
+      <p style = "margin-left: 35%; color: #ffffff; font-size: 24px;">assign nfc to patient</p>
+      <select id = "dropNFC" style = "margin-left: 47%;">
+      </select></br>
+      <button id = "submitTheNFC" style = "margin-top: 2%;margin-left: 46%;">submit</button>
+    </div>
+     </div>
+
+    </div>
+    <!-- Popup Div Ends Here -->
+    </div>
+    <button style = "margin-left: 45%;" onclick = "div_show()">appointment registration</button>
+    <button onclick="show_div()">doctor registration</button>
+  </div>
+
+
+
+  </div>
+
+  <div id="abc2">
+
+  <!-- Popup Div Starts Here -->
+  <div id="popupContact2">
+
+  <!-- Contact Us Form -->
+  <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+  <div id = "newWindow" class = "animated zoomIn">
+    <div id = "wrapper">
+      <button id = "button-close" onclick ="hide_div()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+      <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+      <h1 style = "color: #ffffff; text-align: center;">doctor registration</h1>
+
+
+    </div>
+  <hr>
+    <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+    <div>
+      <label  class="input-label">first name: </label>
+      <input id="first-name" type="text" placeholder="first name" class="input-box">
+
+    </div>
+    <br/>
+
+    <div>
+        <label  class="input-label">last name: </label>
+        <input id="last-name" type="text" placeholder="last name" class="input-box">
+
+    </div>
+    <br/>
+
+    <div>
+        <label class="input-label">username: </label>
+        <input id="username" type="text" placeholder="username" class="input-box">
+
+    </div>
+    <br/>
+
+    <div>
+        <label class="input-label">password: </label>
+        <input id="password" type="password" placeholder="password" class="input-box">
+
+    </div>
+    <br/>
+
+    <div>
+        <label class="input-label">confirm password: </label>
+        <input type="password" placeholder="confirm password" class="input-box">
+
+    </div>
+    <br/>
+
+    <div>
+        <label class="input-label">gender: </label>
+        <select id="gender" placeholder="gender" class="input-box">
+          <option>male</option>
+          <option>female</option>
+        </select>
+
+
+    </div>
+    <br/>
+
+    <div>
+        <label class="input-label">provider type: </label>
+        <select id="person-type" placeholder="provider type" class="input-box">
+
+        </select>
+
+
+    </div>
+    <br/>
+
+
+    <div>
+      <button id="continue" onclick = "show_div2()" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">continue</button>
+    </div>
+    <br/>
+    <div id="nfc-avail">
+    <div>
+    <label class="input-label">NFC ID: </label>
+    <select id="available-nfc" class="input-box">
+
+    </select>
+  </div>
+  <br/>
+  <div>
+    <label class="input-label">Provider Name: </label>
+    <select id="provider-id" class="input-box">
+
+    </select>
+  </div>
+    <br/>
+    <div>
+    <button id="assign-NFC" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
+</div>
+    <br/>
+  </div>
+
+
+
+
+    <div id = "registerNFC">
+    <h2 style = "color: #ffffff">assign bracelet to patient</h2>
+    <select>
+      <option>nfc 1</option>
+      <option>nfc 2</option>
+      <option>nfc 3</option>
+      <option>nfc 4</option>
+    </select>
+  </div>
+   </div>
+
+  </div>
+  <!-- Popup Div Ends Here -->
+  </div>
+
+<script>
+var $appointmentID;
+var thisShit;
+//Function To Display Popup
+$( document ).ready(function()
+{
+  $.ajax({
+
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/Appointments', //Connect to db
+      success: function(bracelets) {
+
+      $.each(bracelets, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#patientSignUp").append("<option value = " + i + ">"+ brace.patient_id + "</option>");
+          $appointmentID = brace.appointment_id;
+
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+
+});
+
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/NFC_Bracelet/provider',
+    success: function(data) {
+      $.each(data, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#available-nfc").append("<option value = " + i + ">"+ brace.nfc_id + "</option>");
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+});
+
+
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/Person_Type',
+    success: function(data) {
+      $.each(data, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#person-type").append("<option value = " + i + ">"+ brace.person_type_id + "</option>");
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+});
+
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/Provider/name',
+    success: function(data) {
+      $.each(data, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#provider-id").append("<option class='swag' id=" +brace.provider_id +" value = " + i + ">"+ brace.provider_first_name + brace.provider_last_name + "</option>");
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+});
+
+
+});
+
+$('#signInButton').click(function()
+{
+
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/NFC_Bracelet/patient',
+    success: function(data) {
+      $.each(data, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#dropNFC").append("<option value = " + i + ">"+ brace.nfc_id + "</option>");
+        printShit();
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+});
+
+});
+
+
+
+$('#submitTheNFC').click(function()
+{
+
+  var activatednfc_patient_room_id = null;  // getting Room ID val() If null, type in null.
+  var activatednfc_patient_appointment_id = $appointmentID;  // getting Appointment ID val()
+  var activatednfc_patient_nfc_id = $("#dropNFC").find(":selected").text();  // getting Patient NFC ID val()
+  console.log(activatednfc_patient_appointment_id);
+  console.log(activatednfc_patient_nfc_id);
+  $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/general/insert/ActivatedNFC_Patient/" +activatednfc_patient_room_id +'/'
+      +activatednfc_patient_appointment_id +'/' +activatednfc_patient_nfc_id,
+      success: function (insert_status)
+      {
+          console.log("SUCCESS!!!");
+          alert("The patient has officially been signed in!"); //Alert the user that the connection has been successful.
+          div_hide2(); //Close the window
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  });
+
+});
+
+$("#continue").click(function(){
+  var provider_first_name = $('#first-name').val(); // getting Provider First Name val()
+  var provider_last_name = $('#last-name').val(); // getting Provider Last Name val()
+  var provider_gender = $('#gender').val(); // getting Provider Gender val(). If null, type in null.
+  var provider_username = $('#username').val(); // getting Provider Username val()
+  var provider_password = $('#password').val(); // getting Provider Password val()
+  var provider_person_type_id = $("#person-type").find(":selected").text();// getting Provider Person Type ID val()
+
+  //the next two lines encrypt the password
+  //var encryptedData = CryptoJS.SHA256(provider_password);
+  //var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
+  $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/general/insert/Provider_Information/" +provider_first_name +'/' +provider_last_name +'/' +provider_gender +'/' +provider_username +'/'
+      +provider_password +'/' +provider_person_type_id +'/' + "74",
+      success: function (insert_status) {
+
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  });
+});
+
+
+
+$("#assign-NFC").click(function(){
+var activatednfc_provider_id = $(".swag").attr('id'); // getting Provider ID val()
+var activatednfc_provider_room_id = $("#activatednfc_provider_room_id").val(); // getting Room ID val() If null, type in null.
+var activatednfc_provider_nfc_id = $("#available-nfc").find(":selected").text(); // getting Provider NFC ID val()
+$.ajax({
+    type: "POST",
+    url: "http://localhost:3000/general/insert/ActivatedNFC_Provider/" +activatednfc_provider_id +'/10/' +activatednfc_provider_nfc_id,
+    success: function (insert_status) {
+        $("#insert_status").append("Successful Insertion of Acitvated Provider NFC</br>");
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+});
+});
+
+function printShit(){
+  thisShit = $("#patientSignUp").find(":selected").text();
+  console.log(thisShit);
+}
+function div_show2() {
+document.getElementById('registerNFC').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide2(){
+document.getElementById('registerNFC').style.display = "none";
+}
+
+function div_show() {
+document.getElementById('abc').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide(){
+document.getElementById('abc').style.display = "none";
+}
+//END OF THE FOLLOWING SCRIPT THAT WORKS FOR THE POPUP!!!!
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "20%";
+  document.getElementById("mySidebar").style.width = "20%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+
+function show_div2() {
+document.getElementById('nfc-avail').style.display = "block";
+}
+
+
+//Function To Display Popup
+function show_div() {
+document.getElementById('abc2').style.display = "block";
+}
+//Function to Hide Popup
+function hide_div(){
+document.getElementById('abc2').style.display = "none";
+}
+
+
+</script>
+  </body>
+</html>
