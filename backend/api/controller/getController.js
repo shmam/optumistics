@@ -390,13 +390,22 @@ function select_NFC_Providers(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=1", function(err,data) {
+			db.query("SELECT status_id FROM Status WHERE status_name='inactive'", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
 				}
 				else {
-					res.jsonp(data);
+					var id= data[0].status_id;
+					db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=1 AND status_id="+id, function(err,data) {
+						if(err) {
+							console.log(err);
+							res.send(err);
+						}
+						else {
+							res.jsonp(data);
+						}
+					});
 				}
 			});
 		}
@@ -409,19 +418,26 @@ function select_NFC_Patients(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT nfc_hex FROM NFC_Bracelet WHERE provider_nfc=0", function(err,data) {
+			db.query("SELECT status_id FROM Status WHERE status_name='inactive'", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
 				}
-				//test
 				else {
-					res.jsonp(data);
+					var id= data[0].status_id;
+					db.query("SELECT nfc_id FROM NFC_Bracelet WHERE provider_nfc=0 AND status_id="+id, function(err,data) {
+						if(err) {
+							console.log(err);
+							res.send(err);
+						}
+						else {
+							res.jsonp(data);
+						}
+					});
 				}
 			});
 		}
 	});
-
 }
 //get appointments for todays date with no start time
 
@@ -484,8 +500,21 @@ function select_activated_NFC_Providers(req,res){
 }
 
 // get patient name based on patient id
-function select_Patient_Name(req, res) {
-
+function select_Patient_Name(req,res){
+	db.open(cn, function(err) {
+		if(err)  res.send(err);
+		else {
+			db.query("SELECT patient_first_name, patient_last_name FROM Patient_Information WHERE patient_id="+ req.params.patient_id, function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
 }
 
 module.exports = {
