@@ -521,7 +521,7 @@ function select_Provider_Name(req,res) {
 	db.open(cn, function(err) {
 		if(err) res.send(err);
 		else {
-			db.query("SELECT pi.provider_first_name, pi.provider_last_name FROM Provider_Information pi WHERE NOT EXISTS (SELECT ap.provider_id FROM ActivatedNFC_Provider ap WHERE ap.provider_id = pi.provider_id)", function(err,data) {
+			db.query("SELECT pi.provider_id, pi.provider_first_name, pi.provider_last_name FROM Provider_Information pi WHERE NOT EXISTS (SELECT ap.provider_id FROM ActivatedNFC_Provider ap WHERE ap.provider_id = pi.provider_id)", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
