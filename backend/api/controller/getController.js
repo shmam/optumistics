@@ -424,6 +424,7 @@ function select_NFC_Patients(req,res){
 					console.log(err);
 					res.send(err);
 				}
+				//test
 				else {
 					var id= data[0].status_id;
 					db.query("SELECT nfc_id,nfc_hex FROM NFC_Bracelet WHERE provider_nfc=0 AND status_id="+ id, function(err,data) {
