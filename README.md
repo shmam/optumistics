@@ -9,6 +9,15 @@ Currently we are employing a scalable centralized network for storing informatio
 ![network](http://i.imgur.com/p16rf1x.jpg) 
       
 
+## Features 
+- Independently-hosted RESTful API for making database calls and functionality. Any frontend application and device can call directly through the API. This enables code reusability and multiple interfaces to collaberate with our backend architecture. 
+- Robust MS SQL database that handles heavy data collection
+- Low cost, functional, and open source hardware 
+- Hashed and encrypted data transfer for sensitive information 
+
+
+
+
 ## Installation 
 Follow these steps to run the developmental server and api on your own machine
 
