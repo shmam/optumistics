@@ -518,11 +518,11 @@ function select_Patient_Name(req,res){
 }
 
 // get provider name based on patient id
-function select_Provider_Name(req,res){
+function select_Provider_ID(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT provider_first_name, provider_last_name FROM Provider_Information WHERE provider_id="+ req.params.provider_id, function(err,data) {
+			db.query("SELECT provider_id FROM Provider_Information WHERE (provider_first_name= '"+ req.params.provider_first_name +"' AND '" +req.params.provider_last_name +"')", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
@@ -560,5 +560,5 @@ module.exports = {
 	select_activated_NFC_Patients,
 	select_activated_NFC_Providers,
 	select_Patient_Name,
-	select_Provider_Name
+	select_Provider_ID
 }
