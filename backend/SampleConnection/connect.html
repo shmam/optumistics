@@ -37,33 +37,171 @@
 
      $('#see').click(function()
     {
+  
+
+   //***************** this used for average time taken for a task for all doctors (line chart) COMPREHENSIVE***********************
       //returns a list of providers
+   
+      var action_id=130;
+      var start_date='2017-06-06'
+      var end_date='2017-06-18'
+    
       host='http://localhost:3000'
        $.ajax({
         type: 'GET',
-        url: host+'/portal/present/providers/active',
+        url: host+'/portal/average/time/'+action_id+'/'+start_date+'/'+end_date,
         contentType: 'application/x-www-form-urlencoded',
         jsonpCallback: 'callback', 
-        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        dataType: 'jsonp',   //you may use jsonp for cross origin request
         //crossDomain:true,
         success: function(friends) {
           console.log(friends)
           
-          //returns all of johnbob's friends
-          console.log(friends[0].last_name);
-
-          $.each(friends, function(i, friend){
-            $friends.append(friend.last_name);
-            $friends.append("</br>");
-          });
         },
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
         },
+      });
 
-    });
+    // //returns a list of providers
+    //   host='http://localhost:3000'
+    //    $.ajax({
+    //     type: 'GET',
+    //     url: host+'/portal/present/providers/active',
+    //     contentType: 'application/x-www-form-urlencoded',
+    //     jsonpCallback: 'callback', 
+    //     dataType : 'jsonp',   //you may use jsonp for cross origin request
+    //     //crossDomain:true,
+    //     success: function(friends) {
+    //       console.log(friends)
+          
+    //       //returns all of johnbob's friends
+    //       console.log(friends[0].last_name);
 
+    //       $.each(friends, function(i, friend){
+    //         $friends.append(friend.last_name);
+    //         $friends.append("</br>");
+    //       });
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error: ' + error.message);
+    //     },
+
+    // });
+
+    //***************** this used for average time taken for a task for all doctors (bar chart) REAL TIME***********************
+      //returns a list of providers
    
+      // var action_id=130;
+    
+    
+      // host='http://localhost:3000'
+      //  $.ajax({
+      //   type: 'GET',
+      //   url: host+'/portal/average/time/'+action_id,
+      //   contentType: 'application/x-www-form-urlencoded',
+      //   jsonpCallback: 'callback', 
+      //   dataType: 'jsonp',   //you may use jsonp for cross origin request
+      //   //crossDomain:true,
+      //   success: function(friends) {
+      //     console.log(friends)
+          
+      //   },
+      //   error: function (xhr, status, error) {
+      //       console.log('Error: ' + error.message);
+      //   },
+      // });
+
+//***************** this used for average for doctor for specific task (line graph) COMPREHENSIVE***********************
+      //returns a list of providers
+      // var provider_id=2290;
+      // var action_id=130;
+      // var start_date='2017-06-06'
+      // var end_date='2017-06-18'
+    
+      // host='http://localhost:3000'
+      //  $.ajax({
+      //   type: 'GET',
+      //   url: host+'/portal/average/time/'+action_id+'/'+provider_id+'/'+start_date+'/'+end_date,
+      //   contentType: 'application/x-www-form-urlencoded',
+      //   jsonpCallback: 'callback', 
+      //   dataType: 'jsonp',   //you may use jsonp for cross origin request
+      //   //crossDomain:true,
+      //   success: function(friends) {
+      //     console.log(friends)
+          
+      //   },
+      //   error: function (xhr, status, error) {
+      //       console.log('Error: ' + error.message);
+      //   },
+      // });
+
+//***************** this used for real time analysis average for doctor for specific task (bar chart) REAL TIME***********************
+      //returns a list of providers
+      // var provider_id=2290;
+      // var action_id=130;
+    
+      // host='http://localhost:3000'
+      //  $.ajax({
+      //   type: 'GET',
+      //   url: host+'/portal/average/time/'+action_id+'/'+provider_id,
+      //   contentType: 'application/x-www-form-urlencoded',
+      //   jsonpCallback: 'callback', 
+      //   dataType: 'jsonp',   //you may use jsonp for cross origin request
+      //   //crossDomain:true,
+      //   success: function(friends) {
+      //     console.log(friends)
+          
+      //   },
+      //   error: function (xhr, status, error) {
+      //       console.log('Error: ' + error.message);
+      //   },
+      // });
+
+
+ //***************** this used for pi chart for specific doctor (slice of the pi chart) COMPREHENSIVE ***********************
+      //returns a list of providers
+      // var provider_id=2290;
+      // var action_id=130;
+      // var start_date='2017-06-06'
+      // var end_date='2017-06-18'
+      // host='http://localhost:3000'
+      //  $.ajax({
+      //   type: 'GET',
+      //   url: host+'/portal/add/time/'+provider_id+'/'+action_id+'/'+start_date+'/'+end_date,
+      //   contentType: 'application/x-www-form-urlencoded',
+      //   jsonpCallback: 'callback', 
+      //   dataType: 'jsonp',   //you may use jsonp for cross origin request
+      //   //crossDomain:true,
+      //   success: function(friends) {
+      //     console.log(friends)
+          
+      //   },
+      //   error: function (xhr, status, error) {
+      //       console.log('Error: ' + error.message);
+      //   },
+      // });
+
+   //***************** this used for pi chart for specific doctor (slice of the pi chart) REAL TIME ***********************
+      //returns a list of providers
+      // var provider_id=2290;
+      // var action_id=130;
+      // host='http://localhost:3000'
+      //  $.ajax({
+      //   type: 'GET',
+      //   url: host+'/portal/add/time/'+provider_id+'/'+action_id,
+      //   contentType: 'application/x-www-form-urlencoded',
+      //   jsonpCallback: 'callback', 
+      //   dataType: 'jsonp',   //you may use jsonp for cross origin request
+      //   //crossDomain:true,
+      //   success: function(friends) {
+      //     console.log(friends)
+          
+      //   },
+      //   error: function (xhr, status, error) {
+      //       console.log('Error: ' + error.message);
+      //   },
+      // });
 
     //**************get a list of activated NFC Patients*************
     //  host='http://localhost:3000'
