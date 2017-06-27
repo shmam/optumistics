@@ -66,10 +66,10 @@ module.exports = function(app) {
     app.route('/portal/present/Appointments') //select the appointments for today's date that haven't started yet
         .get(selectAPI.select_current_appointments)
 
-    app.route('/portal/present/NFC_Bracelet/provider') //select the NFC bracelets designated for providers
+    app.route('/portal/present/NFC_Bracelet/patient') //select the NFC bracelets designated for patients
         .get(selectAPI.select_NFC_Patients)
 
-    app.route('/portal/present/NFC_Bracelet/patient') //select the NFC bracelets designated for patients
+    app.route('/portal/present/NFC_Bracelet/provider') //select the NFC bracelets designated for providers
         .get(selectAPI.select_NFC_Providers)
     
     app.route('/portal/present/Patient/:patient_id') //select the patients' name based on patient id
