@@ -19,7 +19,7 @@ function add_time_provider_task_rt(req,res){
                         res.send(err);
                     }
 					else{
-                        console.log("Successful insertion into Question table")
+                        
                         res.jsonp(data)
 
                     }
