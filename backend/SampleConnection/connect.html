@@ -37,7 +37,7 @@
 
      $('#see').click(function()
     {
-   
+  var $friends = $("#friends");
       // //returns a list of providers
       host='http://localhost:3000'
        $.ajax({
@@ -54,7 +54,7 @@
           console.log(friends[0].last_name);
 
           $.each(friends, function(i, friend){
-            $friends.append(friend.last_name);
+            $friends.append(friend.provider_last_name);
             $friends.append("</br>");
           });
         },
