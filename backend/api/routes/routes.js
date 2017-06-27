@@ -75,6 +75,9 @@ module.exports = function(app) {
     app.route('/portal/present/Patient/:patient_id') //select the patients' name based on patient id
         .get(selectAPI.select_Patient_Name)
 
+    app.route('/portal/present/Provider/:provider_id') //select the providers' name based on patient id
+        .get(selectAPI.select_Provider_Name)
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes
