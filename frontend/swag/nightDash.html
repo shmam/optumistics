@@ -314,6 +314,7 @@
     font-size: 60px;
 }
 
+
 @media screen and (max-height: 450px) {
   .overlay {overflow-y: auto;}
   .overlay a {font-size: 20px}
@@ -335,14 +336,7 @@
 
   </head>
   <body id="body" style="overflow:hidden;">
-    <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left animated fadeIn" style="display:none" id="mySidebar">
 
-
-
-    <a href="nightDash.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">home<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
-<a href="newSettings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif"> settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
-  <a href="statistics.HTML" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
-</div>
 
 <div zclass="w3-main" id="main" class = "animated fadeIn">
 
@@ -459,17 +453,21 @@ function w3_close() {
 }
 //END OF THE FUNCTION w3_OPEN() and w3_CLOSE()
 
-//THE FOLLOWING SCRIPT IS FOR THE ANIMATION AND TIMER ONCE YOU CLICK THE BUTTON
-//
-// Validating Empty Field
-var counter = 0;
-var isDisplayed = false;
+
+
+
+var counter = 0; //The counter is used to determine if the time should start or not.
+var isDisplayed = false; //This variable is used to explain if the start time is displayed or not. Set to false because it is originally not.
+var timeDisplayed = 0; //Time displayed is use to navigate. Because click is inside the div (clicked), must determine if the click is a START TIMER click, "call click" that should be invalid, or if it is a STOP TIMER click
+var endTimeDisplayed = false; //This variableis used to explain if the end time is displayed or not. Set to false because it is originally not.
+
 window.onload = function () {
 
 var seconds = 00;
 var tens = 00;
 
-var timeDisplayed = false;
+
+
 var appendTens = document.getElementById("tenss");
 var appendSeconds = document.getElementById("secondss");
 var buttonStart = document.getElementById('contentPage');
@@ -488,25 +486,30 @@ var second;
 
 
 //This function clears the interval for the minutes and starts the timer.
-$('.div').click(function()
+$('#contentPage').click(function()
 {
-  var date = new Date();
-  if (timeDisplayed === false){
-    hour = date.getHours();
-    minute = date.getMinutes();
-    second = date.getSeconds();
+  var date = new Date();  //Sets a new date and time...
+  if (timeDisplayed === 0 && isDisplayed === false) //If the div should be a START TIMER click and the start time has not been displayed yet.
+  {
+    hour = date.getHours(); //Get the hour in the time.
+    minute = date.getMinutes(); //Get minyy
+    second = date.getSeconds(); //Get secs
     appendHour.innerHTML = hour;
     appendMinute.innerHTML = minute;
     appendSecond.innerHTML = second;
-    timeDisplayed = true;
+    isDisplayed = true;
+    counter++;
+    timeDisplayed = 2;
+    if (counter % 2 !== 0){
+     clearInterval(Interval);
+     Interval = setInterval(startTimer, 1000);
+   }
   }
-  isDisplayed = true;
-  counter++;
-  if (counter % 2 !== 0){
-   clearInterval(Interval);
-   Interval = setInterval(startTimer, 1000);
- }
- else {
+  else if (timeDisplayed === 1){
+    timeDisplayed = 2;
+  }
+else if (endTimeDisplayed === false && timeDisplayed === 2) {
+  endTimeDisplayed = true;
    var date2 = new Date();
    clearInterval(Interval);
    isDisplayed = false;
@@ -517,6 +520,7 @@ $('.div').click(function()
    appendStopMinute.innerHTML = minute2;
    appendStopSecond.innerHTML = second2;
  }
+
 });
 //This stops the interval.
 buttonStop.onclick = function() {
@@ -572,10 +576,10 @@ document.getElementById('abc').style.display = "none";
 //END OF THE FOLLOWING SCRIPT THAT WORKS FOR THE POPUP!!!!
 
 function openNav(number) {
-  counter = counter + 1;
+  timeDisplayed = 1;
+  counter = counter + 2;
   if (isDisplayed === false){
     document.getElementById("myNav").style.height = "100%";
-
   }
   if (number === 1){
 
@@ -600,13 +604,19 @@ function openNav(number) {
   {
     document.getElementById("myNav").style.background = "rgba(52, 73, 94, 1)";
   }
+
+
 }
 
-
-
-
-
-function closeNav() {
+function closeNav()
+{
+    counter = counter + 2;
+    if (isDisplayed === true){
+      timeDisplayed = 2;
+    }
+    else{
+      timeDisplayed = 0;
+    }
     document.getElementById("myNav").style.height = "0%";
 
 }
