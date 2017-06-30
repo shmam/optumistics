@@ -109,7 +109,7 @@ module.exports = function(app) {
     app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:patient_gender/:person_type_id')
         .post(insertAPI.insert_Patient_Information)
 
-    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_gender/:provider_username/:provider_password/:person_type_id/:status_id')
+    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_username/:provider_password/:person_type_id/:status_id')
         .post(insertAPI.insert_Provider_Information)
 
     app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon')
