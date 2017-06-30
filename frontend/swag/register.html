@@ -37,7 +37,24 @@
       align-content: bottom;
 
 }
+
+#popupContact3{
+  align-content: bottom;
+
+}
     #abc2 {
+    width:100%;
+    height:100%;
+    opacity:.9;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#a8a8a8;
+    overflow:auto
+    }
+
+    #abc3 {
     width:100%;
     height:100%;
     opacity:.9;
@@ -56,8 +73,17 @@
     margin-left:-202px;
     font-family:'Raleway',sans-serif
     }
+
+    div#popupContact3 {
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+    }
+
     #nfc-avail {
-    display:none;
+    display:block;
     overflow:auto
     }
 
@@ -229,6 +255,7 @@
 
       <a href="statistics.HTML" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
     </div>
+
 <div zclass="w3-main" id="main" class = "animated fadeIn">
 
 <div id = "topBar">
@@ -241,7 +268,8 @@
     <h1 style = "text-align: center;">registry</h1>
     <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
     <br/>
-    <div id="abc">
+
+  <div id="abc">
 
     <!-- Popup Div Starts Here -->
     <div id="popupContact">
@@ -263,25 +291,41 @@
       </select></br>
       <button id = "signInButton" style = "margin-top: 2%;margin-left: 46%;"onclick = "div_show2()">sign in</button></br>
       <div id = "registerNFC" class = "animated fadeIn">
+        <div id = "registerNFC">
+        <h2 style = "color: #ffffff">assign bracelet to patient</h2>
+        <select>
+          <option>nfc 1</option>
+          <option>nfc 2</option>
+          <option>nfc 3</option>
+          <option>nfc 4</option>
+        </select>
+      </div>
     <hr style = "margin:10px 10px; margin-top: 5%;margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #fff;"/>
       <p style = "margin-left: 35%; color: #ffffff; font-size: 24px;">assign nfc to patient</p>
       <select id = "dropNFC" style = "margin-left: 47%;">
       </select></br>
-      <button id = "submitTheNFC" style = "margin-top: 2%;margin-left: 46%;">submit</button>
+      <button id = "submitTheNFC" onclick="div_hide()" style = "margin-top: 2%;margin-left: 46%;">submit</button>
     </div>
      </div>
 
     </div>
     <!-- Popup Div Ends Here -->
     </div>
+
+
     <div>
     <button style = "background-color:  #3f51b5; border: solid grey 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:60%; font-size: 30px; margin-top: 100px; " onclick = "div_show()">appointment registration</button>
   </div>
   <br/>
   <br/>
   <div>
-    <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:15%; font-size: 30px; margin-top: -195px; " onclick="show_div()">doctor registration</button>
+    <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:15%; font-size: 30px; margin-top: -195px; " onclick="show_div()">provider registration</button>
+  </div>
+
     <div>
+
+        <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:15%; font-size: 30px; margin-top: -195px; " onclick="show_nfc()">NFC registration</button>
+
   </div>
 
 
@@ -299,7 +343,7 @@
     <div id = "wrapper">
       <button id = "button-close" onclick ="hide_div()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
       <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
-      <h1 style = "color: #ffffff; text-align: center;">doctor registration</h1>
+      <h1 style = "color: #ffffff; text-align: center;">provider registration</h1>
 
 
     </div>
@@ -340,15 +384,7 @@
     </div>
     <br/>
 
-    <div>
-        <label class="input-label">gender: </label>
-        <select id="gender" placeholder="gender" class="input-box">
-          <option>male</option>
-          <option>female</option>
-        </select>
 
-
-    </div>
     <br/>
 
     <div>
@@ -363,47 +399,80 @@
 
 
     <div>
-      <button id="continue" onclick = "show_div2()" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">continue</button>
+      <button id="continue" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
     </div>
     <br/>
-    <div id="nfc-avail">
-    <div>
-    <label class="input-label">NFC ID: </label>
-    <select id="available-nfc" class="input-box">
 
-    </select>
-  </div>
-  <br/>
-  <div>
-    <label class="input-label">Provider Name: </label>
-    <select id="provider-id" class="input-box">
-
-    </select>
-  </div>
-    <br/>
-    <div>
-    <button id="assign-NFC" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
-</div>
-    <br/>
   </div>
 
 
 
 
-    <div id = "registerNFC">
-    <h2 style = "color: #ffffff">assign bracelet to patient</h2>
-    <select>
-      <option>nfc 1</option>
-      <option>nfc 2</option>
-      <option>nfc 3</option>
-      <option>nfc 4</option>
-    </select>
-  </div>
+
    </div>
 
   </div>
   <!-- Popup Div Ends Here -->
   </div>
+
+
+<!-- nfc registration popup start -->
+<div id="abc3">
+
+<!-- Popup Div Starts Here -->
+<div id="popupContact3">
+
+<!-- Contact Us Form -->
+<!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+<div id = "newWindow" class = "animated zoomIn">
+  <div id = "wrapper">
+    <button id = "button-close" onclick ="hide_nfc()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+    <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+    <h1 style = "color: #ffffff; text-align: center;">NFC registration</h1>
+
+
+  </div>
+<hr>
+  <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+
+  <br/>
+
+
+
+  </div>
+  <br/>
+
+  <div id="nfc-avail">
+  <div>
+  <label class="input-label">NFC ID: </label>
+  <select id="available-nfc" class="input-box">
+
+  </select>
+</div>
+<br/>
+<div>
+  <label class="input-label">Provider Name: </label>
+  <select id="provider-id" class="input-box">
+
+  </select>
+</div>
+  <br/>
+  <div>
+  <button id="assign-NFC" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
+</div>
+  <br/>
+</div>
+
+
+
+
+
+ </div>
+
+</div>
+<!-- NFC Popup Div Ends Here -->
+</div>
+
 
 <script>
 var $appointmentID;
@@ -531,7 +600,6 @@ $('#submitTheNFC').click(function()
 $("#continue").click(function(){
   var provider_first_name = $('#first-name').val(); // getting Provider First Name val()
   var provider_last_name = $('#last-name').val(); // getting Provider Last Name val()
-  var provider_gender = $('#gender').val(); // getting Provider Gender val(). If null, type in null.
   var provider_username = $('#username').val(); // getting Provider Username val()
   var provider_password = $('#password').val(); // getting Provider Password val()
   var provider_person_type_id = $("#person-type").find(":selected").text();// getting Provider Person Type ID val()
@@ -541,7 +609,7 @@ $("#continue").click(function(){
   //var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
   $.ajax({
       type: "POST",
-      url: "http://localhost:3000/general/insert/Provider_Information/" +provider_first_name +'/' +provider_last_name +'/' +provider_gender +'/' +provider_username +'/'
+      url: "http://localhost:3000/general/insert/Provider_Information/" +provider_first_name +'/' +provider_last_name +'/' +provider_username +'/'
       +provider_password +'/' +provider_person_type_id +'/' + "74",
       success: function (insert_status) {
 
@@ -603,8 +671,20 @@ function w3_close() {
   document.getElementById("openNav").style.display = "inline-block";
 }
 
-function show_div2() {
+/**function show_div2() {
 document.getElementById('nfc-avail').style.display = "block";
+}*/
+function show_div3() {
+document.getElementById('nfc-avail').style.display = "block";
+}
+
+//Function To Display Popup
+function show_nfc() {
+document.getElementById('abc3').style.display = "block";
+}
+//Function to Hide Popup
+function hide_nfc(){
+document.getElementById('abc3').style.display = "none";
 }
 
 
