@@ -275,10 +275,8 @@ function insert_Patient_Information(req, res) {
 				res.send(err);
 			}
 			else {
-				var final_patient_gender = req.params.patient_gender;
-				if (req.params.patient_gender != null)
-					final_patient_gender = "'" + req.params.patient_gender + "'";
-				db.query("INSERT INTO Patient_Information (patient_first_name, patient_last_name, patient_gender,person_type_id) VALUES ('" + req.params.patient_first_name + "','" + req.params.patient_last_name + "'," + final_patient_gender + "," + req.params.person_type_id + ")", function (err, data) {
+			
+				db.query("INSERT INTO Patient_Information (patient_first_name, patient_last_name,person_type_id) VALUES ('" + req.params.patient_first_name + "','" + req.params.patient_last_name + "'," + req.params.person_type_id + ")", function (err, data) {
 					if (err) {
 						console.log(err);
 						res.send(err);
@@ -310,11 +308,8 @@ function insert_Provider_Information(req, res) {
 						console.log(err);
 						res.send(err);
 					} else if (data.length == 0) {
-						var final_provider_gender = req.params.provider_gender;
-						if (req.params.provider_gender != null)
-							final_provider_gender = "'" + req.params.provider_gender + "'";
-						db.query("INSERT INTO Provider_Information (provider_first_name, provider_last_name, provider_gender, provider_username, provider_password, person_type_id, status_id) VALUES ('"
-						+ req.params.provider_first_name + "','" + req.params.provider_last_name + "'," + final_provider_gender + ",'" + req.params.provider_username + "','" + req.params.provider_password + "'," + req.params.person_type_id + "," + req.params.status_id + ")", function (err, data) {
+						db.query("INSERT INTO Provider_Information (provider_first_name, provider_last_name, provider_username, provider_password, person_type_id, status_id) VALUES ('"
+						+ req.params.provider_first_name + "','" + req.params.provider_last_name + "','" + req.params.provider_username + "','" + req.params.provider_password + "'," + req.params.person_type_id + "," + req.params.status_id + ")", function (err, data) {
 							if (err) {
 								console.log(err);
 								res.send(err);
