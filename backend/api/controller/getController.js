@@ -499,12 +499,12 @@ function select_activated_NFC_Providers(req,res){
 	});
 }
 
-// get patient name based on patient id
+// get all patient's name and id
 function select_Patient_Name(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT patient_first_name, patient_last_name FROM Patient_Information WHERE patient_id="+ req.params.patient_id, function(err,data) {
+			db.query("SELECT patient_id, patient_first_name, patient_last_name FROM Patient_Information", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
@@ -517,7 +517,7 @@ function select_Patient_Name(req,res){
 	});
 }
 
-function select_Provider_Name(req,res) {
+function select_Provider_Name_NotActive(req,res) {
 	db.open(cn, function(err) {
 		if(err) res.send(err);
 		else {
@@ -533,6 +533,25 @@ function select_Provider_Name(req,res) {
 		}
 	});
 }
+
+function select_Appointment_Type_Name(req,res) {
+	db.open(cn, function(err) {
+		if(err) res.send(err);
+		else {
+			db.query("SELECT appointment_type_id, appointment_name FROM Appointment_Type", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+}
+
+
 
 module.exports = {
     getTimeEachDoctor_RT,
@@ -559,5 +578,6 @@ module.exports = {
 	select_activated_NFC_Patients,
 	select_activated_NFC_Providers,
 	select_Patient_Name,
-	select_Provider_Name
+	select_Provider_Name_NotActive,
+	select_Appointment_Type_Name
 }
