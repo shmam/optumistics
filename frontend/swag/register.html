@@ -5,6 +5,11 @@
     @import "http://fonts.googleapis.com/css?family=Raleway";
 
 
+
+    .container {
+    padding: 20px;
+}
+
     body {
       font-family:'Raleway',sans-serif;
     }
@@ -42,6 +47,11 @@
   align-content: bottom;
 
 }
+
+#popupContact4{
+  align-content: bottom;
+
+}
     #abc2 {
     width:100%;
     height:100%;
@@ -55,6 +65,18 @@
     }
 
     #abc3 {
+    width:100%;
+    height:100%;
+    opacity:.9;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#a8a8a8;
+    overflow:auto
+    }
+
+    #abc4 {
     width:100%;
     height:100%;
     opacity:.9;
@@ -82,7 +104,20 @@
     font-family:'Raleway',sans-serif
     }
 
+    div#popupContact4 {
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+    }
+
     #nfc-avail {
+    display:block;
+    overflow:auto
+    }
+
+    #new-appointment {
     display:block;
     overflow:auto
     }
@@ -207,6 +242,14 @@
       border:5px solid #fff;
     }
 
+    /**
+ * Override feedback icon position
+ * See http://formvalidation.io/examples/adjusting-feedback-icon-position/
+ */
+#eventForm .form-control-feedback {
+    top: 0;
+    right: -15px;
+}
 
 
 
@@ -219,8 +262,6 @@
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -241,6 +282,14 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+
+
 
   </head>
   <body id="body" style="overflow:hidden;">
@@ -314,19 +363,25 @@
 
 
     <div>
-    <button style = "background-color:  #3f51b5; border: solid grey 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:60%; font-size: 30px; margin-top: 100px; " onclick = "div_show()">appointment registration</button>
+    <button style = "background-color:  #3f51b5; border: solid grey 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:70%; font-size: 30px; margin-top: 100px; " onclick = "div_show()">appointment registration</button>
   </div>
   <br/>
   <br/>
   <div>
-    <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:15%; font-size: 30px; margin-top: -195px; " onclick="show_div()">provider registration</button>
+    <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:6%; font-size: 30px; margin-top: -195px; " onclick="show_div()">provider registration</button>
   </div>
 
     <div>
 
-        <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:15%; font-size: 30px; margin-top: -195px; " onclick="show_nfc()">NFC registration</button>
+        <button  style="background-color: #D3D3D3; border: solid black 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:9%; font-size: 30px; margin-top: -190px; " onclick="show_nfc()">NFC registration</button>
 
   </div>
+
+  <div>
+
+      <button  style="background-color: black; border: solid grey 5px; border-radius: 50%; width: 400px; height: 200px; float: right; color:white; margin-right:9%; font-size: 30px; margin-top: 25px;" onclick="show_appt()">create appointment</button>
+
+</div>
 
 
 
@@ -341,7 +396,7 @@
   <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
   <div id = "newWindow" class = "animated zoomIn">
     <div id = "wrapper">
-      <button id = "button-close" onclick ="hide_div()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+      <button id = "button-close" onclick ="hide_divx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
       <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
       <h1 style = "color: #ffffff; text-align: center;">provider registration</h1>
 
@@ -399,7 +454,7 @@
 
 
     <div>
-      <button id="continue" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
+      <button id="continue" onclick="hide_div()" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
     </div>
     <br/>
 
@@ -435,12 +490,7 @@
 <hr>
   <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
 
-  <br/>
 
-
-
-  </div>
-  <br/>
 
   <div id="nfc-avail">
   <div>
@@ -458,9 +508,10 @@
 </div>
   <br/>
   <div>
-  <button id="assign-NFC" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
+  <button id="assign-NFC" onclick="hide_nfc()" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
 </div>
   <br/>
+</div>
 </div>
 
 
@@ -471,10 +522,102 @@
 
 </div>
 <!-- NFC Popup Div Ends Here -->
+
+<!-- new appointment popup start -->
+<div id="abc4">
+
+<!-- Popup Div Starts Here -->
+<div id="popupContact4">
+
+<!-- Contact Us Form -->
+<!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+<div id = "newWindow" class = "animated zoomIn">
+  <div id = "wrapper">
+    <button id = "button-close" onclick ="hide_appt()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+    <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+    <h1 style = "color: #ffffff; text-align: center;">new appointment</h1>
+
+
+  </div>
+<hr>
+  <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+
+
+
+  <div id="new-appointment">
+  <div>
+  <label class="input-label">start time: </label>
+  <div class="container">
+    <input id="input-a" value="" data-default="20:48">
+    <button type="button" id="button-a">Check the  minutes</button>
+  </div>
+
+<br/>
+<div>
+<label class="input-label">end time: </label>
+<select id="appointment_end_time" class="input-box">
+
+</select>
+</div>
+<br/>
+<div>
+  <label class="input-label">patient id: </label>
+  <select id="appointment_patient_id" class="input-box">
+
+  </select>
+</div>
+  <br/>
+  <div>
+  <label class="input-label">appointment type: </label>
+  <select id="appointment_appointment_type_id" class="input-box">
+
+  </select>
+  </div>
+  <br/>
+  <div>
+  <label class="input-label">status ID: </label>
+  <select id="appointment_status_id" class="input-box">
+
+  </select>
+</div>
+<br/>
+<div>
+<label class="input-label">date: </label>
+
+
+    <!-- Form code begins -->
+
+
+        <input style="margin-left: 310px; width: 130px; margin-top: -30px;" class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+
+     <!-- Form code ends -->
+
+
+
+</div>
+<br/>
+  <div>
+  <button id="create_appointment" onclick="hide_appt()" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:50px;" class="input-box">create appointment</button>
+</div>
+  <br/>
+</div>
+</div>
+
+
+
+
+
+ </div>
+
+</div>
+<!-- new appointment Popup Div Ends Here -->
+
 </div>
 
 
 <script>
+
+
 var $appointmentID;
 var thisShit;
 //Function To Display Popup
@@ -549,6 +692,21 @@ $.ajax({
 
 });
 
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/Patient/name',
+    success: function(data) {
+      $.each(data, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#appointment_patient_id").append("<option class='swag' id=" +brace.patient_id +" value = " + i + ">"+ brace.patient_first_name + " " + brace.patient_last_name + "</option>");
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
+});
+
 $('#signInButton').click(function()
 {
 
@@ -570,7 +728,25 @@ $.ajax({
 
 });
 
-
+$('#create_appointment').click(function() {
+    var appointment_start_time = $('#appointment_start_time').val(); // getting Appointment Start Time val()
+    var appointment_end_time = $('#appointment_end_time').val(); // getting Appointment End Time val()
+    var appointment_patient_id = $('#appointment_patient_id').val(); // getting Appointment Patient ID val()
+    var appointment_appointment_type_id = $('#appointment_appointment_type_id').val(); // getting Appointment Type ID val(). If null, type in null.
+    var appointment_status_id = $('#appointment_status_id').val(); // getting Appointment Status ID val()
+    var appointment_date = $('#appointment_date').val(); // getting Appointment Date val()
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/general/insert/Appointment/:start_time/:end_time/:patient_id/:appointment_type_id/:status_id/:appointment_date/" +appointment_start_time +'/' +appointment_end_time +'/'
+        +appointment_patient_id +'/' +appointment_appointment_type_id +'/' +appointment_status_id +'/' +appointment_date,
+        success: function (insert_status) {
+            $("#insert_status").append("Successful Insertion of Appointment</br>");
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+    });
+});
 
 $('#submitTheNFC').click(function()
 {
@@ -687,17 +863,66 @@ function hide_nfc(){
 document.getElementById('abc3').style.display = "none";
 }
 
+//Function To Display Popup
+function show_appt() {
+document.getElementById('abc4').style.display = "block";
+}
+//Function to Hide Popup
+function hide_appt(){
+document.getElementById('abc4').style.display = "none";
+}
 
 //Function To Display Popup
 function show_div() {
 document.getElementById('abc2').style.display = "block";
 }
 //Function to Hide Popup
-function hide_div(){
+function hide_divx(){
+
 document.getElementById('abc2').style.display = "none";
 }
 
+//hides popup and refreshes page
+function hide_div(){
+window.location.reload();
+document.getElementById('abc2').style.display = "none";
+}
 
-</script>
+$(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+
+    var input = $('#input-a');
+input.clockpicker({
+    autoclose: true
+});
+
+// Manual operations
+$('#button-a').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    input.clockpicker('show')
+            .clockpicker('toggleView', 'minutes');
+});
+$('#button-b').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    input.clockpicker('show')
+            .clockpicker('toggleView', 'hours');
+    });
+
+
+
+          </script>
+
   </body>
+
 </html>

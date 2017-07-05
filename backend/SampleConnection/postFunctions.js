@@ -154,7 +154,7 @@
         var provider_person_type_id = $('#provider_person_type_id').val(); // getting Provider Person Type ID val()
         var provider_status_id = $('#provider_status_id').val(); // getting Provider Status ID val()
         //the next two lines encrypt the password
-        var encryptedData = CryptoJS.SHA256(provider_password); 
+        var encryptedData = CryptoJS.SHA256(provider_password);
         var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
         $.ajax({
             type: "POST",
@@ -214,7 +214,7 @@
         var appointment_end_time = $('#appointment_end_time').val(); // getting Appointment End Time val()
         var appointment_patient_id = $('#appointment_patient_id').val(); // getting Appointment Patient ID val()
         var appointment_appointment_type_id = $('#appointment_appointment_type_id').val(); // getting Appointment Type ID val(). If null, type in null.
-        var appointment_status_id = $('#appointment_status_id').val(); // getting Appointment Status ID val()
+        var appointment_status_id = $('#appointment_status_id').val(); // getting Appointment Status ID val() 75
         var appointment_date = $('#appointment_date').val(); // getting Appointment Date val()
         $.ajax({
             type: "POST",

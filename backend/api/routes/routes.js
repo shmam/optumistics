@@ -59,7 +59,7 @@ module.exports = function(app) {
 
     app.route('/portal/present/Activated_NFC_Patients') //select all of the activated NFC patients
         .get(selectAPI.select_activated_NFC_Patients)
-    
+
     app.route('/portal/present/Activated_NFC_Providers') //select all of the activated NFC providers
         .get(selectAPI.select_activated_NFC_Providers)
 
@@ -71,7 +71,7 @@ module.exports = function(app) {
 
     app.route('/portal/present/NFC_Bracelet/provider') //select the NFC bracelets designated for providers
         .get(selectAPI.select_NFC_Providers)
-    
+
     app.route('/portal/present/Patient/name') //select the patients' name and patient id
         .get(selectAPI.select_Patient_Name)
 
