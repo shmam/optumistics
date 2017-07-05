@@ -448,7 +448,7 @@ function select_current_appointments(req,res){
 	db.open(cn, function(err) {
 		if(err)  res.send(err);
 		else {
-			db.query("SELECT * FROM Appointment WHERE appointment_date='"+today+"' AND start_time IS NULL", function(err,data) {
+			db.query("SELECT a.appointment_id, pi.patient_first_name, pi.patient_last_name FROM Appointment a, Patient_Information pi WHERE (a.appointment_date=" +today +"AND a.start_time IS NULL AND a.patient_id = pi.patient_id)", function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
