@@ -12,6 +12,27 @@
   /*
   The following styling for the lines are to divide the screen nicely.
   */
+  .arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+
+  border-bottom: 25px solid #2ecc71;
+
+}
+
+.arrow-down {
+  width: 0;
+   height: 0;
+   border-left: 15px solid transparent;
+   border-right: 15px solid transparent;
+
+   border-top: 25px solid #e74c3c;
+
+
+
+}
 
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +44,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
+
 <body id="body" style="overflow:hidden;">
   <!-- The following div deals with the side bar nav. THis includes the close button and the home settings and stats button.-->
   <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left" style="display:none" id="mySidebar">
@@ -45,43 +67,50 @@
 
 
     <div id = "mainContent" style = "font-family:'Raleway',sans-serif">
-
-
-      <div class="container">
-
-        <!--This div contains the information regarding the ACTUAL stats...-->
-        <div class="dropdown" style = "margin-left: -20%;">
-          <!--title of the page..below that is the canvas for the graph and also the drop down menu for the LINE GRAPH-->
-          <select id="chartType" style = "float: top; margin-top: 2%;">
-            <option value="line">average blood draw time per month</option>
-            <option value="line2">average physical time per month</option>
-            <option value = "line3">average appointment time per month</option>
-          </select>
-
-
-
-        </div>
-        <canvas id="myChart" style = "margin-top: 1%; margin-left: -20%;"></canvas></br>
-        <!--this is the end of the first LINE GRAPH dropdown section...there is a break and another line after this section for aethestics.-->
-        <hr width: 50%;><br/>
+    <div class = "w3-row w3-col">
+      <div class="dropdown">
+        <!--title of the page..below that is the canvas for the graph and also the drop down menu for the LINE GRAPH-->
+        <select id="chartType" style = "margin-left: 2%;margin-top: 2%;">
+          <option value="line">average blood draw time per month</option>
+          <option value="line2">average physical time per month</option>
+          <option value = "line3">average appointment time per month</option>
+        </select>
 
       </div>
+    </div>
 
+        <div class = "w3-row" style = "margin-top: 2%;">
+        <!--This div contains the information regarding the ACTUAL stats...-->
+        <div class="w3-card-4 w3-col w3-hover-shadow" style="margin-left: 1%; width:65%; height: 44%;">
+        <canvas id="myChart" class = "w3-col" style = "margin-left: 1%;width: 95%;height: 95%;"></canvas></br>
+        <!--this is the end of the first LINE GRAPH dropdown section...there is a break and another line after this section for aethestics.-->
+      </div>
+        <div class="w3-card-4 w3-col w3-hover-shadow" style="margin-left: 2%;width:30%; height: 44%;">
+
+          <div class="w3-container">
+              <div style = "margin-left: 85%; margin-top: 40%;"class="arrow-up"></div>
+              <div style = "margin-left: 85%; margin-top: -5%; display: none;"class="arrow-down"></div>
+
+          </div>
+        </div>
+      </div>
+
+      <hr width: 50%;><br/>
       <div class="w3-row">
-        <div class="w3-card-4 w3-col" style="width:60%; height: 35%;">
+        <div class="w3-card-4 w3-col" style="margin-left: 1%;width:60%; height: 32%;">
           <header class="w3-container w3-blue w3-hover-shadow">
-            <h2 style = "text-align: center;">Header</h2>
+            <h2 style = "text-align: center;">HEADER</h2>
           </header>
 
           <div class="w3-container">
-          <p>Hello World</p>
+
           </div>
         </div>
         <div class="w3-col" style="width:2%; height: 35%;">
         </div>
-        <div class="w3-card-4 w3-col" style="width:17%; height: 35%;">
+        <div class="w3-card-4 w3-col" style="width:17%; height: 32%;">
           <header class="w3-container w3-red w3-hover-shadow">
-            <h2 style = "text-align: center;">Header</h2>
+            <h2 style = "text-align: center;">HEADER</h2>
           </header>
 
           <div class="w3-container">
@@ -90,9 +119,9 @@
         </div>
         <div class="w3-col" style="width:2%; height: 35%;">
         </div>
-        <div class="w3-card-4 w3-col" style="width:17%; height: 35%;">
+        <div class="w3-card-4 w3-col" style="width:17%; height: 32%;">
           <header class="w3-container w3-blue w3-hover-shadow">
-            <h2 style = "text-align: center;">Header</h2>
+            <h2 style = "text-align: center;">HEADER</h2>
           </header>
 
           <div class="w3-container">
@@ -128,8 +157,6 @@
 
   //GRAPH FOR LINE chart
   var ctx = document.getElementById("myChart").getContext("2d");
-  ctx.canvas.width = 900;
-  ctx.canvas.height = 400;
   //GRAPH FOR PIE Chart
 
 
@@ -185,12 +212,17 @@
     var currentChart;
 
     function updateChart() {
-      if(currentChart){currentChart.destroy();}
+      if(currentChart){
+        currentChart.destroy();
+      }
 
       var determineChart = $("#chartType").val();
 
       var params = dataMap[determineChart]
       currentChart = new Chart(ctx)[params.method](params.data, {});
+      document.getElementById("myChart").style.width = "95%";
+      document.getElementById("myChart").style.height = "95%";
+
     }
 
     $('#chartType').on('change', updateChart)
