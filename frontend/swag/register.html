@@ -434,7 +434,7 @@
 
     <div>
         <label class="input-label">confirm password: </label>
-        <input type="password" placeholder="confirm password" class="input-box">
+        <input id="confirm-password" type="password" placeholder="confirm password" class="input-box">
 
     </div>
     <br/>
@@ -445,7 +445,7 @@
     <div>
         <label class="input-label">provider type: </label>
         <select id="person-type" placeholder="provider type" class="input-box">
-
+            <option>select</option>
         </select>
 
 
@@ -561,7 +561,7 @@
 </div>
 <br/>
 <div>
-  <label class="input-label">patient id: </label>
+  <label class="input-label">patient name: </label>
   <select id="appointment_patient_id" class="input-box">
 
   </select>
@@ -573,13 +573,7 @@
 
   </select>
   </div>
-  <br/>
-  <div>
-  <label class="input-label">status ID: </label>
-  <select id="appointment_status_id" class="input-box">
 
-  </select>
-</div>
 <br/>
 <div>
 <label class="input-label">date: </label>
@@ -621,8 +615,7 @@
 var $appointmentID;
 var thisShit;
 //Function To Display Popup
-$( document ).ready(function()
-{
+$( document ).ready(function(){
   $.ajax({
 
     type: 'GET',
@@ -632,7 +625,8 @@ $( document ).ready(function()
 
       $.each(bracelets, function(i, brace)
       { //Get every entry in the NFC db that are PROVIDERS
-        $("#patientSignUp").append("<option value = " + i + ">"+ brace.patient_id + "</option>");
+
+        $("#patientSignUp").append("<option class='swag3' id=" +brace.patient_id +" value = " + i + ">"+ brace.patient_first_name + " " + brace.patient_last_name + "</option>");
           $appointmentID = brace.appointment_id;
 
       });
@@ -666,7 +660,7 @@ $.ajax({
     success: function(data) {
       $.each(data, function(i, brace)
       { //Get every entry in the NFC db that are PROVIDERS
-        $("#person-type").append("<option value = " + i + ">"+ brace.person_type_id + "</option>");
+        $("#person-type").append("<option class='swag' id=" +brace.person_type_id +" value = " + i + ">"+ brace.person_type_name + "</option>");
       });
     },
     error: function (xhr, status, error) {
@@ -689,7 +683,19 @@ $.ajax({
     },
 });
 
-
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://localhost:3000/portal/present/Appointment_Type/name',
+    success: function(data) {
+      $.each(data, function(i, brace)
+      { //Get every entry in the NFC db that are PROVIDERS
+        $("#appointment_appointment_type_id").append("<option class='swag2' id=" +brace.appointment_type_id +" value = " + i + ">"+ brace.appointment_name + "</option>");
+      });
+    },
+    error: function (xhr, status, error) {
+        console.log('Error: ' + error.message);
+    },
 });
 
 $.ajax({
@@ -706,6 +712,10 @@ $.ajax({
         console.log('Error: ' + error.message);
     },
 });
+
+});
+
+
 
 $('#signInButton').click(function()
 {
@@ -753,7 +763,7 @@ $('#submitTheNFC').click(function()
 
   var activatednfc_patient_room_id = null;  // getting Room ID val() If null, type in null.
   var activatednfc_patient_appointment_id = $appointmentID;  // getting Appointment ID val()
-  var activatednfc_patient_nfc_id = $("#dropNFC").find(":selected").text();  // getting Patient NFC ID val()
+  var activatednfc_patient_nfc_id = $(".swag3").attr('id');  // getting Patient NFC ID val()
   console.log(activatednfc_patient_appointment_id);
   console.log(activatednfc_patient_nfc_id);
   $.ajax({
@@ -778,8 +788,8 @@ $("#continue").click(function(){
   var provider_last_name = $('#last-name').val(); // getting Provider Last Name val()
   var provider_username = $('#username').val(); // getting Provider Username val()
   var provider_password = $('#password').val(); // getting Provider Password val()
-  var provider_person_type_id = $("#person-type").find(":selected").text();// getting Provider Person Type ID val()
-
+  //var provider_person_type_id = $("#person-type").find(":selected").text();// getting Provider Person Type ID val()
+  var provider_person_type_id = $(".swag2").attr('id'); // getting Provider ID val()
   //the next two lines encrypt the password
   //var encryptedData = CryptoJS.SHA256(provider_password);
   //var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
@@ -884,8 +894,23 @@ document.getElementById('abc2').style.display = "none";
 
 //hides popup and refreshes page
 function hide_div(){
+
+if($('#first-name').val() === "" || $('#last-name').val()=== "" || $('#username').val()=== "" || $('#password').val()=== "" || $('#confirm-password').val()=== "" || $(".swag2").attr('id') === 'select')
+{
+  alert("please fill out missing fields and try again");
+
+}
+
+else if(($('#password').val()).localeCompare($('#confirm-password').val()) === 0)
+{
+  alert("the passwords you entered do not match, please try again")
+
+}
+
+else{
 window.location.reload();
 document.getElementById('abc2').style.display = "none";
+}
 }
 
 $(document).ready(function(){
@@ -900,24 +925,6 @@ $(document).ready(function(){
       date_input.datepicker(options);
     })
 
-    var input = $('#input-a');
-input.clockpicker({
-    autoclose: true
-});
-
-// Manual operations
-$('#button-a').click(function(e){
-    // Have to stop propagation here
-    e.stopPropagation();
-    input.clockpicker('show')
-            .clockpicker('toggleView', 'minutes');
-});
-$('#button-b').click(function(e){
-    // Have to stop propagation here
-    e.stopPropagation();
-    input.clockpicker('show')
-            .clockpicker('toggleView', 'hours');
-    });
 
 
 
