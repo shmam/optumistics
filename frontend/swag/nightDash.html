@@ -336,7 +336,14 @@
 
   </head>
   <body id="body" style="overflow:hidden;">
+    <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left animated fadeIn" style="display:none" id="mySidebar">
 
+
+
+    <a href="nightDash.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">home<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
+<a href="newSettings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif"> settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
+  <a href="statistics.HTML" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
+</div>
 
 <div zclass="w3-main" id="main" class = "animated fadeIn">
 
@@ -366,23 +373,23 @@
 
     <div class = "div" a href = " " id = "contentPage" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
 
-          <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>physical</b></h1>
-          <button style="margin-right: -10%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(1)">call</button>
+          <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>vital signs</b></h1>
+          <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 10%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(1)">request action</button>
             <div id = "layer1" style = "z-index: -1;">
 
               <span class = "sec" id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
               <span class = "ten" id = "tenss" style = "font-size:  128px;color: #ffffff">00</span></br>
               <span style = "margin-top: -5%;font-size: 32px;color: #ffffff">start time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondTime"></span>
             </br>
-                <span style = "font-size: 32px;color: #ffffff">stop time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondStopTime"></span>
+              <span style = "font-size: 32px;color: #ffffff">stop time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondStopTime"></span>
             </div>
 
 
     </div>
     <div class = "div" a href = " " id = "contentPage2" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>operation</b></h1>
-      <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(2)">call</button>
-        <button style="margin-right: -11%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(2)">call</button>
+      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>physical</b></h1>
+      <button style="margin-right: -9%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 10%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(2)">request action</button>
+
         <div id = "layer2" style = "z-index: -1;">
           <span class = "sec" id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
           <span class = "ten" id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
@@ -392,7 +399,7 @@
 
     <div class = "div" a href = " " id = "contentPage3" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
       <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>blood</b></h1>
-      <button style="margin-right: -7%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(3)">call</button>
+      <button style="margin-right: -7%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 10%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(3)">request action</button>
         <div id = "layer3" style = "z-index: -1;">
           <span id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
           <span id = "tenss" style = "font-size:  128px;color: #ffffff">00</span>
@@ -401,7 +408,7 @@
     </div>
 
     <div class = "div" a href = " "  id = "contentPage4" style = "height: 35%; background-size: cover;background-position: center;background-repeat: no-repeat;border:4px solid #000;">
-      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>vital signs</b></h1>
+      <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 16%; overflow: none;"><b>operations</b></h1>
       <button style="margin-right: -10%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:30px;cursor:pointer" onclick="openNav(4)">call</button>
         <div id = "layer4" style = "z-index: -1;">
 
