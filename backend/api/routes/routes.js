@@ -78,6 +78,9 @@ module.exports = function(app) {
     app.route('/portal/present/Provider/name') //select the providers' name based on provider id
         .get(selectAPI.select_Provider_Name_NotActive)
 
+    app.route('/portal/present/Appointment_Type/name') //select appointment name and appointment id
+        .get(selectAPI.select_Appointment_Type_Name)
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes

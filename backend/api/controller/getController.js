@@ -534,6 +534,25 @@ function select_Provider_Name_NotActive(req,res) {
 	});
 }
 
+function select_Appointment_Type_Name(req,res) {
+	db.open(cn, function(err) {
+		if(err) res.send(err);
+		else {
+			db.query("SELECT appointment_type_id, appointment_name FROM Appointment_Type", function(err,data) {
+				if(err) {
+					console.log(err);
+					res.send(err);
+				}
+				else {
+					res.jsonp(data);
+				}
+			});
+		}
+	});
+}
+
+
+
 module.exports = {
     getTimeEachDoctor_RT,
     getTimeAllDoctors_RT,
@@ -559,5 +578,6 @@ module.exports = {
 	select_activated_NFC_Patients,
 	select_activated_NFC_Providers,
 	select_Patient_Name,
-	select_Provider_Name_NotActive
+	select_Provider_Name_NotActive,
+	select_Appointment_Type_Name
 }
