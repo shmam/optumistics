@@ -14,7 +14,7 @@ const path  = require('path');
 const VIEWS = path.join(__dirname, "SampleConnection");
 
 app.get('/', function(req, res) {
-  res.sendFile('index.html', { root : VIEWS });
+  res.sendFile('connect.html', { root : VIEWS });
 });
 
 
