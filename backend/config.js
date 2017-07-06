@@ -1,4 +1,6 @@
-exports.server = 'DBSED3646.ms.ds.uhc.com'
-exports.driver = '{ODBC Driver 13 for SQL Server}'
-exports.database = 'SQUAD_DB'
+exports.host = 'amazondash-tdp.cps5ypxg9leo.us-east-1.rds.amazonaws.com'
+exports.user = 'optumistics'
+exports.password = 'password'
+exports.database='optumistics'
+
 
