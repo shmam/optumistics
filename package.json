@@ -10,6 +10,7 @@
     "test"
   ],
   "engines": {
+     "node": "5.1.1"
   },
   "author": "jhayne14",
   "license": "ISC",
