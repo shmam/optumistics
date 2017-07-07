@@ -25,7 +25,7 @@ const VIEWS = __dirname;
 // In your route handlers:
 
 app.get('/', function(req, res) {
-  res.sendFile('index.html', { root : VIEWS });
+  res.sendFile('connect.html', { root : VIEWS });
 });
 
 
