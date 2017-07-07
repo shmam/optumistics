@@ -1,12 +1,11 @@
 var config = require('../../config.js')
 
-var db = require('mysql')
+ var db = require('mysql');
  var cn = db.createConnection({
-  host: config.host,
-  user: config.user,
-  password: config.password,
-  database: config.database
-
+  host: "amazondash-tdp.cps5ypxg9leo.us-east-1.rds.amazonaws.com",
+  user: "optumistics",
+  password: "password",
+  database: "optumistics"
 });;
 
 cn.connect();
