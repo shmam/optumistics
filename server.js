@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
 });
 
 
-var routes = require('./api/routes/routes.js');
+var routes = require('./backend/api/routes/routes.js');
 
 
 routes(app);
