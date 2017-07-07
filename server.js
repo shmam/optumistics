@@ -1,11 +1,10 @@
 var express = require('express'),
   app = express(),
 
-  port = process.env.PORT || 8081,
+  port = process.env.PORT || 8000,
 
   bodyParser = require('body-parser');
   
-var config = require('./config.js')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,7 +17,7 @@ app.get('/', function(req, res) {
 });
 
 
-var routes = require('./api/routes/routes.js');
+var routes = require('./backend/api/routes/routes.js');
 
 routes(app);
 
