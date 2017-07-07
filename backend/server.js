@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const path  = require('path');
-const VIEWS = path.join(__dirname, "SampleConnection");
+const VIEWS = path.join(__dirname, "backend","SampleConnection");
 
 app.get('/', function(req, res) {
   res.sendFile('connect.html', { root : VIEWS });
