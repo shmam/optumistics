@@ -1,7 +1,7 @@
 var config = require('../../config.js')
 
 var db = require('mysql')
- var cn = cn.createConnection({
+ var cn = db.createConnection({
   host: config.host,
   user: config.user,
   password: config.password,
