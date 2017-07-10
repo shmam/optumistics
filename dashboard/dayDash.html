@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <script  src="backend/SampleConnection/jquery" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
@@ -115,6 +115,7 @@
 
     <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
       <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+
         <div class = "w3-col w3-shadow card" id = "2" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
           <div class = "front" style = "width: 95%; height: 95%; background: rgba(231, 76, 60, 0.8);">
             <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">PHYSICAL</h2> <!--Name of Operation: Physical -->
@@ -128,15 +129,6 @@
           </br>
             <span style = "font-size: 32px;color: #fff">stop time: </span><span style = "font-size: 32px;color: #fff" id = "hourStopTime"></span><span style = "font-size: 32px;color: #fff">:</span><span style = "font-size: 32px;color: #fff" id = "minuteStopTime"></span><span style = "font-size: 32px;color: #fff">:</span><span style = "font-size: 32px;color: #fff" id = "secondStopTime"></span>
           </div>
-
-        <div class = "w3-card-4 w3-col w3-shadow" id = "firstColumn1" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%;background: rgba(231, 76, 60, 0.8);"><!-- The first column of the first row -->
-            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">PHYSICAL</h2> <!--Name of Operation: Physical -->
-            <img src = "img/tPhone.png" style = "width: 100px; height: 100px;"></img>
-            <span class = "sec" id="secondss" style = "font-size: 72px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span><span class = "ten" id = "tenss" style = "font-size:  72px;color: #ffffff">00</span></br>
-            <span style = "margin-top: -5%;font-size: 32px;color: #ffffff">start time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondTime"></span>
-          </br>
-            <span style = "font-size: 32px;color: #ffffff">stop time: </span><span style = "font-size: 32px;color: #ffffff" id = "hourStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "minuteStopTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #ffffff" id = "secondStopTime"></span>
-
         </div>
 
 
@@ -316,9 +308,6 @@
 
 
     </script>
-
-
-    <script src = "js/dashboard.js"></script>
 
 
 
