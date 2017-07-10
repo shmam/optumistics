@@ -33,7 +33,7 @@ $(document).ready(function(){
     $.ajax({ // get the available flag color name
         type: 'GET',
         dataType: 'jsonp',
-        url: 'http://localhost:3000/portal/present/Flag_Color/name',
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
         success: function(data) {
             $.each(data, function(i, brace)
             {
@@ -53,7 +53,7 @@ $(document).ready(function(){
         var action_duration = $("#exp-duration-input").val();
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
+            url: "http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
             +button_label + '/' +action_duration +'/74/NULL',
             success: function (insert_status) {
                 $("#insert_status").append("Successful Insertion of Action</br>");
@@ -74,7 +74,7 @@ $(document).ready(function(){
         type: 'GET',
         dataType: 'jsonp',
         async: false,
-        url: 'http://localhost:3000/dashboard/present/actions',
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
             $.each(data, function(i, brace) {
                 $('#action-control-area').append("<div id=div_" +brace.action_id +">");
