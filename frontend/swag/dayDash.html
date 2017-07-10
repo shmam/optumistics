@@ -1,0 +1,94 @@
+<html>
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  @import "http://fonts.googleapis.com/css?family=Raleway";
+  @import url('https://fonts.googleapis.com/css?family=Cabin');
+  #verticalLine{
+
+    width: 1px;
+    height: 80%;
+    background-color: silver;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 3.5%;
+
+  }
+
+  #verticalLine2{
+
+    width: 1px;
+    height: 80%;
+    background-color: silver;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+
+  }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+</head>
+<body id="body" style="overflow:hidden;">
+
+
+  <div zclass="w3-main" id="main" class = "animated fadeIn">
+
+    <div id = "topBar"> <!-- This div will be the top bar where the optum logo will be -->
+      <img src="img/optum1.jpg" alt="optum" style="margin-left: 41%;width:250px;height:80px;"> <!-- This is the img logo for the Optum sign -->
+    </div>
+
+    <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
+      <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+
+        <div class = "w3-card-4 w3-col w3-shadow" id = "firstColumn1"style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%;background: rgba(231, 76, 60, 0.8);"><!-- The first column of the first row -->
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">PHYSICAL</h2> <!--Name of Operation: Physical -->
+            <span class = "sec" id="secondss" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
+            <span class = "ten" id = "tenss" style = "font-size:  128px;color: #ffffff">00</span></br>
+            
+        </div>
+
+
+        <div id = "verticalLine" class = "w3-col">  <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow" id = "secondColumn1" style = "margin-top: 2%;width: 31%; height: 94%;background: rgba(52, 152, 219, 0.8)"> <!-- The first column of the first row -->
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">VITAL SIGNS</h2> <!--Name of Operation: Vital Signs -->
+        </div>
+        <div id = "verticalLine" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow" id = "thirdColumn1" style = "margin-top: 2%;width: 31%; height: 94%;background: rgba(46, 204, 113, 0.8)"> <!-- The first column of the first row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">BLOOD</h2>  <!--Name of Operation: Blood -->
+        </div>
+      </div>
+    <hr> <!-- <hr> tag is used to divide the two rows with a simple line-->
+      <div class = "w3-row" id = "secondRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+        <div class = "w3-card-4 w3-col w3-shadow" id = "firstColumn2" style = "margin-top: -1%;margin-left: 1.5%;width: 31%; height: 94%;background:rgba(155, 89, 182, 0.8)"> <!-- The first column of the second row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">OPERATIONS</h2> <!--Name of Operation: Operations -->
+        </div>
+        <div id = "verticalLine2" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow" id = "secondColumn2" style = "margin-top: -1%;width: 31%; height: 94%; background: rgba(241, 196, 15, 0.8)"> <!-- The second column of the second row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">X-RAY</h2> <!--Name of Operation: X-Ray -->
+        </div>
+        <div id = "verticalLine2" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow" id = "thirdColumn2" style = "margin-top: -1%;width: 31%; height: 94%;background: rgba(52, 73, 94, 0.8);"> <!-- The third column of the second row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">DIAGNOSTIC</h2> <!--Name of Operation: Diagnostic -->
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+
+    </script>
+    </body>
+    </html>
