@@ -3,10 +3,15 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 
   <style>
   @import "http://fonts.googleapis.com/css?family=Raleway";
   @import url('https://fonts.googleapis.com/css?family=Cabin');
+  body{
+    font-family: 'Cabin', sans-serif;
+  }
   #verticalLine{
 
     width: 1px;
@@ -28,6 +33,62 @@
     margin-top: 1%;
 
   }
+
+
+  .overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay button {
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  align-content: center;
+  font-size: 36px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay button:hover, .overlay button:focus {
+
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+
+@media screen and (max-height: 450px) {
+.overlay {overflow-y: auto;}
+.overlay a {font-size: 20px}
+.overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+}
+
+  }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -39,6 +100,12 @@
 </head>
 <body id="body" style="overflow:hidden;">
 
+      <div id="myNav" class="overlay">
+
+        <div class="overlay-content">
+          <button style = "margin-left: 42%;border-radius: 3%;background-color: transparent; border: 2px solid;" onclick = "closeNav()" href="#">check completed</button>
+      </div>
+    </div>
 
   <div zclass="w3-main" id="main" class = "animated fadeIn">
 
@@ -49,43 +116,200 @@
     <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
       <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
 
-        <div class = "w3-card-4 w3-col w3-shadow"style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%;background: rgba(231, 76, 60, 0.8);"><!-- The first column of the first row -->
-            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">PHYSICAL</h2> <!--Name of Operation: Physical -->
+        <div class = "w3-col w3-shadow card" id = "2" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
+          <div class = "front" style = "width: 95%; height: 95%; background: rgba(231, 76, 60, 0.8);">
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">PHYSICAL</h2> <!--Name of Operation: Physical -->
+
+            <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 200px; margin-left: 75%;font-size: 48px; color: #ffffff" onclick = "openNav(1)">
+          </div>
+          <div class = "back" style = "width: 95%; height: 95%; background:rgba(231, 76, 60, 0.8);">
+            <span class = "sec" id="secondss" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+            <span class = "ten" id = "tenss" style = "font-size:  128px;color: #fff">00</span></br>
+            <span style = "margin-top: -5%;font-size: 32px;color: #fff">start time: </span><span style = "font-size: 32px;color: #fff" id = "hourTime"></span><span style = "font-size: 32px;color: #ffffff">:</span><span style = "font-size: 32px;color: #fff" id = "minuteTime"></span><span style = "font-size: 32px;color: #fff">:</span><span style = "font-size: 32px;color: #fff" id = "secondTime"></span>
+          </br>
+            <span style = "font-size: 32px;color: #fff">stop time: </span><span style = "font-size: 32px;color: #fff" id = "hourStopTime"></span><span style = "font-size: 32px;color: #fff">:</span><span style = "font-size: 32px;color: #fff" id = "minuteStopTime"></span><span style = "font-size: 32px;color: #fff">:</span><span style = "font-size: 32px;color: #fff" id = "secondStopTime"></span>
+          </div>
         </div>
 
 
         <div id = "verticalLine" class = "w3-col">  <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
         </div>
         <div class = "w3-card-4 w3-col w3-shadow" id = "secondColumn1" style = "margin-top: 2%;width: 31%; height: 94%;background: rgba(52, 152, 219, 0.8)"> <!-- The first column of the first row -->
-            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">VITAL SIGNS</h2> <!--Name of Operation: Vital Signs -->
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">VITAL SIGNS</h2> <!--Name of Operation: Vital Signs -->
+            <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 200px; margin-left: 75%;font-size: 48px; color: #ffffff" onclick = "openNav(2)">
         </div>
         <div id = "verticalLine" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
         </div>
         <div class = "w3-card-4 w3-col w3-shadow" id = "thirdColumn1" style = "margin-top: 2%;width: 31%; height: 94%;background: rgba(46, 204, 113, 0.8)"> <!-- The first column of the first row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">BLOOD</h2>  <!--Name of Operation: Blood -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">BLOOD</h2>  <!--Name of Operation: Blood -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 200px; margin-left: 75%;font-size: 48px; color: #ffffff" onclick = "openNav(3)">
         </div>
       </div>
     <hr> <!-- <hr> tag is used to divide the two rows with a simple line-->
       <div class = "w3-row" id = "secondRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
         <div class = "w3-card-4 w3-col w3-shadow" id = "firstColumn2" style = "margin-top: -1%;margin-left: 1.5%;width: 31%; height: 94%;background:rgba(155, 89, 182, 0.8)"> <!-- The first column of the second row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">OPERATIONS</h2> <!--Name of Operation: Operations -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">OPERATIONS</h2> <!--Name of Operation: Operations -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 200px; margin-left: 75%;font-size: 48px; color: #ffffff" onclick = "openNav(4)">
         </div>
         <div id = "verticalLine2" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
         </div>
         <div class = "w3-card-4 w3-col w3-shadow" id = "secondColumn2" style = "margin-top: -1%;width: 31%; height: 94%; background: rgba(241, 196, 15, 0.8)"> <!-- The second column of the second row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">X-RAY</h2> <!--Name of Operation: X-Ray -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">X-RAY</h2> <!--Name of Operation: X-Ray -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 200px; margin-left: 75%;font-size: 48px; color: #ffffff" onclick = "openNav(5)">
         </div>
         <div id = "verticalLine2" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
         </div>
         <div class = "w3-card-4 w3-col w3-shadow" id = "thirdColumn2" style = "margin-top: -1%;width: 31%; height: 94%;background: rgba(52, 73, 94, 0.8);"> <!-- The third column of the second row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 60%; margin-right: 3%;color: white;">DIAGNOSTIC</h2> <!--Name of Operation: Diagnostic -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">DIAGNOSTIC</h2> <!--Name of Operation: Diagnostic -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 200px; margin-left: 75%;font-size: 48px; color: #ffffff" onclick = "openNav(6)">
         </div>
       </div>
 
     </div>
 
-    <script>
+    <script src = "js/dashboard.js">
 
     </script>
+
+    <script>
+    const baseUrl = 'http://optumistics-dev.us-east-1.elasticbeanstalk.com';
+    var counter = 0; //The counter is used to determine if the time should start or not.
+    var isDisplayed = false; //This variable is used to explain if the start time is displayed or not. Set to false because it is originally not.
+    var timeDisplayed = 0; //Time displayed is use to navigate. Because click is inside the div (clicked), must determine if the click is a START TIMER click, "call click" that should be invalid, or if it is a STOP TIMER click
+    var endTimeDisplayed = false; //This variableis used to explain if the end time is displayed or not. Set to false because it is originally not.
+    var checkCompleteTimer = 0; //Counter to determine if the card should flip or not.
+    var seconds = 00;
+    var tens = 00;
+
+
+
+    var appendTens = document.getElementById("tenss");
+    var appendSeconds = document.getElementById("secondss");
+    var buttonStart = document.getElementById('contentPage');
+    var buttonStop = document.getElementById('button-stop');
+    var buttonReset = document.getElementById('button-reset');
+    var appendHour = document.getElementById('hourTime');
+    var appendMinute = document.getElementById('minuteTime');
+    var appendSecond = document.getElementById('secondTime');
+    var appendStopHour = document.getElementById('hourStopTime');
+    var appendStopMinute = document.getElementById('minuteStopTime');
+    var appendStopSecond = document.getElementById('secondStopTime');
+    var Interval;
+    var hour;
+    var minute;
+    var second;
+    function startTimer () {
+      tens++;
+
+      if(tens <= 9){
+        appendTens.innerHTML = "0" + tens;
+      }
+
+      if (tens > 9){
+        appendTens.innerHTML = tens;
+
+      }
+
+      if (tens > 59) {
+        console.log("seconds");
+        seconds++;
+        appendSeconds.innerHTML = "0" + seconds;
+        tens = 0;
+        appendTens.innerHTML = "0" + 0;
+      }
+
+      if (seconds > 9){
+        appendSeconds.innerHTML = seconds;
+      }
+
+    }
+
+
+    //This function clears the interval for the minutes and starts the timer.
+    $('.card').click(function()
+    {
+      var date = new Date();  //Sets a new date and time...
+      if (timeDisplayed === 0 && isDisplayed === false) //If the div should be a START TIMER click and the start time has not been displayed yet.
+      {
+        hour = date.getHours(); //Get the hour in the time.
+        minute = date.getMinutes(); //Get minyy
+        second = date.getSeconds(); //Get secs
+        appendHour.innerHTML = hour;
+        appendMinute.innerHTML = minute;
+        appendSecond.innerHTML = second;
+        isDisplayed = true;
+        counter++;
+        timeDisplayed = 2;
+        if (counter % 2 !== 0)
+      {
+         clearInterval(Interval);
+         Interval = setInterval(startTimer, 1000);
+       }
+      }
+
+    else if (endTimeDisplayed === false && timeDisplayed === 2) {
+        endTimeDisplayed = true;
+        isDisplayed = false;
+        var date2 = new Date();
+        clearInterval(Interval);
+        hour2 = date2.getHours();
+        minute2 = date2.getMinutes();
+        second2 = date2.getSeconds();
+        appendStopHour.innerHTML = hour2;
+        appendStopMinute.innerHTML = minute2;
+        appendStopSecond.innerHTML = second2;
+
+       var wantToSend = confirm("Would you like to submit this time?");
+       if (wantToSend)
+       {
+         var actionId = $('.card').attr('id');
+         console.log(actionId);
+         var sendStartTime = String(hour + ":" + minute + ":" + second);
+         var sendEndTime = String(hour2 + ":" + minute2 + ":" + second2);
+         sendTime(sendStartTime, sendEndTime, actionId);
+
+
+       }
+       else{
+         alert("ok sam");
+       }
+
+     }
+
+    });
+
+    $(".card").flip(
+    {
+      axis: 'y',
+      trigger: 'click'
+
+    });
+
+    function sendTime(startTime, endTime, action_id)
+    {
+      var today = new Date();
+      today = today.toISOString().substring(0, 10);
+        $.ajax({
+            type: 'POST',
+            dataType: 'jsonp',
+            //url: baseUrl + '/general/insert/Action_Performed/' + action_id + '/null/null/' + startTime + '/' + endTime + '/2323/' + today,
+            //url: baseUrl + 'general/insert/Action_Performed/2/10/1/10:52/10:58/2290/2017-10-10',
+            url: baseUrl + 'general/insert/Action_Performed/' + String(action_id) + '/10/1/' + String(startTime) + '/' + String(endTime) + '/2290/' + String(today),
+            success: function(data)
+            {
+              alert("Successful!");
+            },
+            error: function (xhr, status, error)
+            {
+                console.log('Error: ' + error.message);
+            },
+        })
+    }
+
+
+    </script>
+
+
+
     </body>
     </html>
