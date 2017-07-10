@@ -118,7 +118,7 @@ module.exports = function(app) {
     app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id')
         .post(insertAPI.insert_Survey_Activity)
 
-    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:patient_gender/:person_type_id')
+    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:person_type_id')
         .post(insertAPI.insert_Patient_Information)
 
     app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_username/:provider_password/:person_type_id/:status_id')
