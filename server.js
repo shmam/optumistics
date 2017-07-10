@@ -25,9 +25,16 @@ console.log(__dirname+ "HELLO THIS IS THE LOG")
 
 // In your route handlers:
 
+const VIEWS2 = path.join(__dirname,"backend","SampleConnection");
+
 app.get('/', function(req, res) {
   res.sendFile('connect.html', { root : VIEWS });
 });
+
+app.get('/backend/SampleConnection/jquery', function(req, res) {
+  res.sendFile('jquery.js', { root : VIEWS });
+});
+
 
 
 var routes = require('./backend/api/routes/routes.js');
