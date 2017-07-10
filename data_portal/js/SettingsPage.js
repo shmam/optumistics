@@ -35,7 +35,6 @@ $(document).ready(function(){
         dataType: 'jsonp',
         url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
         success: function(data) {
-            console.log(data);
             $.each(data, function(i, brace)
             {
                 $("#flag-color-dropdown").append("<option id=" +brace.flag_color_id +">"+ brace.flag_color_name + "</option>");
@@ -77,7 +76,6 @@ $(document).ready(function(){
         async: false,
         url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
-            console.log(data);
             $.each(data, function(i, brace) {
                 $('#action-control-area').append("<div id=div_" +brace.action_id +">");
                 $('#div_'+brace.action_id).append("<b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>");
