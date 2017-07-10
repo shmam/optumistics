@@ -45,7 +45,6 @@ function startTimer ()
 
 }
 
-<<<<<<< HEAD
 
 
 function openNav(number)
@@ -92,7 +91,6 @@ function closeNav()
   document.getElementById("myNav").style.height = "0%";
 
 }
-=======
 $('#firstColumn1').click(function()
 {
   var date = new Date();  //Sets a new date and time...
@@ -129,4 +127,3 @@ else if (endTimeDisplayed === false && timeDisplayed === 2) { //sendToDB()
  }
 
 });
->>>>>>> ff823d6d6410e3ed727eea5ee8362fbe6b11e961
