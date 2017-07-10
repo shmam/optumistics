@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    
     /* click button to open/close sidebar */
     $('#topBar-button').click(function () {
         if (document.getElementById("mySidebar").style.display == "block") {
@@ -47,6 +48,15 @@ $(document).ready(function(){
     }); //end of ajax call
 
     $('#submitFlag').click(function() { // submit the action and put it in the actions table
+        if(document.getElementById('action-name-input').value == "") {
+            alert("Please enter an action name");
+        }
+        if(document.getElementById('button-label-input').value == "") {
+            alert("Please enter a button label");
+        }
+        if(document.getElementById('exp-duration-input').value == "") {
+            alert("Please enter an expected duration for this action");
+        }
         var action_name = $('#action-name-input').val();
         var action_flag_color_id = $("#flag-color-dropdown option:selected").attr("id");
         var button_label = $("#button-label-input").val(); 
@@ -54,16 +64,22 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
-            +button_label + '/' +action_duration +'/74/NULL',
+            +button_label + '/' +action_duration +'/75/NULL',
             success: function (insert_status) {
-                $("#insert_status").append("Successful Insertion of Action</br>");
+                if(insert_status == "Unsuccessful insertion into Actions table. Action name must be unique.")
+                {
+                    alert("Action name must be unique, please choose another action name and try again.");
+                }
+                else {
+                    $("#insert_status").append("Successful Insertion of Action</br>");
+                    window.location.reload();
+                    div_hide();
+                }
             },
             error: function (xhr, status, error) {
                 console.log('Error: ' + error.message);
             },
         });
-        window.location.reload();
-        div_hide();
     }) // end of submitFlag click function
 
     $("#flag-color-dropdown").change(function() {
@@ -83,7 +99,7 @@ $(document).ready(function(){
                                         +"<circle class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
                                     +"</svg><br>");
                 $('#div_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>");
-                $('#switch_'+brace.action_id).append("<input type='checkbox'>");
+                $('#switch_'+brace.action_id).append("<input onclick=\"shit()\" id= 'checkbox' type='checkbox'>");
                 $('#switch_'+brace.action_id).append("<div id=switch_"+brace.action_id +" class='slider round'></div>");
                 $('#div_'+brace.action_id).append("</label>");
                 $('#action-control-area').append("</div>");
@@ -94,7 +110,37 @@ $(document).ready(function(){
         },
     });
 
+    
+
 }); // end of document.ready function
+
+function shit(){
+    console.log($('#checkbox').is(':checked'));
+        if($('#checkbox').is(':checked') == true) {
+            $.ajax({
+                type: "POST",
+                url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/on',
+                success: function(data) {
+
+                },
+                error: function(shr, status, error) {
+                    console.log('Error: ' + error.message);
+                },
+            });
+        }
+        if($('#checkbox').is(':checked') == false) {
+            $.ajax({
+                type: "POST",
+                url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/off',
+                success: function(data) {
+
+                },
+                error: function(shr, status, error) {
+                    console.log('Error: ' + error.message);
+                },
+            });
+        }
+    }
 
 function w3_open() {
     document.getElementById("main").style.marginLeft = "18%";

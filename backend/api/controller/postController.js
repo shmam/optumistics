@@ -402,6 +402,30 @@ function insert_Action_Performed(req,res){
 	}
 }
 
+function update_Flag_Status_Off(req,res) {
+	cn.query("UPDATE Actions SET status_id=75", function(err,data) {
+		if(err) {
+			console.log(err);
+			res.send(err);
+		}
+		else {
+			res.send("success");
+		}
+	});
+}
+
+function update_Flag_Status_On(req,res) {
+	cn.query("UPDATE Actions SET status_id=74", function(err,data) {
+		if(err) {
+			console.log(err);
+			res.send(err);
+		}
+		else {
+			res.send("success");
+		}
+	});
+}
+
 
 module.exports = {
 	insert_Person_Type,
@@ -419,4 +443,6 @@ module.exports = {
 	insert_Appointment,
 	insert_ActivatedNFC_Patient,
 	insert_Action_Performed,
+	update_Flag_Status_Off,
+	update_Flag_Status_On
 }
