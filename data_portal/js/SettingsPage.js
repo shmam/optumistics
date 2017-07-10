@@ -33,8 +33,9 @@ $(document).ready(function(){
     $.ajax({ // get the available flag color name
         type: 'GET',
         dataType: 'jsonp',
-        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
+        url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
         success: function(data) {
+            console.log(data);
             $.each(data, function(i, brace)
             {
                 $("#flag-color-dropdown").append("<option id=" +brace.flag_color_id +">"+ brace.flag_color_name + "</option>");
@@ -53,7 +54,7 @@ $(document).ready(function(){
         var action_duration = $("#exp-duration-input").val();
         $.ajax({
             type: "POST",
-            url: "http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
+            url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
             +button_label + '/' +action_duration +'/74/NULL',
             success: function (insert_status) {
                 $("#insert_status").append("Successful Insertion of Action</br>");
@@ -74,8 +75,9 @@ $(document).ready(function(){
         type: 'GET',
         dataType: 'jsonp',
         async: false,
-        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
+        url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
+            console.log(data);
             $.each(data, function(i, brace) {
                 $('#action-control-area').append("<div id=div_" +brace.action_id +">");
                 $('#div_'+brace.action_id).append("<b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>");
