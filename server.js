@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 
 const path  = require('path');
 const VIEWS = path.join(__dirname,"backend","SampleConnection");
+console.log(__dirname)
 
 // In your route handlers:
 
