@@ -50,22 +50,22 @@ $(document).ready(function(){
         if(document.getElementById('action-name-input').value == "") { // check for empty action name
             alert("Please enter an action name");
         }
-        if(document.getElementById('button-label-input').value == "") { // check for 
+        if(document.getElementById('button-label-input').value == "") { // check for empty button label
             alert("Please enter a button label");
         }
-        if(document.getElementById('exp-duration-input').value == "") {
+        if(document.getElementById('exp-duration-input').value == "") { // check for empty expected duration
             alert("Please enter an expected duration for this action");
         }
         var action_name = $('#action-name-input').val();
         var action_flag_color_id = $("#flag-color-dropdown option:selected").attr("id");
         var button_label = $("#button-label-input").val(); 
         var action_duration = $("#exp-duration-input").val();
-        $.ajax({
+        $.ajax({ // post actions
             type: "POST",
             url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
             +button_label + '/' +action_duration +'/75/NULL',
             success: function (insert_status) {
-                if(insert_status == "Unsuccessful insertion into Actions table. Action name must be unique.")
+                if(insert_status == "Unsuccessful insertion into Actions table. Action name must be unique.") // check for unique action name
                 {
                     alert("Action name must be unique, please choose another action name and try again.");
                 }
@@ -85,16 +85,16 @@ $(document).ready(function(){
         document.getElementById("color-display").style.backgroundColor = $("#flag-color-dropdown option:selected").text();
     }) // change the color of color-display as you click on different color name
 
-    $.ajax({
+    $.ajax({ // get + show action control area (name+circle+slider)
         type: 'GET',
         dataType: 'jsonp',
         async: false,
         url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
             $.each(data, function(i, brace) {
-                $('#action-control-area').append("<div id=div_" +brace.action_id +">");
-                $('#div_'+brace.action_id).append("<b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>");
-                $('#div_'+brace.action_id).append("<svg height='80' width='80'>"
+                $('#action-control-area').append("<div id=div_" +brace.action_id +">"); // append action div tag
+                $('#div_'+brace.action_id).append("<b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>"); // append action name
+                $('#div_'+brace.action_id).append("<svg height='80' width='80'>" 
                                         +"<circle class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
                                     +"</svg><br>");
                 $('#div_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>");
@@ -108,8 +108,6 @@ $(document).ready(function(){
             console.log('Error: ' + error.message);
         },
     });
-
-    
 
 }); // end of document.ready function
 
