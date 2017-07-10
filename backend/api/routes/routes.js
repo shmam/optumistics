@@ -83,7 +83,7 @@ module.exports = function(app) {
 
     app.route('/portal/present/Flag_Color/name')
         .get(selectAPI.select_Flag_Color)
- 
+
     app.route('/portal/present/patientWaitTime')
         .get(selectAPI.select_patient_wait_time)
 
@@ -118,7 +118,7 @@ module.exports = function(app) {
     app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id')
         .post(insertAPI.insert_Survey_Activity)
 
-    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:patient_gender/:person_type_id')
+    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:person_type_id')
         .post(insertAPI.insert_Patient_Information)
 
     app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_username/:provider_password/:person_type_id/:status_id')
@@ -130,7 +130,7 @@ module.exports = function(app) {
     app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id')
         .post(insertAPI.insert_ActivatedNFC_Provider)
 
-    app.route('/general/insert/Appointment/:start_time/:end_time/:patient_id/:appointment_type_id/:status_id/:appointment_date')
+    app.route('/general/insert/Appointment/:start_time/:end_time/:patient_id/:appointment_type_id/:status_id/:appointment_date/:expected_start_time')
         .post(insertAPI.insert_Appointment)
 
     app.route('/general/insert/ActivatedNFC_Patient/:room_id/:appointment_id/:nfc_id')
@@ -139,4 +139,9 @@ module.exports = function(app) {
     app.route('/general/insert/Action_Performed/:action_id/:room_id/:appointment_id/:start_time/:end_time/:provider_id/:action_date')
         .post(insertAPI.insert_Action_Performed)
 
+    app.route('/general/update/flag_status/on/:action_id')
+        .post(insertAPI.update_Flag_Status_On)
+
+    app.route('/general/update/flag_status/off/:action_id')
+        .post(insertAPI.update_Flag_Status_Off)
 }

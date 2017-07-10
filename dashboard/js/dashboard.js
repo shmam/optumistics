@@ -45,6 +45,7 @@ function startTimer ()
 
 }
 
+<<<<<<< HEAD
 
 
 function openNav(number)
@@ -91,3 +92,41 @@ function closeNav()
   document.getElementById("myNav").style.height = "0%";
 
 }
+=======
+$('#firstColumn1').click(function()
+{
+  var date = new Date();  //Sets a new date and time...
+  if (timeDisplayed === 0 && isDisplayed === false) //If the div should be a START TIMER click and the start time has not been displayed yet.
+  {
+    hour = date.getHours(); //Get the hour in the time.
+    minute = date.getMinutes(); //Get minyy
+    second = date.getSeconds(); //Get secs
+    appendHour.innerHTML = hour;
+    appendMinute.innerHTML = minute;
+    appendSecond.innerHTML = second;
+    isDisplayed = true;
+    counter++;
+    timeDisplayed = 2;
+    if (counter % 2 !== 0){
+     clearInterval(Interval);
+     Interval = setInterval(startTimer, 1000);
+   }
+  }
+  else if (timeDisplayed === 1){
+    timeDisplayed = 2;
+  }
+else if (endTimeDisplayed === false && timeDisplayed === 2) { //sendToDB()
+  endTimeDisplayed = true;
+   var date2 = new Date();
+   clearInterval(Interval);
+   isDisplayed = false;
+   hour2 = date2.getHours();
+   minute2 = date2.getMinutes();
+   second2 = date2.getSeconds();
+   appendStopHour.innerHTML = hour2;
+   appendStopMinute.innerHTML = minute2;
+   appendStopSecond.innerHTML = second2;
+ }
+
+});
+>>>>>>> ff823d6d6410e3ed727eea5ee8362fbe6b11e961
