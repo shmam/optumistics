@@ -316,17 +316,33 @@ function insert_Actions(req, res) {
 function insert_ActivatedNFC_Provider(req, res) {
 	if (req.params.provider_id != null && req.params.nfc_id != null) {
 		
-		cn.query("INSERT INTO ActivatedNFC_Provider (provider_id, room_id, nfc_id) VALUES ('" + req.params.provider_id + "','" + req.params.room_id + "','" + req.params.nfc_id + "')", function (err, data) {
-			if (err) {
+		cn.query("SELECT status_id FROM Status WHERE status_name='active'", function(err,status) {
+			if(err) {
 				console.log(err);
 				res.send(err);
 			}
 			else {
-				console.log("Successful insertion into ActivatedNFC Provider Table");
-				res.send("Successful insertion into ActivatedNFC Provider Table");
+				cn.query("INSERT INTO ActivatedNFC_Provider (provider_id, room_id, nfc_id) VALUES ('" + req.params.provider_id + "','" + req.params.room_id + "','" + req.params.nfc_id + "')", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						cn.query("UPDATE NFC_Bracelet SET status_id="+status[0].status_id+" WHERE nfc_id="+req.params.nfc_id, function (err, data) {
+							if (err) {
+								console.log(err);
+								res.send(err);
+							}
+							else {
+								
+								console.log("Successful insertion into Activated NFC Provider Table");
+								res.send("Successful insertion into Activated NFC Provider Table");
+							}
+						});
+					}
+				});
 			}
 		});
-		
 	}
 	else {
 		console.log("Unsuccessful insertion into ActivatedNFC_Provider table. One of the parameters is null");
@@ -335,10 +351,14 @@ function insert_ActivatedNFC_Provider(req, res) {
 }
 
 function insert_Appointment(req, res) {
-	if (req.params.patient_id != null && req.params.status_id != null && req.params.appointment_date != null) {
+	if (req.params.patient_id != null && req.params.status_id != null && req.params.appointment_date != null && req.params.expected_start_time != null) {
+		var appointment=req.params.start_time;
+		if(req.params.start_time!=null){
+			appointment="'"+req.params.start_time+"'"
+		}
 	
-		cn.query("INSERT INTO Appointment (start_time, end_time, patient_id, appointment_type_id, status_id, appointment_date) VALUES ('" + req.params.start_time + "','" + req.params.end_time + "'," + req.params.patient_id
-			+ "," + req.params.appointment_type_id + "," + req.params.status_id + ",'" + req.params.appointment_date + "')", function (err, data) {
+		cn.query("INSERT INTO Appointment (start_time, end_time, patient_id, appointment_type_id, status_id, appointment_date, expected_start_time) VALUES (" + appointment + ",'" + req.params.end_time + "'," + req.params.patient_id
+			+ "," + req.params.appointment_type_id + "," + req.params.status_id + ",'" + req.params.appointment_date + "','"+req.params.expected_start_time+"')", function (err, data) {
 				if (err) {
 					console.log(err);
 					res.send(err);
@@ -360,17 +380,46 @@ function insert_Appointment(req, res) {
 function insert_ActivatedNFC_Patient(req, res) {
 	if (req.params.appointment_id != null && req.params.nfc_id != null) {
 	
-		cn.query("INSERT INTO ActivatedNFC_Patient (room_id, appointment_id, nfc_id) VALUES (" + req.params.room_id + ","
-		+ req.params.appointment_id + "," + req.params.nfc_id + ")", function (err, data) {
-			if (err) {
+		cn.query("SELECT status_id FROM Status WHERE status_name='active'", function(err,status) {
+			if(err) {
 				console.log(err);
 				res.send(err);
 			}
 			else {
-				console.log("Successful insertion into Activated NFC Patient Table");
-				res.send("Successful insertion into Activated NFC Patient Table");
+				cn.query("INSERT INTO ActivatedNFC_Patient (room_id, appointment_id, nfc_id) VALUES (" + req.params.room_id + ","
+				+ req.params.appointment_id + "," + req.params.nfc_id + ")", function (err, data) {
+					if (err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						var today = new Date();
+						today= today.toISOString().substring(11, 19);
+						cn.query("UPDATE Appointment SET start_time='"+today+"' WHERE appointment_id="+req.params.appointment_id, function (err, data) {
+							if (err) {
+								console.log(err);
+								res.send(err);
+							}
+							else {
+								cn.query("UPDATE NFC_Bracelet SET status_id="+status[0].status_id+" WHERE nfc_id="+req.params.nfc_id, function (err, data) {
+									if (err) {
+										console.log(err);
+										res.send(err);
+									}
+									else {								
+										console.log("Successful insertion into Activated NFC Patient Table");
+										res.send("Successful insertion into Activated NFC Patient Table");
+									}
+								});
+								
+							}
+						});
+						
+					}
+				});
 			}
 		});
+		
 		
 	}
 	else {
