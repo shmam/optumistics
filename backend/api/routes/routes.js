@@ -83,7 +83,7 @@ module.exports = function(app) {
 
     app.route('/portal/present/Flag_Color/name')
         .get(selectAPI.select_Flag_Color)
- 
+
     app.route('/portal/present/patientWaitTime')
         .get(selectAPI.select_patient_wait_time)
 
@@ -138,11 +138,5 @@ module.exports = function(app) {
 
     app.route('/general/insert/Action_Performed/:action_id/:room_id/:appointment_id/:start_time/:end_time/:provider_id/:action_date')
         .post(insertAPI.insert_Action_Performed)
-
-    app.route('/general/update/flag_status/off/:action_id')
-        .post(insertAPI.update_Flag_Status_Off)
-
-    app.route('/general/update/flag_status/on/:action_id')
-        .post(insertAPI.update_Flag_Status_On)
 
 }

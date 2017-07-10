@@ -106,7 +106,8 @@
         <h2 style = "color: #ffffff">assign bracelet to patient</h2>
         <select>
           <option>nfc 1</option>
-          <option>nfc 2</option>
+          <option>nfc 2'
+          </option>
           <option>nfc 3</option>
           <option>nfc 4</option>
         </select>
@@ -252,7 +253,7 @@
 <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
 <div id = "newWindow" class = "animated zoomIn">
   <div id = "wrapper">
-    <button id = "button-close" onclick ="hide_nfc()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+    <button id = "button-close" onclick ="hide_nfcx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
     <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">provider NFC registration</h1>
 
@@ -261,25 +262,25 @@
 <hr>
   <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
 
-
-
-  <div id="nfc-avail">
+<div id="nfc-avail">
   <div>
-  <label class="input-label">NFC ID: </label>
-  <select id="available-nfc" class="input-box">
+    <label class="input-label">Provider Name: </label>
+    <select id="provider-id" class="input-box">
 
-  </select>
-</div>
+    </select>
+  </div>
+  <div id="nfc-avail">
+
 <br/>
-<div>
-  <label class="input-label">Provider Name: </label>
-  <select id="provider-id" class="input-box">
+div>
+<label class="input-label">NFC ID: </label>
+<select id="available-nfc" class="input-box">
 
-  </select>
+</select>
 </div>
   <br/>
   <div>
-  <button id="assign-NFC" onclick="hide_nfc()" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
+  <button id="assign-NFC" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
 </div>
   <br/>
 </div>
@@ -611,14 +612,13 @@ $('#create_appointment').click(function() {
   }
 
   else {
-
-    if(document.getElementById('am_pm_start').value == 'pm')
+    var start_int = parseInt($('#appointment_start_time_hr').val());
+    if(document.getElementById('am_pm_start').value == 'pm' && start_int != 12)
     {
-      var start_int = parseInt($('#appointment_start_time_hr').val());
-      var appointment_start_time = (12 + start_int) + ":" + $('#appointment_start_time_min').val();
+      var expected_start_time = (12 + start_int) + ":" + $('#appointment_start_time_min').val();
     }
     else {
-      var appointment_start_time = $('#appointment_start_time_hr').val() + ":" + $('#appointment_start_time_min').val(); // getting Appointment Start Time val()
+      var expected_start_time = $('#appointment_start_time_hr').val() + ":" + $('#appointment_start_time_min').val(); // getting Appointment Start Time val()
     }
 
     if(document.getElementById('am_pm_end').value == 'pm')
@@ -633,11 +633,12 @@ $('#create_appointment').click(function() {
     var appointment_appointment_type_id = $("#appointment_appointment_type_id option:selected").attr('id'); // getting Appointment Type ID val(). If null, type in null.
     var appointment_status_id = 74; // getting Appointment Status ID val()
     var appointment_date = $('#appointment_date').val(); // getting Appointment Date val()
-    console.log(appointment_patient_id + " " + appointment_appointment_type_id);
+    var appointment_start_time = null;
+    console.log(expected_start_time);
     $.ajax({
         type: "POST",
         url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Appointment/" +appointment_start_time +'/' +appointment_end_time +'/'
-        +appointment_patient_id +'/' +appointment_appointment_type_id +'/' +appointment_status_id +'/' +appointment_date,
+        +appointment_patient_id +'/' +appointment_appointment_type_id +'/' +appointment_status_id +'/' +appointment_date + '/' +expected_start_time,
         success: function (insert_status) {
             $("#insert_status").append("Successful Insertion of Appointment</br>");
             alert("appointment successfully added to schedule");
@@ -714,8 +715,8 @@ $("#continue").click(function(){
   //var provider_person_type_id = $("#person-type").find(":selected").text();// getting Provider Person Type ID val()
   var provider_person_type_id = $("#appointment_appointment_type_id option:selected").attr('id'); // getting Provider ID val()
   //the next two lines encrypt the password
-  var encryptedData = CryptoJS.SHA256(provider_password);
-  var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
+  //var encryptedData = CryptoJS.SHA256(provider_password);
+  //var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
   $.ajax({
       type: "POST",
       url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Provider_Information/" +provider_first_name +'/' +provider_last_name +'/' +provider_username +'/'
@@ -794,6 +795,7 @@ $.ajax({
     success: function (insert_status) {
         $("#insert_status").append("Successful Insertion of Acitvated Provider NFC</br>");
         alert("Provider successfully assigned NFC");
+        hide_nfc();
     },
     error: function (xhr, status, error) {
         console.log('Error: ' + error.message);
@@ -858,6 +860,12 @@ document.getElementById('abc3').style.display = "block";
 }
 //Function to Hide Popup
 function hide_nfc(){
+document.getElementById('abc3').style.display = "none";
+window.location.reload();
+}
+
+//Function to Hide Popup
+function hide_nfcx(){
 document.getElementById('abc3').style.display = "none";
 }
 
