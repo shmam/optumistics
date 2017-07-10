@@ -81,6 +81,15 @@ module.exports = function(app) {
     app.route('/portal/present/Appointment_Type/name') //select appointment name and appointment id
         .get(selectAPI.select_Appointment_Type_Name)
 
+    app.route('/portal/present/Flag_Color/name')
+        .get(selectAPI.select_Flag_Color)
+ 
+    app.route('/portal/present/patientWaitTime')
+        .get(selectAPI.select_patient_wait_time)
+
+    app.route('/portal/present/npsScore')
+        .get(selectAPI.select_Average_NPS)
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes
