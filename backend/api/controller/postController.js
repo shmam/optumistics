@@ -452,7 +452,7 @@ function insert_Action_Performed(req,res){
 }
 
 function update_Flag_Status_Off(req,res) {
-	cn.query("UPDATE Actions SET status_id=75", function(err,data) {
+	cn.query("UPDATE Actions SET status_id=75 WHERE action_id="+req.params.action_id, function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -464,7 +464,7 @@ function update_Flag_Status_Off(req,res) {
 }
 
 function update_Flag_Status_On(req,res) {
-	cn.query("UPDATE Actions SET status_id=74", function(err,data) {
+	cn.query("UPDATE Actions SET status_id=74 WHERE action_id="+req.params.action_id, function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);

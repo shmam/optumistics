@@ -1,3 +1,4 @@
+var global_action_id;
 $(document).ready(function(){
 
     
@@ -99,7 +100,8 @@ $(document).ready(function(){
                                         +"<circle class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
                                     +"</svg><br>");
                 $('#div_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>");
-                $('#switch_'+brace.action_id).append("<input onclick=\"shit()\" id= 'checkbox' type='checkbox'>");
+                global_action_id = brace.action_id;
+                $('#switch_'+brace.action_id).append("<input onclick=\"update_flag("+brace.action_id+")\" id= 'checkbox' type='checkbox'>");
                 $('#switch_'+brace.action_id).append("<div id=switch_"+brace.action_id +" class='slider round'></div>");
                 $('#div_'+brace.action_id).append("</label>");
                 $('#action-control-area').append("</div>");
@@ -114,12 +116,12 @@ $(document).ready(function(){
 
 }); // end of document.ready function
 
-function shit(){
+function update_flag(action_id){
     console.log($('#checkbox').is(':checked'));
         if($('#checkbox').is(':checked') == true) {
             $.ajax({
                 type: "POST",
-                url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/on',
+                url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/on/' +action_id,
                 success: function(data) {
 
                 },
@@ -131,7 +133,7 @@ function shit(){
         if($('#checkbox').is(':checked') == false) {
             $.ajax({
                 type: "POST",
-                url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/off',
+                url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/off/' +action_id,
                 success: function(data) {
 
                 },

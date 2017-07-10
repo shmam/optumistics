@@ -139,10 +139,10 @@ module.exports = function(app) {
     app.route('/general/insert/Action_Performed/:action_id/:room_id/:appointment_id/:start_time/:end_time/:provider_id/:action_date')
         .post(insertAPI.insert_Action_Performed)
 
-    app.route('/general/update/flag_status/off')
+    app.route('/general/update/flag_status/off/:action_id')
         .post(insertAPI.update_Flag_Status_Off)
 
-    app.route('/general/update/flag_status/on')
+    app.route('/general/update/flag_status/on/:action_id')
         .post(insertAPI.update_Flag_Status_On)
 
 }
