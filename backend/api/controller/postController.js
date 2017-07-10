@@ -389,17 +389,29 @@ function insert_ActivatedNFC_Patient(req, res) {
 						res.send(err);
 					}
 					else {
-						cn.query("UPDATE NFC_Bracelet SET status_id="+status[0].status_id+" WHERE nfc_id="+req.params.nfc_id, function (err, data) {
+						var today = new Date();
+						today= today.toISOString().substring(11, 19);
+						cn.query("UPDATE Appointment SET start_time='"+today+"' WHERE appointment_id="+req.params.appointment_id, function (err, data) {
 							if (err) {
 								console.log(err);
 								res.send(err);
 							}
 							else {
+								cn.query("UPDATE NFC_Bracelet SET status_id="+status[0].status_id+" WHERE nfc_id="+req.params.nfc_id, function (err, data) {
+									if (err) {
+										console.log(err);
+										res.send(err);
+									}
+									else {
+										
+										console.log("Successful insertion into Activated NFC Patient Table");
+										res.send("Successful insertion into Activated NFC Patient Table");
+									}
+								});
 								
-								console.log("Successful insertion into Activated NFC Patient Table");
-								res.send("Successful insertion into Activated NFC Patient Table");
 							}
 						});
+						
 					}
 				});
 			}
