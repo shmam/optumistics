@@ -1,0 +1,111 @@
+@import "http://fonts.googleapis.com/css?family=Raleway";
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
+/*
+The following styling for the lines are to divide the screen nicely.
+*/
+.arrow-up {
+width: 0;
+height: 0;
+border-left: 8px solid transparent;
+border-right: 8px solid transparent;
+border-bottom: 15px solid #2ecc71;
+display: inline-block;
+margin-left: 10px;
+
+}
+
+.arrow-down {
+width: 0;
+ height: 0;
+ border-left: 8px solid transparent;
+ border-right: 8px solid transparent;
+
+ border-top: 15px solid #e74c3c;
+ display: inline-block;
+ margin-left: 10px;
+}
+
+li
+{
+  font-size: 24px;
+  font-family: 'Cabin', sans-serif;
+  text-align: right;
+  border-bottom: 4px solid rgba(55,72,172,1);
+  padding: 5px;
+  margin-top: 2.5%;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  list-style-type: none;
+}
+
+
+
+li:hover
+{
+-webkit-box-shadow: 7px 6px 9px 0px rgba(168,165,168,1);
+-moz-box-shadow: 7px 6px 9px 0px rgba(168,165,168,1);
+box-shadow: 7px 6px 9px 0px rgba(168,165,168,1);
+
+}
+
+#providerDropDown{
+font-size: 20px;
+text-align: center;
+margin-top: 5px;
+width: 80%;
+margin-left: 10%;
+}
+
+ul{
+margin-right: 5%;
+height:auto;
+overflow-y: auto;
+z-index: auto;
+}
+
+#tabs button{
+border: none;
+color: rgba(55,72,172,1);
+font-family: 'Cabin', sans-serif;
+width: 20%;
+background-color: white;
+font-size: 20px;
+font-weight: 300;
+background-color: white;
+margin-left: 6%;
+margin-right: 6%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+
+}
+button:active
+{
+border-top: 2px solid white;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid rgba(52, 152, 219, 1);
+  border-bottom: 16px solid rgba(231, 76, 60, 1);
+  width: 95px;
+  height: 95px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#NPS{
+  font-size: 74px;
+}

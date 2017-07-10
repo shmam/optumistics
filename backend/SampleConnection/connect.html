@@ -39,7 +39,7 @@
     {
   var $friends = $("#friends");
       // //returns a list of providers
-      host='http://localhost:3000'
+      host='http://optumistics-dev.us-east-1.elasticbeanstalk.com'
        $.ajax({
         type: 'GET',
         url: host+'/portal/present/providers/active',
@@ -51,7 +51,7 @@
           console.log(friends)
           
           //returns all of johnbob's friends
-          console.log(friends[0].last_name);
+          console.log(friends[0].provider_last_name);
 
           $.each(friends, function(i, friend){
             $friends.append(friend.provider_last_name);

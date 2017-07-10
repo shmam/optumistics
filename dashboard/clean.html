@@ -1,0 +1,602 @@
+<html>
+  <head>
+    <style>
+    @import "http://fonts.googleapis.com/css?family=Raleway";
+    /*
+    The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+    */
+    #abc {
+    width:100%;
+    height:100%;
+    opacity:.9;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#a8a8a8;
+    overflow:auto
+    }
+    /*
+    The following is the style for the popout screen.
+    */
+    div#popupContact {
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+    }
+    /*
+    The following is the styling for the minutes, seconds, and miliseconds part of the popup screen
+    */
+    #timeStamp{
+      text-align: center;
+      color: #ffffff
+    }
+    /*
+      The following the style for the start button.
+    */
+    #button-start {
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#2ecc71;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+
+    #popupContact{
+      align-content: bottom;
+    }
+    #wrapper{
+      text-align: center;
+      align-content: center;
+
+
+
+    }
+    /*
+      The following the style for the stop button.
+    */
+    #button-stop {
+
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#e74c3c;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+    /*
+      The following the style for the stop button.
+    */
+    #button-reset{
+    text-decoration:none;
+    width:50%;
+    margin-left: 25%;
+    text-align:center;
+    display:block;
+    background-color:#e9d460;
+    color:#fff;
+    border:1px solid #FFCB00;
+
+    font-size:20px;
+    cursor:pointer;
+    border-radius:5px
+    }
+    /*
+      The following the style for the button that comes out.
+    */
+    #newWindow{
+      width: 800px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: #36454F;
+      left: 50%;
+      margin-left: -25%;
+      border-radius: 5%;
+      border:4px solid #fff;
+
+    }
+    /*
+      The following closes the popout screen.
+    */
+    #button-close{
+      background-color: #e74c3c;
+      color: #ffffff;
+      float: right;
+    }
+    #content{
+      margin-top: 50%;
+    }
+    #graphic{
+      border:5px solid #fff;
+    }
+    #body{
+      -webkit-animation-duration: 3s;
+    }
+
+    #container{
+        margin-right: 20px;
+    }
+    /*
+      The following contentPages 1-6 are the background pictures for each div.
+      */
+    #CleaningPage{
+      background-image: url("clean.jpeg");
+      z-index: -2;
+    }
+    #contentPage2{
+      background-image: url("step2.jpg");
+      z-index: -2;
+    }
+    #contentPage3{
+      background-image: url("step3.jpg");
+      z-index: -2;
+    }
+    #contentPage4{
+      background-image: url("step4.jpg");
+      z-index: -2;
+    }
+    #contentPage5{
+      background-image: url("step5.jpg");
+      z-index: -2;
+    }
+    #contentPage6{
+      background-image: url("step6.jpg");
+      z-index: -2;
+    }
+    /*
+    The following layer styles (layer 1-6) and (layer1-6:hover) are the color overlay for the divs. The hover tags include the transition hover of the div.
+    */
+    #layer1{
+    z-index: -1;
+    background: rgba(135,206,250, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    }
+
+    #layer1:hover{
+      background: rgba(135,206,250, 0.8);
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+
+    transition:.5s;
+    }
+    #layer2{
+    z-index: -1;
+    background: rgba(52, 152, 219, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    }
+    #layer2:hover{
+      background: rgba(52, 152, 219, 0.8);
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+
+    transition:.5s;
+    }
+    #layer3{
+    z-index: -1;
+    background: rgba(46, 204, 113, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    }
+    #layer3:hover{
+      background: rgba(46, 204, 113, 0.8);
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+
+    transition:.5s;
+    }
+    #layer4{
+    z-index: -1;
+    background: rgba(155, 89, 182, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    }
+    #layer4:hover{
+      background: rgba(155, 89, 182, 0.8);
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+
+    transition:.5s;
+    }
+
+    #layer5{
+    z-index: -1;
+    background: rgba(241, 196, 15, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    }
+    #layer5:hover{
+      background: rgba(241, 196, 15, 0.8);
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+
+    transition:.5s;
+    }
+    #layer6{
+    z-index: -1;
+    background: rgba(52, 73, 94, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    }
+    #layer6:hover{
+      background: rgba(52, 73, 94, 0.8);
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+
+    transition:.5s;
+    }
+    .overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay button {
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    align-content: center;
+    font-size: 36px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay button:hover, .overlay button:focus {
+
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 400px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  </head>
+  <body id="body" style="overflow:hidden;">
+    <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left animated fadeIn" style="display:none" id="mySidebar">
+
+      <button style = "float: right; border-radius: 50%;border:1px solid #000;"type="button" class="btn btn-danger btn-xs" onclick="w3_close()">X</button><br/>
+
+    <a href="nightDash.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">home<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
+<a href="newSettings.HTML" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif"> settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
+  <a href="statistics.HTML" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
+</div>
+
+<div zclass="w3-main" id="main" class = "animated fadeIn">
+
+<div id = "topBar">
+  <button class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <img src="optum1.jpg" alt="optum" style="width:250px;height:80px;">
+  </div>
+
+
+  <div id = "mainContent" style = "font-family:'Raleway',sans-serif">
+    <h1 style = "text-align: center;">Cleaning in Progress</h1>
+    <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
+    <br/>
+    <br/>
+    <div id="myNav" class="overlay">
+
+  <div class="overlay-content">
+
+  <a href="landingpage.html" class= "button" style = "margin-left: 0%;border-radius: 3%;background-color: transparent; border: 2px solid;" onclick = "closeNav()" ><span>Cleaning Completed</span></a>
+
+  </div>
+</div>
+
+    <!-- Display Popup Button -->
+    <!-- Navigation -->
+    <!--This is where the banner and the page for the cleaning will be implemented-->
+    <div a href = " " id = "CleaningPage" style = "height: 60%; background-size: cover;background-position: center;background-repeat: no-repeat; border:4px solid #000;">
+
+          <h1 style = "float: right; color: white;margin-right: 2%; z-index: 1; margin-top: 28%; overflow: none;font-size:56px;"><b>cleaning</b></h1>
+          <button style="margin-right: -15%;margin-top: 2%;float: right;z-indez: 1;overflow: none;border-radius: 50%;background-color: transparent;color: white;font-size:56px;cursor:pointer" onclick="openNav(1)">call</button>
+            <div id = "layer1" style = "z-index: -1;">
+
+              <span id="seconds" style = "font-size: 128px;color: #ffffff">00</span><span style = "font-size: 48px; color: #ffffff">:</span>
+              <span id = "tens" style = "font-size:  128px;color: #ffffff">00</span>
+
+            </div>
+<br>
+<br>
+
+
+
+
+
+
+<a href="landingpage.html" class="button" style="vertical-align:middle" ><span>Skip </span></a>
+
+
+
+
+
+
+
+
+<script>
+//THE FOLLOWING SCRIPT IS FOR THE ANIMATIONS FOR THE SIDE BAR NAV. THIS PUSHES EVERYTHING TO THE right
+//FUNCTION w3_OPEN() and w3_CLOSE()
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "20%";
+  document.getElementById("newWindow").style.marginLeft = "3%";
+  document.getElementById("mySidebar").style.width = "20%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("newWindow").style.marginLeft = "-23%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+//END OF THE FUNCTION w3_OPEN() and w3_CLOSE()
+
+
+
+
+var counter = 0; //The counter is used to determine if the time should start or not.
+var isDisplayed = false; //This variable is used to explain if the start time is displayed or not. Set to false because it is originally not.
+var timeDisplayed = 0; //Time displayed is use to navigate. Because click is inside the div (clicked), must determine if the click is a START TIMER click, "call click" that should be invalid, or if it is a STOP TIMER click
+var endTimeDisplayed = false; //This variableis used to explain if the end time is displayed or not. Set to false because it is originally not.
+
+window.onload = function () {
+
+var seconds = 00;
+var tens = 00;
+
+
+
+var appendTens = document.getElementById("tens");
+var appendSeconds = document.getElementById("seconds");
+var buttonStart = document.getElementById('contentPage');
+var buttonStop = document.getElementById('button-stop');
+var buttonReset = document.getElementById('button-reset');
+
+var Interval;
+var hour;
+var minute;
+var second;
+
+
+//This function clears the interval for the minutes and starts the timer.
+$('#CleaningPage').click(function()
+{
+  var date = new Date();  //Sets a new date and time...
+  if (timeDisplayed === 0 && isDisplayed === false) //If the div should be a START TIMER click and the start time has not been displayed yet.
+  {
+    hour = date.getHours(); //Get the hour in the time.
+    minute = date.getMinutes(); //Get minyy
+    second = date.getSeconds(); //Get secs
+
+    isDisplayed = true;
+    counter++;
+    timeDisplayed = 2;
+    if (counter % 2 !== 0){
+     clearInterval(Interval);
+     Interval = setInterval(startTimer, 1000);
+   }
+  }
+  else if (timeDisplayed === 1){
+    timeDisplayed = 2;
+  }
+else if (endTimeDisplayed === false && timeDisplayed === 2) {
+  endTimeDisplayed = true;
+   var date2 = new Date();
+   clearInterval(Interval);
+   isDisplayed = false;
+   hour2 = date2.getHours();
+   minute2 = date2.getMinutes();
+   second2 = date2.getSeconds();
+
+ }
+
+});
+
+//THE FOLLOWING FUNCTION IS THE TIMER ALGORITHM TO MAKE IT COUNT UP.
+function startTimer () {
+  tens++;
+
+  if(tens <= 9){
+    appendTens.innerHTML = "0" + tens;
+  }
+
+  if (tens > 9){
+    appendTens.innerHTML = tens;
+
+  }
+
+  if (tens > 59) {
+    console.log("seconds");
+    seconds++;
+    appendSeconds.innerHTML = "0" + seconds;
+    tens = 0;
+    appendTens.innerHTML = "0" + 0;
+  }
+
+  if (seconds > 9){
+    appendSeconds.innerHTML = seconds;
+  }
+
+}
+}
+//THIS IS THE END OF THE startTIMER METHOD.
+
+//Function To Display Popup
+function div_show() {
+document.getElementById('abc').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide(){
+document.getElementById('abc').style.display = "none";
+}
+//END OF THE FOLLOWING SCRIPT THAT WORKS FOR THE POPUP!!!!
+
+function openNav(number) {
+  timeDisplayed = 1;
+  counter = counter + 2;
+  if (isDisplayed === false){
+    document.getElementById("myNav").style.height = "100%";
+  }
+
+  document.getElementById("myNav").style.background = "#82CAFA";
+
+
+
+
+}
+
+function closeNav()
+{
+    counter = counter + 2;
+    if (isDisplayed === true){
+      timeDisplayed = 2;
+    }
+    else{
+      timeDisplayed = 0;
+    }
+    document.getElementById("myNav").style.height = "0%";
+
+}
+
+function warnUser(){
+  var r = confirm("Are you sure you would like to end the appointment?");
+  if (r === true){
+    window.location.href = "clean.html";
+  }
+
+
+}
+</script>
+
+  </body>
+</html>

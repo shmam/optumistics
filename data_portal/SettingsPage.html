@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Optumistics Settings</title>
+        <meta charset = "UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/SettingsPage.css">
+    </head>
+
+    <body>
+        <div id="mySidebar" class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left">
+
+            <!-- <button class="btn btn-danger btn-xs" type="button" onclick="w3_close()">X</button> <br/> -->
+            
+            <div id="links" class="w3-bar w3-white">
+                <a href="register.html" class="w3-bar-item w3-button w3-padding-16">Register<i id="nav-icon" class="glyphicon glyphicon-home"></i></a>
+                <a href="SettingsPage.html" class="w3-bar-item w3-button w3-padding-16">Settings<i id="nav-icon" class="glyphicon glyphicon-user"></i></a>
+                <a href="neoStats.html" class="w3-bar-item w3-button w3-padding-16">Statistics<i id="nav-icon" class="glyphicon glyphicon-file"></i></a>
+            </div> <!-- end of links div -->
+
+        </div> <!-- end of mySidebar div -->
+
+        <div zclass="w3-main" id="main" class = "animated fadeIn">
+
+        <div id="topBar">
+            <button id="topBar-button" class="w3-button w3-xlarge">&#9776;</button>
+            <img src="img/optum1.jpg" alt="optum">
+        </div> <!-- end of topBar div -->
+
+        <div id="mainContent">
+            <h1>Settings</h1>
+            <hr style="margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;" />
+            <br/>
+            <button id="add-flag" class="btn btn-default" type="button">Register Action</button></br>
+
+            <div id="flag-registration">
+                <div id="popupContact">
+                    <div id = "newWindow" class = "animated zoomIn">
+
+                        <div id = "wrapper">
+                            <button id = "button-close">X</button>
+                            <img src="img/optum.png" alt="optum"><br>
+                            <h1>Action Registration</h1>
+                        </div> <!-- end of wrapper div -->
+                        <hr>
+
+                        <div id="action">
+                            <label id="action-name" class="input-label">Action Name:</label>
+                            <input id="action-name-input" type="text" placeholder="action name" class="input-box">
+                        </div> <!-- end of action div -->
+                        <br>
+                        <div id="flag-color">
+                            <label id="flag-color-name" class="input-label">Flag Color: &nbsp;</label>
+                            <select id="flag-color-dropdown">
+                            </select>
+                            <div id="color-display"></div>
+                        </div> <!-- end of flag-color div -->
+                        <br>
+                        <div id="button-label">
+                            <label id="button-label-name" class="input-label">Button Label:</label>
+                            <input id="button-label-input" type="text" placeholder="button label" class="input-box">
+                        </div> <!-- end of button-label div -->
+                        <br>
+                        <div id="exp-duration">
+                            <label id="exp-duration-name" class="input-label">Expected Duration (in Minutes):</label>
+                            <input id="exp-duration-input" type="text" placeholder="0" class="input-box">
+                        </div> <!-- end of exp-duration div -->
+                        <button id = "submitFlag">Submit</button>
+
+                    </div> <!--  end of newWindow div -->
+                </div> <!-- end of popupContact div -->
+            </div> <!-- end of flag-registration div -->
+
+
+            
+            <p id="action-control-p"> Action Control Panel </p>
+            <hr style="margin:5px 5px; margin-left: 35%; margin-right: 35%;" />
+            <div id="action-control-area">
+
+            </div>
+
+        </div> <!-- end of mainContent -->
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <script src="js/SettingsPage.js"></script>
+    </body>
+</html>

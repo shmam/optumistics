@@ -59,7 +59,7 @@ module.exports = function(app) {
 
     app.route('/portal/present/Activated_NFC_Patients') //select all of the activated NFC patients
         .get(selectAPI.select_activated_NFC_Patients)
-    
+
     app.route('/portal/present/Activated_NFC_Providers') //select all of the activated NFC providers
         .get(selectAPI.select_activated_NFC_Providers)
 
@@ -71,12 +71,24 @@ module.exports = function(app) {
 
     app.route('/portal/present/NFC_Bracelet/provider') //select the NFC bracelets designated for providers
         .get(selectAPI.select_NFC_Providers)
-    
-    app.route('/portal/present/Patient/:patient_id') //select the patients' name based on patient id
+
+    app.route('/portal/present/Patient/name') //select the patients' name and patient id
         .get(selectAPI.select_Patient_Name)
 
-    app.route('/portal/present/Provider/name') //select the providers' name based on patient id
-        .get(selectAPI.select_Provider_Name)
+    app.route('/portal/present/Provider/name') //select the providers' name based on provider id
+        .get(selectAPI.select_Provider_Name_NotActive)
+
+    app.route('/portal/present/Appointment_Type/name') //select appointment name and appointment id
+        .get(selectAPI.select_Appointment_Type_Name)
+
+    app.route('/portal/present/Flag_Color/name')
+        .get(selectAPI.select_Flag_Color)
+ 
+    app.route('/portal/present/patientWaitTime')
+        .get(selectAPI.select_patient_wait_time)
+
+    app.route('/portal/present/npsScore')
+        .get(selectAPI.select_Average_NPS)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
