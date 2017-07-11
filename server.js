@@ -39,6 +39,23 @@ app.get('/data_portal', function(req, res) {
   res.sendFile('neoStats.html', { root : VIEWS2 });
 });
 
+const VIEWS3 = path.join(__dirname,"data_portal","js");
+const VIEWS4 = path.join(__dirname,"data_portal","css");
+const images = path.join(__dirname,"data_portal","img");
+
+
+app.get('/data_portal/js', function(req, res) {
+  res.sendFile('stats.js', { root : VIEWS3 });
+});
+
+app.get('/data_portal/css', function(req, res) {
+  res.sendFile('stats.css', { root : VIEWS4 });
+});
+
+app.get('/data_portal/optumImg', function(req, res) {
+  res.sendFile('optum1.jpg', { root : images });
+});
+
 
 
 var routes = require('./backend/api/routes/routes.js');
