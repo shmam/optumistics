@@ -42,7 +42,7 @@ function add_time_provider_task_c(req,res){
 
     if(req.params.provider_id != null && req.params.action_id != null){
 
-		cn.query("SELECT sum(TIMESTAMPDIFF(minute,start_time, end_time)) from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
+		cn.query("SELECT sum(TIMESTAMPDIFF(minute,start_time, end_time)) AS time from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
 			if (err){
 				res.send(err)
 			}
@@ -66,7 +66,7 @@ function getTimeEachDoctor_RT(req,res){
 
     if(req.params.action_id != null && req.params.provider_id != null){
            
-		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time))  FROM Action_Performed WHERE (provider_id = "+ req.params.provider_id +") AND (action_id = "+req.params.action_id+") AND (action_date = '"+ today +"')", function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (provider_id = "+ req.params.provider_id +") AND (action_id = "+req.params.action_id+") AND (action_date = '"+ today +"')", function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -90,7 +90,7 @@ function getTimeAllDoctors_RT(req,res){
 
     if(req.params.action_id != null){
           
-		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time))  FROM Action_Performed WHERE (action_id = "+ req.params.action_id +") AND (action_date = '"+ today +"')", function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_id = "+ req.params.action_id +") AND (action_date = '"+ today +"')", function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -107,7 +107,7 @@ function getTimeAllDoctors_RT(req,res){
 function getTimeEachDoctorDates_C(req,res){
     if(req.params.action_id != null && req.params.provider_id != null && req.params.start_date != null && req.params.end_date != null){
        
-		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time))  FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id+" AND provider_id = "+ req.params.provider_id, function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id+" AND provider_id = "+ req.params.provider_id, function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -126,7 +126,7 @@ function getTimeEachDoctorDates_C(req,res){
 function getTimeAllDoctorsDates_C(req,res){
     if(req.params.action_id != null && req.params.start_date != null && req.params.end_date != null){
        
-		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time))  FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
