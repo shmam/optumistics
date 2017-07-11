@@ -525,7 +525,7 @@ function loop(startcnt){
 		}
 	});
 	
-	return null;	
+	
 }
 
 
