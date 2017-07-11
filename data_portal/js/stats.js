@@ -17,7 +17,7 @@
   The following sections are the instantiations of variables used throughout the code..
 */
 
-const baseUrl = 'http://optumistics-dev.us-east-1.elasticbeanstalk.com'; //Variable for the first portion for the URL in our AJAX calls
+const baseUrl = 'http://dashboard.us-east-1.elasticbeanstalk.com'; //Variable for the first portion for the URL in our AJAX calls
 var optionSelected;
 var operationString = [[130, "X-RAY"], [133, "BLOOD DRAW"], [134, "PHYSICAL"], [137, "INJECTION"]]; //The following array are all the operations ID's and their operation name. GLOBAL VARIABLE
 var benchmark = [100, 14, 87, 26]; //The following are random benchmark values to compare to.
