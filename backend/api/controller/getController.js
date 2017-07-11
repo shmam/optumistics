@@ -522,7 +522,7 @@ function loop(startcnt){
 				}
 				else {
 					console.log("THIS IS DATA:   "+data1[0].time1-data2[0].time2)
-					return(data1[0].time1-data1[0].time2);  
+					return(data1[0].time1-data2[0].time2);  
 				}
 			});
 		}
