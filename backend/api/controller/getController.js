@@ -553,17 +553,17 @@ function select_Average_NPS(req, res)
 function select_ActiveNFCProvider(req, res)
 {
  
-	cn.query("SELECT nfc_hex FROM ActivatedNFC_Provider", function(err,data)
+	cn.query("SELECT nfc.nfc_hex, act.nfc_id FROM NFC_Bracelet nfc, ActivatedNFC_Provider act WHERE nfc.nfc_id=act.nfc_id", function(err,data2)
 	{
-	if(err)
-	{
-		console.log(err);
-		res.send(err);
-	}
-	else
-	{
-		res.jsonp(data);
-	}
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
 	});
    
 }
