@@ -200,6 +200,8 @@ function w3_close()
       $.ajax({  //This ajax call will get the average times for all operations of the provider selected
           type: 'GET',
           dataType: 'jsonp',
+          contentType: 'application/x-www-form-urlencoded',
+          jsonpCallback: 'callback', 
           url: baseUrl + '/portal/average/time/' + operation_id + '/' + provider_id,
           success: function(data) {
             $.each(data, function(i,brace)
