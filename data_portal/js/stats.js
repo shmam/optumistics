@@ -178,11 +178,14 @@ function w3_close()
 
     //This function is a helper function for when you select a new provider in the drop down for providers.
   function ajaxCallAverageTime(id, operation_name){
-    $.ajax({
+    console.log(baseUrl + '/portal/average/time/' + id)
+     $.ajax({
         type: 'GET',
         dataType: 'jsonp',
         url: baseUrl + '/portal/average/time/' + id,
-        success: function(data) {
+        success: function(data)
+        {
+          
           $.each(data, function(i,brace)
           { //Get every entry in the NFC db that are PROVIDERS
               $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + brace.time + " minutes </li>");
@@ -192,8 +195,8 @@ function w3_close()
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
         },
-    })
-  };
+    });
+  }
 
   //This function is a helper function for when you select a new provider in the drop down for providers.
     function ajaxCallIndiDoctor(operation_id, operation_name, provider_id,iteration){
