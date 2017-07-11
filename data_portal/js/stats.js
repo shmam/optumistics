@@ -99,17 +99,16 @@ function w3_close()
           console.log(data)
           $.each(data, function(i, brace)
           { //Get every entry in the NFC db that are PROVIDERS
-            console.log(brace)
             document.getElementById('NPSLoad2').style.display = 'none';
             document.getElementById('avgWaitTime').style.display = "block";
-            if (brace > waitTimeBench)
+            if (brace.wait_time > waitTimeBench)
             {
               document.getElementById('avgWaitTime').style.border = "10px solid red";
             }
             else{
               document.getElementById('avgWaitTime').style.border = "10px solid green";
             }
-            $('#patientWT').text(brace);
+            $('#patientWT').text(brace.wait_time);
 
             $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
 

@@ -501,7 +501,7 @@ function select_patient_wait_time(req, res)
 			res.send(err);
 		}
 		else {
-			endcnt = data.max;
+			endcnt = data[0].max;
 			while(startcnt<endcnt){
 				cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+startcnt, function(err,data1) {
 					if(err) {
