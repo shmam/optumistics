@@ -497,38 +497,31 @@ function select_patient_wait_time(req, res)
 	var beep = 0;
 	var test=0;
 	for(var i=33;i<50;i++){
-		test=loop(i);
-		wait_time+=test;
+		cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+i, function(err,data1) {
+			if(err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+i, function(err,data2) {
+					if(err) {
+						console.log("THERE HAS BEEN AN ERROR");
+						res.send(err);
+					}
+					else {
+						
+						wait_time+=(data1[0].time1-data2[0].time2); 
+						console.log("LAST TRY     "+ wait_time);
+						 
+					}
+				});
+			}
+		});
 		beep+=1;
 		console.log(test);
 	}
 	console.log("HERE HERE HERE:"+ wait_time+"     "+ beep);
    res.jsonp(wait_time/beep);
-}
-
-function loop(startcnt){
-
-
-	cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+startcnt, function(err,data1) {
-		if(err) {
-			console.log(err);
-			res.send(err);
-		}
-		else {
-			cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+startcnt, function(err,data2) {
-				if(err) {
-					console.log(err);
-					res.send(err);
-				}
-				else {
-					console.log("THIS IS DATA:   "+data1[0].time1-data2[0].time2)
-					return(data1[0].time1-data2[0].time2);  
-				}
-			});
-		}
-	});
-	
-	
 }
 
 
