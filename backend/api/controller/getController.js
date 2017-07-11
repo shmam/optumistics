@@ -170,7 +170,7 @@ function select_active_actions(req,res) {
 //select all actions (for settings page)
 function select_all_actions(req,res) {
 	
-	cn.query("SELECT fc.flag_color_name, a.action_id, a.action_name FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
+	cn.query("SELECT fc.flag_color_name, a.action_id, a.action_name, a.status_id FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
