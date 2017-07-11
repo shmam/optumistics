@@ -472,6 +472,18 @@ function update_Flag_Status_On(req,res) {
 	});
 }
 
+function update_Flag_Color(req,res) {
+	cn.query("UPDATE Actions SET flag_color_id = "+req.params.flag_color_id +" WHERE action_id =" +req.params.action_id, function(err,data) {
+		if(err) {
+			console.log(err);
+			res.send(err);
+		}
+		else {
+			res.send(err);
+		}
+	});
+}
+
 
 module.exports = {
 	insert_Person_Type,
@@ -490,5 +502,6 @@ module.exports = {
 	insert_ActivatedNFC_Patient,
 	insert_Action_Performed,
 	update_Flag_Status_Off,
-	update_Flag_Status_On
+	update_Flag_Status_On,
+	update_Flag_Color
 }
