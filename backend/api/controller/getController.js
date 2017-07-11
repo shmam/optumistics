@@ -16,7 +16,7 @@ function add_time_provider_task_rt(req,res){
 	today= today.toISOString().substring(0, 10);
 
     if(req.params.provider_id != null && req.params.action_id != null){
-		cn.query("SELECT SUM(DATEDIFF(minute,start_time, end_time)) FROM Action_Performed WHERE provider_id="+req.params.provider_id+" AND action_id="+req.params.action_id+" AND action_date='"+today+"'", function(err, data) {
+		cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) FROM Action_Performed WHERE provider_id="+req.params.provider_id+" AND action_id="+req.params.action_id+" AND action_date='"+today+"'", function(err, data) {
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -42,7 +42,7 @@ function add_time_provider_task_c(req,res){
 
     if(req.params.provider_id != null && req.params.action_id != null){
 
-		cn.query("SELECT sum(DATEDIFF(minute,start_time, end_time)) from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
+		cn.query("SELECT sum(TIMESTAMPDIFF(minute,start_time, end_time)) AS time from Action_Performed WHERE provider_id=+"+req.params.provider_id+ " AND action_id="+req.params.action_id+" AND (action_date between '"+ req.params.start_date+"' AND '"+ req.params.end_date+"')", function(err, data) {
 			if (err){
 				res.send(err)
 			}
@@ -66,7 +66,7 @@ function getTimeEachDoctor_RT(req,res){
 
     if(req.params.action_id != null && req.params.provider_id != null){
            
-		cn.query("SELECT AVG(DATEDIFF(minute,start_time, end_time))  FROM Action_Performed WHERE (provider_id = "+ req.params.provider_id +") AND (action_id = "+req.params.action_id+") AND (action_date = '"+ today +"')", function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (provider_id = "+ req.params.provider_id +") AND (action_id = "+req.params.action_id+") AND (action_date = '"+ today +"')", function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -90,7 +90,7 @@ function getTimeAllDoctors_RT(req,res){
 
     if(req.params.action_id != null){
           
-		cn.query("SELECT AVG(DATEDIFF(minute,start_time, end_time))  FROM Action_Performed WHERE (action_id = "+ req.params.action_id +") AND (action_date = '"+ today +"')", function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_id = "+ req.params.action_id +") AND (action_date = '"+ today +"')", function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -107,7 +107,7 @@ function getTimeAllDoctors_RT(req,res){
 function getTimeEachDoctorDates_C(req,res){
     if(req.params.action_id != null && req.params.provider_id != null && req.params.start_date != null && req.params.end_date != null){
        
-		cn.query("SELECT AVG(DATEDIFF(minute,start_time, end_time))  FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id+" AND provider_id = "+ req.params.provider_id, function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id+" AND provider_id = "+ req.params.provider_id, function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -126,7 +126,7 @@ function getTimeEachDoctorDates_C(req,res){
 function getTimeAllDoctorsDates_C(req,res){
     if(req.params.action_id != null && req.params.start_date != null && req.params.end_date != null){
        
-		cn.query("SELECT AVG(DATEDIFF(minute,start_time, end_time))  FROM dbo.Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
+		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
 			if (err){
 				console.log(err);
 				res.send(err);
@@ -170,7 +170,7 @@ function select_active_actions(req,res) {
 //select all actions (for settings page)
 function select_all_actions(req,res) {
 	
-	cn.query("SELECT fc.flag_color_name, a.action_id, a.action_name FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
+	cn.query("SELECT fc.flag_color_name, a.action_id, a.action_name, a.status_id FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -233,7 +233,7 @@ function total_time_for_each_doctor(req,res) {
 	today= today.toISOString().substring(0, 10);
 	if(req.params.provider_id != null) {
 		
-		cn.query("SELECT SUM(DATEDIFF(minute,start_time, end_time) ) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id + " AND action_date = '" +today +"')", function(err,data) {
+		cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time) ) AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id + " AND action_date = '" +today +"')", function(err,data) {
 			if(err) {
 				console.log(err);
 				res.send(err);
@@ -251,7 +251,7 @@ function total_time_for_each_doctor(req,res) {
 function total_time_each_doctor_range(req,res) {
 	if(req.params.provider_id != null && req.params.start_date != null && req.params.end_date != null) {
 	
-		cn.query("SELECT SUM(DATEDIFF(minute,start_time, end_time))  AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id +" AND action_date BETWEEN '" +req.params.start_date
+		cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time))  AS Total_Time_Taken FROM Action_Performed WHERE (provider_id = " +req.params.provider_id +" AND action_date BETWEEN '" +req.params.start_date
 			+"' AND '" +req.params.end_date +"')", function(err,data) {
 			if(err) {
 				console.log(err);
@@ -305,7 +305,7 @@ function select_time_waited_appointment_id_RT(req, res) {
 				res.send(err);
 			}
 			else {
-				cn.query("SELECT DATEDIFF(minute,a.start_time,a.end_time) - DATEDIFF(minute,ap.start_time,ap.end_time) AS Time_Waited FROM Appointment a,Action_Performed ap WHERE (a.appointment_id = "
+				cn.query("SELECT TIMESTAMPDIFF(minute,a.start_time,a.end_time) - TIMESTAMPDIFF(minute,ap.start_time,ap.end_time) AS Time_Waited FROM Appointment a,Action_Performed ap WHERE (a.appointment_id = "
 				+ data2[0].appointment_id + " AND ap.appointment_id = " + data2[0].appointment_id + " AND a.appointment_date = '" + today + "' AND ap.action_date = '" + today + "')"
 				, function (err, data3) {
 					res.jsonp(data3);
@@ -490,21 +490,49 @@ function select_Flag_Color(req,res) {
 
 function select_patient_wait_time(req, res)
 {
- 
-	cn.query("EXECUTE wait_time_loop", function(err,data)
-	{
-	if(err)
-	{
-		console.log(err);
-		res.send(err);
-	}
-	else
-	{
-		res.jsonp(data);
-	}
+	var startcnt = 33;
+	var endcnt=0;
+	var sum1  = 0; 
+	var wait_time = 0;
+	var beep = 0;
+	cn.query("SELECT MAX(appointment_id) AS max FROM Appointment", function(err,data) {
+		if(err) {
+			console.log(err);
+			res.send(err);
+			
+		}
+		else {
+			endcnt=data[0].max
+			while(startcnt<endcnt){
+				cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+startcnt, function(err,data1) {
+					if(err) {
+						console.log(err);
+						res.send(err);
+					}
+					else {
+						cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+startcnt, function(err,data2) {
+							if(err) {
+								console.log(err);
+								res.send(err);
+							}
+							else {
+								wait_time =  temp1-temp2;
+								sum1 = sum1 + wait_time;
+								startcnt = startcnt + 1;
+								beep = beep + 1;
+							}
+						});
+					}
+				});
+		
+		
+			}	
+		}
+		res.send(sum1/beep);
 	});
    
 }
+
 
 function select_Average_NPS(req, res)
 {
@@ -524,7 +552,23 @@ function select_Average_NPS(req, res)
    
 }
 
-
+function select_ActiveNFCProvider(req, res)
+{
+ 
+	cn.query("SELECT nfc.nfc_hex, act.nfc_id FROM NFC_Bracelet nfc, ActivatedNFC_Provider act WHERE nfc.nfc_id=act.nfc_id", function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});
+   
+}
 
 
 module.exports = {
@@ -556,5 +600,6 @@ module.exports = {
 	select_Appointment_Type_Name,
 	select_Average_NPS,
 	select_patient_wait_time,
-	select_Flag_Color
+	select_Flag_Color,
+	select_ActiveNFCProvider
 }

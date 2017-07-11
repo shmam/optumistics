@@ -17,7 +17,7 @@
   The following sections are the instantiations of variables used throughout the code..
 */
 
-const baseUrl = 'http://optumistics-dev.us-east-1.elasticbeanstalk.com'; //Variable for the first portion for the URL in our AJAX calls
+const baseUrl = 'http://applicationDashboard.us-east-1.elasticbeanstalk.com'; //Variable for the first portion for the URL in our AJAX calls
 var optionSelected;
 var operationString = [[130, "X-RAY"], [133, "BLOOD DRAW"], [134, "PHYSICAL"], [137, "INJECTION"]]; //The following array are all the operations ID's and their operation name. GLOBAL VARIABLE
 var benchmark = [100, 14, 87, 26]; //The following are random benchmark values to compare to.
@@ -96,18 +96,20 @@ function w3_close()
         url: baseUrl + '/portal/present/patientWaitTime',
         success: function(data)
         {
+          console.log(data)
           $.each(data, function(i, brace)
           { //Get every entry in the NFC db that are PROVIDERS
+            console.log(brace)
             document.getElementById('NPSLoad2').style.display = 'none';
             document.getElementById('avgWaitTime').style.display = "block";
-            if (brace.wait_time > waitTimeBench)
+            if (brace > waitTimeBench)
             {
               document.getElementById('avgWaitTime').style.border = "10px solid red";
             }
             else{
               document.getElementById('avgWaitTime').style.border = "10px solid green";
             }
-            $('#patientWT').text(brace.wait_time);
+            $('#patientWT').text(brace);
 
             $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
 
@@ -115,6 +117,7 @@ function w3_close()
           });
         },
         error: function (xhr, status, error) {
+          console.log("error here")
             console.log('Error: ' + error.message);
         },
     });
@@ -137,6 +140,7 @@ function w3_close()
           });
         },
         error: function (xhr, status, error) {
+
             console.log('Error: ' + error.message);
         },
     });
@@ -175,11 +179,14 @@ function w3_close()
 
     //This function is a helper function for when you select a new provider in the drop down for providers.
   function ajaxCallAverageTime(id, operation_name){
-    $.ajax({
+    console.log(baseUrl + '/portal/average/time/' + id)
+     $.ajax({
         type: 'GET',
         dataType: 'jsonp',
         url: baseUrl + '/portal/average/time/' + id,
-        success: function(data) {
+        success: function(data)
+        {
+          
           $.each(data, function(i,brace)
           { //Get every entry in the NFC db that are PROVIDERS
               $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + brace.time + " minutes </li>");
@@ -189,14 +196,16 @@ function w3_close()
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
         },
-    })
-  };
+    });
+  }
 
   //This function is a helper function for when you select a new provider in the drop down for providers.
     function ajaxCallIndiDoctor(operation_id, operation_name, provider_id,iteration){
       $.ajax({  //This ajax call will get the average times for all operations of the provider selected
           type: 'GET',
           dataType: 'jsonp',
+          contentType: 'application/x-www-form-urlencoded',
+          jsonpCallback: 'callback', 
           url: baseUrl + '/portal/average/time/' + operation_id + '/' + provider_id,
           success: function(data) {
             $.each(data, function(i,brace)

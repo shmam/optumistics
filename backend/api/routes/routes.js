@@ -90,6 +90,11 @@ module.exports = function(app) {
     app.route('/portal/present/npsScore')
         .get(selectAPI.select_Average_NPS)
 
+    app.route('/dashboard/verification/nfc')
+        .get(selectAPI.select_ActiveNFCProvider)
+
+   
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes
@@ -144,4 +149,7 @@ module.exports = function(app) {
 
     app.route('/general/update/flag_status/off/:action_id')
         .post(insertAPI.update_Flag_Status_Off)
+
+    app.route('/gneral/update/flag_color/:action_id/:flag_color_id')
+        .post(insertAPI.update_Flag_Color)
 }
