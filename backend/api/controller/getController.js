@@ -511,6 +511,8 @@ function select_patient_wait_time(req, res)
 	
 		}
 	});
+	console.log("FINAL WAIT TIME:  "+wait_time);
+	console.log("FINAL BEEP:  "+beep);
 	res.jsonp(wait_time/beep);
 	
 }
