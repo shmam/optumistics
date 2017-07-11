@@ -90,37 +90,37 @@ function w3_close()
 
     }
     //The following ajax calls gets the patient wait time ON LOAD...
-    $.ajax({
-        type: 'GET',
-        dataType: 'jsonp',
-        url: baseUrl + '/portal/present/patientWaitTime',
-        success: function(data)
-        {
-          console.log(data)
-          $.each(data, function(i, brace)
-          { //Get every entry in the NFC db that are PROVIDERS
-            console.log(brace)
-            document.getElementById('NPSLoad2').style.display = 'none';
-            document.getElementById('avgWaitTime').style.display = "block";
-            if (brace > waitTimeBench)
-            {
-              document.getElementById('avgWaitTime').style.border = "10px solid red";
-            }
-            else{
-              document.getElementById('avgWaitTime').style.border = "10px solid green";
-            }
-            $('#patientWT').text(brace);
+    // $.ajax({
+    //     type: 'GET',
+    //     dataType: 'jsonp',
+    //     url: baseUrl + '/portal/present/patientWaitTime',
+    //     success: function(data)
+    //     {
+    //       console.log(data)
+    //       $.each(data, function(i, brace)
+    //       { //Get every entry in the NFC db that are PROVIDERS
+    //         console.log(brace)
+    //         document.getElementById('NPSLoad2').style.display = 'none';
+    //         document.getElementById('avgWaitTime').style.display = "block";
+    //         if (brace > waitTimeBench)
+    //         {
+    //           document.getElementById('avgWaitTime').style.border = "10px solid red";
+    //         }
+    //         else{
+    //           document.getElementById('avgWaitTime').style.border = "10px solid green";
+    //         }
+    //         $('#patientWT').text(brace);
 
-            $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
+    //         $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
 
 
-          });
-        },
-        error: function (xhr, status, error) {
-          console.log("error here")
-            console.log('Error: ' + error.message);
-        },
-    });
+    //       });
+    //     },
+    //     error: function (xhr, status, error) {
+    //       console.log("error here")
+    //         console.log('Error: ' + error.message);
+    //     },
+    // });
     //The following ajax calls gets the NPS score ON LOAD...
     $.ajax({
         type: 'GET',

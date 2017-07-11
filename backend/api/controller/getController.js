@@ -502,33 +502,33 @@ function select_patient_wait_time(req, res)
 			
 		}
 		else {
-			endcnt=data[0].max
-			while(startcnt<endcnt){
-				cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+startcnt, function(err,data1) {
-					if(err) {
-						console.log(err);
-						res.send(err);
-					}
-					else {
-						cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+startcnt, function(err,data2) {
-							if(err) {
-								console.log(err);
-								res.send(err);
-							}
-							else {
-								wait_time =  temp1-temp2;
-								sum1 = sum1 + wait_time;
-								startcnt = startcnt + 1;
-								beep = beep + 1;
-							}
-						});
-					}
-				});
-		
-		
-			}	
+			res.jsonp(data)
+			// endcnt=data[0].max
+			// while(startcnt<endcnt){
+			// 	cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+startcnt, function(err,data1) {
+			// 		if(err) {
+			// 			console.log(err);
+			// 			res.send(err);
+			// 		}
+			// 		else {
+			// 			cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+startcnt, function(err,data2) {
+			// 				if(err) {
+			// 					console.log(err);
+			// 					res.send(err);
+			// 				}
+			// 				else {
+			// 					wait_time =  temp1-temp2;
+			// 					sum1 = sum1 + wait_time;
+			// 					startcnt = startcnt + 1;
+			// 					beep = beep + 1;
+			// 				}
+			// 			});
+			// 		}
+			// 	});
+			// }
+			// res.send(sum1/beep);	
 		}
-		res.send(sum1/beep);
+		
 	});
    
 }
