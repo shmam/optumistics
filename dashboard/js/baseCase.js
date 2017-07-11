@@ -8,6 +8,7 @@ var socket = new WebSocket("ws://localhost:8080")
 var nfcHex = null;
 var popupFlag = false;
 var nfcArray = [];
+var validCard = false;
 
 /*
   New Object of Card.
@@ -85,6 +86,7 @@ function showData(result){
 
 function allowAccess(hexCode)
 {
+  hexCode = hexCode.substring(1,20);
   var vaildCard = false;
   if(nfcHex !== null){
     console.log(hexCode)
@@ -267,7 +269,7 @@ function ajaxCallNFC(){
         $.each(data, function(i, brace)
         { //Get every entry in the NFC db that are PROVIDERS
             nfcArray.push(String( brace.nfc_hex));
-            //console.log(nfcArray);
+            console.log(nfcArray);
         });
       },
       error: function (xhr, status, error) {
