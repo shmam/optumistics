@@ -183,11 +183,11 @@ function w3_close()
         dataType: 'jsonp',
         url: baseUrl + '/portal/average/time/' + id,
         success: function(data) {
-          $.each(data, function(i,brace)
-          { //Get every entry in the NFC db that are PROVIDERS
-              $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + brace.time + " minutes </li>");
-              benchmark.push(brace.time);
-            });
+          // $.each(data, function(i,brace)
+          // { //Get every entry in the NFC db that are PROVIDERS
+          //     $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + brace.time + " minutes </li>");
+          //     benchmark.push(brace.time);
+          //   });
         },
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
