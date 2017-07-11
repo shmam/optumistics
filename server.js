@@ -25,7 +25,7 @@ console.log(__dirname+ "HELLO THIS IS THE LOG")
 
 // In your route handlers:
 
-const VIEWS2 = path.join(__dirname,"backend","SampleConnection");
+const VIEWS2 = path.join(__dirname,"data_portal");
 
 app.get('/', function(req, res) {
   res.sendFile('connect.html', { root : VIEWS });
@@ -33,6 +33,10 @@ app.get('/', function(req, res) {
 
 app.get('/backend/SampleConnection/jquery', function(req, res) {
   res.sendFile('jquery.js', { root : VIEWS });
+});
+
+app.get('/data_portal', function(req, res) {
+  res.sendFile('neoStats.html', { root : VIEWS2 });
 });
 
 

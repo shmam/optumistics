@@ -96,6 +96,7 @@ function w3_close()
         url: baseUrl + '/portal/present/patientWaitTime',
         success: function(data)
         {
+          console.log(data)
           $.each(data, function(i, brace)
           { //Get every entry in the NFC db that are PROVIDERS
             document.getElementById('NPSLoad2').style.display = 'none';
@@ -115,6 +116,7 @@ function w3_close()
           });
         },
         error: function (xhr, status, error) {
+          console.log("error here")
             console.log('Error: ' + error.message);
         },
     });
@@ -137,6 +139,7 @@ function w3_close()
           });
         },
         error: function (xhr, status, error) {
+
             console.log('Error: ' + error.message);
         },
     });
