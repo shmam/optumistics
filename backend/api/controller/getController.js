@@ -499,6 +499,7 @@ function select_patient_wait_time(req, res)
 		wait_time+=loop(i);
 		beep+=1;
 	}
+	console.log("HERE HERE HERE:"+ wait_time+"     "+ beep);
    res.jsonp(wait_time/beep);
 }
 
