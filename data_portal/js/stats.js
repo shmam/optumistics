@@ -181,6 +181,7 @@ function w3_close()
     $.ajax({
         type: 'GET',
         dataType: 'jsonp',
+        contentType: "application/json; charset=utf-8;",
         url: baseUrl + '/portal/average/time/' + id,
         success: function(data) {
           $.each(data, function(i,brace)
