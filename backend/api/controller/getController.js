@@ -495,9 +495,12 @@ function select_patient_wait_time(req, res)
 	var sum1  = 0; 
 	var wait_time = 0;
 	var beep = 0;
+	var test=0;
 	for(var i=33;i<50;i++){
-		wait_time+=loop(i);
+		test=loop(i);
+		wait_time+=test;
 		beep+=1;
+		console.log(test);
 	}
 	console.log("HERE HERE HERE:"+ wait_time+"     "+ beep);
    res.jsonp(wait_time/beep);
