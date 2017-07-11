@@ -499,8 +499,8 @@ function select_patient_wait_time(req, res)
 	var test=0;
 	sync.fiber(function(){
 		for(var i=33;i<50;i++){
-		var data1 = sync.await(db.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+i, sync.defer()));
-		var data2 = sync.await(db.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+i, sync.defer()));
+		var data1 = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+i, sync.defer()));
+		var data2 = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+i, sync.defer()));
 		console.log("DATA 1:"+ data1[0].time1)
 		console.log("DATA 2:"+ data2[0].time2)
 		test=data1[0].time1-data2[0].time2
