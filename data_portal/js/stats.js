@@ -99,6 +99,7 @@ function w3_close()
           console.log(data)
           $.each(data, function(i, brace)
           { //Get every entry in the NFC db that are PROVIDERS
+            console.log(brace)
             document.getElementById('NPSLoad2').style.display = 'none';
             document.getElementById('avgWaitTime').style.display = "block";
             if (brace > waitTimeBench)
