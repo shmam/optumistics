@@ -506,8 +506,11 @@ function wait_time_loop(){
 
 	while(startcnt<endcnt){
 		temp1= query1(startcnt);
+		console.log("THIS IS A RESULT1"+ temp1)
 		temp2= query2(startcnt);
+		console.log("THIS IS A RESULT2"+ temp2)
 		wait_time =  temp1-temp2;
+		console.log("THIS IS A RESULT3"+ wait_time)
 		sum1 = sum1 + wait_time;
 		startcnt = startcnt + 1;
 		beep = beep + 1;
