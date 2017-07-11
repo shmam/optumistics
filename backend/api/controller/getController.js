@@ -491,68 +491,25 @@ function select_Flag_Color(req,res) {
 function select_patient_wait_time(req, res)
 {
  
-	var wait_time= wait_time_loop();
-	res.jsonp(wait_time);
-   
-}
-
-function wait_time_loop(){
-
 	var startcnt = 33;
-	var endcnt  = max();
+	var endcnt  = cn.querySync("SELECT MAX(appointment_id) FROM Appointment");
 	var sum1  = 0; 
 	var wait_time = 0;
 	var beep = 0;
 
 	while(startcnt<endcnt){
-		temp1= query1(startcnt);
-		console.log("THIS IS A RESULT1"+ temp1)
-		temp2= query2(startcnt);
-		console.log("THIS IS A RESULT2"+ temp2)
+		temp1= cn.querySync("SELECT TIMESTAMPDIFF(minute,start_time, end_time) FROM Appointment WHERE appointment_id = "+startcnt);
+		temp2= cn.querySync("SELECT TIMESTAMPDIFF(minute,start_time, end_time) FROM Appointment WHERE appointment_id = "+startcnt)
 		wait_time =  temp1-temp2;
-		console.log("THIS IS A RESULT3"+ wait_time)
 		sum1 = sum1 + wait_time;
 		startcnt = startcnt + 1;
 		beep = beep + 1;
 	}
 
-	return sum1/beep
-	
-}
-function max(){
-	cn.query("SELECT MAX(appointment_id) FROM Appointment", function(err,data) {
-		if(err) {
-			console.log(err);
-			return (err);
-		}
-		else {
-			return(data);
-		}
-	});
-}
-function query1(startcnt){
-	cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) FROM Appointment WHERE appointment_id = "+startcnt, function(err,data) {
-		if(err) {
-			console.log(err);
-			return(err)
-		}
-		else {
-			return(data);
-		}
-	});
+	res.send(sum1/beep)
+   
 }
 
-function query2(startcnt){
-	cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time,end_time)) FROM Action_performed WHERE appointment_id =" +startcnt, function(err,data) {
-		if(err) {
-			console.log(err);
-			return(err);
-		}
-		else {
-			return(data);
-		}
-	});
-}
 
 function select_Average_NPS(req, res)
 {

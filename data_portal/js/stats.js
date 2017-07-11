@@ -101,14 +101,14 @@ function w3_close()
           { //Get every entry in the NFC db that are PROVIDERS
             document.getElementById('NPSLoad2').style.display = 'none';
             document.getElementById('avgWaitTime').style.display = "block";
-            if (brace.wait_time > waitTimeBench)
+            if (brace > waitTimeBench)
             {
               document.getElementById('avgWaitTime').style.border = "10px solid red";
             }
             else{
               document.getElementById('avgWaitTime').style.border = "10px solid green";
             }
-            $('#patientWT').text(brace.wait_time);
+            $('#patientWT').text(brace);
 
             $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
 
