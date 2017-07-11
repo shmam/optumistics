@@ -550,7 +550,23 @@ function select_Average_NPS(req, res)
    
 }
 
-
+function select_ActiveNFCProvider(req, res)
+{
+ 
+	cn.query("SELECT nfc_hex FROM ActivatedNFC_Provider", function(err,data)
+	{
+	if(err)
+	{
+		console.log(err);
+		res.send(err);
+	}
+	else
+	{
+		res.jsonp(data);
+	}
+	});
+   
+}
 
 
 module.exports = {
@@ -582,5 +598,6 @@ module.exports = {
 	select_Appointment_Type_Name,
 	select_Average_NPS,
 	select_patient_wait_time,
-	select_Flag_Color
+	select_Flag_Color,
+	select_ActiveNFCProvider
 }

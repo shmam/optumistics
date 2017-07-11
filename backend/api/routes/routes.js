@@ -90,6 +90,9 @@ module.exports = function(app) {
     app.route('/portal/present/npsScore')
         .get(selectAPI.select_Average_NPS)
 
+    app.route('/dashboard/verification/nfc')
+        .get(selectAPI.select_ActiveNFCProvider)
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes
