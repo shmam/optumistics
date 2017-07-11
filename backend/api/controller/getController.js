@@ -511,8 +511,8 @@ function select_patient_wait_time(req, res)
 					else {
 						beep+=1
 						wait_time+=(data1[0].time1-data2[0].time2); 
-						console.log("LAST TRY     "+ wait_time);
-						if(i==(50-1)){
+						console.log("LAST TRYNOW     "+ wait_time);
+						if(i==49){
 							console.log("WE MADE IT:  "+ wait_time/beep);
 							res.jsonp(wait_time/beep);
 						}
