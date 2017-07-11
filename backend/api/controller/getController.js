@@ -1,4 +1,5 @@
 var config = require('../../config.js')
+var sync= require('synchronize')
 
  var db = require('mysql');
  var cn = db.createConnection({
@@ -497,34 +498,21 @@ function select_patient_wait_time(req, res)
 	var beep = 0;
 	var test=0;
 	for(var i=33;i<50;i++){
-		cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+i, function(err,data1) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			}
-			else {
-				cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+i, function(err,data2) {
-					if(err) {
-						console.log("THERE HAS BEEN AN ERROR");
-						res.send(err);
-					}
-					else {
-						beep+=1
-						wait_time+=(data1[0].time1-data2[0].time2); 
-						console.log("This is i: " + i);
-						console.log("LAST TRYNOW     "+ wait_time);
-						if(i==49){
-							console.log("WE MADE IT:  "+ wait_time/beep);
-							res.jsonp(wait_time/beep);
-						}
-					}
-				});
-			}
-		});
-	
-	}
+		var data1 = sync.await(db.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+i, sync.defer()));
+		var data2 = sync.await(db.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+i, sync.defer()));
+		console.log("DATA 1:"+ data1[0].time1)
+		console.log("DATA 2:"+ data2[0].time2)
+		test=data1[0].time1-data2[0].time2
+		console.log(i)
+		wait_time+=	test;
+		beep+=1;
 
-   
+		if(i==49){
+			res.jsonp(wait_time/beep);
+		}
+	
+	
+	}  
 }
 
 
