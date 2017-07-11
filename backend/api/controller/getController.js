@@ -495,7 +495,7 @@ function select_patient_wait_time(req, res)
 	var sum1  = 0; 
 	var wait_time = 0;
 	var beep = 0;
-	for(var i=0;i<50;i++){
+	for(var i=33;i<50;i++){
 		wait_time+=loop(i);
 		beep+=1;
 	}
@@ -503,8 +503,7 @@ function select_patient_wait_time(req, res)
 }
 
 function loop(startcnt){
-	endcnt=data[0].max;
-	var startcnt=1;
+
 
 	cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+startcnt, function(err,data1) {
 		if(err) {
