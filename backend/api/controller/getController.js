@@ -509,19 +509,20 @@ function select_patient_wait_time(req, res)
 						res.send(err);
 					}
 					else {
-						
+						beep+=1
 						wait_time+=(data1[0].time1-data2[0].time2); 
 						console.log("LAST TRY     "+ wait_time);
-						 
+						if(i==(50-1)){
+							res.jsonp(wait_time/beep);
+						}
 					}
 				});
 			}
 		});
-		beep+=1;
-		console.log(test);
+	
 	}
-	console.log("HERE HERE HERE:"+ wait_time+"     "+ beep);
-   res.jsonp(wait_time/beep);
+
+   
 }
 
 
