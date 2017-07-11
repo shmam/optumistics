@@ -155,7 +155,8 @@ position:absolute;
 left:50%;
 top:17%;
 margin-left:-202px;
-font-family:'Raleway',sans-serif
+font-family:'Raleway',sans-serif;
+
 }
 /*
 The following is the styling for the minutes, seconds, and miliseconds part of the popup screen
@@ -184,6 +185,7 @@ border-radius:5px
 
 #popupContact{
   align-content: bottom;
+  z-index: 1;
 }
 #wrapper{
   text-align: center;
@@ -261,6 +263,60 @@ border-radius:5px
 }
 #graphic{
   border:5px solid #fff;
+}
+h1
+{
+  margin-left: -5%;
+    color: black;
+    text-align: center;
+    font-size: 72px ;
+    font-family:'Raleway',sans-serif;
+}
+
+p
+{
+  text-align: center;
+}
+
+.cardcolor
+{
+color: #FFB732;
+text-align: center;
+background: #FFB732;
+width: 450px;
+height: 110px;
+border-radius: 38px;
+
+
+}
+.w3-hover-opacity
+{
+
+}
+
+.w3-panel
+{
+  color: white ;
+  font-size: 30px;
+  font-family:'Raleway',sans-serif;
+  margin-left: 36% ;
+  margin-top: 45px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+span
+{
+  font-family:'Raleway',sans-serif;
+  text-align: center;
+
+}
+.glyphicon
+{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
 }
 
 /**

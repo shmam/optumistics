@@ -1,8 +1,13 @@
+<!-- this page is the register for the data portal in which patients and providers can be registered in the system/assigned NFC, and appointments can be created -->
+
 <html>
   <head>
 
   <!-- references the css sheet -->
   <link rel="stylesheet" href="css/register.css">
+
+
+
 
     <!-- importing boostrap and jquery libraries -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -28,6 +33,12 @@
     <!-- Bootstrap Date-Picker Plugin -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <!-- importing bootstrap libraries for the register buttons -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
   </head>
 
@@ -91,14 +102,14 @@
       </div>
     <hr>
       <!-- subheading for popup -->
-      <p style = "margin-left: 30%; color: #ffffff; font-size: 24px;">please sign in the patient below</p>
+      <p style = "color: #ffffff; font-size: 24px;">please sign in the patient below</p>
 
       <!-- creates dropdown menu of patients with an appointment start time in the future of the current day -->
-      <select id = "patientSignUp" style = "margin-left: 43%;">
+      <select id = "patientSignUp" style = "margin-left: 47%;">
       </select></br>
 
       <!-- creates button that signs in the patient -->
-      <button id = "signInButton" style = "margin-top: 2%;margin-left: 46%;"onclick = "div_show2()">sign in</button></br>
+      <button id = "signInButton" style = "background-color: green; color: white; margin-top: 2%;margin-left: 46%;"onclick = "div_show2()">sign in</button></br>
 
       <!-- this div contains a drop down menu of available nfc ids that appears after the patient is signed in -->
       <div id = "registerNFC" class = "animated fadeIn">
@@ -106,8 +117,7 @@
         <h2 style = "color: #ffffff">assign bracelet to patient</h2>
         <select>
           <option>nfc 1</option>
-          <option>nfc 2'
-          </option>
+          <option>nfc 2</option>
           <option>nfc 3</option>
           <option>nfc 4</option>
         </select>
@@ -116,73 +126,80 @@
 
     <!-- separating line for the popup window -->
     <hr style = "margin:10px 10px; margin-top: 5%;margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #fff;"/>
-      <p style = "margin-left: 35%; color: #ffffff; font-size: 24px;">assign nfc to patient</p>
+
+      <!-- popup subheading -->
+      <p style = "color: #ffffff; font-size: 24px;">assign nfc to patient</p>
       <select id = "dropNFC" style = "margin-left: 47%;">
       </select></br>
-      <button id = "submitTheNFC" style = "margin-top: 2%;margin-left: 46%;">submit</button>
-    </div>
-     </div>
 
+
+      <!-- submit button for the patient sign in form -->
+      <button id = "submitTheNFC" style = "background-color: green; color: white; margin-top: 2%;margin-left: 46%;">submit</button>
+
+    <!-- end of registerNFC div -->
+    </div>
+     <!-- end of new window div -->
+     </div>
+    <!-- end of popupContact div -->
     </div>
     <!-- Popup Div Ends Here -->
     </div>
 
 
-    <div>
-    <button style = "background-color:  #3f51b5; border: solid grey 5px; border-radius: 10%; width: 400px; height: 200px; float: right; color:white; margin-right:70%; font-size: 30px; margin-top: 100px; " onclick = "div_show()">start appointment</button>
-  </div>
-  <br/>
-  <br/>
-  <div>
-    <button  style="background-color: #ff9900; border: solid black 5px; border-radius: 10%; width: 400px; height: 200px; float: right; color:white; margin-right:6%; font-size: 30px; margin-top: -195px; " onclick="show_div()">add new provider</button>
-  </div>
-
-    <div>
-
-        <button  style="background-color: #D3D3D3; border: solid black 5px; border-radius: 10%; width: 400px; height: 200px; float: right; color:white; margin-right:9%; font-size: 30px; margin-top: -190px; " onclick="show_nfc()">provider NFC registration</button>
-
-  </div>
-
-  <div>
-
-      <button  style="background-color: #800; border: solid grey 5px; border-radius: 10%; width: 400px; height: 200px; float: right; color:white; margin-right:15%; font-size: 30px; margin-top: 50px;" onclick="show_appt()">add new appointment</button>
-
-</div>
-
+<!-- start appointment button -->
 <div>
-
-    <button  style="background-color: black; border: solid green 5px; border-radius: 10%; width: 400px; height: 200px; float: right; color:white; margin-right:25%; font-size: 30px; margin-top: 50px;" onclick="show_div5()">add new patient</button>
-
+  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="div_show()"><span class="glyphicon glyphicon-pencil"></span> &nbsp; start appointment</button>
 </div>
 
+<!-- add new appointment button -->
+<div>
+  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_appt()"><span class="glyphicon glyphicon-calendar" style="margin-top: 30px;"></span> &nbsp; add new appointment</button>
+</div>
 
+<!-- add new provider -->
+<div>
+  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div()"><span class="glyphicon glyphicon-save-file"></span> &nbsp; add new provider</button>
+</div>
 
+<!-- add new patient -->
+<div>
+  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div5()"><span class="glyphicon glyphicon-plus"></span> &nbsp; add new patient</button>
+</div>
+
+<!-- provider NFC registration -->
+<div>
+  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_nfc()"><span class="glyphicon glyphicon-bed" style="margin-top: 30px;"> </span> &nbsp;&nbsp; provider NFC registration</button>
+</div>
+
+  <!-- end of main content div -->
   </div>
 
+  <!-- start of provider registration div -->
   <div id="abc2">
 
   <!-- Popup Div Starts Here -->
   <div id="popupContact2">
 
-  <!-- Contact Us Form -->
-  <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+  <!-- popup window div start-->
   <div id = "newWindow" class = "animated zoomIn">
     <div id = "wrapper">
+      <!-- exit button on the popup window -->
       <button id = "button-close" onclick ="hide_divx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+      <!-- header -->
       <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
       <h1 style = "color: #ffffff; text-align: center;">provider registration</h1>
 
-
+    <!-- end of header div -->
     </div>
   <hr>
-    <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+    <!-- first name input field -->
     <div>
       <label  class="input-label">first name: </label>
       <input id="first-name" type="text" placeholder="first name" class="input-box">
-
     </div>
     <br/>
 
+    <!-- last name input field -->
     <div>
         <label  class="input-label">last name: </label>
         <input id="last-name" type="text" placeholder="last name" class="input-box">
@@ -190,6 +207,7 @@
     </div>
     <br/>
 
+    <!-- username input field -->
     <div>
         <label class="input-label">username: </label>
         <input id="username" type="text" placeholder="username" class="input-box">
@@ -197,6 +215,7 @@
     </div>
     <br/>
 
+    <!-- password input field -->
     <div>
         <label class="input-label">password: </label>
         <input id="password" type="password" placeholder="password" class="input-box">
@@ -204,6 +223,7 @@
     </div>
     <br/>
 
+    <!-- confirm password input field -->
     <div>
         <label class="input-label">confirm password: </label>
         <input id="confirm-password" type="password" placeholder="confirm password" class="input-box">
@@ -214,31 +234,24 @@
 
     <br/>
 
+    <!-- provider type drop down menu -->
     <div>
         <label class="input-label">provider type: </label>
         <select id="person-type" placeholder="provider type" class="input-box">
             <option>select</option>
         </select>
-
-
     </div>
     <br/>
 
-
+    <!-- submit button to send the provider information to db -->
     <div>
-      <button id="continue" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
+      <button id="continue" style="background-color: green; color: white;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
     </div>
     <br/>
-
+  <!-- end of new window div -->
   </div>
-
-
-
-
-
+  <!-- end of popup contact div -->
    </div>
-
-  </div>
   <!-- Popup Div Ends Here -->
   </div>
 
@@ -249,51 +262,51 @@
 <!-- Popup Div Starts Here -->
 <div id="popupContact3">
 
-<!-- Contact Us Form -->
-<!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+<!-- popup window div start-->
 <div id = "newWindow" class = "animated zoomIn">
   <div id = "wrapper">
+    <!-- 'x' button for popup -->
     <button id = "button-close" onclick ="hide_nfcx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+    <!-- popup header -->
     <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">provider NFC registration</h1>
-
-
+    <!-- end of popup header -->
   </div>
 <hr>
-  <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
 
+<!-- NFC registration content div -->
 <div id="nfc-avail">
+  <!-- provider name drop down menu -->
   <div>
     <label class="input-label">Provider Name: </label>
     <select id="provider-id" class="input-box">
 
     </select>
   </div>
-  <div id="nfc-avail">
 
+<!-- available NFC ID drop down meny for providers -->
+<div>
+  <br/>
+  <label class="input-label">NFC ID: </label>
+  <select id="available-nfc" class="input-box">
+
+  </select>
+</div>
 <br/>
-div>
-<label class="input-label">NFC ID: </label>
-<select id="available-nfc" class="input-box">
-
-</select>
+<div>
+  <button id="assign-NFC" style="background-color: green; color: white; margin-left: 42%; width: 140px; height:30px;" class="input-box">assign NFC</button>
 </div>
-  <br/>
-  <div>
-  <button id="assign-NFC" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:40px;" class="input-box">assign NFC</button>
+<br/>
+
+<!-- end of nfc-avail content div -->
 </div>
-  <br/>
+<!-- end of popup window div -->
 </div>
-</div>
-
-
-
-
-
- </div>
-
+<!-- end popupContact3 div -->
 </div>
 <!-- NFC Popup Div Ends Here -->
+</div>
+
 
 <!-- new appointment popup start -->
 <div id="abc4">
@@ -301,40 +314,43 @@ div>
 <!-- Popup Div Starts Here -->
 <div id="popupContact4">
 
-<!-- Contact Us Form -->
-<!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+<!-- start of popup window div-->
 <div id = "newWindow" class = "animated zoomIn">
   <div id = "wrapper">
+    <!-- popup close button -->
     <button id = "button-close" onclick ="hide_apptx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+    <!-- popup header -->
     <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">new appointment</h1>
-
-
+  <!-- end of popup header div -->
   </div>
 <hr>
-  <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
 
-
-
-  <div id="new-appointment">
+<!-- start of the new appointment content div -->
+<div id="new-appointment">
+  <!-- start of start time div -->
   <div>
-  <label  class="input-label">start time: </label>
+    <label  class="input-label">start time: </label>
 
+    <!-- drop down menu for the hours of the start time -->
     <select id="appointment_start_time_hr" class="input-box">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9</option>
-      <option>10</option>
-      <option>11</option>
-      <option>12</option>
-    </select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
+
     <label class="input-box" style="color:white; font-size: 15px;">:</label>
+
+    <!-- drop down menuy for the minutes of the start time -->
     <select id="appointment_start_time_min" class="input-box">
       <option>00</option>
       <option>10</option>
@@ -342,16 +358,23 @@ div>
       <option>30</option>
       <option>40</option>
       <option>50</option>
-    <select>
+    </select>
+
+    <!-- drop down menu to toggle between am and pm for the start time -->
     <select id="am_pm_start" class="input-box">
       <option>am</option>
       <option>pm</option>
     </select>
-
+<!-- end of start time div -->
+</div>
 <br/>
+
+<!-- start of end time div -->
 <div>
-<label class="input-label">end time: </label>
-<select id="appointment_end_time_hr" class="input-box">
+  <label class="input-label">end time: </label>
+
+  <!-- drop down menu for the hours in the end time -->
+  <select id="appointment_end_time_hr" class="input-box">
     <option>1</option>
     <option>2</option>
     <option>3</option>
@@ -365,7 +388,10 @@ div>
     <option>11</option>
     <option>12</option>
   </select>
+
   <label class="input-box" style="color:white; font-size: 15px;">:</label>
+
+  <!-- drop down menu for the minutes in the end time -->
   <select id="appointment_end_time_min" class="input-box">
     <option>00</option>
     <option>10</option>
@@ -373,569 +399,111 @@ div>
     <option>30</option>
     <option>40</option>
     <option>50</option>
-  <select>
+  </select>
+
+  <!-- drop down menu that toggles between am and pm for the end time -->
   <select id="am_pm_end"class="input-box">
     <option>am</option>
     <option>pm</option>
   </select>
-</select>
+
+<!-- end of end time div -->
 </div>
 <br/>
+
+<!-- patient name input field -->
 <div>
   <label class="input-label">patient name: </label>
   <select id="appointment_patient_id" class="input-box">
 
   </select>
 </div>
-  <br/>
-  <div>
+<br/>
+
+  <!-- appointment type drop down menu -->
+<div>
   <label class="input-label">appointment type: </label>
   <select id="appointment_appointment_type_id" class="input-box">
 
   </select>
-  </div>
-
+</div>
 <br/>
+
+<!-- date chooser input field shows a calendar to choose date -->
 <div>
 <label class="input-label">date: </label>
-
-
-    <!-- Form code begins -->
-
-
-        <input style="margin-left: 310px; width: 130px; margin-top: -30px;" class="form-control" id="appointment_date" name="date" placeholder="yyyy-mm-dd" type="text"/>
-
-     <!-- Form code ends -->
-
-
-
+  <input style="margin-left: 310px; width: 130px; margin-top: -30px;" class="form-control" id="appointment_date" name="date" placeholder="yyyy-mm-dd" type="text"/>
 </div>
 <br/>
-  <div>
-  <button id="create_appointment" style="background-color: green; color: white; border-radius: 20%;margin-left: 42%; width: 140px; height:50px;" class="input-box">create appointment</button>
+
+<!-- create appointment button that submits the information for the appointent -->
+<div>
+  <button id="create_appointment" style="background-color: green; color: white; margin-left: 40%; width: 180px; height:30px;" class="input-box">create appointment</button>
 </div>
-  <br/>
+<br/>
+
+<!-- end of new appointment content div -->
 </div>
+<!-- end of popup window div -->
 </div>
-
-
-
-
-
- </div>
-
+<!-- end of popup contact div -->
 </div>
 <!-- new appointment Popup Div Ends Here -->
-
 </div>
 
+
+<!-- start of patient registration div -->
 <div id="abc5">
 
 <!-- Popup Div Starts Here -->
 <div id="popupContact5">
 
-<!-- Contact Us Form -->
-<!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+<!-- popup window div start -->
 <div id = "newWindow" class = "animated zoomIn">
   <div id = "wrapper">
+    <!-- popup close button -->
     <button id = "button-close" onclick ="hide_divx5()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+    <!-- popup header -->
     <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">patient registration</h1>
-
-
+  <!-- end of popup header -->
   </div>
 <hr>
-  <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+
+  <!-- patient first name input field -->
   <div>
     <label  class="input-label">first name: </label>
     <input id="patient-first-name" type="text" placeholder="first name" class="input-box">
-
   </div>
   <br/>
-
+  <!-- patient last name input field -->
   <div>
       <label  class="input-label">last name: </label>
       <input id="patient-last-name" type="text" placeholder="last name" class="input-box">
-
   </div>
   <br/>
-
+  <!-- submit button for patient information -->
   <div>
-    <button id="patient_continue" style="border-radius: 20%;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
+    <button id="patient_continue" style="background-color: green; color: white; margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
   </div>
   <br/>
-
+<!-- end of popup window div -->
 </div>
 
 
 
 
-
+ <!-- popup contact div end -->
  </div>
-
+<!-- end of popup div -->
 </div>
 
+<!-- end of main container div -->
+</div>
 
-<script>
+<!-- references the js sheet -->
+<script src="js/registry.js"></script>
 
-
-var $appointmentID;
-var thisShit;
-//Function To Display Popup
-$( document ).ready(function(){
-  $.ajax({
-
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Appointments', //Connect to db
-      success: function(bracelets) {
-
-      $.each(bracelets, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-
-        $("#patientSignUp").append("<option class='swag3' id=" +brace.appointment_id +" value = " + i + ">"+ brace.patient_first_name + " " + brace.patient_last_name + "</option>");
-
-
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-
-});
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/NFC_Bracelet/provider',
-    success: function(data) {
-      $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#available-nfc").append("<option value = " + i + ">"+ brace.nfc_id + "</option>");
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Person_Type',
-    success: function(data) {
-      $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#person-type").append("<option class='swag' id=" +brace.person_type_id +" value = " + i + ">"+ brace.person_type_name + "</option>");
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Provider/name',
-    success: function(data) {
-      $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#provider-id").append("<option class='swag' id=" +brace.provider_id +" value = " + i + ">"+ brace.provider_first_name + " " + brace.provider_last_name + "</option>");
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Appointment_Type/name',
-    success: function(data) {
-      $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#appointment_appointment_type_id").append("<option class='swag2' id=" +brace.appointment_type_id +" value = " + i + ">"+ brace.appointment_name + "</option>");
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Patient/name',
-    success: function(data) {
-      $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#appointment_patient_id").append("<option class='swag4' id=" +brace.patient_id +" value = " + i + ">"+ brace.patient_first_name + " " + brace.patient_last_name + "</option>");
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-
-});
-
-
-
-$('#signInButton').click(function()
-{
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/NFC_Bracelet/patient',
-    success: function(data) {
-      $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#dropNFC").append("<option value = " + i + ">"+ brace.nfc_id + "</option>");
-        printShit();
-      });
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-
-});
-
-$('#create_appointment').click(function() {
-  if(document.getElementById('appointment_date').value == "")
-  {
-    alert("please choose a valid date for the appointment and try again");
-  }
-
-  else {
-    var start_int = parseInt($('#appointment_start_time_hr').val());
-    if(document.getElementById('am_pm_start').value == 'pm' && start_int != 12)
-    {
-      var expected_start_time = (12 + start_int) + ":" + $('#appointment_start_time_min').val();
-    }
-    else {
-      var expected_start_time = $('#appointment_start_time_hr').val() + ":" + $('#appointment_start_time_min').val(); // getting Appointment Start Time val()
-    }
-
-    if(document.getElementById('am_pm_end').value == 'pm')
-    {
-      var end_int = parseInt($('#appointment_end_time_hr').val());
-      var appointment_end_time = (12 + end_int) + ":" + $('#appointment_end_time_min').val();
-    }
-    else {
-      var appointment_end_time = $('#appointment_end_time_hr').val() + ":" + $('#appointment_end_time_min').val(); // getting Appointment End Time val()
-    }
-    var appointment_patient_id = $("#appointment_patient_id option:selected").attr("id"); // getting Appointment Patient ID val()
-    var appointment_appointment_type_id = $("#appointment_appointment_type_id option:selected").attr('id'); // getting Appointment Type ID val(). If null, type in null.
-    var appointment_status_id = 74; // getting Appointment Status ID val()
-    var appointment_date = $('#appointment_date').val(); // getting Appointment Date val()
-    var appointment_start_time = null;
-    console.log(expected_start_time);
-    $.ajax({
-        type: "POST",
-        url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Appointment/" +appointment_start_time +'/' +appointment_end_time +'/'
-        +appointment_patient_id +'/' +appointment_appointment_type_id +'/' +appointment_status_id +'/' +appointment_date + '/' +expected_start_time,
-        success: function (insert_status) {
-            $("#insert_status").append("Successful Insertion of Appointment</br>");
-            hide_appt();
-            //alert("appointment successfully added to schedule");
-        },
-        error: function (xhr, status, error) {
-            console.log('Error: ' + error.message);
-        },
-    });
-  }
-});
-
-$('#submitTheNFC').click(function()
-{
-
-  if(document.getElementById('dropNFC').value == "")
-  {
-    alert("There currently are no available NFC badges");
-
-  }
-  else if(document.getElementById('patientSignUp').value == "")
-  {
-    alert("There are no future scheduled appointments for the day");
-  }
-
-  else {
-
-
-  var activatednfc_patient_room_id = null;  // getting Room ID val() If null, type in null.
-  var activatednfc_patient_appointment_id = $("#patientSignUp option:selected").attr('id');  // getting Appointment ID val()
-  var activatednfc_patient_nfc_id = $("#dropNFC option:selected").text();  // getting Patient NFC ID val()
-  console.log(activatednfc_patient_appointment_id);
-  console.log(activatednfc_patient_nfc_id);
-  $.ajax({
-      type: "POST",
-      url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/ActivatedNFC_Patient/" +activatednfc_patient_room_id +'/'
-      +activatednfc_patient_appointment_id +'/' +activatednfc_patient_nfc_id,
-      success: function (insert_status)
-      {
-          console.log("SUCCESS!!!");
-
-          div_hide(); //Close the window
-          //alert("The patient has officially been signed in!"); //Alert the user that the connection has been successful.
-      },
-      error: function (xhr, status, error) {
-          console.log('Error: ' + error.message);
-      },
-  });
-}
-
-});
-
-$("#continue").click(function(){
-  if($('#first-name').val() == "" || $('#last-name').val()== "" || $('#username').val()== "" || $('#password').val()== "" || $('#confirm-password').val()== "" || document.getElementById('person-type').value == 'select')
-  {
-    alert("please fill out missing fields and try again");
-
-  }
-
-  //alert(document.getElementById('password').value != document.getElementById('confirm-password').value);
-
-  else if(document.getElementById('password').value != document.getElementById('confirm-password').value)
-  {
-    alert("the passwords you entered do not match, please try again");
-    document.getElementById('confirm-password').value = "";
-    document.getElementById('password').value = "";
-
-  }
-
-  else{
-
-  var provider_first_name = $('#first-name').val(); // getting Provider First Name val()
-  var provider_last_name = $('#last-name').val(); // getting Provider Last Name val()
-  var provider_username = $('#username').val(); // getting Provider Username val()
-  var provider_password = $('#password').val(); // getting Provider Password val()
-  //var provider_person_type_id = $("#person-type").find(":selected").text();// getting Provider Person Type ID val()
-  var provider_person_type_id = $("#appointment_appointment_type_id option:selected").attr('id'); // getting Provider ID val()
-  //the next two lines encrypt the password
-  //var encryptedData = CryptoJS.SHA256(provider_password);
-  //var password_hash = encryptedData.toString(CryptoJS.enc.Hex);
-  $.ajax({
-      type: "POST",
-      url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Provider_Information/" +provider_first_name +'/' +provider_last_name +'/' +provider_username +'/'
-      +provider_password +'/' +provider_person_type_id +'/' + "74",
-      success: function (insert_status) {
-        if(insert_status == "The username must be unique")
-        {
-          alert("This username is already taken, please choose another username and try again.");
-        }
-        else {
-          hide_div();
-        }
-      },
-      error: function (xhr, status, error) {
-          console.log('Error: ' + error.message);
-      },
-  });
-
-}
-});
-
-
-$("#patient_continue").click(function(){
-  if($('#patient-first-name').val() == "" || $('#patient-last-name').val()== "")
-  {
-    alert("please fill out missing fields and try again");
-
-  }
-
-  else {
-    var patient_first_name = $('#patient-first-name').val(); // getting Patient First Name val()
-    var patient_last_name = $('#patient-last-name').val(); // getting Patient Last Name val()
-    var patient_person_type_id = 18; // getting Patient Person Type ID val()
-        $.ajax({
-           type: "POST",
-           url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Patient_Information/' +patient_first_name +'/' +patient_last_name +'/' +patient_person_type_id,
-           success: function(insert_status) {
-               $('#insert_status').append("Successful Insertion of Patient</br>");
-               hide_div5();
-
-
-           },
-           error: function(xhr, status, error) {
-               console.log('Error: ' +error.message);
-           },
-        });
-      }
-    });
-
-
-
-$("#assign-NFC").click(function(){
-  if(document.getElementById('available-nfc').value== "")
-  {
-    alert("There are no available NFC badges to be assigned");
-
-  }
-
-  else if(document.getElementById('provider-id').value == "")
-  {
-      alert("Make sure you register a provider before assigning an NFC");
-
-  }
-
-else {
-
-
-var activatednfc_provider_id = $("#provider-id option:selected").attr('id'); // getting Provider ID val()
-var activatednfc_provider_room_id = $("#activatednfc_provider_room_id").val(); // getting Room ID val() If null, type in null.
-var activatednfc_provider_nfc_id = $("#available-nfc").find(":selected").text(); // getting Provider NFC ID val()
-
-
-$.ajax({
-    type: "POST",
-    url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/ActivatedNFC_Provider/" +activatednfc_provider_id +'/10/' +activatednfc_provider_nfc_id,
-    success: function (insert_status) {
-        $("#insert_status").append("Successful Insertion of Acitvated Provider NFC</br>");
-        //alert("Provider successfully assigned NFC");
-        hide_nfc();
-    },
-    error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
-    },
-});
-}
-});
-
-function printShit(){
-  thisShit = $("#patientSignUp").find(":selected").text();
-  console.log(thisShit);
-}
-function div_show2() {
-document.getElementById('registerNFC').style.display = "block";
-}
-//Function to Hide Popup
-function div_hide2(){
-document.getElementById('registerNFC').style.display = "none";
-}
-
-function div_show() {
-document.getElementById('abc').style.display = "block";
-}
-//Function to Hide Popup
-function div_hide(){
-document.getElementById('abc').style.display = "none";
-$('dropNFC').empty();
-window.location.reload();
-//$('#patientSignUp').empty();
-
-}
-
-//Function to Hide Popup
-function div_hidex(){
-document.getElementById('abc').style.display = "none";
-}
-
-//END OF THE FOLLOWING SCRIPT THAT WORKS FOR THE POPUP!!!!
-function w3_open() {
-  document.getElementById("main").style.marginLeft = "20%";
-  document.getElementById("mySidebar").style.width = "20%";
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("openNav").style.display = 'none';
-
-}
-function w3_close() {
-  document.getElementById("main").style.marginLeft = "0%";
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("openNav").style.display = "inline-block";
-}
-
-/**function show_div2() {
-document.getElementById('nfc-avail').style.display = "block";
-}*/
-function show_div3() {
-document.getElementById('nfc-avail').style.display = "block";
-}
-
-//Function To Display Popup
-function show_nfc() {
-document.getElementById('abc3').style.display = "block";
-}
-//Function to Hide Popup
-function hide_nfc(){
-document.getElementById('abc3').style.display = "none";
-window.location.reload();
-}
-
-//Function to Hide Popup
-function hide_nfcx(){
-document.getElementById('abc3').style.display = "none";
-}
-
-//Function To Display Popup
-function show_appt() {
-document.getElementById('abc4').style.display = "block";
-}
-//Function to Hide Popup
-function hide_apptx(){
-document.getElementById('abc4').style.display = "none";
-}
-
-//Function to Hide Popup
-function hide_appt(){
-document.getElementById('abc4').style.display = "none";
-window.location.reload();
-}
-
-//Function To Display Popup
-function show_div() {
-document.getElementById('abc2').style.display = "block";
-}
-//Function to Hide Popup
-function hide_divx(){
-
-document.getElementById('abc2').style.display = "none";
-}
-
-//hides popup and refreshes page
-function hide_div(){
-window.location.reload();
-document.getElementById('abc2').style.display = "none";
-
-}
-
-//Function To Display Popup
-function show_div5() {
-document.getElementById('abc5').style.display = "block";
-}
-//Function to Hide Popup
-function hide_divx5(){
-
-document.getElementById('abc5').style.display = "none";
-}
-
-//hides popup and refreshes page
-function hide_div5(){
-window.location.reload();
-document.getElementById('abc5').style.display = "none";
-
-}
-
-$(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-
-
-
-
-          </script>
 
   </body>
 
