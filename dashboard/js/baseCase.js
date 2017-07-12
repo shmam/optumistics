@@ -3,22 +3,32 @@ var Interval;
 var counter = 0;
 var okjay = 0;
 var cardRunning = false; //Is there a card running in the program?
-
 var socket = new WebSocket("ws://localhost:8080")
 var nfcHex = null;
 var popupFlag = false;
 var nfcArray = [];
 var validCard = false;
+///////////////////////////////////////////////////////////////////////
+var startHours;
+var startMinutes;
+var startSeconds;
+var sendStartTime;
+///////////////////////////////////////////////////////////////////////
+var endHours;
+var endMinutes;
+var endSeconds;
+var sendEndTime;
 
 /*
   New Object of Card.
 */
 
-var Card = function(operation){
+var Card = function(operation, operation_id){
   this.startTimeDisplayed = false; //Each card will have a START TIME...each card will start out not having a start time displayed...
   this.endTimeDisplayed = false; //Each card will have a END TIME...each card will start out not having a end time displayed....
   this.callDisplayed = false; //Each card will have a "call" option...the call screen will start out not being displayed....
   this.cardOperation = operation;//Each card will have an operation name assigned to it...
+  this.operation_id = operation_id;
   this.id = ""; //Each card will have an element based on the HTML
   this.seconds = 00; //seconds for the timer
   this.tens = 00;//tens for the timer
@@ -29,32 +39,33 @@ var Card = function(operation){
 /**
 The following data is BRUTE FORCED data for the card functionalities.....
 **/
-var card0 = new Card("physical");
+var card0 = new Card("physical", 134);
 card0.id = document.getElementById("0");
 card0.htmlSeconds = document.getElementById("seconds0");
 card0.htmlTens = document.getElementById("tens0");
+
 ///////////////////////////////////////////////////
-var card1 = new Card("vital signs");
+var card1 = new Card("vital signs", 152);
 card1.id = document.getElementById("1");
 card1.htmlSeconds = document.getElementById("seconds1");
 card1.htmlTens = document.getElementById("tens1");
 ///////////////////////////////////////////////////
-var card2 = new Card("blood");
+var card2 = new Card("blood", 133);
 card2.id = document.getElementById("2");
 card2.htmlSeconds = document.getElementById("seconds2");
 card2.htmlTens = document.getElementById("tens2");
 ///////////////////////////////////////////////////
-var card3 = new Card("operations");
+var card3 = new Card("operations", 153);
 card3.id = document.getElementById("3");
 card3.htmlSeconds = document.getElementById("seconds3");
 card3.htmlTens = document.getElementById("tens3");
 ///////////////////////////////////////////////////
-var card4 = new Card("x-ray");
+var card4 = new Card("x-ray", 130);
 card4.id = document.getElementById("4");
 card4.htmlSeconds = document.getElementById("seconds4");
 card4.htmlTens = document.getElementById("tens4");
 ///////////////////////////////////////////////////
-var card5 = new Card("diagnostic");
+var card5 = new Card("injection", 137);
 card5.id = document.getElementById("5");
 card5.htmlSeconds = document.getElementById("seconds5");
 card5.htmlTens = document.getElementById("tens5");
@@ -213,6 +224,8 @@ $('.card').click(function()
 {
     okjay++;
     console.log(okjay);
+    var date = new Date();  //Sets a new date and time...
+
     //var startTimers = startTimer.bind(cards[flipCard].tens, cards[flipCard].seconds, cards[flipCard].htmlSeconds, cards[flipCard].htmlTens);
     var flipCard = $(this).attr('id');
     var appendString = "#" + flipCard; //Find the ID of the card that is clicked.
@@ -223,7 +236,12 @@ $('.card').click(function()
         cards[flipCard].isEnabled = true; //That specific card is now running a timer.
         clearInterval(Interval);
         Interval = setInterval(function(){startTimer(flipCard)}, 1000); //Start timer
-    }
+        startHours = date.getHours();
+        startMinutes = date.getMinutes();
+        startSeconds = date.getSeconds();
+        sendStartTime = startHours + ":" + startMinutes + ":" + startSeconds;
+        console.log(sendStartTime);
+      }
     else //If there IS a timer running...
     {
        if (cards[flipCard].isEnabled) //If the card clicked has a timer running
@@ -236,8 +254,16 @@ $('.card').click(function()
            cards[flipCard].isEnabled = false; //That specific card is not running anymore.
            //MAKE THE AJAX CALL
            //
+           var date2 = new Date();
+           endHours = date2.getHours();
+           endMinutes = date2.getMinutes();
+           endSeconds = date.getSeconds();
+           sendEndTime = endHours + ":" + endMinutes + ":" + endSeconds;
+           console.log(sendEndTime);
+           ajaxCallSendTime(sendStartTime, sendEndTime, cards[flipCard].operation_id, 2335);
            $(appendString).flip(false); //Flip the card back.
            clearAllCards(flipCard);
+
          }
          else
          {
@@ -271,6 +297,26 @@ function ajaxCallNFC(){
             nfcArray.push(String( brace.nfc_hex));
             console.log(nfcArray);
         });
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  })
+};
+
+function ajaxCallSendTime(startTime, endTime, action_id, provider_id){
+
+  var today = new Date();
+  today = today.toISOString().substring(0, 10);
+
+  $.ajax({
+      type: 'POST',
+      
+      url: baseUrl + '/general/insert/Action_Performed/'+String(action_id)+'/10/2/' + String(startTime) + '/' + String(endTime) + '/' + String(provider_id) + '/' + String(today),
+      //url: baseUrl + 'general/insert/Action_Performed/' + String(action_id) + '/10/1/' + String(startTime) + '/' + String(endTime) + '/2290/' + String(today)
+      success: function(data) {
+        console.log("successful!" + startTime + " " + endTime);
+
       },
       error: function (xhr, status, error) {
           console.log('Error: ' + error.message);
