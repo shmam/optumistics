@@ -555,13 +555,13 @@ function select_ActiveNFCProvider(req, res)
 }
 
 function select_dup_flag_color_id(req,res) {
-	cn.query("SELECT flag_color_id FROM Actions GROUP BY flag_color_id HAVING ( COUNT(*) > 1 )", function(err,data) {
+	cn.query("SELECT flag_color_id FROM Actions WHERE status_id=74 GROUP BY flag_color_id HAVING ( COUNT(*) > 1 )", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
 		}
 		else {
-			res.send("success");
+			res.jsonp(data);
 		}
 	});
 }
