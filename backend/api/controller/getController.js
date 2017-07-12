@@ -566,6 +566,21 @@ function select_dup_flag_color_id(req,res) {
 	});
 }
 
+function select_provider_id_by_NFC(req,res){
+	cn.query("SELECT act.provider_id AS provider_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM ActivatedNFC_Provider act, NFC_Bracelet nfc WHERE nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"'", function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});
+}
+
 
 module.exports = {
     getTimeEachDoctor_RT,
@@ -598,5 +613,6 @@ module.exports = {
 	select_patient_wait_time,
 	select_Flag_Color,
 	select_ActiveNFCProvider,
-	select_dup_flag_color_id
+	select_dup_flag_color_id,
+	select_provider_id_by_NFC
 }

@@ -92,6 +92,9 @@ module.exports = function(app) {
 
     app.route('/dashboard/verification/nfc')
         .get(selectAPI.select_ActiveNFCProvider)
+    
+    app.route('/dashboard/verification/provider/:nfc_hex')
+        .get(selectAPI.select_provider_id_by_NFC)
 
     app.route('/portal/checkDuplicate/Actions/flag_color_id')
         .get(selectAPI.select_dup_flag_color_id)
