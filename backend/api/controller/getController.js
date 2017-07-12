@@ -613,5 +613,6 @@ module.exports = {
 	select_patient_wait_time,
 	select_Flag_Color,
 	select_ActiveNFCProvider,
-	select_dup_flag_color_id
+	select_dup_flag_color_id,
+	select_provider_id_by_NFC
 }
