@@ -97,24 +97,23 @@ function w3_close()
         success: function(data)
         {
           console.log(data)
-          $.each(data, function(i, brace)
-          { //Get every entry in the NFC db that are PROVIDERS
-            console.log(brace)
+        
+  
             document.getElementById('NPSLoad2').style.display = 'none';
             document.getElementById('avgWaitTime').style.display = "block";
-            if (brace > waitTimeBench)
+            if (Math.round(data) > waitTimeBench)
             {
               document.getElementById('avgWaitTime').style.border = "10px solid red";
             }
             else{
               document.getElementById('avgWaitTime').style.border = "10px solid green";
             }
-            $('#patientWT').text(brace);
+            $('#patientWT').text(Math.round(data));
 
             $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
 
 
-          });
+         
         },
         error: function (xhr, status, error) {
           console.log("error here")

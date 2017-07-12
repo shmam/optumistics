@@ -1,3 +1,4 @@
+var action_clicked;
 $(document).ready(function(){
 
     /* click button to open/close sidebar */
@@ -33,11 +34,14 @@ $(document).ready(function(){
     $.ajax({ // get the available flag color name
         type: 'GET',
         dataType: 'jsonp',
-        url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
         success: function(data) {
             $.each(data, function(i, brace)
             {
                 $("#flag-color-dropdown").append("<option id=" +brace.flag_color_id +">"+ brace.flag_color_name + "</option>");
+                $('#available-color').append("<svg height='80' width='80'>" 
+                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>" // append circle
+                                    +"</svg><br>");
             });
             document.getElementById("color-display").style.backgroundColor = data[0].flag_color_name;
         },
@@ -62,8 +66,8 @@ $(document).ready(function(){
         var action_duration = $("#exp-duration-input").val();
         $.ajax({ // post actions
             type: "POST",
-            url: "http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
-            +button_label + '/' +action_duration +'/75/NULL',
+            url: "http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
+            +button_label + '/' +action_duration +'/74/NULL',
             success: function (insert_status) {
                 if(insert_status == "Unsuccessful insertion into Actions table. Action name must be unique.") // check for unique action name
                 {
@@ -85,20 +89,21 @@ $(document).ready(function(){
         document.getElementById("color-display").style.backgroundColor = $("#flag-color-dropdown option:selected").text();
     }) // change the color of color-display as you click on different color name
 
-    $.ajax({ // get + show action control area (name+circle+slider)
+    $.ajax({ // get + show action control area (name + circle + slider)
         type: 'GET',
         dataType: 'jsonp',
         async: false,
-        url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
             $.each(data, function(i, brace) {
                 $('#action-control-area').append("<div id=div_" +brace.action_id +">"); // append action div tag
                 $('#div_'+brace.action_id).append("<b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>"); // append action name
                 $('#div_'+brace.action_id).append("<svg height='80' width='80'>" 
-                                        +"<circle class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
+                                        +"<circle onclick=\"update_flag_color("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>" // append circle
                                     +"</svg><br>");
-                $('#div_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>");
-                $('#switch_'+brace.action_id).append("<input onclick=\"update_flag("+brace.action_id+")\" id=_"+brace.action_id +" type='checkbox'>");
+                $('#div_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>"); // next 4 lines = append round slider
+                $('#switch_'+brace.action_id).append("<input onclick=\"update_action_status("+brace.action_id+")\" id=_"+brace.action_id +" type='checkbox'>");
+                update_check(brace.status_id,brace.action_id);
                 $('#switch_'+brace.action_id).append("<div id=switch_"+brace.action_id +" class='slider round'></div>");
                 $('#div_'+brace.action_id).append("</label>");
                 $('#action-control-area').append("</div>");
@@ -109,15 +114,33 @@ $(document).ready(function(){
         },
     });
 
+    $('#update-flag-button-close').click(function() {
+        div_hide_update();
+    })
+
 }); // end of document.ready function
 
-function update_flag(action_id) {
+function update_check(status_id,action_id) {
+    if(status_id == 74) {
+        $('#_'+action_id).prop('checked', true);
+    }
+    else {
+        $('#_'+action_id).prop('checked', false);
+    }
+}
+
+function alertalert(a,b) {
+    alert(a)
+    alert(b)
+}
+
+function update_action_status(action_id) { // if slider = on, update action status_id to 74, and if slider = off, update action status_id to 75
     if ($('#_' + action_id).is(':checked') == true) {
         $.ajax({
             type: "POST",
-            url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/on/' + action_id,
+            url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/on/' + action_id,
             success: function (data) {
-
+                window.location.reload();
             },
             error: function (shr, status, error) {
                 console.log('Error: ' + error.message);
@@ -127,9 +150,9 @@ function update_flag(action_id) {
     if ($('#_' + action_id).is(':checked') == false) {
         $.ajax({
             type: "POST",
-            url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/general/update/flag_status/off/' + action_id,
+            url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/off/' + action_id,
             success: function (data) {
-
+                window.location.reload();
             },
             error: function (shr, status, error) {
                 console.log('Error: ' + error.message);
@@ -138,18 +161,47 @@ function update_flag(action_id) {
     }
 }
 
-function w3_open() {
+function update_flag_color(action_id) {
+    if ($('#_' + action_id).is(':checked') == true) {
+        action_clicked = action_id;
+        div_show_update();
+    }
+    else {
+        alert("Cannot update flag color because Action is inactive.");
+    }
+}
+function update_flag_color_02(flag_color_id) {
+    $.ajax({
+        type: "POST",
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/gneral/update/flag_color/'+action_clicked +'/'+flag_color_id,
+        success: function(data) {
+            window.location.reload();
+            div_hide_update();
+        },
+        error: function (shr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+    });
+}
+
+function w3_open() { // sidebar open
     document.getElementById("main").style.marginLeft = "18%";
     document.getElementById("mySidebar").style.width = "18%";
     document.getElementById("mySidebar").style.display = "block";
 }
-function w3_close() {
+function w3_close() { // sidebar close
     document.getElementById("main").style.marginLeft = "0%";
     document.getElementById("mySidebar").style.display = "none";
 }
-function div_show() {
+function div_show() { // popup window show
     document.getElementById('flag-registration').style.display = "block";
 }
-function div_hide(){
+function div_hide(){ // popup window hide
     document.getElementById('flag-registration').style.display = "none";
+}
+function div_show_update() { // update-flag-color popup window show
+    document.getElementById('update-flag-color').style.display = "block";
+}
+function div_hide_update(){ // update-flag-color popup window hide
+    document.getElementById('update-flag-color').style.display = "none";
 }
