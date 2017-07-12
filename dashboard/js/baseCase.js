@@ -109,6 +109,9 @@ function allowAccess(hexCode)
       }
     }
     if(validCard){
+      
+      
+      ajaxCallGetProviderId(hexCode);
       closeNav()
     }
     else{
@@ -260,7 +263,7 @@ $('.card').click(function()
            endSeconds = date.getSeconds();
            sendEndTime = endHours + ":" + endMinutes + ":" + endSeconds;
            console.log(sendEndTime);
-           ajaxCallSendTime(sendStartTime, sendEndTime, cards[flipCard].operation_id, 2335);
+           ajaxCallSendTime(sendStartTime, sendEndTime, cards[flipCard].operation_id, sessionStorage.getItem("current_provider_id"));
            $(appendString).flip(false); //Flip the card back.
            clearAllCards(flipCard);
 
@@ -311,6 +314,7 @@ function ajaxCallSendTime(startTime, endTime, action_id, provider_id){
 
   $.ajax({
       type: 'POST',
+      jsonpCallback: 'callback',
       
       url: baseUrl + '/general/insert/Action_Performed/'+String(action_id)+'/10/2/' + String(startTime) + '/' + String(endTime) + '/' + String(provider_id) + '/' + String(today),
       //url: baseUrl + 'general/insert/Action_Performed/' + String(action_id) + '/10/1/' + String(startTime) + '/' + String(endTime) + '/2290/' + String(today)
@@ -323,3 +327,19 @@ function ajaxCallSendTime(startTime, endTime, action_id, provider_id){
       },
   })
 };
+
+function ajaxCallGetProviderId(hexcode){
+  $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: baseUrl + '/dashboard/verification/provider/' + hexcode,
+      success: function(data) {
+	sessionStorage.setItem("current_provider_id",data[0].provider_id);
+
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  })
+
+}
