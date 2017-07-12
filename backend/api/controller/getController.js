@@ -144,7 +144,7 @@ function getTimeAllDoctorsDates_C(req,res){
 			dataArr.push(data1);
 
 		}
-		res.send(dataArr)
+		res.jsonp(dataArr)
 	});
 	
          
