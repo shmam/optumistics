@@ -135,6 +135,7 @@ function getTimeAllDoctorsDates_C(req,res){
 	   var dataArr=[];
 
 	   sync.fiber(function(){
+		   console.log("inside here");
 		for(var i=start_month;i<end_month+1;i++){
 			var start= req.params.start_date.substring(1,5)+"-"+String(i)+"-01"
 	   		var end= req.params.end_date.substring(1,5)+"-"+String(i)+"-31"
