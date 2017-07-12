@@ -93,6 +93,8 @@ module.exports = function(app) {
     app.route('/dashboard/verification/nfc')
         .get(selectAPI.select_ActiveNFCProvider)
 
+   
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes
