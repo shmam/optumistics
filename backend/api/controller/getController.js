@@ -551,8 +551,19 @@ function select_ActiveNFCProvider(req, res)
 		{
 			res.jsonp(data);
 		}
+	});  
+}
+
+function select_dup_flag_color_id(req,res) {
+	cn.query("SELECT flag_color_id FROM Actions GROUP BY flag_color_id HAVING ( COUNT(*) > 1 )", function(err,data) {
+		if(err) {
+			console.log(err);
+			res.send(err);
+		}
+		else {
+			res.send("success");
+		}
 	});
-   
 }
 
 
@@ -586,5 +597,6 @@ module.exports = {
 	select_Average_NPS,
 	select_patient_wait_time,
 	select_Flag_Color,
-	select_ActiveNFCProvider
+	select_ActiveNFCProvider,
+	select_dup_flag_color_id
 }
