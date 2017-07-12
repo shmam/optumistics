@@ -1,20 +1,24 @@
+/** this file handles the javascript aspect of the registry page */
+
+
+/** global variables */
 var $appointmentID;
 var thisShit;
 //Function To Display Popup
+/** retrieves data from the backend for all of the drop down boxes when the page is loaded */
 $( document ).ready(function(){
-  $.ajax({
 
+  /** populates the drop down menu in the 'start appointment' page with patient names with appointments in the future of the current day */
+  $.ajax({
     type: 'GET',
     dataType: 'jsonp',
     url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Appointments', //Connect to db
       success: function(bracelets) {
 
       $.each(bracelets, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-
-        $("#patientSignUp").append("<option class='swag3' id=" +brace.appointment_id +" value = " + i + ">"+ brace.patient_first_name + " " + brace.patient_last_name + "</option>");
-
-
+      {
+        //displays patient first and last name in drop down menu while storing the appointment id for each name
+        $("#patientSignUp").append("<option id=" +brace.appointment_id +" value = " + i + ">"+ brace.patient_first_name + " " + brace.patient_last_name + "</option>");
       });
     },
     error: function (xhr, status, error) {
@@ -23,13 +27,15 @@ $( document ).ready(function(){
 
 });
 
+//populates the drop down menu in the 'provider NFC registration' page with available NFC ids
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
     url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/NFC_Bracelet/provider',
     success: function(data) {
       $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
+      {
+        //displays available nfc ids in the drop down from the backend db
         $("#available-nfc").append("<option value = " + i + ">"+ brace.nfc_id + "</option>");
       });
     },
@@ -38,15 +44,16 @@ $.ajax({
     },
 });
 
-
+//populates the drop down in the 'provider registration' page with provider types
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
     url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Person_Type',
     success: function(data) {
       $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#person-type").append("<option class='swag' id=" +brace.person_type_id +" value = " + i + ">"+ brace.person_type_name + "</option>");
+      {
+        //displays all the available provider types (ma, nurse, doctor) in the drop down menu and stores the corresponding person type ID
+        $("#person-type").append("<option id=" +brace.person_type_id +" value = " + i + ">"+ brace.person_type_name + "</option>");
       });
     },
     error: function (xhr, status, error) {
@@ -54,14 +61,16 @@ $.ajax({
     },
 });
 
+//populates the drop down menu in the 'provider NFC registration' window with unassigned provider first and last names
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
     url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Provider/name',
     success: function(data) {
       $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
-        $("#provider-id").append("<option class='swag' id=" +brace.provider_id +" value = " + i + ">"+ brace.provider_first_name + " " + brace.provider_last_name + "</option>");
+      {
+        //displays the first and last name of all providers with no NFC assigned to them and stores the corresponding provider id for each option
+        $("#provider-id").append("<option id=" +brace.provider_id +" value = " + i + ">"+ brace.provider_first_name + " " + brace.provider_last_name + "</option>");
       });
     },
     error: function (xhr, status, error) {
@@ -69,13 +78,15 @@ $.ajax({
     },
 });
 
+//poulates the drop down box in the 'new appointment' page with different appointment type names
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
     url: 'http://optumistics-dev.us-east-1.elasticbeanstalk.com/portal/present/Appointment_Type/name',
     success: function(data) {
       $.each(data, function(i, brace)
-      { //Get every entry in the NFC db that are PROVIDERS
+      {
+        //displays the various appointment types as options in the drop down and stores the corresponding appointment type id
         $("#appointment_appointment_type_id").append("<option class='swag2' id=" +brace.appointment_type_id +" value = " + i + ">"+ brace.appointment_name + "</option>");
       });
     },
