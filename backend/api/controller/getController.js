@@ -129,14 +129,14 @@ function getTimeAllDoctorsDates_C(req,res){
 		
        var start_month=parseInt(req.params.end_date.substring(6,8));
 	   var end_month=parseInt(req.params.start_date.substring(6,8));
-	   console.log(arrLength);
+
 	   var monthArr=[];
 	   var dataArr=[];
 
 	   sync.fiber(function(){
 		for(var i=start_month;i<end_month+1;i++){
-			var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-01"
-	   		var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-31"
+			var start= req.params.start_date.substring(1,5)+"-"+String(i)+"-01"
+	   		var end= req.params.end_date.substring(1,5)+"-"+String(i)+"-31"
 			var data1 = sync.await(cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+start+"' AND '"+end+"') AND action_id = "+req.params.action_id, sync.defer()));
 			console.log(data1);
 			dataArr.push(data1);
