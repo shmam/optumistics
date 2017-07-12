@@ -129,8 +129,6 @@ function getTimeAllDoctorsDates_C(req,res){
 		
        var start_month=parseInt(req.params.end_date.substring(6,8));
 	   var end_month=parseInt(req.params.start_date.substring(6,8));
-	   var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-01"
-	   var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-31"
 	   console.log(arrLength);
 	   var monthArr=[];
 	   var dataArr=[];
