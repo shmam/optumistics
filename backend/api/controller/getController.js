@@ -126,17 +126,33 @@ function getTimeEachDoctorDates_C(req,res){
 //get average time taken on action performed for specific tasks for all doctors (comprehensive)
 function getTimeAllDoctorsDates_C(req,res){
     if(req.params.action_id != null && req.params.start_date != null && req.params.end_date != null){
-       
-		cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+req.params.start_date+"' AND '"+req.params.end_date+"') AND action_id = "+req.params.action_id, function(err,data){
-			if (err){
-				console.log(err);
-				res.send(err);
-			}
-			else{
-				console.log(data)
-				res.jsonp(data)
-			}
-		})
+		
+       var start_month=parseInt(req.params.end_date.substring(6,8));
+	   var end_month=parseInt(req.params.start_date.substring(6,8));
+	   var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-01"
+	   var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-31"
+	   console.log(arrLength);
+	   var monthArr=[];
+	   var dataArr=[];
+
+	   sync.fiber(function(){
+		for(var i=start_month;i<end_month+1;i++){
+			var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-01"
+	   		var start= req.params.end_date.substring(1,5)+"-"+String(i)+"-31"
+			var data1 = sync.await(cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+start+"' AND '"+end+"') AND action_id = "+req.params.action_id, sync.defer()));
+			dataArr.push(data1);
+			test=data1[0].time1-data2[0].time2
+			console.log(i)
+			wait_time+=	test;
+			beep+=1;
+
+	
+		}
+		console.log("FINAL WAIT TIME:  "+wait_time);
+		console.log("FINAL BEEP:  "+beep);
+		res.jsonp(wait_time/beep);
+	});
+	
          
     }
 
