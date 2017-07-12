@@ -144,9 +144,7 @@ function getTimeAllDoctorsDates_C(req,res){
 			dataArr.push(data1);
 
 		}
-		console.log("FINAL WAIT TIME:  "+wait_time);
-		console.log("FINAL BEEP:  "+beep);
-		res.jsonp(wait_time/beep);
+		res.send(dataArr)
 	});
 	
          
