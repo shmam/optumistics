@@ -127,8 +127,8 @@ function getTimeEachDoctorDates_C(req,res){
 function getTimeAllDoctorsDates_C(req,res){
     if(req.params.action_id != null && req.params.start_date != null && req.params.end_date != null){
 		console.log("we made it to the method");
-       var start_month=parseInt(req.params.end_date.substring(6,8));
-	   var end_month=parseInt(req.params.start_date.substring(6,8));
+       var start_month=parseInt(req.params.start_date.substring(6,8));
+	   var end_month=parseInt(req.params.end_date.substring(6,8));
 	   console.log(start_month);
 	   console.log(end_month);
 	   var monthArr=[];
