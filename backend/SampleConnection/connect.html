@@ -98,9 +98,9 @@ $.ajax({
         //crossDomain:true,
         success: function(friends) {
           console.log(friends)
+          console.log(friends[2])
           
           //returns all of johnbob's friends
-          console.log(friends[0].provider_last_name);
 
           $.each(friends, function(i, friend){
             $friends.append(friend.provider_last_name);
