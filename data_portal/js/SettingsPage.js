@@ -96,16 +96,17 @@ $(document).ready(function(){
         url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
             $.each(data, function(i, brace) {
-                $('#action-control-area').append("<div id=div_" +brace.action_id +">"); // append action div tag
-                $('#div_'+brace.action_id).append("<b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>"); // append action name
+                $('#action-control-area').append("<div class='card' id=div_" +brace.action_id +">"); // append action div tag
+                $('#div_'+brace.action_id).append("<br/><b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>"); // append action name
                 $('#div_'+brace.action_id).append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"update_flag_color("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>" // append circle
+                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>" // append circle
                                     +"</svg><br>");
-                $('#div_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>"); // next 4 lines = append round slider
+                $('#div_'+brace.action_id).append("<div id=container_"+brace.action_id +" class=\"container\"></div>");
+                $('#container_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>"); // next 4 lines = append round slider
                 $('#switch_'+brace.action_id).append("<input onclick=\"update_action_status("+brace.action_id+")\" id=_"+brace.action_id +" type='checkbox'>");
                 update_check(brace.status_id,brace.action_id);
                 $('#switch_'+brace.action_id).append("<div id=switch_"+brace.action_id +" class='slider round'></div>");
-                $('#div_'+brace.action_id).append("</label>");
+                $('#container_'+brace.action_id).append("</label>");
                 $('#action-control-area').append("</div>");
             });
         },
@@ -120,6 +121,7 @@ $(document).ready(function(){
 
 }); // end of document.ready function
 
+// If status = active, change slider = on. If status = inactive, change slider = off
 function update_check(status_id,action_id) {
     if(status_id == 74) {
         $('#_'+action_id).prop('checked', true);
@@ -129,30 +131,26 @@ function update_check(status_id,action_id) {
     }
 }
 
-function alertalert(a,b) {
-    alert(a)
-    alert(b)
-}
-
-function update_action_status(action_id) { // if slider = on, update action status_id to 74, and if slider = off, update action status_id to 75
-    if ($('#_' + action_id).is(':checked') == true) {
+// AJAX CALL: if slider = on, update action status_id to 74, and if slider = off, update action status_id to 75
+function update_action_status(action_id) {
+    if ($('#_' + action_id).is(':checked') == true) { // slider with action_id = on
         $.ajax({
             type: "POST",
             url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/on/' + action_id,
             success: function (data) {
-                window.location.reload();
+                window.location.reload(); // reload the page
             },
             error: function (shr, status, error) {
                 console.log('Error: ' + error.message);
             },
         });
     }
-    if ($('#_' + action_id).is(':checked') == false) {
+    if ($('#_' + action_id).is(':checked') == false) { // slider with action_id = off
         $.ajax({
             type: "POST",
             url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/off/' + action_id,
             success: function (data) {
-                window.location.reload();
+                window.location.reload(); //reload the page
             },
             error: function (shr, status, error) {
                 console.log('Error: ' + error.message);
@@ -161,8 +159,9 @@ function update_action_status(action_id) { // if slider = on, update action stat
     }
 }
 
-function update_flag_color(action_id) {
-    if ($('#_' + action_id).is(':checked') == true) {
+// SHOW update flag color popup window 
+function show_update_flag_color_screen(action_id) {
+    if ($('#_' + action_id).is(':checked') == true) { // slider with action_id = on
         action_clicked = action_id;
         div_show_update();
     }
@@ -170,13 +169,15 @@ function update_flag_color(action_id) {
         alert("Cannot update flag color because Action is inactive.");
     }
 }
+
+// AJAX call to update the Action's Flag Color
 function update_flag_color_02(flag_color_id) {
     $.ajax({
         type: "POST",
         url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/gneral/update/flag_color/'+action_clicked +'/'+flag_color_id,
         success: function(data) {
-            window.location.reload();
-            div_hide_update();
+            window.location.reload(); // reload the page
+            div_hide_update(); // close the popup window
         },
         error: function (shr, status, error) {
             console.log('Error: ' + error.message);
@@ -184,24 +185,35 @@ function update_flag_color_02(flag_color_id) {
     });
 }
 
-function w3_open() { // sidebar open
+// SHOW sidebar
+function w3_open() {
     document.getElementById("main").style.marginLeft = "18%";
     document.getElementById("mySidebar").style.width = "18%";
     document.getElementById("mySidebar").style.display = "block";
 }
-function w3_close() { // sidebar close
+
+// HIDE sidebar
+function w3_close() {
     document.getElementById("main").style.marginLeft = "0%";
     document.getElementById("mySidebar").style.display = "none";
 }
-function div_show() { // popup window show
+
+// SHOW flag-registration popip window
+function div_show() {
     document.getElementById('flag-registration').style.display = "block";
 }
-function div_hide(){ // popup window hide
+
+// HIDE flag-registration popip window
+function div_hide(){
     document.getElementById('flag-registration').style.display = "none";
 }
-function div_show_update() { // update-flag-color popup window show
+
+// SHOW update-flag-color popup window
+function div_show_update() {
     document.getElementById('update-flag-color').style.display = "block";
 }
-function div_hide_update(){ // update-flag-color popup window hide
+
+// HIDE update-flag-color popup window
+function div_hide_update(){
     document.getElementById('update-flag-color').style.display = "none";
 }
