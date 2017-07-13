@@ -85,6 +85,35 @@
     <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
     <br/>
 
+  <!-- end of main content div -->
+  </div>
+
+    <!-- start appointment button -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="div_show()"><span class="glyphicon glyphicon-pencil"></span> &nbsp; start appointment</button>
+    </div>
+
+    <!-- add new appointment button -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_appt()"><span class="glyphicon glyphicon-calendar" style="margin-top: 30px;"></span> &nbsp; add new appointment</button>
+    </div>
+
+    <!-- add new provider -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div()"><span class="glyphicon glyphicon-save-file"></span> &nbsp; add new provider</button>
+    </div>
+
+    <!-- add new patient -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div5()"><span class="glyphicon glyphicon-plus"></span> &nbsp; add new patient</button>
+    </div>
+
+    <!-- provider NFC registration -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_nfc()"><span class="glyphicon glyphicon-bed" style="margin-top: 30px;"> </span> &nbsp;&nbsp; provider NFC registration</button>
+    </div>
+    <!-- end of main container div -->
+    </div>
 
   <!-- div that contains the start appointment popup screen -->
   <div id="abc">
@@ -146,33 +175,6 @@
     </div>
 
 
-<!-- start appointment button -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="div_show()"><span class="glyphicon glyphicon-pencil"></span> &nbsp; start appointment</button>
-</div>
-
-<!-- add new appointment button -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_appt()"><span class="glyphicon glyphicon-calendar" style="margin-top: 30px;"></span> &nbsp; add new appointment</button>
-</div>
-
-<!-- add new provider -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div()"><span class="glyphicon glyphicon-save-file"></span> &nbsp; add new provider</button>
-</div>
-
-<!-- add new patient -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div5()"><span class="glyphicon glyphicon-plus"></span> &nbsp; add new patient</button>
-</div>
-
-<!-- provider NFC registration -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_nfc()"><span class="glyphicon glyphicon-bed" style="margin-top: 30px;"> </span> &nbsp;&nbsp; provider NFC registration</button>
-</div>
-
-  <!-- end of main content div -->
-  </div>
 
   <!-- start of provider registration div -->
   <div id="abc2">
@@ -498,8 +500,7 @@
 <!-- end of popup div -->
 </div>
 
-<!-- end of main container div -->
-</div>
+
 
 <!-- references the js sheet -->
 <script src="js/registry.js"></script>
