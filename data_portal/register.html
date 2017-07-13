@@ -73,7 +73,7 @@
         <button class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
 
         <!-- displays Optum logo in header -->
-        <img src="optum1.jpg" alt="optum" style="width:250px;height:80px;">
+        <img src="img/optum1.jpg" alt="optum" style="width:250px;height:80px;">
 
       <!-- end of header div -->
       </div>
@@ -85,6 +85,35 @@
     <hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
     <br/>
 
+  <!-- end of main content div -->
+  </div>
+
+    <!-- start appointment button -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="div_show()"><span class="glyphicon glyphicon-pencil"></span> &nbsp; start appointment</button>
+    </div>
+
+    <!-- add new appointment button -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_appt()"><span class="glyphicon glyphicon-calendar" style="margin-top: 30px;"></span> &nbsp; add new appointment</button>
+    </div>
+
+    <!-- add new provider -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div()"><span class="glyphicon glyphicon-save-file"></span> &nbsp; add new provider</button>
+    </div>
+
+    <!-- add new patient -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div5()"><span class="glyphicon glyphicon-plus"></span> &nbsp; add new patient</button>
+    </div>
+
+    <!-- provider NFC registration -->
+    <div>
+      <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_nfc()"><span class="glyphicon glyphicon-bed" style="margin-top: 30px;"> </span> &nbsp;&nbsp; provider NFC registration</button>
+    </div>
+    <!-- end of main container div -->
+    </div>
 
   <!-- div that contains the start appointment popup screen -->
   <div id="abc">
@@ -96,7 +125,7 @@
     <div id = "newWindow" class = "animated zoomIn">
       <div id = "wrapper">
         <button id = "button-close" onclick ="div_hidex()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
-        <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+        <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
         <h1 style = "color: #ffffff; text-align: center;">start appointment</h1>
       <!-- end of header div -->
       </div>
@@ -146,33 +175,6 @@
     </div>
 
 
-<!-- start appointment button -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="div_show()"><span class="glyphicon glyphicon-pencil"></span> &nbsp; start appointment</button>
-</div>
-
-<!-- add new appointment button -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_appt()"><span class="glyphicon glyphicon-calendar" style="margin-top: 30px;"></span> &nbsp; add new appointment</button>
-</div>
-
-<!-- add new provider -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div()"><span class="glyphicon glyphicon-save-file"></span> &nbsp; add new provider</button>
-</div>
-
-<!-- add new patient -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444" onclick="show_div5()"><span class="glyphicon glyphicon-plus"></span> &nbsp; add new patient</button>
-</div>
-
-<!-- provider NFC registration -->
-<div>
-  <button class="w3-panel w3-card cardcolor w3-xxlarge w3-hover-opacity" style="text-shadow:1px 1px 0 #444"  onclick="show_nfc()"><span class="glyphicon glyphicon-bed" style="margin-top: 30px;"> </span> &nbsp;&nbsp; provider NFC registration</button>
-</div>
-
-  <!-- end of main content div -->
-  </div>
 
   <!-- start of provider registration div -->
   <div id="abc2">
@@ -186,7 +188,7 @@
       <!-- exit button on the popup window -->
       <button id = "button-close" onclick ="hide_divx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
       <!-- header -->
-      <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+      <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
       <h1 style = "color: #ffffff; text-align: center;">provider registration</h1>
 
     <!-- end of header div -->
@@ -268,7 +270,7 @@
     <!-- 'x' button for popup -->
     <button id = "button-close" onclick ="hide_nfcx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
     <!-- popup header -->
-    <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+    <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">provider NFC registration</h1>
     <!-- end of popup header -->
   </div>
@@ -320,7 +322,7 @@
     <!-- popup close button -->
     <button id = "button-close" onclick ="hide_apptx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
     <!-- popup header -->
-    <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+    <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">new appointment</h1>
   <!-- end of popup header div -->
   </div>
@@ -464,7 +466,7 @@
     <!-- popup close button -->
     <button id = "button-close" onclick ="hide_divx5()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
     <!-- popup header -->
-    <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+    <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
     <h1 style = "color: #ffffff; text-align: center;">patient registration</h1>
   <!-- end of popup header -->
   </div>
@@ -498,8 +500,7 @@
 <!-- end of popup div -->
 </div>
 
-<!-- end of main container div -->
-</div>
+
 
 <!-- references the js sheet -->
 <script src="js/registry.js"></script>

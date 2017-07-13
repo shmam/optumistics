@@ -105,7 +105,7 @@
     #flag-registration {
         width:100%;
         height:100%;
-        opacity:.9;
+        opacity:0.9;
         top:0;
         left:0;
         display:none;
@@ -117,7 +117,7 @@
     #update-flag-color {
         width:100%;
         height:100%;
-        opacity:.9;
+        opacity:.95;
         top:0;
         left:0;
         display:none;
