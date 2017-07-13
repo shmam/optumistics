@@ -26,7 +26,7 @@ var ctx2 = document.getElementById("myPieChart").getContext("2d"); //Bar graph i
 var currentChart; //Default selection for the dropdown in order to navigate which LINE GRAPH, the user would want.
 var currentPieChart; //Default selection for the dropdown in order to navigate which BAR GRAPH, the user would want.
 var isFirst = true;
-var waitTimeBench = 35; //Benchmark patient wait time.
+var waitTimeBench = 45; //Benchmark patient wait time.
 
 /*
   --------------------------------------------END of GLOBAL VARIABLES--------------------------------------
@@ -63,7 +63,7 @@ function w3_close()
     /*
       The following jQuery functions automatically loads when the page runs.
     */
-  $( document ).ready(function()
+  $(document).ready(function()
   {
     //The following AJAX call gets all the name of providers and displays it in the provider drop down....
     $.ajax({
@@ -74,6 +74,9 @@ function w3_close()
           $.each(data, function(i, brace)
           { //Get every entry in the NFC db that are PROVIDERS
             $("#providerDropDown").append("<option class='swag' id=" +brace.provider_id +" value = " + i + ">"+ brace.provider_first_name + " " + brace.provider_last_name + "</option>");
+            $("#chartType").append("<option class='providers' value = line" + i + ">"+ brace.provider_first_name + " " + brace.provider_last_name + "</option>");
+            updateChart();
+
           });
         },
         error: function (xhr, status, error) {
@@ -97,8 +100,8 @@ function w3_close()
         success: function(data)
         {
           console.log(data)
-        
-  
+
+
             document.getElementById('NPSLoad2').style.display = 'none';
             document.getElementById('avgWaitTime').style.display = "block";
             if (Math.round(data) > waitTimeBench)
@@ -113,7 +116,7 @@ function w3_close()
             $('#avgWaitTime').append("</br><span style = \"font-size: 24px;\">MINUTES</span>");
 
 
-         
+
         },
         error: function (xhr, status, error) {
           console.log("error here")
@@ -131,8 +134,8 @@ function w3_close()
           { //Get every entry in the NFC db that are PROVIDERS
 
             document.getElementById('NPSLoad').style.display = "none";
-            $('#NPS').html("<strong>" + brace.average + "</strong>");
-            $('#NPS').append("<p>/10</p>")
+            $('#NPS').html('<strong style="font-size:130px;">' + Math.round(brace.average * 10)/10 + '</strong>');
+            $('#NPS').append('<p style="font-weight:200">/10</p>')
             document.getElementById('NPS').style.display = "block";
 
 
@@ -185,11 +188,13 @@ function w3_close()
         url: baseUrl + '/portal/average/time/' + id,
         success: function(data)
         {
-          
+
           $.each(data, function(i,brace)
           { //Get every entry in the NFC db that are PROVIDERS
-              $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + brace.time + " minutes </li>");
-              benchmark.push(brace.time);
+
+                $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + Math.round(brace.time * 10)/10 + " minutes </li>");
+                benchmark.push(Math.round(brace.time * 10)/10);
+
             });
         },
         error: function (xhr, status, error) {
@@ -204,14 +209,15 @@ function w3_close()
           type: 'GET',
           dataType: 'jsonp',
           contentType: 'application/x-www-form-urlencoded',
-          jsonpCallback: 'callback', 
+          jsonpCallback: 'callback',
           url: baseUrl + '/portal/average/time/' + operation_id + '/' + provider_id,
           success: function(data) {
             $.each(data, function(i,brace)
             { //Get every entry in the NFC db that are PROVIDERS
               //console.log(operationString[j][1]);
-                $("#averages").append("<li>" + " <strong>" + operation_name + " </strong>: " + brace.time + " minutes" + compareMe(brace.time, benchmark[iteration]) + "</li>");
-
+              if( brace.time !== null){
+                $("#averages").append("<li>" + " <strong>" + operation_name + " </strong> " + Math.round(brace.time * 10)/10 + " minutes" + compareMe(Math.round(brace.time * 10)/10, benchmark[iteration]) + "</li>");
+              }
             });
           },
           error: function (xhr, status, error) {
@@ -248,14 +254,14 @@ function w3_close()
       'line': { //Variable that correlates to the dropdown variable
         method: 'Line', //Type of graph for "Chart.js"(*)
            data: {
-             labels: ["January", "February", "March", "April", "May", "June", "July", "August"], //X-Axis Data(*)
+              labels: [""],//X-Axis Data(*)
              datasets: [{
                label: "My First dataset",
                fillColor: "rgba(0,0,0,0)",
                strokeColor: "#3748ac",
                pointColor : "#fff",
                pointStrokeColor : "#FF8153",
-               data: [14, 23, 27, 44, 44, 53, 12, 50] //Y-Axis Data(*)
+               data: [0] //Y-Axis Data(*)
                },
                {
                  label: "My second dataset",
@@ -263,12 +269,35 @@ function w3_close()
                  strokeColor: "rgba(255, 102, 0, 0.2)",
                  pointColor : "#fff",
                  pointStrokeColor : "#000",
-                 data: [6, 54, 12, 58, 82, 53, 15, 44]
+
 
                }],
            }
       },
-      'line2': {
+      'line0': { //Variable that correlates to the dropdown variable
+        method: 'Line', //Type of graph for "Chart.js"(*)
+           data: {
+             labels: ["April", "May", "June","July"], //X-Axis Data(*)
+             datasets: [{
+               label: "My First dataset",
+               fillColor: "rgba(0,0,0,0)",
+               strokeColor: "#3748ac",
+               pointColor : "#fff",
+               pointStrokeColor : "#FF8153",
+               data: [14, 44, 44, 53, 12, 50] //Y-Axis Data(*)
+               },
+               {
+                 label: "My second dataset",
+                 fillColor: "rgba(0,0,0,0)",
+                 strokeColor: "rgba(255, 102, 0, 0.2)",
+                 pointColor : "#fff",
+                 pointStrokeColor : "#000",
+                 data: [6, 54, 82, 53, 15, 44]
+
+               }],
+           }
+      },
+      'line1': {
         method: 'Line', //Type of graph for "Chart.js"(*)
         data: {
           labels: ["January", "February", "March", "April", "May", "June", "July", "August"], //X-Axis Data(*)
@@ -282,7 +311,7 @@ function w3_close()
           }, ],
         }
       },
-      'line3': {
+      'line2': {
         method: 'Bar', //Type of graph for "Chart.js"(*)
         data: {
           labels: ["January", "February", "March", "April", "May", "June", "July"], //X-Axis Data(*)
@@ -310,12 +339,12 @@ function w3_close()
        'pie': {
          method: 'Bar', //Type of graph for "Chart.js" (*)
          data: {
-           labels: ["January", "February", "March", "April", "May", "June", "July"], //X Axis Data (*)
+           labels: [ "April", "May", "June", "July"], //X Axis Data (*)
                datasets: [{
                    label: 'Dataset 1',
                    fillColor: "rgba(243, 156, 18, 0.4)",
                    borderWidth: 1,
-                   data: [14, 20, 15, 10, 1, 5, 6], //Y Axis Data (*)
+                   data: [14, 20, 15, 10], //Y Axis Data (*)
                  }]
                }
              },
