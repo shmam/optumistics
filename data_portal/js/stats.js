@@ -153,7 +153,7 @@ function w3_close()
   //This function gives the different stats when a new provider is selected in the drop down menu.
   $("#providerDropDown").change(function()
   {
-
+      $('#chartType').empty();
       optionSelected = $("#providerDropDown option:selected").attr('id'); //This is the provider ID of the option selected, for the URL in the AJAX call....
       //alert(optionSelected);
       $("#averages").empty(); //Empty the list so it refreshes instead of append.
@@ -169,6 +169,19 @@ function w3_close()
         }
       }
     });
+
+    $("#chartType").change(function()
+    {
+        $('#operationType').empty();
+        optionSelected = $("#chartType option:selected").attr('id'); //This is the provider ID of the option selected, for the URL in the AJAX call....
+        //alert(optionSelected);
+        for (var i = 0; i < operationString.length; i++) //This for loop calls ajaxCallAverageTime to append all the average times of all doctors.
+        {
+            console.log("We are on this element" + i + " and we are about to add this to the list: " + operationString[i][1]);
+            $("#operationType").append("<option class='hello' value = line" + i + ">" + operationString[i][1] + "</option>");
+        }
+        updateChart();
+      });
     /*
       -------------------------------------------END OF JQUERY FUNCTIONS---------------------------------------------
     */
@@ -204,7 +217,8 @@ function w3_close()
   }
 
   //This function is a helper function for when you select a new provider in the drop down for providers.
-    function ajaxCallIndiDoctor(operation_id, operation_name, provider_id,iteration){
+    function ajaxCallIndiDoctor(operation_id, operation_name, provider_id, iteration)
+    {
       $.ajax({  //This ajax call will get the average times for all operations of the provider selected
           type: 'GET',
           dataType: 'jsonp',
@@ -254,24 +268,36 @@ function w3_close()
       'line': { //Variable that correlates to the dropdown variable
         method: 'Line', //Type of graph for "Chart.js"(*)
            data: {
-              labels: [""],//X-Axis Data(*)
-             datasets: [{
+              labels: ["January", "February", "March", "April", "May", "June", "July"],//X-Axis Data(*)
+             datasets: [
+               {
                label: "My First dataset",
                fillColor: "rgba(0,0,0,0)",
                strokeColor: "#3748ac",
                pointColor : "#fff",
                pointStrokeColor : "#FF8153",
-               data: [0] //Y-Axis Data(*)
+               data: [14, 44, 62, 42, 39, 50, 15] //Y-Axis Data(*)
                },
                {
                  label: "My second dataset",
                  fillColor: "rgba(0,0,0,0)",
-                 strokeColor: "rgba(255, 102, 0, 0.2)",
+                 strokeColor: "rgba(255, 102, 0, 1.0)",
                  pointColor : "#fff",
                  pointStrokeColor : "#000",
+                 data:[18, 47, 59, 44, 44, 91, 43]
 
 
-               }],
+               },
+               {
+                 label: "My third dataset",
+                 fillColor: "rgba(0,0,0,0)",
+                 strokeColor: "rgba(46, 204, 113, 1.0)",
+                 pointColor : "#fff",
+                 pointStrokeColor : "#000",
+                   data:[17, 41, 64, 39, 40, 64, 13]//Y-Axis Data(*)
+
+               },
+             ],
            }
       },
       'line0': { //Variable that correlates to the dropdown variable
@@ -285,16 +311,8 @@ function w3_close()
                pointColor : "#fff",
                pointStrokeColor : "#FF8153",
                data: [14, 44, 44, 53, 12, 50] //Y-Axis Data(*)
-               },
-               {
-                 label: "My second dataset",
-                 fillColor: "rgba(0,0,0,0)",
-                 strokeColor: "rgba(255, 102, 0, 0.2)",
-                 pointColor : "#fff",
-                 pointStrokeColor : "#000",
-                 data: [6, 54, 82, 53, 15, 44]
-
-               }],
+               }
+             ],
            }
       },
       'line1': {
@@ -312,17 +330,35 @@ function w3_close()
         }
       },
       'line2': {
-        method: 'Bar', //Type of graph for "Chart.js"(*)
+        method: 'Line', //Type of graph for "Chart.js"(*)
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"], //X-Axis Data(*)
-              datasets: [{
-                  label: 'Dataset 1',
-                  fillColor: "rgba(243, 156, 18, 0.4)",
-                  borderWidth: 1,
-                  data: [14, 20, 15, 10, 1, 5, 6], //Y-Axis Data(*)
+          labels: ["January", "February", "March", "April", "May", "June", "July", "August"], //X-Axis Data(*)
+          datasets: [{
+            label: "My First dataset",
+            fillColor: "rgba(0,0,0,0)",
+            strokeColor: "#3748ac",
+            pointColor : "#fff",
+            pointStrokeColor : "#FF8153",
+            data: [15, 78, 53, 63, 94, 11, 12, 8] //Y-Axis Data(*)
+          }, ],
+        }
+      },
+      'line3': {
+        method: 'Line', //Type of graph for "Chart.js"(*)
+        data: {
+          labels: ["January", "February", "March", "April", "May", "June", "July", "August"], //X-Axis Data(*)
+          datasets: [{
+            label: "My First dataset",
+            fillColor: "rgba(0,0,0,0)",
+            strokeColor: "#3748ac",
+            pointColor : "#fff",
+            pointStrokeColor : "#FF8153",
+            data: [17, 64, 78, 36, 27, 53, 75, 75] //Y-Axis Data(*)
+          }, ],
+        }
+      }
 
-        }]
-    }}};
+  };
 
       /*
         -------------------------------------------END of LINE GRAPH DATA---------------------------------------------
@@ -408,14 +444,14 @@ function w3_close()
               currentChart.destroy();
             }
 
-            var determineChart = $("#chartType").val(); //Find the value of the option selected from the dropdown menu.
+            var determineChart = $("#operationType").val(); //Find the value of the option selected from the dropdown menu.
 
             var params = dataMap[determineChart]  //Find which data corresponds to the value of the option selected.
             currentChart = new Chart(ctx)[params.method](params.data, {}); //Make a new graph.
             document.getElementById("myChart").style.width = "95%"; //Changes the size of the grpah due to some weird HTML bug...
             document.getElementById("myChart").style.height = "77%"; //Changes the size of the graph due to some weird HTML bug...
         }
-        $('#chartType').on('change', updateChart) //When the selection is changed do this.
+        $('#operationType').on('change', updateChart) //When the selection is changed do this.
         updateChart(); //Do this
         /*
             1.) End of LINE GRAPH UPDATE
@@ -436,7 +472,7 @@ function w3_close()
             var determinePieChart = $("#chartPieType").val(); //Find the value of the option selected from the dropdown menu.
             var params1 = dataMap2[determinePieChart] //Find which data cooresponds to the value of the option selected.
             currentPieChart = new Chart(ctx2)[params1.method](params1.data, {}); //Make a new graph.
-            document.getElementById("myPieChart").style.width = "95%"; //Changes the size of the graph due to some weird HTML bug...
+            document.getElementById("myPieChart").style.width = "90%"; //Changes the size of the graph due to some weird HTML bug...
             document.getElementById("myPieChart").style.height = "74%"; //Changes the size of the graph due to some weird HTML bug...
           }
           $('#chartPieType').on('change', updatePieChart) //When the selection is changed do this.
