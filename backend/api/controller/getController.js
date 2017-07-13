@@ -419,6 +419,8 @@ function select_current_appointments(req,res){
 	
 }
 
+
+
 //get activated NFC patients
 
 function select_activated_NFC_Patients(req,res){
@@ -572,6 +574,23 @@ function select_ActiveNFCProvider(req, res)
 	});  
 }
 
+function select_ActiveNFCPatient(req, res)
+{
+ 
+	cn.query("SELECT nfc.nfc_hex, act.nfc_id FROM NFC_Bracelet nfc, ActivatedNFC_Patient act WHERE nfc.nfc_id=act.nfc_id", function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});  
+}
+
 function select_dup_flag_color_id(req,res) {
 	cn.query("SELECT flag_color_id FROM Actions WHERE status_id=74 GROUP BY flag_color_id HAVING ( COUNT(*) > 1 )", function(err,data) {
 		if(err) {
@@ -598,6 +617,23 @@ function select_provider_id_by_NFC(req,res){
 		}
 	});
 }
+
+function select_patient_id_by_NFC(req,res){
+	cn.query("SELECT act.appointment_id AS appointment_id, a.patient_id AS patient_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM Appointment a , ActivatedNFC_Patient act, NFC_Bracelet nfc WHERE nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"' AND a.appointment_id= act.appointment_id", function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});
+}
+
+
 
 
 module.exports = {
@@ -631,6 +667,9 @@ module.exports = {
 	select_patient_wait_time,
 	select_Flag_Color,
 	select_ActiveNFCProvider,
+	select_ActiveNFCPatient,
 	select_dup_flag_color_id,
-	select_provider_id_by_NFC
+	select_provider_id_by_NFC,
+	select_patient_id_by_NFC
+	
 }
