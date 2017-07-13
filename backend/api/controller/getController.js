@@ -146,7 +146,7 @@ function getTimeAllDoctorsDates_C(req,res){
 				if(data1[0].time==null){
 					data1=0;
 				}else{
-					data1=data[0].time;
+					data1=data1[0].time;
 				}
 				console.log("THIS IS THE REAL DATA: " +data1);
 				dataArr.push(data1);
