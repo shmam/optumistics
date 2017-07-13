@@ -151,14 +151,15 @@ $('#create_appointment').click(function() {
       var expected_start_time = $('#appointment_start_time_hr').val() + ":" + $('#appointment_start_time_min').val(); // getting Appointment Start Time val()
     }
 
-    if(document.getElementById('am_pm_end').value == 'pm')
+    /**if(document.getElementById('am_pm_end').value == 'pm')
     {
       var end_int = parseInt($('#appointment_end_time_hr').val());
       var appointment_end_time = (12 + end_int) + ":" + $('#appointment_end_time_min').val();
     }
     else {
       var appointment_end_time = $('#appointment_end_time_hr').val() + ":" + $('#appointment_end_time_min').val(); // getting Appointment End Time val()
-    }
+    }*/
+    var appointment_end_time = null;
     var appointment_patient_id = $("#appointment_patient_id option:selected").attr("id"); // getting Appointment Patient ID val()
     var appointment_appointment_type_id = $("#appointment_appointment_type_id option:selected").attr('id'); // getting Appointment Type ID val(). If null, type in null.
     var appointment_status_id = 74; // getting Appointment Status ID val()
