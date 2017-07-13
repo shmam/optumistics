@@ -27,6 +27,9 @@ var currentChart; //Default selection for the dropdown in order to navigate whic
 var currentPieChart; //Default selection for the dropdown in order to navigate which BAR GRAPH, the user would want.
 var isFirst = true;
 var waitTimeBench = 45; //Benchmark patient wait time.
+var avgBloodDrawAllDoc = [];
+var avgInjectionAllDoc = [];
+var testArray = [0,0,0,0,14,0,10];
 
 /*
   --------------------------------------------END of GLOBAL VARIABLES--------------------------------------
@@ -147,6 +150,61 @@ function w3_close()
         },
     });
 
+    //The following ajax call gets the average blood draw time for the clinic
+    $.ajax({
+        type: 'GET',
+        dataType: 'jsonp',
+        url: baseUrl + '/portal/average/time/133/2017-01-01/2017-07-01',
+
+
+        success: function(data)
+        {
+          console.log(data);
+          for(var i=0; i <data.length; i++)
+          {
+            avgBloodDrawAllDoc.push(data[i]);
+            // if(avgBloodDrawAllDoc[i] === testArray[i])
+            //   console.log("true");
+            // else {
+            //   console.log("false");
+            // }
+
+          }
+          updateChart();
+
+          for(var i = 0; i < data.length; i++)
+          {
+            console.log(avgBloodDrawAllDoc[i] == testArray[i]);
+          }
+          console.log(avgBloodDrawAllDoc);
+
+        },
+        error: function (xhr, status, error) {
+
+            console.log('Error: ' + error.message);
+        },
+    });
+
+    //The following ajax call gets the average injection time for the clinic
+    $.ajax({
+        type: 'GET',
+        dataType: 'jsonp',
+        url: baseUrl + '/portal/average/time/137/2017-01-01/2017-07-01',
+        contentType: 'application/x-www-form-urlencoded',
+        jsonpCallback: 'callback',
+        success: function(data)
+        {
+          console.log(data);
+          avgInjectionAllDoc = data;
+          console.log(avgInjectionAllDoc);
+          console.log(testArray);
+        },
+        error: function (xhr, status, error) {
+
+            console.log('Error: ' + error.message);
+        },
+    });
+
 
   });
 
@@ -172,6 +230,7 @@ function w3_close()
 
     $("#chartType").change(function()
     {
+
         $('#operationType').empty();
         optionSelected = $("#chartType option:selected").attr('id'); //This is the provider ID of the option selected, for the URL in the AJAX call....
         //alert(optionSelected);
@@ -179,8 +238,11 @@ function w3_close()
         {
             console.log("We are on this element" + i + " and we are about to add this to the list: " + operationString[i][1]);
             $("#operationType").append("<option class='hello' value = line" + i + ">" + operationString[i][1] + "</option>");
+            console.log("BLOOD ARRAY IS" + avgBloodDrawAllDoc);
+            console.dir("BENCHMARK IS" + benchmark);
         }
         updateChart();
+
       });
     /*
       -------------------------------------------END OF JQUERY FUNCTIONS---------------------------------------------
@@ -276,7 +338,7 @@ function w3_close()
                strokeColor: "#3748ac",
                pointColor : "#fff",
                pointStrokeColor : "#FF8153",
-               data: [14, 44, 62, 42, 39, 50, 15] //Y-Axis Data(*)
+               data: avgBloodDrawAllDoc  //Y-Axis Data(*)
                },
                {
                  label: "My second dataset",
@@ -284,7 +346,7 @@ function w3_close()
                  strokeColor: "rgba(255, 102, 0, 1.0)",
                  pointColor : "#fff",
                  pointStrokeColor : "#000",
-                 data:[18, 47, 59, 44, 44, 91, 43]
+                 data: avgInjectionAllDoc
 
 
                },
@@ -294,7 +356,7 @@ function w3_close()
                  strokeColor: "rgba(46, 204, 113, 1.0)",
                  pointColor : "#fff",
                  pointStrokeColor : "#000",
-                   data:[17, 41, 64, 39, 40, 64, 13]//Y-Axis Data(*)
+                   data: testArray//Y-Axis Data(*)
 
                },
              ],
@@ -304,14 +366,24 @@ function w3_close()
         method: 'Line', //Type of graph for "Chart.js"(*)
            data: {
              labels: ["April", "May", "June","July"], //X-Axis Data(*)
-             datasets: [{
+             datasets: [
+               {
                label: "My First dataset",
                fillColor: "rgba(0,0,0,0)",
                strokeColor: "#3748ac",
                pointColor : "#fff",
                pointStrokeColor : "#FF8153",
-               data: [14, 44, 44, 53, 12, 50] //Y-Axis Data(*)
-               }
+               data: avgInjectionAllDoc //Y-Axis Data(*)
+             },
+
+               {
+                 label: "My Second dataset",
+                 fillColor: "rgba(0,0,0,0)",
+                 strokeColor: "#3748ac",
+                 pointColor : "#fff",
+                 pointStrokeColor : "#FF8153",
+                 data: [20, 41, 50, 39, 40, 64, 13] //Y-Axis Data(*)
+               },
              ],
            }
       },
@@ -452,6 +524,7 @@ function w3_close()
             document.getElementById("myChart").style.height = "77%"; //Changes the size of the graph due to some weird HTML bug...
         }
         $('#operationType').on('change', updateChart) //When the selection is changed do this.
+        console.log("this is the blood" + avgBloodDrawAllDoc);
         updateChart(); //Do this
         /*
             1.) End of LINE GRAPH UPDATE
