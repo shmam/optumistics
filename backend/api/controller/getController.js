@@ -143,8 +143,10 @@ function getTimeAllDoctorsDates_C(req,res){
 				console.log("Start date"+start);
 				console.log("End date"+ end);
 				var data1 = sync.await(cn.query("SELECT AVG(TIMESTAMPDIFF(minute,start_time, end_time)) AS time FROM Action_Performed WHERE (action_date BETWEEN '"+start+"' AND '"+end+"') AND action_id = "+req.params.action_id, sync.defer()));
-				if(data1==null){
+				if(data1[0].time==null){
 					data1=0;
+				}else{
+					data1=data[0].time
 				}
 				console.log("THIS IS THE REAL DATA: " +data1);
 				dataArr.push(data1);
