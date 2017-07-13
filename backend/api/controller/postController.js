@@ -484,6 +484,28 @@ function update_Flag_Color(req,res) {
 	});
 }
 
+function end_appointment(req,res){
+	
+	if(req.params.isPatient=="true"){
+		var today = new Date();
+		today= today.toISOString().substring(11, 19);
+		cn.query("UPDATE Appointment SET end_time='"+today+"' WHERE appointment_id="+ req.params.appointment_id, function(err,data) {
+			if(err) {
+				console.log(err);
+				res.send(err);
+			}
+			else {
+				res.jsonp(data);
+			}
+		});
+	}else{
+		res.send("exit");
+	}
+
+	
+	
+}
+
 
 module.exports = {
 	insert_Person_Type,
@@ -503,5 +525,6 @@ module.exports = {
 	insert_Action_Performed,
 	update_Flag_Status_Off,
 	update_Flag_Status_On,
-	update_Flag_Color
+	update_Flag_Color,
+	end_appointment
 }

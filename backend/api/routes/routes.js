@@ -93,11 +93,17 @@ module.exports = function(app) {
     app.route('/dashboard/verification/nfc')
         .get(selectAPI.select_ActiveNFCProvider)
     
+    app.route('/dashboard/verification/nfc/patient')
+        .get(selectAPI.select_ActiveNFCPatient)
+    
     app.route('/dashboard/verification/provider/:nfc_hex')
         .get(selectAPI.select_provider_id_by_NFC)
 
     app.route('/portal/checkDuplicate/Actions/flag_color_id')
         .get(selectAPI.select_dup_flag_color_id)
+
+    app.route('/dashboard/verification/patient/:nfc_hex')
+        .get(selectAPI.select_patient_id_by_NFC)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -154,6 +160,9 @@ module.exports = function(app) {
     app.route('/general/update/flag_status/off/:action_id')
         .post(insertAPI.update_Flag_Status_Off)
 
-    app.route('/gneral/update/flag_color/:action_id/:flag_color_id')
+    app.route('/general/update/flag_color/:action_id/:flag_color_id')
         .post(insertAPI.update_Flag_Color)
+    
+    app.route('/general/update/appointment_end_time/:appointment_id/:isPatient')
+        .post(insertAPI.end_appointment)
 }
