@@ -634,7 +634,7 @@ function select_provider_id_by_NFC(req,res){
 }
 
 function select_patient_id_by_NFC(req,res){
-	cn.query("SELECT act.appointment_id AS appointment_id, a.patient_id AS patient_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM Appointment a , ActivatedNFC_Patient act, NFC_Bracelet nfc WHERE nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"' AND a.appointment_id= act.appointment_id", function(err,data)
+	cn.query("SELECT act.appointment_id AS appointment_id, a.patient_id AS patient_id, pi.patient_first_name as patient_first_name, pi.patient_last_name as patient_last_name, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM Appointment a , ActivatedNFC_Patient act, NFC_Bracelet nfc, Patient_Information pi WHERE nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"' AND a.appointment_id= act.appointment_id AND a.patient_id=pi.patient_id", function(err,data)
 	{
 		if(err)
 		{
