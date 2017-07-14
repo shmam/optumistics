@@ -44,7 +44,8 @@ $(document).ready(function(){
                 // append to the dropdown menu
                 $("#flag-color-dropdown").append("<option id=" +brace.flag_color_id +">"+ brace.flag_color_name + "</option>");
                 // next three lines = append available color circle for update action color purposes
-                $('#available-color').append("<svg height='80' width='80'>" 
+                $('#available-color').append("<div class='col-md-1' id=div_" +brace.flag_color_id +"></div>");
+                $('#div_'+brace.flag_color_id).append("<svg height='80' width='80'>" 
                                         +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
                                     +"</svg><br>");
             });
@@ -190,7 +191,7 @@ function show_update_flag_color_screen(action_id) {
 function update_flag_color_02(flag_color_id) {
     $.ajax({
         type: "POST",
-        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/gneral/update/flag_color/'+action_clicked +'/'+flag_color_id,
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_color/'+action_clicked +'/'+flag_color_id,
         success: function(data) {
             window.location.reload(); // reload the page
             div_hide_update(); // close the popup window
