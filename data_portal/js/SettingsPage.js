@@ -1,4 +1,6 @@
+// variable to save action clicked id
 var action_clicked;
+
 $(document).ready(function(){
 
     /* click button to open/close sidebar */
@@ -31,18 +33,23 @@ $(document).ready(function(){
         div_hide();
     }); // end of button-close click function (close popup window from 'x')
 
-    $.ajax({ // get the available flag color name
+    // AJAX CALL: get all the available color 
+    $.ajax({
         type: 'GET',
         dataType: 'jsonp',
         url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/portal/present/Flag_Color/name',
         success: function(data) {
             $.each(data, function(i, brace)
             {
+                // append to the dropdown menu
                 $("#flag-color-dropdown").append("<option id=" +brace.flag_color_id +">"+ brace.flag_color_name + "</option>");
+                // next three lines = append available color circle for update action color purposes
                 $('#available-color').append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>" // append circle
+                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
                                     +"</svg><br>");
             });
+
+            // set the color-display background color to the first available color so that it shows up on popup window
             document.getElementById("color-display").style.backgroundColor = data[0].flag_color_name;
         },
         error: function (xhr, status, error) {
@@ -50,7 +57,8 @@ $(document).ready(function(){
         },
     }); //end of ajax call
 
-    $('#submitFlag').click(function() { // submit the action and put it in the actions table
+    // Submit the action and put all the info in the Actions Table
+    $('#submitFlag').click(function() {
         if(document.getElementById('action-name-input').value == "") { // check for empty action name
             alert("Please enter an action name");
         }
@@ -61,10 +69,11 @@ $(document).ready(function(){
             alert("Please enter an expected duration for this action");
         }
         var action_name = $('#action-name-input').val();
-        var action_flag_color_id = $("#flag-color-dropdown option:selected").attr("id");
+        var action_flag_color_id = $("#flag-color-dropdown option:selected").attr("id"); //get the id value for the selected dropdown menu
         var button_label = $("#button-label-input").val(); 
         var action_duration = $("#exp-duration-input").val();
-        $.ajax({ // post actions
+        // AJAX CALL: post the action to the Actions Table
+        $.ajax({
             type: "POST",
             url: "http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/insert/Actions/" +action_name +'/' +action_flag_color_id +'/'
             +button_label + '/' +action_duration +'/74/NULL',
@@ -74,7 +83,7 @@ $(document).ready(function(){
                     alert("Action name must be unique, please choose another action name and try again.");
                 }
                 else {
-                    $("#insert_status").append("Successful Insertion of Action</br>");
+                    alert("Action Successfully Added");
                     window.location.reload();
                     div_hide();
                 }
@@ -85,24 +94,29 @@ $(document).ready(function(){
         });
     }) // end of submitFlag click function
 
+    // change the color of color-display as you click on different color name
     $("#flag-color-dropdown").change(function() {
         document.getElementById("color-display").style.backgroundColor = $("#flag-color-dropdown option:selected").text();
-    }) // change the color of color-display as you click on different color name
+    })
 
-    $.ajax({ // get + show action control area (name + circle + slider)
+    // AJAX CALL: get all actions and show them on the action control area div tag (name + circle w/ color + slider)
+    $.ajax({
         type: 'GET',
         dataType: 'jsonp',
-        async: false,
         url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/dashboard/present/actions',
         success: function(data) {
             $.each(data, function(i, brace) {
-                $('#action-control-area').append("<div class='card' id=div_" +brace.action_id +">"); // append action div tag
-                $('#div_'+brace.action_id).append("<br/><b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>"); // append action name
+                // append div_action_id tag for each action
+                $('#action-control-area').append("<div class='col-md-1' id=div_" +brace.action_id +">");
+                // append action name for each action
+                $('#div_'+brace.action_id).append("<br/><b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>");
+                // next 2 lines = making circles with chosen color for each action
                 $('#div_'+brace.action_id).append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>" // append circle
-                                    +"</svg><br>");
+                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>");
+                // append a div tag for container_action_id for each action
                 $('#div_'+brace.action_id).append("<div id=container_"+brace.action_id +" class=\"container\"></div>");
-                $('#container_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>"); // next 4 lines = append round slider
+                // next 6 lines = append round slider + end div tag
+                $('#container_'+brace.action_id).append("<label id=switch_"+brace.action_id +" class='switch'>");
                 $('#switch_'+brace.action_id).append("<input onclick=\"update_action_status("+brace.action_id+")\" id=_"+brace.action_id +" type='checkbox'>");
                 update_check(brace.status_id,brace.action_id);
                 $('#switch_'+brace.action_id).append("<div id=switch_"+brace.action_id +" class='slider round'></div>");
@@ -115,6 +129,8 @@ $(document).ready(function(){
         },
     });
 
+
+    // SHOW update-flag-color popup window
     $('#update-flag-button-close').click(function() {
         div_hide_update();
     })
@@ -206,6 +222,7 @@ function div_show() {
 // HIDE flag-registration popip window
 function div_hide(){
     document.getElementById('flag-registration').style.display = "none";
+    $('input').val(""); // clear all field when close the popup window
 }
 
 // SHOW update-flag-color popup window
