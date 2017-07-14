@@ -131,6 +131,7 @@ function getTimeEachDoctorDates_C(req,res){
 				console.log("THIS IS THE REAL DATA: " +data1);
 				dataArr.push(data1);
 
+//comment
 			}
 			res.jsonp(dataArr);
 		});
