@@ -104,6 +104,9 @@ module.exports = function(app) {
 
     app.route('/dashboard/verification/patient/:nfc_hex')
         .get(selectAPI.select_patient_id_by_NFC)
+    
+    app.route('/portal/present/wait_time/:start_date/:end_date')
+        .get(selectAPI.get_patient_wait_time_C)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
