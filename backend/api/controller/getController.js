@@ -534,7 +534,7 @@ function select_patient_wait_time(req, res)
 	var test=0;
 	var appointment_ids=[];
 	sync.fiber(function(){
-		var ids = sync.await(cn.query("SELECT appointment_id FROM Appointment WHERE appointment_date = '"+req.date+"'", sync.defer()));
+		var ids = sync.await(cn.query("SELECT appointment_id FROM Appointment WHERE appointment_date = '"+req.params.date+"'", sync.defer()));
 		for(var i=0;i<ids.length;i++){
 			appointment_ids.push(ids[0].appointment_id);
 		}
