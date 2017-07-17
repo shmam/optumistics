@@ -168,7 +168,7 @@ function getTimeAllDoctorsDates_C(req,res){
 
 			}
 			res.jsonp(dataArr);
-	});
+		});
 	
          
     }
@@ -675,14 +675,17 @@ function get_patient_wait_time_C(req,res){
 			for(var j=0;j<data1.length;j++){
 				
 				var diff = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+data1[j].appointment_id, sync.defer()));
+				console.log(diff[0].time1+ " start to end appointment");
 				var sum = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+data1[j].appointment_id, sync.defer()));
+				console.log(sum[0].time2+ " sum of start to end appointment actions");
 				test=diff[0].time1-sum[0].time2;
+				console.log("difference: "+ test)
 				wait_time+=	test;
 				beep+=1;
 				
 			}
 
-			
+			console.log(wait_time/beep +" final push");
 			dataArr.push(wait_time/beep);
 
 		}
