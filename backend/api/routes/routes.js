@@ -84,7 +84,7 @@ module.exports = function(app) {
     app.route('/portal/present/Flag_Color/name')
         .get(selectAPI.select_Flag_Color)
 
-    app.route('/portal/present/patientWaitTime')
+    app.route('/portal/present/patientWaitTime/:date')
         .get(selectAPI.select_patient_wait_time)
 
     app.route('/portal/present/npsScore')
