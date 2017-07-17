@@ -30,7 +30,7 @@ module.exports = function(app) {
     app.route('/portal/present/providers/:status_name')
         .get(selectAPI.select_active_providers)// get all providers
 
-    app.route('/portal/present/duration/:action_name')
+    app.route('/portal/present/duration/:action_id')
         .get(selectAPI.select_expected_duration) // get all expected durations for each task
 
     app.route('/portal/add/time/:provider_id')
