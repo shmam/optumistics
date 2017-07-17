@@ -8,6 +8,7 @@ var nfcHex = null;
 var popupFlag = false;
 var nfcArray = [];
 var validCard = false;
+var isPolling = false;
 ///////////////////////////////////////////////////////////////////////
 var startHours;
 var startMinutes;
@@ -87,36 +88,42 @@ function openSocket(){
 
 function showData(result){
   //when the server returns, record the result
-  console.log(result.data)
+  
   if(!popupFlag){
     nfcHex = result.data;
-    allowAccess(nfcHex);
+    if(isPolling){
+        allowAccess(nfcHex);
+    }
   }
+  console.log(isPolling);
 
 }
 
 function allowAccess(hexCode)
 {
+  console.log("Allow Access!");
   hexCode = hexCode.substring(1,20);
-  var vaildCard = false;
-  if(nfcHex !== null){
-    console.log(hexCode)
-    for(var i = 0; i < nfcArray.length; i++){
+  var validCard = false;
+  
+  if(hexCode !== null)
+   {
+    for(var i = 0; i < nfcArray.length; i++)
+     {
       if(hexCode === nfcArray[i]){
-        console.log("card validated")
         validCard = true;
         break;
       }
+	
     }
+	
     if(validCard){
       
-      
       ajaxCallGetProviderId(hexCode);
-      closeNav()
+      closeNav();
     }
     else{
       popupFlag = true;
-      var r = confirm("this NFC Card is not valid")
+      var r = confirm("this NFC Card is not valid");
       popupFlag = false;
     }
   }
@@ -184,6 +191,7 @@ $(".callB").click(function(){
 function openNav(number)
 {
   //timeDisplayed = 1;
+  isPolling = true;
 
 
   if (cardRunning === false)
@@ -218,7 +226,7 @@ function openNav(number)
 }
 function closeNav()
 {
-
+    isPolling = false;
     document.getElementById("myNav").style.height = "0%";
 
 }
@@ -287,6 +295,8 @@ $(".card").flip(
 $(document).ready(function()
 {
   ajaxCallNFC();
+  document.getElementById('name_div').innerHTML = sessionStorage.getItem("patient_name")
+
 });
 
 function ajaxCallNFC(){
@@ -334,6 +344,7 @@ function ajaxCallGetProviderId(hexcode){
       dataType: 'jsonp',
       url: baseUrl + '/dashboard/verification/provider/' + hexcode,
       success: function(data) {
+	console.log(data[0].provider_id);
 	sessionStorage.setItem("current_provider_id",data[0].provider_id);
 
       },
@@ -343,3 +354,23 @@ function ajaxCallGetProviderId(hexcode){
   })
 
 }
+
+function endAppointment() {
+   if(sessionStorage.getItem("current_appointment_id") !== '0'){
+  	
+  	$.ajax({
+   	   type: 'POST',
+   	   jsonpCallback: 'callback',
+   	   
+   	   url: baseUrl + '/general/update/appointment_end_time/' + sessionStorage.getItem("current_appointment_id") +"/true",
+   	   success: function(data) {
+   	     console.log("updated appointment id yeet");
+	
+    	  },
+    	  error: function (xhr, status, error) {
+     	     console.log('Error: ' + error.message);
+     	 },
+  	})
+   }
+   window.location.href = "landingpage.html";
+} 
