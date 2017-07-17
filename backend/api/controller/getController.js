@@ -131,7 +131,7 @@ function getTimeEachDoctorDates_C(req,res){
 				console.log("THIS IS THE REAL DATA: " +data1);
 				dataArr.push(data1);
 
-//comment
+
 			}
 			res.jsonp(dataArr);
 		});
@@ -532,10 +532,16 @@ function select_patient_wait_time(req, res)
 	var wait_time = 0;
 	var beep = 0;
 	var test=0;
+	var appointment_ids=[];
 	sync.fiber(function(){
-		for(var i=33;i<50;i++){
-			var data1 = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+i, sync.defer()));
-			var data2 = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+i, sync.defer()));
+		var ids = sync.await(cn.query("SELECT appointment_id FROM Appointment WHERE appointment_date = '"+req.date+"'", sync.defer()));
+		for(var i=0;i<ids.length;i++){
+			appointment_ids.push(ids[0].appointment_id);
+		}
+
+		for(var i=0;i<appointment_ids.length;i++){
+			var data1 = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+appointment_ids[i], sync.defer()));
+			var data2 = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+appointment_ids[i], sync.defer()));
 			console.log("DATA 1:"+ data1[0].time1)
 			console.log("DATA 2:"+ data2[0].time2)
 			test=data1[0].time1-data2[0].time2
@@ -648,6 +654,50 @@ function select_patient_id_by_NFC(req,res){
 	});
 }
 
+function get_patient_wait_time_C(req,res){
+	
+	var start_month=parseInt(req.params.start_date.substring(6,8));
+	var end_month=parseInt(req.params.end_date.substring(6,8));
+
+	var dataArr=[];
+
+	sync.fiber(function(){
+		for(var i=start_month;i<(end_month+1);i++){
+			var wait_time = 0;
+			var beep = 0;
+			var test=0;
+			var start= req.params.start_date.substring(0,4)+"-"+String(i)+"-01"
+			var end= req.params.end_date.substring(0,4)+"-"+String(i)+"-31"
+			console.log("Start date"+start);
+			console.log("End date"+ end);
+			var data1 = sync.await(cn.query("SELECT appointment_id FROM Appointment WHERE appointment_date between '"+start+"' and '"+end+"'", sync.defer()));
+		
+			for(var i=0;i<data1.length;i++){
+				
+				var diff = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+data1[i].appointment_id, sync.defer()));
+				var sum = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+data1[i].appointment_id, sync.defer()));
+				test=diff[0].time1-sum[0].time2
+				console.log(i)
+				wait_time+=	test;
+				beep+=1;
+				
+			}
+
+			
+			dataArr.push(wait_time/beep);
+
+		}
+
+		res.jsonp(dataArr);
+		
+	});
+
+		
+			
+			
+	
+}
+
 
 
 
@@ -685,6 +735,7 @@ module.exports = {
 	select_ActiveNFCPatient,
 	select_dup_flag_color_id,
 	select_provider_id_by_NFC,
-	select_patient_id_by_NFC
+	select_patient_id_by_NFC,
+	get_patient_wait_time_C
 	
 }
