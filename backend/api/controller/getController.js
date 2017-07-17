@@ -672,12 +672,11 @@ function get_patient_wait_time_C(req,res){
 			console.log("End date"+ end);
 			var data1 = sync.await(cn.query("SELECT appointment_id FROM Appointment WHERE appointment_date between '"+start+"' and '"+end+"'", sync.defer()));
 		
-			for(var i=0;i<data1.length;i++){
+			for(var j=0;j<data1.length;j++){
 				
-				var diff = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+data1[i].appointment_id, sync.defer()));
-				var sum = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+data1[i].appointment_id, sync.defer()));
-				test=diff[0].time1-sum[0].time2
-				console.log(i)
+				var diff = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,start_time, end_time) AS time1 FROM Appointment WHERE appointment_id = "+data1[j].appointment_id, sync.defer()));
+				var sum = sync.await(cn.query("SELECT SUM(TIMESTAMPDIFF(minute,start_time, end_time)) AS time2 FROM Action_Performed WHERE appointment_id = "+data1[j].appointment_id, sync.defer()));
+				test=diff[0].time1-sum[0].time2;
 				wait_time+=	test;
 				beep+=1;
 				
