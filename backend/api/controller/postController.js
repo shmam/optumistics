@@ -70,7 +70,7 @@ function insert_Question(req, res) {
 function insert_Flag_Color(req, res) {
 	if (req.params.flag_color_name != null) {
 
-		cn.query("INSERT INTO Flag_Color (flag_color_name) VALUES ('" + req.params.flag_color_name + "')", function (err, data) {
+		cn.query("INSERT INTO Flag_Color (flag_color_name, flag_hex) VALUES ('" + req.params.flag_color_name + "','"+req.params.flag_hex+"')", function (err, data) {
 			if (err) {
 				console.log(err);
 				res.send(err);

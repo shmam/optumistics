@@ -118,7 +118,7 @@ module.exports = function(app) {
     app.route('/general/insert/Question/:question')
         .post(insertAPI.insert_Question)
 
-    app.route('/general/insert/Flag_Color/:flag_color_name')
+    app.route('/general/insert/Flag_Color/:flag_color_name/:flag_hex')
         .post(insertAPI.insert_Flag_Color)
 
     app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration')

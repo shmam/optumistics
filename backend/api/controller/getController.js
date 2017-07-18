@@ -204,7 +204,7 @@ function select_active_actions(req,res) {
 //select all actions (for settings page)
 function select_all_actions(req,res) {
 	
-	cn.query("SELECT fc.flag_color_name, a.action_id, a.action_name, a.status_id FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
+	cn.query("SELECT fc.flag_color_name, fc.flag_hex a.action_id, a.action_name, a.status_id FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -512,7 +512,7 @@ function select_Appointment_Type_Name(req,res) {
 
 function select_Flag_Color(req,res) {
 
-	cn.query("SELECT fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc LEFT JOIN Actions a ON fc.flag_color_id = a.flag_color_id WHERE (a.flag_color_id IS NULL OR a.flag_color_id='') UNION SELECT fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc, Actions a WHERE fc.flag_color_id = a.flag_color_id AND (a.status_id=75 AND a.flag_color_id NOT IN (SELECT a1.flag_color_id FROM Actions a1 WHERE a1.status_id=74))", function(err,data) {
+	cn.query("SELECT fc.flag_color_id, fc.flag_color_name, fc.flag_hex FROM Flag_Color fc LEFT JOIN Actions a ON fc.flag_color_id = a.flag_color_id WHERE (a.flag_color_id IS NULL OR a.flag_color_id='') UNION SELECT fc.flag_hex, fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc, Actions a WHERE fc.flag_color_id = a.flag_color_id AND (a.status_id=75 AND a.flag_color_id NOT IN (SELECT a1.flag_color_id FROM Actions a1 WHERE a1.status_id=74))", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
