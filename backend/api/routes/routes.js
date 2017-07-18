@@ -174,6 +174,6 @@ module.exports = function(app) {
 
     //Delete Functions Routes
 
-    app.route('delete/Action/:action_id')
-        .delete(insertAPI.delete_Action);
+    app.route('/delete/Action/:action_id')
+        .delete(deleteAPI.delete_Action);
 }
