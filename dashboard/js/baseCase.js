@@ -19,6 +19,8 @@ var endHours;
 var endMinutes;
 var endSeconds;
 var sendEndTime;
+//////////////////////////////////////////////////////////////////////
+var hexArr=[];
 
 /*
   New Object of Card.
@@ -41,6 +43,7 @@ $( document ).ready(function() {
         console.log(friend.flag_hex);
         $("#"+i+" .front").css('background-color', friend.flag_hex);
         $("#"+i+" .back").css('background-color', friend.flag_hex);
+        hexArr.push(friend.flag_hex);
         $("#"+i).show();
         
 
@@ -48,17 +51,7 @@ $( document ).ready(function() {
           $(".vline"+i).show();
         }
       });
-      //  <div class = "w3-col w3-shadow card" hidden id = "1" style = "margin-top: 2%;width: 31%; height: 94%;"> <!-- The first column of the first row -->
-      //       <div class = "front" style = "width: 95%; height: 95%; background: rgba(52, 152, 219, 0.8);">
-      //           <h2 class= "header" style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">VITAL SIGNS</h2> <!--Name of Operation: Vital Signs -->
-      //           <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "1" onclick = "openNav(2)">
-      //       </div>
-      //       <div class = "back" style = "width: 95%; height: 95%; background:rgba(52, 152, 219, 0.8); text-align:center;">
-      //           <span class = "sec" id="seconds1" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
-      //           <span class = "ten" id = "tens1" style = "font-size:  128px;color: #fff">00</span></br>
-          
-      //       </div>
-      //   </div>
+     
             
     
     },
@@ -245,26 +238,26 @@ function openNav(number)
   }
   if (number === 1){
 
-    document.getElementById("myNav").style.background = "rgba(231, 76, 60, 1)";
+    document.getElementById("myNav").style.background = hexArr[0];
   }
   else if (number === 2){
 
-    document.getElementById("myNav").style.background = "rgba(52, 152, 219, 1)";
+    document.getElementById("myNav").style.background = hexArr[1];
   }
   else if (number === 3){
-    document.getElementById("myNav").style.background = "rgba(46, 204, 113, 1)";
+    document.getElementById("myNav").style.background = hexArr[2];
   }
   else if (number === 4)
   {
-    document.getElementById("myNav").style.background = "rgba(155, 89, 182, 1)";
+    document.getElementById("myNav").style.background = hexArr[3];
   }
   else if (number === 5)
   {
-    document.getElementById("myNav").style.background = "rgba(241, 196, 15, 1)";
+    document.getElementById("myNav").style.background = hexArr[4];
   }
   else if (number === 6)
   {
-    document.getElementById("myNav").style.background = "rgba(52, 73, 94, 1)";
+    document.getElementById("myNav").style.background = hexArr[5];
   }
 
 
