@@ -185,7 +185,7 @@ function select_active_actions(req,res) {
 				res.send(err);
 			}
 			else {
-				cn.query("SELECT * FROM Actions WHERE status_id = " +data[0].status_id, function(err,data2) {
+				cn.query("SELECT ac.action_id, ac.flag_color_id, ac.button_label, ac.action_duration, ac.status_id, fc_flag_hex FROM Actions ac, Flag_Color fc WHERE ac.flag_color_id= fc.flag_color_id AND status_id = " +data[0].status_id, function(err,data2) {
 					if(err) {
 						console.log(err);
 						res.send(err);

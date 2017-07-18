@@ -38,7 +38,11 @@ $( document ).ready(function() {
       $.each(friends, function(i, friend){
         console.log(friend.button_label);
         $("#"+i+" .header").text(friend.button_label);
+        console.log(friend.flag_hex);
+        $("#"+i+" .front").css('background-color', friend.flag_hex);
+        $("#"+i+" .back").css('background-color', friend.flag_hex);
         $("#"+i).show();
+        
 
         if((i==0 && friends.length>1) || (i==1 &&friends.length>2) ||(i==3 && friends.length>4) || (i==4 && friends.length>5)){
           $(".vline"+i).show();

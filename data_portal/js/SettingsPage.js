@@ -46,7 +46,7 @@ $(document).ready(function(){
                 // next three lines = append available color circle for update action color purposes
                 $('#available-color').append("<div class='col-md-1' id=div_" +brace.flag_color_id +"></div>");
                 $('#div_'+brace.flag_color_id).append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
+                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_hex +"'/>"
                                     +"</svg><br>");
             });
 
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 $('#div_'+brace.action_id).append("<br/><b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>");
                 // next 2 lines = making circles with chosen color for each action
                 $('#div_'+brace.action_id).append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>");
+                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_hex +"'/>");
                 // append a div tag for container_action_id for each action
                 $('#div_'+brace.action_id).append("<div id=container_"+brace.action_id +" class=\"container\"></div>");
                 // next 6 lines = append round slider + end div tag
