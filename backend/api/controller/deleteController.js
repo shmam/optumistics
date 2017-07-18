@@ -28,5 +28,5 @@ function delete_Action(req, res) {
 
 
 module.exports = {
-	delete_action
+	delete_Action
 }
