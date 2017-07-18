@@ -1,0 +1,222 @@
+<html>
+<head>
+  <script src = "jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+
+
+  <style>
+  @import "http://fonts.googleapis.com/css?family=Raleway";
+  @import url('https://fonts.googleapis.com/css?family=Cabin');
+  body{
+    font-family: 'Cabin', sans-serif;
+  }
+  #verticalLine{
+
+    width: 1px;
+    height: 80%;
+    background-color: silver;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 3.5%;Fph
+
+  }
+
+  #verticalLine2{
+
+    width: 1px;
+    height: 80%;
+    background-color: silver;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+
+  }
+
+
+  .overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay button {
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  align-content: center;
+  font-size: 36px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay button:hover, .overlay button:focus {
+
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+
+@media screen and (max-height: 450px) {
+.overlay {overflow-y: auto;}
+.overlay a {font-size: 20px}
+.overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+}
+
+  }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+</head>   
+
+<body id="body" style="overflow:hidden;">
+
+      <div id="myNav" class="overlay">
+
+        <div class="overlay-content">
+          <button style = "margin-left: 42%;border-radius: 3%;background-color: transparent; border: 2px solid;" onclick = "closeNav()" href="#">Scan NFC</button>
+      </div>
+    </div>
+
+  <div zclass="w3-main" id="main" class = "animated fadeIn">
+
+    <div id = "topBar"> <!-- This div will be the top bar where the optum logo will be -->
+      <img src="img/optum1.jpg" alt="optum" style="margin-left: 41%;width:250px;height:80px;"> <!-- This is the img logo for the Optum sign -->
+    </div>
+
+    <div id="name_div" style="float:left"> Wassup </div>
+    <button style="color:white; background: rgba(231, 76, 60, 0.8); font-size:30px; padding: 5px; float: right; margin-right: 20px; font-weight: 700; " onClick="endAppointment()"> END APPOINTMENT </button> 
+
+    <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
+      <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+
+        <div class = "w3-col w3-shadow card" id = "0" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
+          <div class = "front" style = "width: 95%; height: 95%; background: rgba(231, 76, 60, 0.8);">
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">PHYSICAL</h2> <!--Name of Operation: Physical -->
+
+            <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "0" onclick = "openNav(1)">
+          </div>
+          <div class = "back" style = "width: 95%; height: 95%; background:rgba(231, 76, 60, 0.8); text-align:center;">
+            <span class = "sec" id="seconds0" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+            <span class = "ten" id = "tens0" style = "font-size:  128px;color: #fff">00</span></br>
+            
+          </div>
+        </div>
+
+
+        <div id = "verticalLine" class = "w3-col">  <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+
+        <div class = "w3-col w3-shadow card" id = "1" style = "margin-top: 2%;width: 31%; height: 94%;"> <!-- The first column of the first row -->
+            <div class = "front" style = "width: 95%; height: 95%; background: rgba(52, 152, 219, 0.8);">
+                <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">VITAL SIGNS</h2> <!--Name of Operation: Vital Signs -->
+                <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "1" onclick = "openNav(2)">
+            </div>
+            <div class = "back" style = "width: 95%; height: 95%; background:rgba(52, 152, 219, 0.8); text-align:center;">
+                <span class = "sec" id="seconds1" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+                <span class = "ten" id = "tens1" style = "font-size:  128px;color: #fff">00</span></br>
+          
+            </div>
+        </div>
+        <div id = "verticalLine" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+
+        
+        <div class = "w3-col w3-shadow card" id = "2" style = "margin-top: 2%;width: 31%; height: 94%;"> <!-- The first column of the first row -->
+          <div class = "front" style = "width: 95%; height: 95%; background:rgba(46, 204, 113, 0.8)">
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">BLOOD</h2> <!--Name of Operation: Vital Signs -->
+            <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "2" onclick = "openNav(3)">
+        </div>
+        <div class = "back" style = "width: 95%; height: 95%; background:rgba(46, 204, 113, 0.8); text-align:center;">
+          <span class = "sec" id="seconds2" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+          <span class = "ten" id = "tens2" style = "font-size:  128px;color: #fff">00</span></br>
+
+        
+
+        </div>
+      </div>
+    </div>
+    <hr></br>
+      <div class = "w3-row" id = "secondRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+        <div class = "w3-col w3-shadow card" id = "3" style = "margin-top: -1%;margin-left: 1.5%;width: 31%; height: 94%;"> <!-- The first column of the second row -->
+        <div class = "front" style = "background:rgba(155, 89, 182, 0.8); width: 95%; height: 95%;">
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">OPERATIONS</h2> <!--Name of Operation: Operations -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "3" onclick = "openNav(4)">
+        </div>
+        <div class = "back" style = "width: 95%; height: 95%;background:rgba(155, 89, 182, 0.8); text-align:center;">
+          <span class = "sec" id="seconds3" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+          <span class = "ten" id = "tens3" style = "font-size:  128px;color: #fff">00</span></br>
+
+
+
+        </div>
+      </div>
+        <div id = "verticalLine2" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-col w3-shadow card" id = "4" style = "margin-top: -1%;width: 31%; height: 94%;"> <!-- The second column of the second row -->
+        <div class = "front" style = "background: rgba(241, 196, 15, 0.8); width: 95%; height: 95%;">
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">X-RAY</h2> <!--Name of Operation: X-Ray -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "4" onclick = "openNav(5)">
+        </div>
+        <div class = "back" style = "width: 95%; height: 95%;background:rgba(241, 196, 15, 0.8); text-align:center;">
+          <span class = "sec" id="seconds4" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+          <span class = "ten" id = "tens4" style = "font-size:  128px;color: #fff">00</span></br>
+
+
+
+        </div>
+      </div>
+        <div id = "verticalLine2" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-col w3-shadow card" id = "5" style = "margin-top: -1%;width: 31%; height: 94%;"> <!-- The third column of the second row -->
+        <div class = "front" style = "background: rgba(52, 73, 94, 0.8); width: 95%; height: 95%;">
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 0; margin-right: 3%;color: white;">INJECTION</h2> <!--Name of Operation: Diagnostic -->
+          <img src = "img/tPhone.png" style = "width: 100px; height: 100px;margin-top: 175px; margin-left: 75%;font-size: 48px; color: #ffffff" class="callB" id = "5" onclick = "openNav(6)">
+        </div>
+        <div class = "back" style = "width: 95%; height: 95%;background: rgba(52, 73, 94, 0.8); text-align:center;">
+          <span class = "sec" id="seconds5" style = "font-size: 128px;color: #fff">00</span><span style = "font-size: 48px; color: #fff">:</span>
+          <span class = "ten" id = "tens5" style = "font-size:  128px;color: #fff">00</span></br>
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+    <script src = "js/baseCase.js"></script>
+
+ 
+
+
+</body>
+</html>
