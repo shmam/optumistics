@@ -2,7 +2,6 @@
 module.exports = function(app) {
   var insertAPI = require('../controller/postController.js');
   var selectAPI = require('../controller/getController.js');
-  var deleteAPI = require('../controller/deleteController.js');
 
   app.route('/portal/add/time/:provider_id/:action_id') // time for each doctor for each tasks (RT)
         .get(selectAPI.add_time_provider_task_rt)
