@@ -1,7 +1,10 @@
 var Interval;
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> af6859514896276f539dc63252bcb4ab06df8be4
 var Card = function(operation){
   this.startTimeDisplayed = false; //Each card will have a START TIME...each card will start out not having a start time displayed...
   this.endTimeDisplayed = false; //Each card will have a END TIME...each card will start out not having a end time displayed....
@@ -121,8 +124,11 @@ function closeNav()
 
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> af6859514896276f539dc63252bcb4ab06df8be4
 $('.card').click(function()
 {
 
@@ -145,7 +151,10 @@ $(".card").flip(
     axis: 'y',
     trigger: 'manual'
 });
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> af6859514896276f539dc63252bcb4ab06df8be4
