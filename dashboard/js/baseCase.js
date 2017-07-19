@@ -19,17 +19,13 @@ var endHours;
 var endMinutes;
 var endSeconds;
 var sendEndTime;
-<<<<<<< HEAD
 //////////////////////////////////////////////////////////////////////
 var hexArr=[];
-=======
->>>>>>> af6859514896276f539dc63252bcb4ab06df8be4
 
 /*
   New Object of Card.
 */
 
-<<<<<<< HEAD
 $( document ).ready(function() {
     $.ajax({
     type: 'GET',
@@ -66,8 +62,6 @@ $( document ).ready(function() {
   });
 });
 
-=======
->>>>>>> af6859514896276f539dc63252bcb4ab06df8be4
 var Card = function(operation, operation_id){
   this.startTimeDisplayed = false; //Each card will have a START TIME...each card will start out not having a start time displayed...
   this.endTimeDisplayed = false; //Each card will have a END TIME...each card will start out not having a end time displayed....
@@ -244,7 +238,6 @@ function openNav(number)
   }
   if (number === 1){
 
-<<<<<<< HEAD
     document.getElementById("myNav").style.background = hexArr[0];
   }
   else if (number === 2){
@@ -265,28 +258,6 @@ function openNav(number)
   else if (number === 6)
   {
     document.getElementById("myNav").style.background = hexArr[5];
-=======
-    document.getElementById("myNav").style.background = "rgba(231, 76, 60, 1)";
-  }
-  else if (number === 2){
-
-    document.getElementById("myNav").style.background = "rgba(52, 152, 219, 1)";
-  }
-  else if (number === 3){
-    document.getElementById("myNav").style.background = "rgba(46, 204, 113, 1)";
-  }
-  else if (number === 4)
-  {
-    document.getElementById("myNav").style.background = "rgba(155, 89, 182, 1)";
-  }
-  else if (number === 5)
-  {
-    document.getElementById("myNav").style.background = "rgba(241, 196, 15, 1)";
-  }
-  else if (number === 6)
-  {
-    document.getElementById("myNav").style.background = "rgba(52, 73, 94, 1)";
->>>>>>> af6859514896276f539dc63252bcb4ab06df8be4
   }
 
 
