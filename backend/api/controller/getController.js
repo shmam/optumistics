@@ -245,9 +245,9 @@ function select_active_providers(req,res) {
 
 //select the expected duration of an action based on action name
 function select_expected_duration(req,res) {
-	if(req.params.action_name != null) {
+	if(req.params.action_id != null) {
 		
-		cn.query("SELECT action_duration FROM Actions WHERE action_id = '" +req.params.action_id +"'", function(err,data) {
+		cn.query("SELECT action_duration FROM Actions WHERE action_id = " +req.params.action_id, function(err,data) {
 			if(err) {
 				console.log(err);
 				res.send(err);
