@@ -107,6 +107,9 @@ module.exports = function(app) {
     
     app.route('/portal/present/wait_time/:start_date/:end_date')
         .get(selectAPI.get_patient_wait_time_C)
+    
+    app.route('/dashboard/present/Question')
+        .get(selectAPI.get_question);
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 

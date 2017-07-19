@@ -694,10 +694,24 @@ function get_patient_wait_time_C(req,res){
 		
 	});
 
+	
+
 		
 			
-			
-	
+}
+function get_question(req,res){
+	cn.query("SELECT * FROM Question", function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});
 }
 
 
@@ -738,6 +752,7 @@ module.exports = {
 	select_dup_flag_color_id,
 	select_provider_id_by_NFC,
 	select_patient_id_by_NFC,
-	get_patient_wait_time_C
+	get_patient_wait_time_C,
+	get_question
 	
 }
