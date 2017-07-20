@@ -107,6 +107,9 @@ module.exports = function(app) {
     
     app.route('/portal/present/wait_time/:start_date/:end_date')
         .get(selectAPI.get_patient_wait_time_C)
+    
+    app.route('/dashboard/present/Question')
+        .get(selectAPI.get_question);
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -118,7 +121,7 @@ module.exports = function(app) {
     app.route('/general/insert/Question/:question')
         .post(insertAPI.insert_Question)
 
-    app.route('/general/insert/Flag_Color/:flag_color_name')
+    app.route('/general/insert/Flag_Color/:flag_color_name/:flag_hex')
         .post(insertAPI.insert_Flag_Color)
 
     app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration')
@@ -168,4 +171,10 @@ module.exports = function(app) {
     
     app.route('/general/update/appointment_end_time/:appointment_id/:isPatient')
         .post(insertAPI.end_appointment)
+
+       /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    //Delete Functions Routes
+
+    
 }

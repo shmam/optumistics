@@ -1,6 +1,7 @@
 // variable to save action clicked id
 var action_clicked;
-
+var active_actions=[];
+var hex_arr=[];
 $(document).ready(function(){
 
     /* click button to open/close sidebar */
@@ -46,8 +47,9 @@ $(document).ready(function(){
                 // next three lines = append available color circle for update action color purposes
                 $('#available-color').append("<div class='col-md-1' id=div_" +brace.flag_color_id +"></div>");
                 $('#div_'+brace.flag_color_id).append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>"
+                                        +"<circle onclick=\"update_flag_color_02("+brace.flag_color_id +")\" id= circle_"+brace.flag_color_id +" cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_hex +"'/>"
                                     +"</svg><br>");
+                
             });
 
             // set the color-display background color to the first available color so that it shows up on popup window
@@ -113,7 +115,7 @@ $(document).ready(function(){
                 $('#div_'+brace.action_id).append("<br/><b><p id=action_" +brace.action_id +" class = 'animated fadeIn'>" +brace.action_name +"</p></b>");
                 // next 2 lines = making circles with chosen color for each action
                 $('#div_'+brace.action_id).append("<svg height='80' width='80'>" 
-                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_color_name +"'/>");
+                                        +"<circle onclick=\"show_update_flag_color_screen("+brace.action_id+")\" id= circle_"+brace.action_id +" class = 'animated fadeIn' cx='40' cy='40' r='35' stroke='black' stroke-width='2' fill='"+brace.flag_hex +"'/>");
                 // append a div tag for container_action_id for each action
                 $('#div_'+brace.action_id).append("<div id=container_"+brace.action_id +" class=\"container\"></div>");
                 // next 6 lines = append round slider + end div tag
@@ -123,6 +125,7 @@ $(document).ready(function(){
                 $('#switch_'+brace.action_id).append("<div id=switch_"+brace.action_id +" class='slider round'></div>");
                 $('#container_'+brace.action_id).append("</label>");
                 $('#action-control-area').append("</div>");
+                
             });
         },
         error: function(shr, status, error) {
@@ -136,6 +139,30 @@ $(document).ready(function(){
         div_hide_update();
     })
 
+    //gets a list of active actions, so we can reference amount of active actions and its flag color
+    $.ajax({
+        type: 'GET',
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com'+"/dashboard/present/actions/active",
+        contentType: 'application/x-www-form-urlencoded',
+        jsonpCallback: 'callback', 
+        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        //crossDomain:true,
+        success: function(actions) {
+        
+        $.each(actions, function(i, action){
+            active_actions.push(1);
+            console.log(action.flag_hex);
+            hex_arr.push(action.flag_hex);
+        });
+        
+                
+        
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+
+    });
 }); // end of document.ready function
 
 // If status = active, change slider = on. If status = inactive, change slider = off
@@ -150,30 +177,59 @@ function update_check(status_id,action_id) {
 
 // AJAX CALL: if slider = on, update action status_id to 74, and if slider = off, update action status_id to 75
 function update_action_status(action_id) {
+    var check_false=true;
+    var check_color=true;
+   
     if ($('#_' + action_id).is(':checked') == true) { // slider with action_id = on
-        $.ajax({
-            type: "POST",
-            url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/on/' + action_id,
-            success: function (data) {
-                window.location.reload(); // reload the page
-            },
-            error: function (shr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
+        
+        if(active_actions.length==6){ //if there are already six active actions
+            $('#_' + action_id).prop('checked', false);
+            check_false=false;
+            alert("Cannot have more than six actions active at a time");
+            
+        }else{ //less than six active actions
+            
+            for(var i=0;i<hex_arr.length;i++){ //check if the requested action's color is already in use
+                
+                if($("#circle_"+action_id).attr('fill')==hex_arr[i]){
+                    check_color=false;
+                    alert("same color"); 
+                    $('#_' + action_id).prop('checked', false);
+                } 
+            }
+            if(check_color){ //only post if the color is currently unique
+                $.ajax({
+                    type: "POST",
+                    url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/on/' + action_id,
+                    success: function (data) {
+                        window.location.reload(); // reload the page
+                    },
+                    error: function (shr, status, error) {
+                        console.log('Error: ' + error.message);
+                    },
+                });
+            }   
+        }
+        
     }
-    if ($('#_' + action_id).is(':checked') == false) { // slider with action_id = off
-        $.ajax({
-            type: "POST",
-            url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/off/' + action_id,
-            success: function (data) {
-                window.location.reload(); //reload the page
-            },
-            error: function (shr, status, error) {
-                console.log('Error: ' + error.message);
-            },
-        });
+    if(check_false && check_color){ //only post if there have been no size or color alerts
+        console.log("here");
+        if ($('#_' + action_id).is(':checked') == false) { // slider with action_id = off
+            active_actions.pop();
+            $.ajax({
+                type: "POST",
+                url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/general/update/flag_status/off/' + action_id,
+                success: function (data) {
+                    window.location.reload(); //reload the page
+                },
+                error: function (shr, status, error) {
+                    console.log('Error: ' + error.message);
+                },
+            });
+        }
     }
+    
+    
 }
 
 // SHOW update flag color popup window 

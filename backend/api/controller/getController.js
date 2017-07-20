@@ -185,7 +185,7 @@ function select_active_actions(req,res) {
 				res.send(err);
 			}
 			else {
-				cn.query("SELECT * FROM Actions WHERE status_id = " +data[0].status_id, function(err,data2) {
+				cn.query("SELECT ac.action_id AS action_id, ac.action_name AS action_name, ac.flag_color_id AS flag_color_id, ac.button_label AS button_label, ac.action_duration AS action_duration, ac.status_id AS status_id, fc.flag_hex AS flag_hex FROM Actions ac, Flag_Color fc WHERE ac.flag_color_id= fc.flag_color_id AND status_id = " +data[0].status_id, function(err,data2) {
 					if(err) {
 						console.log(err);
 						res.send(err);
@@ -204,7 +204,7 @@ function select_active_actions(req,res) {
 //select all actions (for settings page)
 function select_all_actions(req,res) {
 	
-	cn.query("SELECT fc.flag_color_name, a.action_id, a.action_name, a.status_id FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
+	cn.query("SELECT fc.flag_color_name, fc.flag_hex, a.action_id, a.action_name, a.status_id FROM Actions a, Flag_Color fc WHERE a.flag_color_id = fc.flag_color_id", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -245,9 +245,9 @@ function select_active_providers(req,res) {
 
 //select the expected duration of an action based on action name
 function select_expected_duration(req,res) {
-	if(req.params.action_name != null) {
+	if(req.params.action_id != null) {
 		
-		cn.query("SELECT action_duration FROM Actions WHERE action_id = '" +req.params.action_id +"'", function(err,data) {
+		cn.query("SELECT action_duration FROM Actions WHERE action_id = " +req.params.action_id, function(err,data) {
 			if(err) {
 				console.log(err);
 				res.send(err);
@@ -512,7 +512,7 @@ function select_Appointment_Type_Name(req,res) {
 
 function select_Flag_Color(req,res) {
 
-	cn.query("SELECT fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc LEFT JOIN Actions a ON fc.flag_color_id = a.flag_color_id WHERE (a.flag_color_id IS NULL OR a.flag_color_id='') UNION SELECT fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc, Actions a WHERE fc.flag_color_id = a.flag_color_id AND (a.status_id=75 AND a.flag_color_id NOT IN (SELECT a1.flag_color_id FROM Actions a1 WHERE a1.status_id=74))", function(err,data) {
+	cn.query("SELECT fc.flag_color_id, fc.flag_color_name, fc.flag_hex FROM Flag_Color fc LEFT JOIN Actions a ON fc.flag_color_id = a.flag_color_id WHERE (a.flag_color_id IS NULL OR a.flag_color_id='') UNION SELECT fc.flag_hex, fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc, Actions a WHERE fc.flag_color_id = a.flag_color_id AND (a.status_id=75 AND a.flag_color_id NOT IN (SELECT a1.flag_color_id FROM Actions a1 WHERE a1.status_id=74))", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -694,10 +694,24 @@ function get_patient_wait_time_C(req,res){
 		
 	});
 
+	
+
 		
 			
-			
-	
+}
+function get_question(req,res){
+	cn.query("SELECT * FROM Question", function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});
 }
 
 
@@ -738,6 +752,7 @@ module.exports = {
 	select_dup_flag_color_id,
 	select_provider_id_by_NFC,
 	select_patient_id_by_NFC,
-	get_patient_wait_time_C
+	get_patient_wait_time_C,
+	get_question
 	
 }

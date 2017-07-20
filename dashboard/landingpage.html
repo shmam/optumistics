@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+
+
+    <!-- Plugin JavaScript -->
+  
+
+    <!-- Custom scripts for this template -->
+    
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Cabin');
+    @import "http://fonts.googleapis.com/css?family=Raleway";
+    body {
+      font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif; }
+    .btn-default {
+      color: #222222;
+      border-color: white;
+      background-color: white; }
+      .btn-default:focus, .btn-default.focus {
+        color: #222222;
+        border-color: #bfbfbf;
+        background-color: #e6e6e6; }
+      .btn-default:hover {
+        color: #222222;
+        border-color: #e0e0e0;
+        background-color: #e6e6e6; }
+      .btn-default:active, .btn-default.active,
+      .open > .btn-default.dropdown-toggle {
+        color: #222222;
+        border-color: #e0e0e0;
+        background-color: #e6e6e6; }
+        .btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus,
+        .open > .btn-default.dropdown-toggle:hover,
+        .open > .btn-default.dropdown-toggle:focus,
+        .open > .btn-default.dropdown-toggle.focus {
+          color: #222222;
+          border-color: #bfbfbf;
+          background-color: #d4d4d4; }
+      .btn-default:active, .btn-default.active,
+      .open > .btn-default.dropdown-toggle {
+        background-image: none; }
+      .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus,
+      fieldset[disabled] .btn-default:hover,
+      fieldset[disabled] .btn-default:focus,
+      fieldset[disabled] .btn-default.focus {
+        border-color: white;
+        background-color: white; }
+      .btn-default .badge {
+        color: white;
+        background-color: #222222; }
+    .inputForm{
+      border-radius: 300px;
+      color: red;
+    }
+    .btn-primary {
+      color: white;
+      border-color: #F05F40;
+      background-color: #FF9C33; }
+      .btn-primary:focus, .btn-primary.focus {
+        color: white;
+        border-color: #a4270d;
+        background-color: #eb3812; }
+      .btn-primary:hover {
+        color: white;
+        border-color: #e13612;
+        background-color: #eb3812; }
+      .btn-primary:active, .btn-primary.active,
+      .open > .btn-primary.dropdown-toggle {
+        color: white;
+        border-color: #e13612;
+        background-color: #eb3812; }
+        .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus,
+        .open > .btn-primary.dropdown-toggle:hover,
+        .open > .btn-primary.dropdown-toggle:focus,
+        .open > .btn-primary.dropdown-toggle.focus {
+          color: white;
+          border-color: #a4270d;
+          background-color: #c93110; }
+      .btn-primary:active, .btn-primary.active,
+      .open > .btn-primary.dropdown-toggle {
+        background-image: none; }
+      .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus,
+      fieldset[disabled] .btn-primary:hover,
+      fieldset[disabled] .btn-primary:focus,
+      fieldset[disabled] .btn-primary.focus {
+        border-color: #F05F40;
+        background-color: #F05F40; }
+      .btn-primary .badge {
+        color: #FF9C33;
+        background-color: white; }
+
+    .btn {
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 300px;
+      font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; }
+
+    .btn-xl {
+      padding: 15px 30px; }
+
+
+      body{
+        background-image: url("stethbackground.jpg");
+        font-family: 'Cabin', sans-serif;
+
+      }
+
+      #pwd {
+        width: 200px;
+
+        position: relative;
+        float: right;
+        margin-right: 44%;
+        margin-top: -30px;
+        opacity: .5;
+
+      }
+
+      #title {
+        color:white;
+        font-size: 50px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+
+      /*
+      The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+      */
+      #abc {
+      width:100%;
+      height:100%;
+      opacity:.9;
+      top:0;
+      left:0;
+      display:none;
+      position:fixed;
+      background-color:#a8a8a8;
+      overflow:auto
+      }
+
+      /*
+      The following is the style for the popout screen.
+      */
+      div#popupContact {
+      position:absolute;
+      left:50%;
+      top:17%;
+      margin-left:-202px;
+      font-family:'Raleway',sans-serif;
+      }
+
+
+      #popupContact{
+        align-content: bottom;
+      }
+      #wrapper{
+        text-align: center;
+        align-content: center;
+      }
+
+      /*
+        The following the style for the button that comes out.
+      */
+      #newWindow{
+        width: 800px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #36454F;
+        left: 50%;
+        margin-left: -25%;
+        border-radius: 5%;
+        border:4px solid #fff;
+
+      }
+      /*
+        The following closes the popout screen.
+      */
+      #button-close{
+        background-color: #e74c3c;
+        color: #ffffff;
+        float: right;
+      }
+      #wrapper{
+        text-align: center;
+        align-content: center;
+
+      }
+
+      }
+      #content{
+        margin-top: 50%;
+      }
+      #graphic{
+        border:5px solid #fff;
+      }
+
+      #assign-NFC {
+        background-color: green;
+        color: white;
+        border-radius: 20%;
+        height: 40px;
+        width: 130px;
+        margin-left: 43%;
+        font-family:'Raleway',sans-serif;
+      }
+
+
+      #newWindow{
+        width: 30%;
+        margin-right: auto;
+        margin-left:auto;
+        margin-top: 200px;
+        background-color: #36454f;
+        color: white;
+        border: 4px solid white;
+        border-radius: 20px;
+        font-width: 700;
+
+
+
+     }
+
+     #newWindow button{
+        color:black;
+
+     }
+     
+     #loader{
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid rgba(52,152,219,1);
+        border-bottom: 16px solid rgba(231,76,60,1);
+        width: 95px;
+        height: 95px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+
+    }
+    @-webkit-keyframes spin{
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+
+    }
+
+    @keyframes spin{
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+
+    }
+
+
+
+    </style>
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+<div class="logo">
+    <img src="img/optum.png" alt="optum" style="width:250px;height:80px;float:left;">
+  </div>
+    <div class="main-content">
+
+      <div>
+        <h3 style="color:white; float: right; margin-right: 37%;margin-top: 325px;"> ENTER PIN OR SCAN BADGE TO LOG IN </h3>
+      </div>
+      <form>
+      <div class="form-group">
+
+        <label style="color: white; float: right; margin-right: 58%;margin-top: 25px;" for="pwd">PIN:</label>
+        <input type="password" class="form-control" id="pwd">
+      </div>
+    </form>
+    <a style="float: right; margin-right: 47%; margin-top: 5%;" onclick="passwordVerify()" class="btn btn-primary btn-xl">LOGIN</a>
+      <!--<h1 id="title"> Optumistics <h1>-->
+
+     
+      
+
+
+    </div>
+
+    <div id="abc" style="display:none;">
+
+    
+    <div id = "newWindow" class = "animated zoomIn">
+      <button id = "button-close" onclick ="div_hide()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%; float:right; color: white;">X</button>
+      <div id = "wrapper">
+        
+        <h1 style = " text-align: center;">Scan NFC Patient</h1>
+        <br />
+        <div style=" margin-left: auto; margin-right: auto;" id="loader"> </div>
+        <br />
+        <button onClick="skipPatient()"> SKIP </button>
+
+
+      </div>
+    </div>
+
+    </div>
+
+
+
+
+    <script>
+    
+
+const baseUrl = 'http://applicationDashboard.us-east-1.elasticbeanstalk.com';
+var socket = new WebSocket("ws://localhost:8080")
+var nfcHex = null;
+var popupFlag = false;
+var nfcArray = [];
+var validCard = false;
+var passwordArray = [];
+var nfcPatientArray = [];
+var provider = true;
+
+
+socket.onopen = openSocket;
+socket.onmessage = showData;
+
+function openSocket(){
+  console.log("Socket Open");
+  socket.send("Hwllo server");
+
+}
+
+function showData(result){
+  //when the server returns, record the result
+  console.log(result.data)
+  if(!popupFlag){
+    nfcHex = result.data;
+    allowAccess(nfcHex);
+  }
+
+}
+
+function allowAccess(hexCode)
+{
+  hexCode = hexCode.substring(1,20);
+  if(provider){
+    checkProvider(hexCode)
+  }
+  else{
+    checkPatient(hexCode)
+  }
+}
+
+function checkProvider(hexCode){
+  var validCard = false;
+  if(hexCode !== null){
+    console.log(hexCode)
+    for(var i = 0; i < nfcArray.length; i++){
+      if(hexCode === nfcArray[i]){
+        console.log("card validated")
+        validCard = true;
+        break;
+      }
+    }
+    if(validCard){
+      
+      
+      ajaxCallGetProviderId(hexCode);
+      div_show();
+      setTimeout(console.log("Ive been stuck in colder weather"),4000);
+      provider = false;
+    }
+    else{
+      popupFlag = true;
+      var r = confirm("this NFC Card is not valid")
+      popupFlag = false;
+    }
+  }
+}
+
+function checkPatient(hexCode){
+  var validCard = false;
+  if(hexCode !== null){
+    console.log(hexCode)
+    for(var i = 0; i < nfcPatientArray.length; i++){
+      if(hexCode === nfcPatientArray[i]){
+        console.log("card validated")
+        validCard = true;
+        break;
+      }
+    }
+    if(validCard){
+      
+      
+      ajaxCallGetPatientId(hexCode);
+      //window.location.href = "dayDash.html"
+    }
+    else{
+      popupFlag = true;
+      var r = confirm("this NFC Card is not valid")
+      popupFlag = false;
+    }
+  }
+}
+
+function passwordVerify()
+{
+	//console.log(passwordArray);
+	var found = false;
+	var password = document.getElementById('pwd').value; //PLEASE
+	for (var i = 0; i < passwordArray.length; i++)
+	{
+		console.log("the password in the input" + password);
+		console.log("the password being compared" + passwordArray[i]);
+		if (password == passwordArray[i])
+		{
+			//This is where you should call for the provider ID based on the password that is entered
+      			div_show();
+      			setTimeout(8000);
+      			provider = false;
+			found = true;
+			break;
+		}
+	}
+	if (found === false)
+	{
+		alert("Invalid pin, please try again!");
+	}
+
+}
+
+$(document).ready(function()
+{
+  ajaxCallGetPassword();
+  ajaxCallNFC();
+  ajaxCallPatientNFC()
+});
+
+function ajaxCallNFC(){
+  $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: baseUrl + '/dashboard/verification/nfc',
+      success: function(data) {
+        $.each(data, function(i, brace)
+        { //Get every entry in the NFC db that are PROVIDERS
+            nfcArray.push(String( brace.nfc_hex));
+            
+        });
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  })
+};
+
+function ajaxCallGetPassword()
+{
+	$.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: baseUrl + '/portal/present/Activated_NFC_Providers',
+      success: function(data) 
+	{
+	$.each(data, function(i, brace)
+        { 
+            passwordArray.push(String(brace.nfc_id));
+	    //console.log(String(brace.nfc_id));
+           
+        });
+
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  });
+}
+function ajaxCallGetProviderId(hexcode){
+  $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: baseUrl + '/dashboard/verification/provider/' + hexcode,
+      success: function(data) {
+	sessionStorage.setItem("current_provider_id",data[0].provider_id);
+
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  })
+
+}
+function ajaxCallPatientNFC(){
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: baseUrl + '/dashboard/verification/nfc/patient',
+      success: function(data) {
+        $.each(data, function(i, brace)
+        { //Get every entry in the NFC db that are PATIENTS
+            nfcPatientArray.push(String( brace.nfc_hex));
+            console.log(nfcPatientArray);
+        });
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  })
+
+}
+
+function ajaxCallGetPatientId(patient_hexcode){
+  $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: baseUrl + '/dashboard/verification/patient/' + patient_hexcode,
+      success: function(data) {
+	  setStoragePatient(data[0].patient_id,data[0].appointment_id,(data[0].patient_first_name+ " " + data[0].patient_last_name));
+      },
+      error: function (xhr, status, error) {
+          console.log('Error: ' + error.message);
+      },
+  })
+
+}
+
+function setStoragePatient(patient_id,appointment_id,patient_name){
+   console.log("here we go I am cinnymon");
+   sessionStorage.setItem("current_patient_id",patient_id);
+   sessionStorage.setItem("current_appointment_id",appointment_id);
+   sessionStorage.setItem("patient_name",patient_name);
+
+   document.getElementById('loader').style.display = "none";
+   
+   setTimeout(8000);
+   window.location.href = "dayDash.html"
+}
+
+function div_show() {
+    document.getElementById('abc').style.display = "block";
+}
+
+function div_hide(){
+    provider = true;
+    document.getElementById('abc').style.display = "none";
+}
+
+function skipPatient(){
+   setStoragePatient("null",0,"");
+
+   
+}
+
+    </script>
+  </body>
+
+</html>
