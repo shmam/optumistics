@@ -729,7 +729,7 @@ function select_patient_queue_time(req,res){
 	sync.fiber(function(){
 		var sum=0;
 		var count=0;
-		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_end_time,end_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.date+"' AND provider_id= "+req.params.provider_id+"ANDstart_time IS NOT NULL ORDER BY start_time DESC LIMIT 3", sync.defer()));
+		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_end_time,end_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.appointment_date+"' AND provider_id= "+req.params.provider_id+"ANDstart_time IS NOT NULL ORDER BY start_time DESC LIMIT 3", sync.defer()));
 
 		for(var i=0;i<appts.length;i++){
 			sum=appts[i].timediff;
@@ -740,6 +740,22 @@ function select_patient_queue_time(req,res){
 	});
 }
 
+function select_queue_position(req,res){
+	
+
+	cn.query("SELECT * FROM Appointment WHERE appointment_date='"+req.params.appointment_date+"' AND start_time IS NULL AND expected_start_time< '"+req.params.expected_start_time+"' AND provider_id="+ req.params.provider_id, function(err,data)
+	{
+		if(err)
+		{
+			console.log(err);
+			res.send(err);
+		}
+		else
+		{
+			res.jsonp(data);
+		}
+	});
+}
 
 
 
@@ -781,6 +797,7 @@ module.exports = {
 	get_patient_wait_time_C,
 	get_question,
 	select_appointment_information_for_patient_id,
-	select_patient_queue_time
+	select_patient_queue_time,
+	select_queue_position
 	
 }

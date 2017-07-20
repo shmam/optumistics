@@ -114,8 +114,11 @@ module.exports = function(app) {
     app.route('/queue/present/appointment_information/:patient_id')
         .get(selectAPI.select_appointment_information_for_patient_id)
     
-    app.route('/queue/present/wait_time/:date/:provider_id')
+    app.route('/queue/present/wait_time/:appointment_date/:provider_id')
         .get(selectAPI.select_patient_queue_time)
+
+    app.route('/queue/pressent/queue_postion/:appointment_date/:provider_id')
+        .get(selectAPI.select_queue_position)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
