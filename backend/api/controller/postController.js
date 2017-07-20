@@ -351,11 +351,11 @@ function insert_ActivatedNFC_Provider(req, res) {
 }
 
 function insert_Appointment(req, res) {
-	if (req.params.patient_id != null && req.params.status_id != null && req.params.appointment_date != null && req.params.expected_start_time != null) {
+	if (req.params.patient_id != null && req.params.status_id != null && req.params.appointment_date != null && req.params.expected_start_time != null && req.params.expected_end_time !=null) {
 
 
-		cn.query("INSERT INTO Appointment (start_time, end_time, patient_id, appointment_type_id, status_id, appointment_date, expected_start_time) VALUES (null,'" + req.params.end_time + "'," + req.params.patient_id
-			+ "," + req.params.appointment_type_id + "," + req.params.status_id + ",'" + req.params.appointment_date + "','"+req.params.expected_start_time+"')", function (err, data) {
+		cn.query("INSERT INTO Appointment (start_time, end_time, patient_id, appointment_type_id, status_id, appointment_date, expected_start_time,expected_end_time) VALUES (null,'" + req.params.end_time + "'," + req.params.patient_id
+			+ "," + req.params.appointment_type_id + "," + req.params.status_id + ",'" + req.params.appointment_date + "','"+req.params.expected_start_time+"','"+req.params.expected_end_time+"')", function (err, data) {
 				if (err) {
 					console.log(err);
 					res.send(err);
