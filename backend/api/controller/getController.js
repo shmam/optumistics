@@ -588,6 +588,7 @@ function select_Average_NPS(req, res)
    
 }
 
+
 function select_ActiveNFCProvider(req, res)
 {
  
@@ -724,6 +725,21 @@ function get_question(req,res){
 	});
 }
 
+function select_patient_queue_time(req,res){
+	sync.fiber(function(){
+		var sum=0;
+		var count=0;
+		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_end_time,end_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.date+"' AND provider_id= "+req.params.provider_id+"ANDstart_time IS NOT NULL ORDER BY start_time DESC LIMIT 3", sync.defer()));
+
+		for(var i=0;i<appts.length;i++){
+			sum=appts[i].timediff;
+			count+=1;
+		}
+		res.jsonp(sum/count);
+		
+	});
+}
+
 
 
 
@@ -764,6 +780,7 @@ module.exports = {
 	select_patient_id_by_NFC,
 	get_patient_wait_time_C,
 	get_question,
-	select_appointment_information_for_patient_id
+	select_appointment_information_for_patient_id,
+	select_patient_queue_time
 	
 }
