@@ -733,7 +733,7 @@ function select_patient_queue_time(req,res){
 		console.log(appts);
 	
 		for(var i=0;i<appts.length;i++){
-			sum=appts[i].timediff;
+			sum+=appts[i].timediff;
 			count+=1;
 		}
 		console.log(sum);
