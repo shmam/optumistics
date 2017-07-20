@@ -434,7 +434,17 @@ function select_current_appointments(req,res){
 	
 }
 
-
+function select_appointment_information_for_patient_id(req,res){
+	cn.query("SELECT a.expected_start_time AS expected_start_time, pi.patient_first_name AS patient_first_name, pi.patient_last_name AS patient_last_name,a.appointment_date AS appointment_date, pr.provider_first_name AS provider_first_name, pr.provider_last_name AS provider_last_name FROM Appointment a, Patient_Information pi, Provider_Information pr WHERE a.provider_id=pr.provider_id AND (a.start_time IS NULL OR a.start_time='') AND a.patient_id ="+req.params.patient_id, function(err,data) {
+		if(err) {
+			console.log(err);
+			res.send(err);
+		}
+		else {
+			res.jsonp(data);
+		}
+	});
+}
 
 //get activated NFC patients
 
@@ -753,6 +763,7 @@ module.exports = {
 	select_provider_id_by_NFC,
 	select_patient_id_by_NFC,
 	get_patient_wait_time_C,
-	get_question
+	get_question,
+	select_appointment_information_for_patient_id
 	
 }

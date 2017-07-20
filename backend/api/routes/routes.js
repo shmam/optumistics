@@ -111,6 +111,9 @@ module.exports = function(app) {
     app.route('/dashboard/present/Question')
         .get(selectAPI.get_question);
 
+    app.route('/queue/present/appointment_information/:patient_id')
+        .get(selectAPI.select_appointment_information_for_patient_id)
+
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     //Post Functions Routes
