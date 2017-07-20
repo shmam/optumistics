@@ -1,0 +1,516 @@
+<html>
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+
+  <link rel="stylesheet" href="neoregister.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+
+  <!-- importing bootstrap libraries for the register buttons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+
+<body id="body" style="overflow:hidden;">
+
+<!-- creates the interactive sidebar -->
+<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left" style="display:none" id="mySidebar">
+
+  <!-- the 'x' button that closes the toolbar -->
+  <button style = "float: right; border-radius: 50%;border:1px solid #000;"type="button" class="btn btn-danger btn-xs" onclick="w3_close()">X</button><br/>
+
+  <!-- register button on toolbar -->
+  <a href="register.html" id="register_bar" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">register<i class="glyphicon glyphicon-home" style = "float: right;"></i></a>
+
+  <!-- settings button on toolbar -->
+  <a href="newSettings.HTML" id="settings_bar" class="w3-bar-item w3-button w3-padding-16" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">settings<i class="glyphicon glyphicon-user" style = "float: right;"></i></a>
+
+  <!-- statistics button on toolbar -->
+  <a href="statistics.HTML" id="statistics_bar" class="w3-bar-item w3-button w3-padding-24" style = "font-size: 24px; text-align: center; font-family:'Raleway',sans-serif">statistics<i class="glyphicon glyphicon-file" style = "float: right;"></i></a>
+
+<!-- end of sidebar div -->
+</div>
+
+<!-- main content container -->
+<div zclass="w3-main" id="main" class = "animated fadeIn">
+
+  <!-- creates the header -->
+  <div id = "topBar">
+
+    <!-- button that opens up the side bar menu -->
+    <button class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+
+    <!-- displays Optum logo in header -->
+    <img src="img/optum1.jpg" alt="optum" style="width:250px;height:80px;">
+
+  <!-- end of header div -->
+  </div>
+
+<!-- main page content -->
+<div id = "mainContent" style = "font-family:'Raleway',sans-serif">
+<!-- page heading -->
+<h1 style = "text-align: center;">registry</h1>
+<hr style = "margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;"/>
+
+
+<!-- end of main content div -->
+</div>
+
+
+
+
+  <div zclass="w3-main" id="main" class = "animated fadeIn">
+
+
+
+    <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
+      <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+
+        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-check" onclick="div_show()" id = "firstColumn1" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
+          <div class = "front" style = "margin-top: -25.4%; margin-left: -5.1%; width: 105%; height: 108%; background: rgba(255, 112, 26, 0.8);">
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 225px; margin-right: 3%;color: white;">START APPOINTMENT</h2> <!--Name of Operation: Physical -->
+          </div>
+
+        </div>
+
+
+        <div id = "verticalLine" class = "w3-col">  <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-calendar" onclick="show_appt()" id = "secondColumn1" style = "margin-left: -2px; margin-top: 2%;width: 31%; height: 94%;background: rgba(255, 112, 26, 0.8)"> <!-- The first column of the first row -->
+            <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 75px;  margin-left: 175px; margin-right: 3%; color: white;">ADD NEW APPOINTMEMT</h2> <!--Name of Operation: Vital Signs -->
+        </div>
+        <div id = "verticalLine" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-plus" onclick="show_div()" id = "thirdColumn1" style = "margin-left: -2px; margin-top: 2%;width: 31%; height: 94%;background: rgba(255, 112, 26, 0.8)"> <!-- The first column of the first row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 100px; margin-right: 3%; color: white;">ADD NEW PROVIDER</h2>  <!--Name of Operation: Blood -->
+        </div>
+      </div>
+    <hr> <!-- <hr> tag is used to divide the two rows with a simple line-->
+      <div class = "w3-row" id = "secondRow" style = "margin-left: 10%; margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-folder-open" onclick="show_div5()" id = "firstColumn2" style = "margin-top: -1%;margin-left: 1.5%;width: 38%; height: 94%;background:rgba(255, 112, 26, 0.8)"> <!-- The first column of the second row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 200px; margin-right: 3%;color: white;">ADD NEW PATIENT</h2> <!--Name of Operation: Operations -->
+
+        </div>
+        <div id = "verticalLine2" style="margin-left: 75px;" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-link" onclick="show_nfc()" id = "secondColumn2" style = "margin-left: 60px; margin-top: -1%;width: 38%; height: 94%; background: rgba(255, 112, 26, 0.8)"> <!-- The second column of the second row -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 75px; margin-left: 195px; argin-right: 3%; color: white;">PROVIDER NFC REGISTRATION</h2> <!--Name of Operation: X-Ray -->
+
+        </div>
+        <!--<div id = "verticalLine2" class = "w3-col">--> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
+        </div>
+        <!--<div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-bed" id = "thirdColumn2" style = "margin-top: -1%;width: 31%; height: 94%;background: rgba(255, 112, 26, 0.8);"> <!-- The third column of the second row -->
+          <!--<h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: RIGHT; margin-top: 100px;margin-right: 3%;color: white;">OK SAM!</h2> <!--Name of Operation: Diagnostic -->
+        <!--</div> -->
+      </div>
+
+    </div>
+
+    <!-- div that contains the start appointment popup screen -->
+    <div id="abc">
+
+      <!-- Popup Div Starts Here -->
+      <div id="popupContact">
+
+      <!-- The following div is the window that pops out...it includes the optum logo and the graphic picture which are right next to each other.-->
+      <div id = "newWindow" class = "animated zoomIn">
+        <div id = "wrapper">
+          <button id = "button-close" onclick ="div_hidex()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+          <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+          <h1 style = "color: #ffffff; text-align: center;">start appointment</h1>
+        <!-- end of header div -->
+        </div>
+      <hr>
+        <!-- subheading for popup -->
+        <p style = "color: #ffffff; font-size: 24px;">please sign in the patient below</p>
+
+        <!-- creates dropdown menu of patients with an appointment start time in the future of the current day -->
+        <select id = "patientSignUp" style = "margin-left: 45%;">
+        </select></br>
+
+        <!-- creates button that signs in the patient -->
+        <button id = "signInButton" style = "background-color: green; color: white; margin-top: 2%;margin-left: 46%;"onclick = "div_show2()">sign in</button></br>
+
+        <!-- this div contains a drop down menu of available nfc ids that appears after the patient is signed in -->
+        <div id = "registerNFC" class = "animated fadeIn">
+          <div id = "registerNFC">
+          <h2 style = "color: #ffffff">assign bracelet to patient</h2>
+          <select>
+            <option>nfc 1</option>
+            <option>nfc 2</option>
+            <option>nfc 3</option>
+            <option>nfc 4</option>
+          </select>
+        <!-- end of nfc drop down menu -->
+        </div>
+
+      <!-- separating line for the popup window -->
+      <hr style = "margin:10px 10px; margin-top: 5%;margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #fff;"/>
+
+        <!-- popup subheading -->
+        <p style = "color: #ffffff; font-size: 24px;">assign nfc to patient</p>
+        <select id = "dropNFC" style = "margin-left: 47%;">
+        </select></br>
+
+
+        <!-- submit button for the patient sign in form -->
+        <button id = "submitTheNFC" style = "background-color: green; color: white; margin-top: 2%;margin-left: 46%;">submit</button>
+
+      <!-- end of registerNFC div -->
+      </div>
+       <!-- end of new window div -->
+       </div>
+      <!-- end of popupContact div -->
+      </div>
+      <!-- Popup Div Ends Here -->
+      </div>
+
+
+
+    <!-- start of provider registration div -->
+    <div id="abc2">
+
+    <!-- Popup Div Starts Here -->
+    <div id="popupContact2">
+
+    <!-- popup window div start-->
+    <div id = "newWindow" class = "animated zoomIn">
+      <div id = "wrapper">
+        <!-- exit button on the popup window -->
+        <button id = "button-close" onclick ="hide_divx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+        <!-- header -->
+        <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+        <h1 style = "color: #ffffff; text-align: center;">provider registration</h1>
+
+      <!-- end of header div -->
+      </div>
+    <hr>
+      <!-- first name input field -->
+      <div>
+        <label  class="input-label">first name: </label>
+        <input id="first-name" type="text" placeholder="first name" class="input-box">
+      </div>
+      <br/>
+
+      <!-- last name input field -->
+      <div>
+          <label  class="input-label">last name: </label>
+          <input id="last-name" type="text" placeholder="last name" class="input-box">
+
+      </div>
+      <br/>
+
+      <!-- username input field -->
+      <div>
+          <label class="input-label">username: </label>
+          <input id="username" type="text" placeholder="username" class="input-box">
+
+      </div>
+      <br/>
+
+      <!-- password input field -->
+      <div>
+          <label class="input-label">password: </label>
+          <input id="password" type="password" placeholder="password" class="input-box">
+
+      </div>
+      <br/>
+
+      <!-- confirm password input field -->
+      <div>
+          <label class="input-label">confirm password: </label>
+          <input id="confirm-password" type="password" placeholder="confirm password" class="input-box">
+
+      </div>
+      <br/>
+
+
+      <br/>
+
+      <!-- provider type drop down menu -->
+      <div>
+          <label class="input-label">provider type: </label>
+          <select id="person-type" placeholder="provider type" class="input-box">
+              <option>select</option>
+          </select>
+      </div>
+      <br/>
+
+      <!-- submit button to send the provider information to db -->
+      <div>
+        <button id="continue" style="background-color: green; color: white;margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
+      </div>
+      <br/>
+    <!-- end of new window div -->
+    </div>
+    <!-- end of popup contact div -->
+     </div>
+    <!-- Popup Div Ends Here -->
+    </div>
+
+
+  <!-- nfc registration popup start -->
+  <div id="abc3">
+
+  <!-- Popup Div Starts Here -->
+  <div id="popupContact3">
+
+  <!-- popup window div start-->
+  <div id = "newWindow" class = "animated zoomIn">
+    <div id = "wrapper">
+      <!-- 'x' button for popup -->
+      <button id = "button-close" onclick ="hide_nfcx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+      <!-- popup header -->
+      <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+      <h1 style = "color: #ffffff; text-align: center;">provider NFC registration</h1>
+      <!-- end of popup header -->
+    </div>
+  <hr>
+
+  <!-- NFC registration content div -->
+  <div id="nfc-avail">
+    <!-- provider name drop down menu -->
+    <div>
+      <label class="input-label">Provider Name: </label>
+      <select id="provider-id" class="input-box">
+
+      </select>
+    </div>
+
+  <!-- available NFC ID drop down meny for providers -->
+  <div>
+    <br/>
+    <label class="input-label">NFC ID: </label>
+    <select id="available-nfc" class="input-box">
+
+    </select>
+  </div>
+  <br/>
+  <div>
+    <button id="assign-NFC" style="background-color: green; color: white; margin-left: 42%; width: 140px; height:30px;" class="input-box">assign NFC</button>
+  </div>
+  <br/>
+
+  <!-- end of nfc-avail content div -->
+  </div>
+  <!-- end of popup window div -->
+  </div>
+  <!-- end popupContact3 div -->
+  </div>
+  <!-- NFC Popup Div Ends Here -->
+  </div>
+
+
+  <!-- new appointment popup start -->
+  <div id="abc4">
+
+  <!-- Popup Div Starts Here -->
+  <div id="popupContact4">
+
+  <!-- start of popup window div-->
+  <div id = "newWindow" class = "animated zoomIn">
+    <div id = "wrapper">
+      <!-- popup close button -->
+      <button id = "button-close" onclick ="hide_apptx()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+      <!-- popup header -->
+      <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+      <h1 style = "color: #ffffff; text-align: center;">new appointment</h1>
+    <!-- end of popup header div -->
+    </div>
+  <hr>
+
+  <!-- start of the new appointment content div -->
+  <div id="new-appointment">
+    <!-- start of start time div -->
+    <div>
+      <label  class="input-label">start time: </label>
+
+      <!-- drop down menu for the hours of the start time -->
+      <select id="appointment_start_time_hr" class="input-box">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+
+      <label class="input-box" style="color:white; font-size: 15px;">:</label>
+
+      <!-- drop down menuy for the minutes of the start time -->
+      <select id="appointment_start_time_min" class="input-box">
+        <option>00</option>
+        <option>10</option>
+        <option>20</option>
+        <option>30</option>
+        <option>40</option>
+        <option>50</option>
+      </select>
+
+      <!-- drop down menu to toggle between am and pm for the start time -->
+      <select id="am_pm_start" class="input-box">
+        <option>am</option>
+        <option>pm</option>
+      </select>
+  <!-- end of start time div -->
+  </div>
+  <br/>
+
+  <!-- start of end time div -->
+  <div>
+    <label class="input-label">end time: </label>
+
+    <!-- drop down menu for the hours in the end time -->
+    <select id="appointment_end_time_hr" class="input-box">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+    </select>
+
+    <label class="input-box" style="color:white; font-size: 15px;">:</label>
+
+    <!-- drop down menu for the minutes in the end time -->
+    <select id="appointment_end_time_min" class="input-box">
+      <option>00</option>
+      <option>10</option>
+      <option>20</option>
+      <option>30</option>
+      <option>40</option>
+      <option>50</option>
+    </select>
+
+    <!-- drop down menu that toggles between am and pm for the end time -->
+    <select id="am_pm_end"class="input-box">
+      <option>am</option>
+      <option>pm</option>
+    </select>
+
+  <!-- end of end time div -->
+  </div>
+  <br/>
+
+  <!-- patient name input field -->
+  <div>
+    <label class="input-label">patient name: </label>
+    <select id="appointment_patient_id" class="input-box">
+
+    </select>
+  </div>
+  <br/>
+
+    <!-- appointment type drop down menu -->
+  <div>
+    <label class="input-label">appointment type: </label>
+    <select id="appointment_appointment_type_id" class="input-box">
+
+    </select>
+  </div>
+  <br/>
+
+  <!-- date chooser input field shows a calendar to choose date -->
+  <div>
+  <label class="input-label">date: </label>
+    <input style="margin-left: 310px; width: 130px; margin-top: -30px;" class="form-control" id="appointment_date" name="date" placeholder="yyyy-mm-dd" type="text"/>
+  </div>
+  <br/>
+
+  <!-- create appointment button that submits the information for the appointent -->
+  <div>
+    <button id="create_appointment" style="background-color: green; color: white; margin-left: 40%; width: 180px; height:30px;" class="input-box">create appointment</button>
+  </div>
+  <br/>
+
+  <!-- end of new appointment content div -->
+  </div>
+  <!-- end of popup window div -->
+  </div>
+  <!-- end of popup contact div -->
+  </div>
+  <!-- new appointment Popup Div Ends Here -->
+  </div>
+
+
+  <!-- start of patient registration div -->
+  <div id="abc5">
+
+  <!-- Popup Div Starts Here -->
+  <div id="popupContact5">
+
+  <!-- popup window div start -->
+  <div id = "newWindow" class = "animated zoomIn">
+    <div id = "wrapper">
+      <!-- popup close button -->
+      <button id = "button-close" onclick ="hide_divx5()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+      <!-- popup header -->
+      <img src="img/optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+      <h1 style = "color: #ffffff; text-align: center;">patient registration</h1>
+    <!-- end of popup header -->
+    </div>
+  <hr>
+
+    <!-- patient first name input field -->
+    <div>
+      <label  class="input-label">first name: </label>
+      <input id="patient-first-name" type="text" placeholder="first name" class="input-box">
+    </div>
+    <br/>
+    <!-- patient last name input field -->
+    <div>
+        <label  class="input-label">last name: </label>
+        <input id="patient-last-name" type="text" placeholder="last name" class="input-box">
+    </div>
+    <br/>
+    <!-- submit button for patient information -->
+    <div>
+      <button id="patient_continue" style="background-color: green; color: white; margin-left: 45%; width: 80px; height:30px;" class="input-box">submit</button>
+    </div>
+    <br/>
+  <!-- end of popup window div -->
+  </div>
+
+
+
+
+   <!-- popup contact div end -->
+   </div>
+  <!-- end of popup div -->
+  </div>
+
+  </div>
+
+    <script src = "neoregister.js"></script>
+
+
+
+
+
+  </body>
+  </html>
