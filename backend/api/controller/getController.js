@@ -729,16 +729,10 @@ function select_patient_queue_time(req,res){
 	sync.fiber(function(){
 		var sum=0;
 		var count=0;
-		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_end_time,end_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.appointment_date+"' AND provider_id= "+req.params.provider_id+" AND start_time IS NOT NULL ORDER BY start_time DESC LIMIT 3", sync.defer()));
+		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_end_time,end_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.appointment_date+"' AND provider_id= "+req.params.provider_id+" AND start_time IS NOT NULL ORDER BY start_time DESC LIMIT 1", sync.defer()));
 		console.log(appts);
 	
-		for(var i=0;i<appts.length;i++){
-			sum+=appts[i].timediff;
-			count+=1;
-		}
-		console.log(sum);
-		console.log(count);
-		res.jsonp(sum/count);
+		res.jsonp(appts[0].timediff);
 		
 	});
 }
