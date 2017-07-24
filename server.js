@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 function run(){
+    console.log("bruh");
         $.ajax({
         type: 'GET',
         url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert',
