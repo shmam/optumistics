@@ -11,23 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 function run(){
-    console.log("bruh");
-        $.ajax({
-        type: 'GET',
-        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert',
-        contentType: 'application/x-www-form-urlencoded',
-        jsonpCallback: 'callback', 
-        dataType : 'jsonp',   //you may use jsonp for cross origin request
-        //crossDomain:true,
-        success: function(friends) {
-          console.log(friends)
-          
-        },
-        error: function (xhr, status, error) {
-            console.log('Error: ' + error.message);
-        },
-
-      });
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.open("GET", "http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert", true);
+    xhttp.send();
 }
 // app.set('views', __dirname )
 // var engines = require('consolidate');
