@@ -60,8 +60,13 @@ $( document ).ready(function() {
     },
 
   });
+
+  callToast();
 });
 
+function callToast(){
+  Android.showToast("we made it");
+}
 var Card = function(operation, operation_id){
   this.startTimeDisplayed = false; //Each card will have a START TIME...each card will start out not having a start time displayed...
   this.endTimeDisplayed = false; //Each card will have a END TIME...each card will start out not having a end time displayed....
