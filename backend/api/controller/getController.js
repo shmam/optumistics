@@ -778,7 +778,7 @@ function get_text_alert(req,res){
 		for(var i=0;i<data.length;i++){
 
 			nexmo.message.sendSms(
-			'12018340387', data[i].patient_phone_number, 'freddie is bojangling?',
+			'12018340387', '17036783212', 'You have one hour until your appointment',
 			(err, responseData) => {
 				if (err) {
 					console.log(err);
