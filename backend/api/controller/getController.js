@@ -770,7 +770,7 @@ function get_text_alert(req,res){
 
 		for(var i=0;i<data.length;i++){
 			
-			cn.query("UPDATE Appointment SET text_alert=0 WHERE appointment_id="+data[i].appointment_id, sync.defer)
+			sync.await(cn.query("UPDATE Appointment SET text_alert=0 WHERE appointment_id="+data[i].appointment_id, sync.defer()));
 		
 		}
 		res.send("Success");	
