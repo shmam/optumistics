@@ -6,7 +6,7 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 
-  <link rel="stylesheet" href="neoregister.css">
+  <link rel="stylesheet" href="css/neoregister.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -15,12 +15,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
+  <!-- Bootstrap Date-Picker Plugin -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
   <!-- importing bootstrap libraries for the register buttons -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </head>
 
@@ -56,6 +61,7 @@
     <!-- displays Optum logo in header -->
     <img src="img/optum1.jpg" alt="optum" style="width:250px;height:80px;">
 
+    <div id="google_translate_element" style = "float: right;"></div>
   <!-- end of header div -->
   </div>
 
@@ -77,10 +83,10 @@
 
 
     <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
-      <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+      <div class = "w3-row" id = "firstRow" style = "height: 37%;"> <!-- This will be the first row on the screen -->
 
-        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-check" onclick="div_show()" id = "firstColumn1" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
-          <div class = "front" style = "margin-top: -25.4%; margin-left: -5.1%; width: 105%; height: 108%; background: rgba(255, 112, 26, 0.8);">
+        <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-check" onclick="div_show()" id = "firstColumn1" style = "margin-top: 2%;margin-left: 2%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
+          <div class = "front" style = "margin-top: -25.1%; margin-left: -5.2%; width: 105.3%; height: 108.3%; background: rgba(255, 112, 26, 0.8);">
             <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 225px; margin-right: 3%;color: white;">START APPOINTMENT</h2> <!--Name of Operation: Physical -->
           </div>
 
@@ -95,19 +101,19 @@
         <div id = "verticalLine" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
         </div>
         <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-plus" onclick="show_div()" id = "thirdColumn1" style = "margin-left: -2px; margin-top: 2%;width: 31%; height: 94%;background: rgba(255, 112, 26, 0.8)"> <!-- The first column of the first row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 100px; margin-right: 3%; color: white;">ADD NEW PROVIDER</h2>  <!--Name of Operation: Blood -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 75px;  margin-left: 175px; margin-right: 3%; color: white;">ADD NEW PROVIDER</h2>  <!--Name of Operation: Blood -->
         </div>
       </div>
     <hr> <!-- <hr> tag is used to divide the two rows with a simple line-->
-      <div class = "w3-row" id = "secondRow" style = "margin-left: 10%; margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+      <div class = "w3-row" id = "secondRow" style = "margin-left: 10%; margin-top: 2%;height: 37%;"> <!-- This will be the first row on the screen -->
         <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-folder-open" onclick="show_div5()" id = "firstColumn2" style = "margin-top: -1%;margin-left: 1.5%;width: 38%; height: 94%;background:rgba(255, 112, 26, 0.8)"> <!-- The first column of the second row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 200px; margin-right: 3%;color: white;">ADD NEW PATIENT</h2> <!--Name of Operation: Operations -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 75px;  margin-left: 175px; margin-right: 3%; color: white;">ADD NEW PATIENT</h2> <!--Name of Operation: Operations -->
 
         </div>
         <div id = "verticalLine2" style="margin-left: 75px;" class = "w3-col"> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
         </div>
         <div class = "w3-card-4 w3-col w3-shadow glyphicon glyphicon-link" onclick="show_nfc()" id = "secondColumn2" style = "margin-left: 60px; margin-top: -1%;width: 38%; height: 94%; background: rgba(255, 112, 26, 0.8)"> <!-- The second column of the second row -->
-          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 75px; margin-left: 195px; argin-right: 3%; color: white;">PROVIDER NFC REGISTRATION</h2> <!--Name of Operation: X-Ray -->
+          <h2 style = "font-size: 48px;font-family: 'Cabin', sans-serif; float: right; margin-top: 75px;  margin-left: 175px; margin-right: 3%; color: white;">PROVIDER NFC REGISTRATION</h2> <!--Name of Operation: X-Ray -->
 
         </div>
         <!--<div id = "verticalLine2" class = "w3-col">--> <!-- This div helps to divide the screen look better by making a vertical lign in between the cards -->
@@ -426,6 +432,15 @@
   </div>
   <br/>
 
+  <!-- provider for the appointment drop down -->
+  <div>
+    <label class="input-label">provider name: </label>
+    <select id="appointment_provider_id" class="input-box">
+
+    </select>
+  </div>
+  <br/>
+
     <!-- appointment type drop down menu -->
   <div>
     <label class="input-label">appointment type: </label>
@@ -506,7 +521,12 @@
 
   </div>
 
-    <script src = "neoregister.js"></script>
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  }
+  </script>
+    <script src = "js/neoregister.js"></script>
 
 
 
