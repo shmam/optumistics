@@ -119,6 +119,9 @@ module.exports = function(app) {
 
     app.route('/queue/present/queue_position/:appointment_date/:provider_id')
         .get(selectAPI.select_queue_position)
+    
+    app.route('/queue/text_alert')
+        .get(selectAPI.get_text_alert)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
