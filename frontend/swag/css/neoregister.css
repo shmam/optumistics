@@ -1,0 +1,455 @@
+@import "http://fonts.googleapis.com/css?family=Raleway";
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+body{
+  font-family: 'Cabin', sans-serif;
+}
+
+.container {
+padding: 20px;
+}
+
+body {
+  font-family:'Raleway',sans-serif;
+}
+.input-box{
+
+  margin-left: 2%;
+
+}
+
+.input-label {
+  color: white;
+  margin-left: 32%;
+}
+/*
+The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+*/
+#abc {
+width:100%;
+height:100%;
+opacity:.9;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#a8a8a8;
+overflow:auto
+}
+
+#popupContact2{
+  align-content: bottom;
+
+}
+
+#popupContact3{
+align-content: bottom;
+
+}
+
+#popupContact4{
+align-content: bottom;
+
+}
+
+#popupContact5{
+align-content: bottom;
+
+}
+#abc2 {
+width:100%;
+height:100%;
+opacity:.9;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#a8a8a8;
+overflow:auto
+}
+
+#abc3 {
+width:100%;
+height:100%;
+opacity:.9;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#a8a8a8;
+overflow:auto
+}
+
+#abc4 {
+width:100%;
+height:100%;
+opacity:.9;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#a8a8a8;
+overflow:auto
+}
+
+#abc5 {
+width:100%;
+height:100%;
+opacity:.9;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#a8a8a8;
+overflow:auto
+}
+
+div#popupContact2 {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif
+}
+
+div#popupContact3 {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif
+}
+
+div#popupContact4 {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif
+}
+
+div#popupContact5 {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif
+}
+
+#nfc-avail {
+display:block;
+overflow:auto
+}
+
+#new-appointment {
+display:block;
+overflow:auto
+}
+
+#registerNFC {
+display:none;
+overflow:auto
+}
+/*
+The following is the style for the popout screen.
+*/
+div#popupContact {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif;
+
+}
+/*
+The following is the styling for the minutes, seconds, and miliseconds part of the popup screen
+*/
+#timeStamp{
+  text-align: center;
+  color: #ffffff
+}
+/*
+  The following the style for the start button.
+*/
+#button-start {
+text-decoration:none;
+width:50%;
+margin-left: 25%;
+text-align:center;
+display:block;
+background-color:#2ecc71;
+color:#fff;
+border:1px solid #FFCB00;
+
+font-size:20px;
+cursor:pointer;
+border-radius:5px
+}
+
+#popupContact{
+  align-content: bottom;
+  z-index: 1;
+}
+#wrapper{
+  text-align: center;
+  align-content: center;
+
+
+
+}
+/*
+  The following the style for the stop button.
+*/
+#button-stop {
+
+text-decoration:none;
+width:50%;
+margin-left: 25%;
+text-align:center;
+display:block;
+background-color:#e74c3c;
+color:#fff;
+border:1px solid #FFCB00;
+
+font-size:20px;
+cursor:pointer;
+border-radius:5px
+}
+/*
+  The following the style for the stop button.
+*/
+#button-reset{
+text-decoration:none;
+width:50%;
+margin-left: 25%;
+text-align:center;
+display:block;
+background-color:#e9d460;
+color:#fff;
+border:1px solid #FFCB00;
+
+font-size:20px;
+cursor:pointer;
+border-radius:5px
+}
+/*
+  The following the style for the button that comes out.
+*/
+#newWindow{
+  width: 800px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #36454F;
+  left: 50%;
+  margin-left: -25%;
+  border-radius: 5%;
+  border:4px solid #fff;
+
+}
+/*
+  The following closes the popout screen.
+*/
+#button-close{
+  background-color: #e74c3c;
+  color: #ffffff;
+  float: right;
+}
+#wrapper{
+  text-align: center;
+  align-content: center;
+
+}
+
+}
+#content{
+  margin-top: 50%;
+}
+#graphic{
+  border:5px solid #fff;
+}
+h1
+{
+  margin-left: -5%;
+    color: black;
+    text-align: center;
+    font-size: 72px ;
+    font-family:'Raleway',sans-serif;
+}
+
+p
+{
+  text-align: center;
+}
+
+.cardcolor
+{
+color: #FFB732;
+text-align: center;
+background: #FFB732;
+width: 450px;
+height: 110px;
+border-radius: 38px;
+
+
+}
+.w3-hover-opacity
+{
+
+}
+
+.w3-panel
+{
+  color: white ;
+  font-size: 30px;
+  font-family:'Raleway',sans-serif;
+  margin-left: 36% ;
+  margin-top: 45px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+span
+{
+  font-family:'Raleway',sans-serif;
+  text-align: center;
+
+}
+.glyphicon
+{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+}
+
+/**
+* Override feedback icon position
+* See http://formvalidation.io/examples/adjusting-feedback-icon-position/
+*/
+#eventForm .form-control-feedback {
+top: 0;
+right: -15px;
+}
+
+#verticalLine{
+
+  width: 1px;
+  height: 80%;
+  background-color: silver;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 3.5%;
+
+}
+
+#verticalLine2{
+
+  width: 1px;
+  height: 80%;
+  background-color: silver;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+
+}
+
+.glyphicon
+{
+
+  font-size: 100px;
+  float: right;
+  color: white;
+  padding-top: 25px;
+  padding-left: 25px;
+
+}
+
+#register_bar .glyphicon{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+}
+
+#settings_bar .glyphicon{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+}
+
+#statistics_bar .glyphicon{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+
+
+}
+
+.glyphiconbar
+{
+
+  font-size: 50px;
+  float: right;
+  color: black;
+  padding-top: 25px;
+  padding-left: 25px;
+
+}
+
+
+
+.overlay {
+height: 0%;
+width: 100%;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: rgb(0,0,0);
+background-color: rgba(0,0,0, 0.9);
+overflow-y: hidden;
+transition: 0.5s;
+}
+
+.overlay-content {
+position: relative;
+top: 25%;
+width: 100%;
+text-align: center;
+margin-top: 30px;
+}
+
+.overlay button {
+padding: 8px;
+text-align: center;
+text-decoration: none;
+align-content: center;
+font-size: 36px;
+color: #fff;
+display: block;
+transition: 0.3s;
+}
+
+.overlay button:hover, .overlay button:focus {
+
+}
+
+.overlay .closebtn {
+position: absolute;
+top: 20px;
+right: 45px;
+font-size: 60px;
+}
+
+
+@media screen and (max-height: 450px) {
+.overlay {overflow-y: auto;}
+.overlay a {font-size: 20px}
+.overlay .closebtn {
+font-size: 40px;
+top: 15px;
+right: 35px;
+}
+
+}
