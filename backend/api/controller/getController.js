@@ -766,7 +766,7 @@ function get_text_alert(req,res){
 
 	 sync.fiber(function(){
 		
-		var data = sync.await(cn.query("SELECT a.appointment_id AS appointment_id, pi.patient_phone_number AS patient_phone_number, pi.patient_first_name AS patient_first_name, pi.patient_last_name AS patient_last_name FROM Appointment a, Patient_Information pi WHERE a.expected_start_time>='"+today_time+"' AND a.expected_start_time<= '"+new_today_time+"' a.appointment_date='"+today_date+"' AND a.text_alert=1 AND a.patient_id=pi.patient_id", sync.defer()));
+		var data = sync.await(cn.query("SELECT a.appointment_id AS appointment_id, pi.patient_phone_number AS patient_phone_number, pi.patient_first_name AS patient_first_name, pi.patient_last_name AS patient_last_name FROM Appointment a, Patient_Information pi WHERE a.expected_start_time>='"+today_time+"' AND a.expected_start_time<= '"+new_today_time+"' AND a.appointment_date='"+today_date+"' AND a.text_alert=1 AND a.patient_id=pi.patient_id", sync.defer()));
 
 		for(var i=0;i<data.length;i++){
 			
