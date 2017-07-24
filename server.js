@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 function run(){
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
   console.log("bruhhh")
     var xhttp = new XMLHttpRequest();
     

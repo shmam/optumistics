@@ -29,6 +29,7 @@
     "mysql": "^2.13.0",
     "nexmo": "^2.0.2",
     "path": "^0.12.7",
-    "synchronize": "^2.0.0"
+    "synchronize": "^2.0.0",
+    "xmlhttprequest": "^1.8.0"
   }
 }
