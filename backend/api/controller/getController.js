@@ -422,7 +422,7 @@ function select_current_appointments(req,res){
 	var today = new Date();
 	today= today.toISOString().substring(0, 10);
 
-	cn.query("SELECT a.appointment_id, pi.patient_first_name, pi.patient_last_name FROM Appointment a, Patient_Information pi WHERE (a.appointment_date='" +today +"' AND (a.start_time IS NULL OR a.start_time='') AND a.patient_id = pi.patient_id)", function(err,data) {
+	cn.query("SELECT a.appointment_id, pi.patient_first_name, pi.patient_last_name FROM Appointment a, Patient_Information pi WHERE (a.appointment_date='" +today +"' AND (a.start_time IS NULL OR a.start_time='00:00:00') AND a.patient_id = pi.patient_id)", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -435,7 +435,7 @@ function select_current_appointments(req,res){
 }
 
 function select_appointment_information_for_patient_id(req,res){
-	cn.query("SELECT a.expected_start_time AS expected_start_time,pr.provider_id AS provider_id, pi.patient_first_name AS patient_first_name, pi.patient_last_name AS patient_last_name,a.appointment_date AS appointment_date, pr.provider_first_name AS provider_first_name, pr.provider_last_name AS provider_last_name FROM Appointment a, Patient_Information pi, Provider_Information pr WHERE a.provider_id=pr.provider_id AND (a.start_time IS NULL OR a.start_time='') AND a.patient_id=pi.patient_id AND a.patient_id ="+req.params.patient_id+" ORDER BY expected_start_time ASC LIMIT 1", function(err,data) {
+	cn.query("SELECT a.expected_start_time AS expected_start_time,pr.provider_id AS provider_id, pi.patient_first_name AS patient_first_name, pi.patient_last_name AS patient_last_name,a.appointment_date AS appointment_date, pr.provider_first_name AS provider_first_name, pr.provider_last_name AS provider_last_name FROM Appointment a, Patient_Information pi, Provider_Information pr WHERE a.provider_id=pr.provider_id AND (a.start_time IS NULL OR a.start_time='00:00:00') AND a.patient_id=pi.patient_id AND a.patient_id ="+req.params.patient_id+" ORDER BY expected_start_time ASC LIMIT 1", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -522,7 +522,7 @@ function select_Appointment_Type_Name(req,res) {
 
 function select_Flag_Color(req,res) {
 
-	cn.query("SELECT fc.flag_color_id, fc.flag_color_name, fc.flag_hex FROM Flag_Color fc LEFT JOIN Actions a ON fc.flag_color_id = a.flag_color_id WHERE (a.flag_color_id IS NULL OR a.flag_color_id='') UNION SELECT fc.flag_hex, fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc, Actions a WHERE fc.flag_color_id = a.flag_color_id AND (a.status_id=75 AND a.flag_color_id NOT IN (SELECT a1.flag_color_id FROM Actions a1 WHERE a1.status_id=74))", function(err,data) {
+	cn.query("SELECT fc.flag_color_id, fc.flag_color_name, fc.flag_hex FROM Flag_Color fc LEFT JOIN Actions a ON fc.flag_color_id = a.flag_color_id WHERE (a.flag_color_id IS NULL OR a.flag_color_id=0) UNION SELECT fc.flag_hex, fc.flag_color_id, fc.flag_color_name FROM Flag_Color fc, Actions a WHERE fc.flag_color_id = a.flag_color_id AND (a.status_id=75 AND a.flag_color_id NOT IN (SELECT a1.flag_color_id FROM Actions a1 WHERE a1.status_id=74))", function(err,data) {
 		if(err) {
 			console.log(err);
 			res.send(err);
@@ -729,16 +729,10 @@ function select_patient_queue_time(req,res){
 	sync.fiber(function(){
 		var sum=0;
 		var count=0;
-		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_end_time,end_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.appointment_date+"' AND provider_id= "+req.params.provider_id+" AND start_time IS NOT NULL ORDER BY start_time DESC LIMIT 3", sync.defer()));
+		var appts = sync.await(cn.query("SELECT TIMESTAMPDIFF(minute,expected_start_time,start_time) AS timediff FROM Appointment WHERE appointment_date='"+req.params.appointment_date+"' AND provider_id= "+req.params.provider_id+" AND expected_start_time<'"+req.params.expected_start_time+"' AND expected_start_time >'00:00:00' AND start_time IS NOT NULL ORDER BY start_time DESC LIMIT 1", sync.defer()));
 		console.log(appts);
 	
-		for(var i=0;i<appts.length;i++){
-			sum+=appts[i].timediff;
-			count+=1;
-		}
-		console.log(sum);
-		console.log(count);
-		res.jsonp(sum/count);
+		res.jsonp(appts[0].timediff);
 		
 	});
 }
