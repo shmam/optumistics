@@ -124,6 +124,6 @@ module.exports = {
     cn
 }
 
-run();
+setInterval(run,10000);
 
 console.log('RESTful API server started on: ' + port);
