@@ -43,9 +43,15 @@ const VIEWS3 = path.join(__dirname,"data_portal","js");
 const VIEWS4 = path.join(__dirname,"data_portal","css");
 const images = path.join(__dirname,"data_portal","img");
 
+const dashboard = path.join(__dirname,"dashboard");
+
 
 app.get('/data_portal/js', function(req, res) {
   res.sendFile('stats.js', { root : VIEWS3 });
+});
+
+app.get('/dashboard', function(req, res) {
+  res.sendFile('dayDash.html', { root : dashboard });
 });
 
 app.get('/data_portal/css', function(req, res) {
