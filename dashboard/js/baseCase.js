@@ -65,7 +65,7 @@ $( document ).ready(function() {
 });
 
 function callToast(){
-  Android.showToast("we made it");
+  WebAppInterface.showToast("we made it");
 }
 var Card = function(operation, operation_id){
   this.startTimeDisplayed = false; //Each card will have a START TIME...each card will start out not having a start time displayed...
