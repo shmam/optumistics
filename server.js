@@ -10,6 +10,24 @@ var config = require('./backend/config.js')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+function run(){
+        $.ajax({
+        type: 'GET',
+        url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert',
+        contentType: 'application/x-www-form-urlencoded',
+        jsonpCallback: 'callback', 
+        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        //crossDomain:true,
+        success: function(friends) {
+          console.log(friends)
+          
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+
+      });
+}
 // app.set('views', __dirname )
 // var engines = require('consolidate');
 
@@ -106,5 +124,6 @@ module.exports = {
     cn
 }
 
+run();
 
 console.log('RESTful API server started on: ' + port);
