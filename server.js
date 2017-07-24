@@ -40,12 +40,33 @@ app.get('/data_portal', function(req, res) {
 });
 
 const VIEWS3 = path.join(__dirname,"data_portal","js");
+const dashboard_js = path.join(__dirname,"dashboard","js");
+
 const VIEWS4 = path.join(__dirname,"data_portal","css");
 const images = path.join(__dirname,"data_portal","img");
+const dash_image= path.join(__dirname,"dashboard","img");
+const dashboard = path.join(__dirname,"dashboard");
+const dashboard_phone = path.join(__dirname,"dashboard","img");
+
+app.get('/dashboard/js', function(req, res) {
+  res.sendFile('baseCase.js', { root : dashboard_js });
+});
+
+app.get('/dashboard/telephone', function(req, res) {
+  res.sendFile('tPhone.png', { root : dash_image });
+});
+
+app.get('/dashboard/optImg', function(req, res) {
+  res.sendFile('optum1.jpg', { root : dash_image });
+});
 
 
 app.get('/data_portal/js', function(req, res) {
   res.sendFile('stats.js', { root : VIEWS3 });
+});
+
+app.get('/dashboard', function(req, res) {
+  res.sendFile('dayDash.html', { root : dashboard });
 });
 
 app.get('/data_portal/css', function(req, res) {
