@@ -786,7 +786,7 @@ function get_text_alert(req,res){
 					console.dir(responseData);
 				}
 			}
-		);
+			);
 			
 			sync.await(cn.query("UPDATE Appointment SET text_alert=0 WHERE appointment_id="+data[i].appointment_id, sync.defer()));
 		
