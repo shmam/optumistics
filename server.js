@@ -49,11 +49,11 @@ const dashboard = path.join(__dirname,"dashboard");
 const dashboard_phone = path.join(__dirname,"dashboard","img");
 
 app.get('/dashboard/js', function(req, res) {
-  res.sendFile('baseCase.js', { root : dashboard });
+  res.sendFile('baseCase.js', { root : dashboard_js });
 });
 
 app.get('/dashboard/telephone', function(req, res) {
-  res.sendFile('tPhone.png', { root : dashboard });
+  res.sendFile('tPhone.png', { root : dash_image });
 });
 
 app.get('/dashboard/optImg', function(req, res) {
