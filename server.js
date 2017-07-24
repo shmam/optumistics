@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 function run(){
+  console.log("bruhhh")
     var xhttp = new XMLHttpRequest();
     
     xhttp.open("GET", "http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert", true);
