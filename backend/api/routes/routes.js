@@ -183,6 +183,9 @@ module.exports = function(app) {
     
     app.route('/general/update/appointment_end_time/:appointment_id/:isPatient')
         .post(insertAPI.end_appointment)
+    
+    app.route('/queue/update/text_alert/:appointment_id/:patient_id/:phone_number')
+        .post(insertAPI.update_text_alert)
 
        /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 

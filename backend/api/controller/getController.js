@@ -766,6 +766,7 @@ function select_queue_position(req,res){
 function get_text_alert(req,res){
 	console.log("help");
 	var today = new Date();
+	today=today.getUTCDate();
 	today_time= today.toISOString().substring(11, 19);
 	var new_today_time= String(parseInt(today_time.substring(0,2))+1)+":"+today_time.substring(3,5)+":"+ today_time.substring(6,8);
 	today_date= today.toISOString().substring(0, 10);
