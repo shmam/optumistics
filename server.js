@@ -10,15 +10,7 @@ var config = require('./backend/config.js')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-function run(){
-  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-  console.log("bruhhh")
-    var xhttp = new XMLHttpRequest();
-    
-    xhttp.open("GET", "http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert", true);
-    xhttp.send();
-}
 // app.set('views', __dirname )
 // var engines = require('consolidate');
 
@@ -108,6 +100,8 @@ routes(app);
   database: "optumistics"
 });;
 
+
+
 app.listen(port);
 
 module.exports = {
@@ -115,6 +109,15 @@ module.exports = {
     cn
 }
 
+function run(){
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+  console.log("bruhhh")
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.open("GET", "http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert", true);
+    xhttp.send();
+}
 setInterval(run,10000);
 
 console.log('RESTful API server started on: ' + port);
