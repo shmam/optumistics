@@ -520,25 +520,25 @@ function delete_Action(req, res) {
 	
 }
 
-function update_text_alert(req,res) {
-	cn.query("UPDATE Appointment SET text_alert=1 WHERE appointment_id="+ req.params.appointment_id, function(err,data1) {
-		if(err) {
-			console.log(err);
-			res.send(err);
-		}
-		else {
-			cn.query("UPDATE Patient_Information SET phone_number='"+req.params.phone_number+"' WHERE patient_id="+ req.params.patiend_id, function(err,data) {
-				if(err) {
-					console.log(err);
-					res.send(err);
-				}
-				else {
-					res.send("success");
-				}
-			});
-		}
-	});
-}
+// function update_text_alert(req,res) {
+// 	cn.query("UPDATE Appointment SET text_alert=1 WHERE appointment_id="+ req.params.appointment_id, function(err,data1) {
+// 		if(err) {
+// 			console.log(err);
+// 			res.send(err);
+// 		}
+// 		else {
+// 			cn.query("UPDATE Patient_Information SET phone_number='"+req.params.phone_number+"' WHERE patient_id="+ req.params.patiend_id, function(err,data) {
+// 				if(err) {
+// 					console.log(err);
+// 					res.send(err);
+// 				}
+// 				else {
+// 					res.send("success");
+// 				}
+// 			});
+// 		}
+// 	});
+// }
 
 
 module.exports = {
@@ -562,5 +562,5 @@ module.exports = {
 	update_Flag_Color,
 	end_appointment,
 	delete_Action,
-	update_text_alert
+	//update_text_alert
 }
