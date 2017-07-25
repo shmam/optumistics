@@ -562,5 +562,5 @@ module.exports = {
 	update_Flag_Color,
 	end_appointment,
 	delete_Action,
-	//update_text_alert
+	update_text_alert
 }
