@@ -7,7 +7,16 @@ var sync= require('synchronize')
   user: "optumistics",
   password: "password",
   database: "optumistics"
-});;
+});
+
+const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+  apiKey: 'ab66397f',
+  apiSecret: 'b2724fee495c9e6a'
+});
+
+
+
 
 cn.connect();
 
@@ -754,6 +763,39 @@ function select_queue_position(req,res){
 	});
 }
 
+function get_text_alert(req,res){
+	var today = new Date();
+	today_time= today.toISOString().substring(11, 19);
+	var new_today_time= String(parseInt(today_time.substring(0,2))+1)+":"+today_time.substring(3,5)+":"+ today_time.substring(6,8);
+	today_date= today.toISOString().substring(0, 10);
+	
+	
+
+	 sync.fiber(function(){
+		
+		var data = sync.await(cn.query("SELECT a.appointment_id AS appointment_id, pi.patient_phone_number AS patient_phone_number, pi.patient_first_name AS patient_first_name, pi.patient_last_name AS patient_last_name FROM Appointment a, Patient_Information pi WHERE a.expected_start_time>='"+today_time+"' AND a.expected_start_time<= '"+new_today_time+"' AND a.appointment_date='"+today_date+"' AND a.text_alert=1 AND a.patient_id=pi.patient_id", sync.defer()));
+
+		for(var i=0;i<data.length;i++){
+
+			nexmo.message.sendSms(
+			'12018340387', data[i].patient_phone_number, data[i].patient_first_name+', you have one hour until your appointment',
+			(err, responseData) => {
+				if (err) {
+					console.log(err);
+				} else {
+					console.dir(responseData);
+				}
+			}
+			);
+			
+			sync.await(cn.query("UPDATE Appointment SET text_alert=0 WHERE appointment_id="+data[i].appointment_id, sync.defer()));
+		
+		}
+		res.send("Success");	
+
+	 });
+}
+
 
 
 module.exports = {
@@ -795,6 +837,7 @@ module.exports = {
 	get_question,
 	select_appointment_information_for_patient_id,
 	select_patient_queue_time,
-	select_queue_position
+	select_queue_position,
+	get_text_alert
 	
 }

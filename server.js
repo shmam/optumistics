@@ -10,6 +10,15 @@ var config = require('./backend/config.js')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+function run(){
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+  console.log("bruhhh")
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.open("GET", "http://applicationDashboard.us-east-1.elasticbeanstalk.com/queue/text_alert", true);
+    xhttp.send();
+}
 // app.set('views', __dirname )
 // var engines = require('consolidate');
 
@@ -82,6 +91,12 @@ app.get('/data_portal/optumImg', function(req, res) {
 var routes = require('./backend/api/routes/routes.js');
 
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 routes(app);
 
 
@@ -100,5 +115,6 @@ module.exports = {
     cn
 }
 
+setInterval(run,10000);
 
 console.log('RESTful API server started on: ' + port);
