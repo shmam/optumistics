@@ -540,6 +540,17 @@ function update_text_alert(req,res) {
 	});
 }
 
+function insert_light(req, res){
+	 cn.query("INSERT INTO Light (light_rgb) VALUES ('"+req.params.light_rgb+"')", function (err, data) {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else{
+            console.log("Successful insertion");
+            res.send("Successful insertion");
+        }   
+    });
+}
 
 module.exports = {
 	insert_Person_Type,
@@ -562,5 +573,6 @@ module.exports = {
 	update_Flag_Color,
 	end_appointment,
 	delete_Action,
-	update_text_alert
+	update_text_alert,
+	insert_light
 }

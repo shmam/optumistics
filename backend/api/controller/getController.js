@@ -797,6 +797,18 @@ function get_text_alert(req,res){
 	 });
 }
 
+function get_light(){
+	 cn.query("SELECT * FROM Light", function (err, data) {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else{
+            console.log(data);
+            res.jsonp(data);
+        }   
+    });
+}
+
 
 
 module.exports = {
@@ -839,6 +851,7 @@ module.exports = {
 	select_appointment_information_for_patient_id,
 	select_patient_queue_time,
 	select_queue_position,
-	get_text_alert
+	get_text_alert,
+	get_light
 	
 }

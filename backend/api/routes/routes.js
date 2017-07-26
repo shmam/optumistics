@@ -122,6 +122,9 @@ module.exports = function(app) {
     
     app.route('/queue/text_alert')
         .get(selectAPI.get_text_alert)
+    
+    app.route('/light/select_light')
+        .get(selectAPI.get_light)
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -186,6 +189,9 @@ module.exports = function(app) {
     
     app.route('/queue/update/text_alert/:appointment_id/:patient_id/:phone_number')
         .post(insertAPI.update_text_alert)
+    
+    app.route('/light/post/:light_rgb')
+        .post(insertAPI.insert_light)
 
        /* ------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
