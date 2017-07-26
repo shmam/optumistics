@@ -527,7 +527,7 @@ function update_text_alert(req,res) {
 			res.send(err);
 		}
 		else {
-			cn.query("UPDATE Patient_Information SET phone_number='"+req.params.phone_number+"' WHERE patient_id="+ req.params.patiend_id, function(err,data) {
+			cn.query("UPDATE Patient_Information SET patient_phone_number='"+req.params.phone_number+"' WHERE patient_id="+ req.params.patiend_id, function(err,data) {
 				if(err) {
 					console.log(err);
 					res.send(err);
