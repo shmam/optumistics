@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -26,40 +25,35 @@
     <link href="css/creative.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Temporary navbar container fix -->
+
+    <!-- Start of CSS -->
     <style>
-    @import "http://fonts.googleapis.com/css?family=Raleway";
-    .navbar-toggler {
+      @import "http://fonts.googleapis.com/css?family=Raleway";
+      .navbar-toggler {
         z-index: 1;
-    }
-
-    @media (max-width: 576px) {
+      }
+      @media (max-width: 576px) {
         nav > .container {
-            width: 100%;
+          width: 100%;
         }
-    }
-    /*
-      This is the login bubbles...
-    */
-    input {
-    background: transparent;
-    border-radius: 0.5em;
-    border: none;
-    margin: 2em;
-
-
-    color: #ffffff;
-    font-size: 1.1em;
-    padding-left: 1.5em;
-
-    outline: none;
-    box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%)
-}
+      }
+    /* This is the login bubbles... */
+      input {
+        background: transparent;
+        border-radius: 0.5em;
+        border: none;
+        margin: 2em;
+        color: #ffffff;
+        font-size: 1.1em;
+        padding-left: 1.5em;
+        outline: none;
+        box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%)
+      }
     </style>
+    <!-- End of CSS -->
+  </head>
 
-
-</head>
-
-<body id="page-top">
+  <body id="page-top">
     <!-- Navigation -->
 
     <!-- PRETTY SELF EXPLANATORY HTML CODE.....contains the title....and then a form with username and password with button to go to dashboard.-->
@@ -96,41 +90,35 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/creative.min.js"></script>
+
+    <!-- Start of JavaScript Function -->
     <script>
-    var nfcArray = [];
-
-    //LOAD THE ARRAY
-    $( document ).ready(function()
-    {
-
-
-      var $homeHeading = $("#homeHeading");
-      $.ajax({
-
-        type: 'GET',
-        url: 'http://localhost:3000/portal/present/NFC_Bracelet/provider', //Connect to db
-          success: function(bracelets) {
+      var nfcArray = [];
+      //LOAD THE ARRAY
+      $(document).ready(function () {
+        var $homeHeading = $("#homeHeading");
+        $.ajax({
+          type: 'GET',
+          url: 'http://localhost:3000/portal/present/NFC_Bracelet/provider', //Connect to db and call this specific function
+          success: function (bracelets) {
             nfcArray.push("lucky");
-          $.each(bracelets, function(i, brace)
-          { //Get every entry in the NFC db that are PROVIDERS
-            nfcArray.push(brace.nfc_hex); //Adds the NFC ID's for providers to be accessed
-            $homeHeading.append(brace.nfc_hex);
-          });
-        },
-        error: function (xhr, status, error) {
+            $.each(bracelets, function (i, brace) { //Get every entry in the NFC db that are PROVIDERS
+              nfcArray.push(brace.nfc_hex); //Adds the NFC ID's for providers to be accessed
+              $homeHeading.append(brace.nfc_hex);
+            });
+          },
+          error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
-        },
+          },
 
-    });
-    printNFCArray();
-    });
+        });
+        printNFCArray();
+      });
 
-    function printNFCArray()
-    {
-      console.dir(nfcArray);
-    }
+      function printNFCArray() {
+        console.dir(nfcArray);
+      }
     </script>
-
-</body>
-
+    <!-- End of JavaScript  Function -->
+  </body>
 </html>

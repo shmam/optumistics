@@ -3,6 +3,7 @@ var action_clicked;
 var active_actions=[];
 var hex_arr=[];
 $(document).ready(function(){
+    alert(new Date());
 
     /* click button to open/close sidebar */
     $('#topBar-button').click(function () {
