@@ -797,7 +797,7 @@ function get_text_alert(req,res){
 	 });
 }
 
-function get_light(){
+function get_light(req,res){
 	 cn.query("SELECT * FROM Light", function (err, data) {
         if(err){
             console.log(err);
