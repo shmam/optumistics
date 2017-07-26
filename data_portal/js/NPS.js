@@ -77,36 +77,6 @@ $("#ex13").slider({
     tooltip_position:""
 
 });
-// slider With JQuery ex 14
-$("#ex14").slider({
-    ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    ticks_labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-    ticks_snap_bounds: 30,
-    id:"slider2",
-    handle:"round",
-    tooltip_position:""
-
-});
-// slider With JQuery ex 14
-$("#ex15").slider({
-    ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    ticks_labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-    ticks_snap_bounds: 30,
-    id:"slider2",
-    handle:"round",
-    tooltip_position:""
-
-});
-// slider With JQuery ex 14
-$("#ex16").slider({
-    ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    ticks_labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-    ticks_snap_bounds: 30,
-    id:"slider2",
-    handle:"round",
-    tooltip_position:""
-
-});
 
 }); // end of document.ready function
 
