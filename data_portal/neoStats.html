@@ -40,7 +40,7 @@
       <button class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
       <img src="img/optum1.jpg" alt="optum" style="width:250px;height:80px;">
 
-<div id="google_translate_element" style = "float: right;"></div>
+<div id="google_translate_element" style = "float: right;"></div> <!--This is the google translate div -->
 
 
     <div id = "mainContent" style = "font-family:'Raleway',sans-serif">
@@ -63,15 +63,16 @@
             <option>Providers</option>
           </select>
 
-          <select id = "operationType" style = "margin-left: 5%;width: 30%;">
+          <select id = "operationType" style = "margin-left: 5%;width: 30%;">v <!--This selection will be operations -->
             <option value = "line">Operations</option>
           </select>
-        <canvas id="myChart" width="content-box" height="100%"class = "w3-col" style="display: block; padding 10px;">
+        <canvas id="myChart" width="content-box" height="100%"class = "w3-col" style="display: block; padding 10px;"> <!--This chart is the line graph in the top left side-->
 
 
 
         <!--this is the end of the first LINE GRAPH dropdown section...there is a break and another line after this section for aethestics.-->
       </div>
+      <!--This div contains the information regarding the specific numbers and the benchmarks for clinicians.-->
         <div class="w3-card-4 w3-col w3-hover-shadow" style="margin-left: 2%;width:41%; height: 420px; overflow-y: auto; margin-top:40px;">
           <header class="w3-container w3-indigo w3-hover-shadow">
             <h2 style = "text-align: center;">CLINICIAN STATS</h2>
@@ -91,6 +92,7 @@
       <hr width: 50%;>
       <div class="w3-row">
         <div class="w3-card-4 w3-col" style="margin-left: 1%;width:60%; height: 36%;">
+          <!--This div will contain the bottom left graph-->
           <header class="w3-container w3-orange w3-hover-shadow">
             <h3 style = "color: #fff;text-align: center;">COMPREHENSIVE WAIT TIME</h3>
           </header></br>
@@ -104,6 +106,7 @@
         <div class="w3-col" style="width:2%; height: 35%;">
         </div>
         <div class="w3-card-4 w3-col" style="width:17%; height: 36%; text-align: center; ">
+          <!--This div contains the NPS score card-->
           <header class="w3-container w3-indigo w3-hover-shadow">
             <h3 style = "color: #fff;text-align: center;">PATIENT NPS</h3>
 
@@ -121,6 +124,7 @@
         <div class="w3-col" style="width:2%; height: 35%;">
         </div>
         <div class="w3-card-4 w3-col" style="width:17%; height: 36%;">
+          <!--This div contains the patient wait time card-->
           <header class="w3-container w3-orange w3-hover-shadow">
             <h3 style = "color: #fff;text-align: center;">PATIENT WAIT TIME</h3>
           </header>

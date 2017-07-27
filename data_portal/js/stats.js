@@ -2,12 +2,14 @@
   The following JavaScript file will mostly be used for the neoStats.html page
   TOB:
     -Global variables - Lines 20 - 40
-    -Hamburger screen shift; Lines 47 - 65
-    -Line graph data
-    -Bar graph data
-    -Graph update functions
-    -jQuery functions
-    -Helper functions
+    -Hamburger screen shift - Lines 47 - 65
+    -jQuery functions - Lines 69 - 232
+    -Helper functions - Lines 233 - 431
+    -Line graph data - Lines 435 - 572
+    -Bar graph data - Lines 577 -637
+    -Graph update functions - Lines 641 - 728
+
+
 */
 
 
