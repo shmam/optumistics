@@ -31,12 +31,12 @@ $( document ).ready(function() {
     type: 'GET',
     url: 'http://applicationDashboard.us-east-1.elasticbeanstalk.com'+"/dashboard/present/actions/active",
     contentType: 'application/x-www-form-urlencoded',
-    jsonpCallback: 'callback', 
+    jsonpCallback: 'callback',
     dataType : 'jsonp',   //you may use jsonp for cross origin request
     //crossDomain:true,
     success: function(friends) {
       console.log(friends)
-      
+
       $.each(friends, function(i, friend){
         console.log(friend.button_label);
         $("#"+i+" .header").text(friend.button_label);
@@ -45,15 +45,15 @@ $( document ).ready(function() {
         $("#"+i+" .back").css('background-color', friend.flag_hex);
         hexArr.push(friend.flag_hex);
         $("#"+i).show();
-        
+
 
         if((i==0 && friends.length>1) || (i==1 &&friends.length>2) ||(i==3 && friends.length>4) || (i==4 && friends.length>5)){
           $(".vline"+i).show();
         }
       });
-     
-            
-    
+
+
+
     },
     error: function (xhr, status, error) {
         console.log('Error: ' + error.message);
@@ -131,7 +131,7 @@ function openSocket(){
 
 function showData(result){
   //when the server returns, record the result
-  
+
   if(!popupFlag){
     nfcHex = result.data;
     if(isPolling){
@@ -147,7 +147,7 @@ function allowAccess(hexCode)
   console.log("Allow Access!");
   hexCode = hexCode.substring(1,20);
   var validCard = false;
-  
+
   if(hexCode !== null)
    {
     for(var i = 0; i < nfcArray.length; i++)
@@ -156,11 +156,11 @@ function allowAccess(hexCode)
         validCard = true;
         break;
       }
-	
+
     }
-	
+
     if(validCard){
-      
+
       ajaxCallGetProviderId(hexCode);
       closeNav();
     }
@@ -368,7 +368,7 @@ function ajaxCallSendTime(startTime, endTime, action_id, provider_id){
   $.ajax({
       type: 'POST',
       jsonpCallback: 'callback',
-      
+
       url: baseUrl + '/general/insert/Action_Performed/'+String(action_id)+'/10/2/' + String(startTime) + '/' + String(endTime) + '/' + String(provider_id) + '/' + String(today),
       //url: baseUrl + 'general/insert/Action_Performed/' + String(action_id) + '/10/1/' + String(startTime) + '/' + String(endTime) + '/2290/' + String(today)
       success: function(data) {
@@ -400,20 +400,20 @@ function ajaxCallGetProviderId(hexcode){
 
 function endAppointment() {
    if(sessionStorage.getItem("current_appointment_id") !== '0'){
-  	
+
   	$.ajax({
    	   type: 'POST',
    	   jsonpCallback: 'callback',
-   	   
+
    	   url: baseUrl + '/general/update/appointment_end_time/' + sessionStorage.getItem("current_appointment_id") +"/true",
    	   success: function(data) {
    	     console.log("updated appointment id yeet");
-	
+
     	  },
     	  error: function (xhr, status, error) {
      	     console.log('Error: ' + error.message);
      	 },
   	})
    }
-   window.location.href = "landingpage.html";
-} 
+   window.location.href = "NPS.html";
+}
