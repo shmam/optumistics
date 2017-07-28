@@ -32,8 +32,8 @@ app.get('/', function(req, res) {
   res.sendFile('connect.html', { root : VIEWS });
 });
 
-app.get('/backend/SampleConnection/jquery', function(req, res) {
-  res.sendFile('jquery.js', { root : VIEWS });
+app.get('/jquery.js', function(req, res) {
+  res.sendFile('jquery.js', { root : __dirname });
 });
 
 app.get('/data_portal', function(req, res) {
@@ -45,19 +45,20 @@ const dashboard_js = path.join(__dirname,"dashboard","js");
 
 const VIEWS4 = path.join(__dirname,"data_portal","css");
 const images = path.join(__dirname,"data_portal","img");
+
 const dash_image= path.join(__dirname,"dashboard","img");
 const dashboard = path.join(__dirname,"dashboard");
 const dashboard_phone = path.join(__dirname,"dashboard","img");
 
-app.get('/dashboard/js', function(req, res) {
+app.get('/js/basecase.js', function(req, res) {
   res.sendFile('baseCase.js', { root : dashboard_js });
 });
 
-app.get('/dashboard/telephone', function(req, res) {
+app.get('/img/tPhone.png', function(req, res) {
   res.sendFile('tPhone.png', { root : dash_image });
 });
 
-app.get('/dashboard/optImg', function(req, res) {
+app.get('/img/optum1.jpg', function(req, res) {
   res.sendFile('optum1.jpg', { root : dash_image });
 });
 
