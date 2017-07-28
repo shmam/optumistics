@@ -578,7 +578,7 @@ function update_text_alert(req,res) {
 
 // Insert light value into the light Table in DB
 function insert_light(req, res){
-	 cn.query("INSERT INTO Light (light_rgb) VALUES ('"+req.params.light_rgb+"')", function (err, data) {
+	 cn.query("UPDATE Light SET light_rgb= '"+req.params.light_rgb+"'", function (err, data) {
         if(err){
             console.log(err);
             res.send(err);
