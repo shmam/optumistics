@@ -62,6 +62,9 @@ app.get('/img/optum1.jpg', function(req, res) {
   res.sendFile('optum1.jpg', { root : dash_image });
 });
 
+app.get('/landingpage.html', function(req, res) {
+  res.sendFile('landingpage.html', { root : dashboard });
+});
 
 app.get('/data_portal/js', function(req, res) {
   res.sendFile('stats.js', { root : VIEWS3 });
