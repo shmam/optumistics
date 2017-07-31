@@ -128,7 +128,9 @@ function openSocket(){
   socket.send("Hwllo server");
 
 }
-
+function show(param){
+  alert(param);
+}
 function showData(result){
   //when the server returns, record the result
 
