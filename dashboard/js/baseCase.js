@@ -61,9 +61,10 @@ $( document ).ready(function() {
         $("#"+i+" .header").text(friend.button_label); //This will determine the text on the card based on the ajax call...
         $("#"+i+" .front").css('background-color', friend.flag_hex); //This will determine the color of the card based on what color the operation is...
         $("#"+i+" .back").css('background-color', friend.flag_hex); //This will determine the color of the card based on what color the operation is...
+	hexArr.push(friend.flag_hex); //This will add the color hex into the array for the card color.
         $("#"+i).show();  //Show the card on the dashboard screen with the specified dimensions.
 
-
+	
         if((i==0 && friends.length>1) || (i==1 &&friends.length>2) ||(i==3 && friends.length>4) || (i==4 && friends.length>5))
         {
           $(".vline"+i).show();
