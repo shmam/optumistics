@@ -58,8 +58,8 @@
   .image{
     width: 100px; 
     height: 100px;
-    margin-top: 175px; 
-    margin-left: 75%;
+    margin-top: 200px; 
+    margin-left: 65%;
     font-size: 48px;
       color: #ffffff
   }
@@ -89,7 +89,7 @@
 }
 
 .tensec{
-  font-size:128px;
+  font-size:90px;
   color:#fff;
 }
 
@@ -159,17 +159,18 @@
       <img src="img/optum1.jpg" alt="optum" style="margin-left: 41%;width:250px;height:80px;"> <!-- This is the img logo for the Optum sign -->
     </div>
 
-    <div id="name_div" style="float:left"> Wassup </div>
-    <button style="color:white; background: rgba(231, 76, 60, 0.8); font-size:30px; padding: 5px; float: right; margin-right: 20px; font-weight: 700; " onClick="endAppointment()"> END APPOINTMENT </button> 
+    <div id="name_div" style="float:left; margin-left:20px; font-weight:700; font-size:25px;"></div>
+    <div id="provider_name_div" style=style="float:left; margin-left:20px; font-weight:700; font-size:25px;"></div>
+    <button style="color:white; background: rgba(231, 76, 60, 0.8); font-size:25px; padding: 5px; float: right; margin-right: 20px; font-weight: 700; " onClick="endAppointment()"> END APPOINTMENT </button> 
 
-    <div id = "cardDivisions"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
+    <div id = "cardDivisions" style="margin-top:20px"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
       <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
 
         <div class = "w3-col w3-shadow card" hidden id = "0" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
           <div class = "front" >
             <h2 class="header">PHYSICAL</h2> <!--Name of Operation: Physical -->
 
-            <img src = "img/tPhone.png"class="callB image" id = "0" onclick = "openNav(1)">
+            <img src = "img/lightbulb.jpg"class="callB image" id = "0" onclick = "openNav(1)">
           </div>
           <div class = "back">
             <span class = "sec tensec" id="seconds0">00</span><span style = "font-size: 48px; color: #fff">:</span>
@@ -212,7 +213,7 @@
       </div>
     </div>
     <hr></br>
-      <div class = "w3-row" id = "secondRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+      <div class = "w3-row" id = "secondRow" style = "height: 42%;"> <!-- This will be the first row on the screen -->
         <div class = "w3-col w3-shadow card"  hidden id = "3" style = "margin-top: -1%;margin-left: 1.5%;width: 31%; height: 94%;"> <!-- The first column of the second row -->
         <div class = "front">
           <h2 class="header">OPERATIONS</h2> <!--Name of Operation: Operations -->
