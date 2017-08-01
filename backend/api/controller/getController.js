@@ -403,22 +403,31 @@ function select_person_type	(req,res){
 	
 }
 
-//
+//this function will be used to determine the wait time in a certain appointment  
 function select_time_waited_appointment_id_RT(req, res) {
+	//get todays date
 	var today = new Date();
 	today = today.toISOString().substring(0, 10);
+
+	//make sure the patient id is not null
 	if (req.params.patient_id != null) {
 		
+		//this query will select the appointment id that belongs to a certain patient on today's date
 		cn.query("SELECT appointment_id FROM Appointment WHERE patient_id = " + req.params.patient_id + " AND appointment_date = '" + today
 		+ "'", function (err, data2) {
+			
 			if (err) {
 				console.log(err);
 				res.send(err);
 			}
 			else {
+
+				//this query will select the difference between the total time of the appoinment and the total time of actions performed in an appointment
 				cn.query("SELECT TIMESTAMPDIFF(minute,a.start_time,a.end_time) - TIMESTAMPDIFF(minute,ap.start_time,ap.end_time) AS Time_Waited FROM Appointment a,Action_Performed ap WHERE (a.appointment_id = "
 				+ data2[0].appointment_id + " AND ap.appointment_id = " + data2[0].appointment_id + " AND a.appointment_date = '" + today + "' AND ap.action_date = '" + today + "')"
 				, function (err, data3) {
+
+					//return data
 					res.jsonp(data3);
 				});
 			}
@@ -428,19 +437,6 @@ function select_time_waited_appointment_id_RT(req, res) {
 	else {
 		res.send("Unsuccessful selection of data. One of the parameters is null");
 	}
-}
-
-
-function select_time_waited_appointment_type_RT(req,res){
-
-}
-
-function select_time_waited_appointment_id_C(req,res){
-
-}
-
-function select_time_waited_appointment_type_C(req,res){
-
 }
 
 //select list of NFCs for providers
@@ -713,7 +709,7 @@ function select_dup_flag_color_id(req,res) {
 }
 
 function select_provider_id_by_NFC(req,res){
-	cn.query("SELECT act.provider_id AS provider_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM ActivatedNFC_Provider act, NFC_Bracelet nfc WHERE nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"'", function(err,data)
+	cn.query("SELECT pi.provider_first_name, pi.provider_last_name, act.provider_id AS provider_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM Provider_Information pi, ActivatedNFC_Provider act, NFC_Bracelet nfc WHERE pi.provider_id=act.provider_id AND nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"'", function(err,data)
 	{
 		if(err)
 		{

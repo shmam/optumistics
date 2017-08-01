@@ -74,7 +74,6 @@ $( document ).ready(function() {
 
   });
 
-  callToast();
 });
 
 $(".callB").click(function(){
@@ -168,9 +167,7 @@ $('.card').click(function()
   -------------------------------------------HELPER FUNCTIONS-----------------------------------------------------
 */
 
-function callToast(){
-  WebAppInterface.showToast("we made it");
-}
+
 /*
   Instantiate a new CARD object that has the following properties...
 */
