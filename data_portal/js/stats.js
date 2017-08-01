@@ -147,10 +147,11 @@ function w3_close()
           { //Get every entry in the NFC db that are PROVIDERS
 
             document.getElementById('NPSLoad').style.display = "none";
-            $('#NPS').html('<strong style="font-size:130px;">' + Math.round(brace.average * 10)/10 + '</strong>');
-
-            $('#NPS').append('<div id="progressbarcolor"><div id="progressbarwhite" style="width:'+ (100 - (brace.average * 10)) +'%;"></div></div>')
-            $('#NPS').append('<p style="font-weight:200">/10</p>')
+            $('#NPS').html('<strong style="font-size:130px;">' + Math.floor(Math.round(brace.average * 100)/10) + '</strong>');
+            var barWidth = -1 * parseInt((100 - (brace.average * 100))/10) + "%";
+            console.log("bar width: " + barWidth);
+            $('#NPS').append("<div id='progressbarcolor'> <div id='progressbarwhite' style='width: '"+ barWidth +";></div></div>")
+            $('#NPS').append('<p style="font-weight:200">/100</p>')
             document.getElementById('NPS').style.display = "block";
 
 
