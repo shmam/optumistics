@@ -238,6 +238,15 @@
         color:black;
 
      }
+
+     .alert{
+        background-color: rgb(231,76,60);
+	font-size: 20px;
+	color: rgb(135,39,29);
+	z-index: 100;
+	border: solid 3px  rgb(135,39,29);
+
+     }
      
      #loader{
         border: 16px solid #f3f3f3;
@@ -283,6 +292,8 @@
 <div class="logo">
     <img src="img/optum.png" alt="optum" style="width:250px;height:80px;float:left;">
   </div>
+
+
     <div class="main-content">
 
       <div>
@@ -296,7 +307,7 @@
       </div>
     </form>
     <a style="float: right; margin-right: 47%; margin-top: 5%;" onclick="passwordVerify()" class="btn btn-primary btn-xl">LOGIN</a>
-      <!--<h1 id="title"> Optumistics <h1>-->
+    
 
      
       
@@ -316,7 +327,7 @@
         <div style=" margin-left: auto; margin-right: auto;" id="loader"> </div>
         <br />
         <button onClick="skipPatient()"> SKIP </button>
-
+      
 
       </div>
     </div>
@@ -371,11 +382,15 @@ function allowAccess(hexCode)
 }
 
 function checkProvider(hexCode){
+  
   var validCard = false;
   if(hexCode !== null){
     console.log(hexCode)
     for(var i = 0; i < nfcArray.length; i++){
+        console.log("This is the hex code input " + hexCode);
+        console.log("This is whats in the array " + nfcArray[i]);
       if(hexCode === nfcArray[i]){
+
         console.log("card validated")
         validCard = true;
         break;
@@ -386,16 +401,17 @@ function checkProvider(hexCode){
       
       ajaxCallGetProviderId(hexCode);
       div_show();
-      setTimeout(console.log("Ive been stuck in colder weather"),4000);
       provider = false;
+
     }
     else{
       popupFlag = true;
-      var r = confirm("this NFC Card is not valid")
       popupFlag = false;
     }
   }
 }
+
+
 
 function checkPatient(hexCode){
   var validCard = false;
@@ -415,9 +431,7 @@ function checkPatient(hexCode){
       //window.location.href = "dayDash.html"
     }
     else{
-      popupFlag = true;
-      var r = confirm("this NFC Card is not valid")
-      popupFlag = false;
+    
     }
   }
 }
@@ -443,16 +457,18 @@ function passwordVerify()
 	}
 	if (found === false)
 	{
-		alert("Invalid pin, please try again!");
+		
 	}
 
 }
 
 $(document).ready(function()
 {
+
   ajaxCallGetPassword();
   ajaxCallNFC();
   ajaxCallPatientNFC()
+
 });
 
 function ajaxCallNFC(){
@@ -463,6 +479,7 @@ function ajaxCallNFC(){
       success: function(data) {
         $.each(data, function(i, brace)
         { //Get every entry in the NFC db that are PROVIDERS
+	    console.log(brace.nfc_hex);
             nfcArray.push(String( brace.nfc_hex));
             
         });
@@ -501,6 +518,7 @@ function ajaxCallGetProviderId(hexcode){
       url: baseUrl + '/dashboard/verification/provider/' + hexcode,
       success: function(data) {
 	sessionStorage.setItem("current_provider_id",data[0].provider_id);
+	sessionStorage.setItem("current_provider_name", data[0].provider_first_name+" "+ data[0].provider_last_name);
 
       },
       error: function (xhr, status, error) {
@@ -542,6 +560,15 @@ function ajaxCallGetPatientId(patient_hexcode){
   })
 
 }
+
+//function showAlert(){
+     // $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+     // }); 
+//}
+//function showAlert2(){
+     // $("#success-alert2").fadeTo(2000, 500).slideUp(500, function(){
+     // }); 
+//}
 
 function setStoragePatient(patient_id,appointment_id,patient_name){
    console.log("here we go I am cinnymon");

@@ -29,10 +29,12 @@ var endHours;
 var endMinutes;
 var endSeconds;
 var sendEndTime;
+
 var hexArr=[];
 /*
   --------------------------------------------END of GLOBAL VARIABLES--------------------------------------
 */
+
 
 /*
   -------------------------------------------JQUERY FUNCTIONS---------------------------------------------
@@ -59,9 +61,10 @@ $( document ).ready(function() {
         $("#"+i+" .header").text(friend.button_label); //This will determine the text on the card based on the ajax call...
         $("#"+i+" .front").css('background-color', friend.flag_hex); //This will determine the color of the card based on what color the operation is...
         $("#"+i+" .back").css('background-color', friend.flag_hex); //This will determine the color of the card based on what color the operation is...
+	hexArr.push(friend.flag_hex); //This will add the color hex into the array for the card color.
         $("#"+i).show();  //Show the card on the dashboard screen with the specified dimensions.
 
-
+	
         if((i==0 && friends.length>1) || (i==1 &&friends.length>2) ||(i==3 && friends.length>4) || (i==4 && friends.length>5))
         {
           $(".vline"+i).show();
@@ -74,7 +77,9 @@ $( document ).ready(function() {
 
   });
 
+
 });
+
 
 $(".callB").click(function(){
 
@@ -155,7 +160,8 @@ $('.card').click(function()
   $(document).ready(function()
   {
     ajaxCallNFC();
-    document.getElementById('name_div').innerHTML = sessionStorage.getItem("patient_name")
+    document.getElementById('name_div').innerHTML = "Patient: "  + sessionStorage.getItem("patient_name");
+ document.getElementById('provider_name_div').innerHTML= "Provider: " +sessionStorage.getItem("current_provider_name");
 
   });
 
@@ -171,6 +177,7 @@ $('.card').click(function()
 /*
   Instantiate a new CARD object that has the following properties...
 */
+
 var Card = function(operation, operation_id){
   this.startTimeDisplayed = false; //Each card will have a START TIME...each card will start out not having a start time displayed...
   this.endTimeDisplayed = false; //Each card will have a END TIME...each card will start out not having a end time displayed....
@@ -356,8 +363,10 @@ function openNav(number)
   {
     document.getElementById("myNav").style.height = "100%"; //Open the call screen
   }
-  if (number === 1)
-  {
+
+  if (number === 1){
+
+
     document.getElementById("myNav").style.background = hexArr[0];
     ajaxSendColor("red");
   }
@@ -385,7 +394,9 @@ function openNav(number)
   else if (number === 6)
   {
     document.getElementById("myNav").style.background = hexArr[5];
+
     ajaxSendColor("blue");
+
   }
   //API CALL TO TURN ON THE LIGHT.....
 
@@ -398,8 +409,12 @@ function closeNav()
 {
     isPolling = false;
     document.getElementById("myNav").style.height = "0%";
+
+    document.getElementById('provider_name_div').innerHTML= "Provider: " +sessionStorage.getItem("current_provider_name")
+
     console.log("Run the API call...and turn off the light")
     ajaxSendColor("n")
+
 
 }
 
@@ -408,6 +423,15 @@ function closeNav()
 */
 function ajaxCallNFC()
 {
+
+  ajaxCallNFC();
+  document.getElementById('name_div').innerHTML = "Patient: " +sessionStorage.getItem("patient_name");
+  document.getElementById('provider_name_div').innerHTML= "Provider: " +sessionStorage.getItem("current_provider_name")
+
+};
+
+function ajaxCallNFC(){
+
   $.ajax({
       type: 'GET',
       dataType: 'jsonp',
@@ -478,10 +502,12 @@ function ajaxCallGetProviderId(hexcode){
       type: 'GET',
       dataType: 'jsonp',
       url: baseUrl + '/dashboard/verification/provider/' + hexcode,
-      success: function(data)
-      {
-	       console.log(data[0].provider_id);
-	        sessionStorage.setItem("current_provider_id",data[0].provider_id);
+
+      success: function(data) {
+	console.log(data[0].provider_id);
+	sessionStorage.setItem("current_provider_id",data[0].provider_id);
+	sessionStorage.setItem("current_provider_name", data[0].provider_first_name+" "+ data[0].provider_last_name);
+
 
       },
       error: function (xhr, status, error) {
@@ -512,8 +538,10 @@ function endAppointment()
      	 },
   	})
    }
+
    window.location.href = "NPS.html"; //Go to the NPS page for the patient to fill out.
 }
 /*
   -------------------------------------------END HELPER FUNCTIONS-----------------------------------------------------
 */
+
