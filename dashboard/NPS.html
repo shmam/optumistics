@@ -1,69 +1,71 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-        <title>Optumistics NPS Page</title>
-        <meta charset = "UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/NPS.CSS">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.css">
-    </head>
 
-    <body>
-   <div id="mySidebar" class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left">
-            
-            <div id="links" class="w3-bar w3-white">
-                <a href="neoregister.html" class="w3-bar-item w3-button w3-padding-16">Register<i id="nav-icon" class="glyphicon glyphicon-home"></i></a> <!-- register page html -->
-                <a href="SettingsPage.html" class="w3-bar-item w3-button w3-padding-16">Settings<i id="nav-icon" class="glyphicon glyphicon-user"></i></a> <!-- settings page html -->
-                <a href="neoStats.html" class="w3-bar-item w3-button w3-padding-16">Statistics<i id="nav-icon" class="glyphicon glyphicon-file"></i></a> <!-- neo stats page html -->
-                <a href="NPS.html" class="w3-bar-item w3-button w3-padding-16">NPS Survey<i id="nav-icon" class="glyphicon glyphicon-edit"></i></a> <!-- NPS page html -->
-            </div> <!-- end of links div -->
+  <head>
+    <title>Optumistics NPS Page</title>
+    <meta charset = "UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/NPS.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.css">
+  </head>
+
+  <body>
+    <div id="mySidebar" class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left">
+
+      <div id="links" class="w3-bar w3-white">
+        <a href="neoregister.html" class="w3-bar-item w3-button w3-padding-16">Register<i id="nav-icon" class="glyphicon glyphicon-home"></i></a> <!-- register page html -->
+        <a href="SettingsPage.html" class="w3-bar-item w3-button w3-padding-16">Settings<i id="nav-icon" class="glyphicon glyphicon-user"></i></a> <!-- settings page html -->
+        <a href="neoStats.html" class="w3-bar-item w3-button w3-padding-16">Statistics<i id="nav-icon" class="glyphicon glyphicon-file"></i></a> <!-- neo stats page html -->
+        <a href="NPS.html" class="w3-bar-item w3-button w3-padding-16">NPS Survey<i id="nav-icon" class="glyphicon glyphicon-edit"></i></a> <!-- NPS page html -->
+      </div> <!-- end of links div -->
 
     </div> <!-- end of mySidebar div -->
 
-        <div zclass="w3-main" id="main" class = "animated fadeIn">
+    <div zclass="w3-main" id="main" class = "animated fadeIn">
 
-        <div id="topBar">
-            <button id="topBar-button" class="w3-button w3-xlarge">&#9776;</button> <!-- side bar button -->
-            <img src="img/optum1.jpg" alt="optum"> <!-- optum logo on top of the page -->
-        </div> <!-- end of topBar div -->
-
-
-        <div id="mainContent">
-            <h1>NPS Survey</h1>
-            <hr style="margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;" />
-            <br/>
-        </div> <!-- end of mainContent -->
-
-     <div class="container">
-         <p>Please rate the following question on a scale of 1-10, 10 being the most positive.</p>
-            <div class="panel panel-warning">
-            <div class="panel-heading"></div>
-            <div class="panel-body">
-              <input id="ex13" type="text" data-slider-value="5" data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" data-slider-ticks-snap-bounds="10" data-slider-ticks-labels='["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'/>
-
-            </div> <!--end of panel-body div tag-->
-            </div> <!--end of panel-info div tag-->
-    
-    </div> <!-- end of container div tag-->
+      <div id="topBar">
+        <button id="topBar-button" class="w3-button w3-xlarge">&#9776;</button> <!-- side bar button -->
+        <img src="img/optum1.jpg" alt="optum"> <!-- optum logo on top of the page -->
+      </div> <!-- end of topBar div -->
 
 
-<div class="container2">
-  <button id='submit' type="button" class="btn btn-warning">Submit</button>
-    
-</div> <!-- end of container2 div tag-->
+      <div id="mainContent">
+        <h1>NPS Survey</h1>
+        <hr style="margin:5px 5px; margin-left: 35%; margin-right: 35%;border:0;border-top:2px solid #000;" />
+        <br/>
+      </div> <!-- end of mainContent -->
+
+      <div class="container">
+       <p>Please rate the following question on a scale of 1-10, 10 being the most positive.</p>
+       <div class="panel panel-warning">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+          <input id="ex13" type="text" data-slider-value="5" data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" data-slider-ticks-snap-bounds="10" data-slider-ticks-labels='["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'/>
+
+        </div> <!--end of panel-body div tag-->
+      </div> <!--end of panel-info div tag-->
+
+      </div> <!-- end of container div tag-->
 
 
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        <script src="js/NPS.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.js"></script>
+      <div class="container2">
+        <button id='submit' type="button" class="btn btn-warning">Submit</button>
+
+      </div> <!-- end of container2 div tag-->
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+      <script src="js/NPS.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.js"></script>
     </body>
 
 </html>
+

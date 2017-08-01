@@ -1,9 +1,10 @@
+/* -------------------------------------------------------- CSS FOR stats HTML PAGE ------------------------------------------------- */
+
+/* import font from the internet */
 @import "http://fonts.googleapis.com/css?family=Raleway";
 @import url('https://fonts.googleapis.com/css?family=Cabin');
 
-/*
-The following styling for the lines are to divide the screen nicely.
-*/
+/* The following styling for the lines are to divide the screen nicely. */
 .arrow-up {
 width: 0;
 height: 0;
@@ -12,22 +13,19 @@ border-right: 8px solid transparent;
 border-bottom: 15px solid #2ecc71;
 display: inline-block;
 margin-left: 10px;
-
 }
 
 .arrow-down {
-width: 0;
- height: 0;
- border-left: 8px solid transparent;
- border-right: 8px solid transparent;
-
- border-top: 15px solid #e74c3c;
- display: inline-block;
- margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 15px solid #e74c3c;
+  display: inline-block;
+  margin-left: 10px;
 }
 
-li
-{
+li {
   font-size: 24px;
   font-family: 'Cabin', sans-serif;
   text-align: right;
@@ -40,14 +38,10 @@ li
   list-style-type: none;
 }
 
-
-
-li:hover
-{
+li:hover {
 -webkit-box-shadow: 7px 6px 9px 0px rgba(168,165,168,1);
 -moz-box-shadow: 7px 6px 9px 0px rgba(168,165,168,1);
 box-shadow: 7px 6px 9px 0px rgba(168,165,168,1);
-
 }
 
 #providerDropDown{
@@ -78,11 +72,10 @@ margin-left: 6%;
 margin-right: 6%;
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
-
 }
-button:active
-{
-border-top: 2px solid white;
+
+button:active {
+  border-top: 2px solid white;
 }
 
 .loader {

@@ -1,0 +1,423 @@
+/** this file is the styling for the neoregister.html file */
+
+/** imports google fonts */
+@import "http://fonts.googleapis.com/css?family=Raleway";
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
+
+/** styles the container class that holds the main page content */
+.container {
+  padding: 20px;
+}
+/** styling for the body */
+body {
+  font-family:'Raleway',sans-serif;
+}
+
+/** styling for the user input box fields on the popup windows */
+.input-box{
+
+  margin-left: 2%;
+
+}
+
+/** styling for the labels for the input boxes on the popup windows */
+.input-label {
+  color: white;
+  margin-left: 32%;
+}
+
+/*
+The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact. Styles the
+'Start Appointment' button popup window
+*/
+#abc {
+  width:100%;
+  height:100%;
+  opacity:.9;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#a8a8a8;
+  overflow:auto
+}
+
+/** styles the first popup window (corresponding to the 'Start Appointment' button) */
+#popupContact{
+  align-content: bottom;
+  z-index: 1;
+}
+
+/** styles the second popup window (corresponding to the 'Add New Appointment' button) */
+#popupContact2{
+  align-content: bottom;
+
+}
+
+/** styles the third popup window (corresponding to the 'Add New Provider' button) */
+#popupContact3{
+  align-content: bottom;
+
+}
+
+/** styles the fourth popup window (corresponding to the 'Add New Patient' button) */
+#popupContact4{
+  align-content: bottom;
+
+}
+
+/** styles the fifth popup window (corresponding to the 'Provider NFC Registration' button) */
+#popupContact5{
+  align-content: bottom;
+
+}
+
+/*
+  The following #abc2 tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact2. Styles the
+  'Add New Appointment' button popup window
+*/
+#abc2 {
+  width:100%;
+  height:100%;
+  opacity:.9;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#a8a8a8;
+  overflow:auto
+}
+
+/*
+  The following #abc3 tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact3. Styles the
+  'Add New Provider' button popup window
+*/
+#abc3 {
+  width:100%;
+  height:100%;
+  opacity:.9;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#a8a8a8;
+  overflow:auto;
+}
+
+/*
+  The following #abc4 tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact4. Styles the
+  'Add New Patient' button popup window
+*/
+#abc4 {
+  width:100%;
+  height:100%;
+  opacity:.9;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#a8a8a8;
+  overflow:auto
+}
+
+/*
+  The following #abc5 tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact5. Styles the
+  'Provider NFC Registration' button popup window
+*/
+#abc5 {
+  width:100%;
+  height:100%;
+  opacity:.9;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#a8a8a8;
+  overflow:auto
+}
+
+
+/*
+  The following is the style for the 'Start Appointment' popup div
+*/
+div#popupContact {
+  position:absolute;
+  left:50%;
+  top:17%;
+  margin-left:-202px;
+  font-family:'Raleway',sans-serif;
+}
+
+/*
+  The following is the style for the 'Add New Appointment' popup div
+*/
+div#popupContact2 {
+  position:absolute;
+  left:50%;
+  top:17%;
+  margin-left:-202px;
+  font-family:'Raleway',sans-serif;
+}
+
+/*
+  The following is the style for the 'Add New Provider' popup div
+*/
+div#popupContact3 {
+  position:absolute;
+  left:50%;
+  top:17%;
+  margin-left:-202px;
+  font-family:'Raleway',sans-serif;
+}
+
+/*
+  The following is the style for the 'Add New Patient' popup div
+*/
+div#popupContact4 {
+  position:absolute;
+  left:50%;
+  top:17%;
+  margin-left:-202px;
+  font-family:'Raleway',sans-serif;
+}
+
+/*
+  The following is the style for the 'Provider NFC Registration' popup div
+*/
+div#popupContact5 {
+  position:absolute;
+  left:50%;
+  top:17%;
+  margin-left:-202px;
+  font-family:'Raleway',sans-serif;
+}
+
+/*
+  styles the content on the 'Provider NFC Registration' popup window
+*/
+#nfc-avail {
+  display:block;
+  overflow:auto;
+}
+
+/*
+  styles the content on the 'New Appointment' popup window
+*/
+#new-appointment {
+  display:block;
+  overflow:auto;
+}
+
+/*
+  styles the drop down menu of available nfc ids to assign to patients on the 'start appointment' popup window
+*/
+#registerNFC {
+  display:none;
+  overflow:auto;
+}
+
+/*
+ Styling for the wrapper div id
+*/
+#wrapper{
+  text-align: center;
+  align-content: center;
+}
+
+/*
+  The following the style for the button that comes out.
+*/
+#newWindow{
+  width: 800px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #36454F;
+  left: 50%;
+  margin-left: -25%;
+  border-radius: 5%;
+  border:4px solid #fff;
+
+}
+
+/*
+  The following closes the popout screen and handles the styling
+*/
+#button-close{
+  background-color: #e74c3c;
+  color: #ffffff;
+  float: right;
+}
+
+/*
+  styling for the main content of the page
+*/
+#content{
+  margin-top: 50%;
+}
+
+/*
+  styling for the main graphics of the page
+*/
+#graphic{
+  border:5px solid #fff;
+}
+
+/*
+  styling for all of the h1 headings
+*/
+h1
+{
+  margin-left: -5%;
+    color: black;
+    text-align: center;
+    font-size: 72px ;
+    font-family:'Raleway',sans-serif;
+}
+
+/*
+  styling for all of the paragraph tags on the html page
+*/
+p
+{
+  text-align: center;
+}
+
+/*
+  handles the styling for the 5 cards on the page in the cardcolor class
+*/
+.cardcolor
+{
+color: #FFB732;
+text-align: center;
+background: #FFB732;
+width: 450px;
+height: 110px;
+border-radius: 38px;
+}
+
+/*
+  opacity of the bootstrap cards on hover
+*/
+.w3-hover-opacity
+{
+
+}
+
+/*
+  styles the bootstrap panels that make up the 5 cards
+*/
+.w3-panel
+{
+  color: white ;
+  font-size: 30px;
+  font-family:'Raleway',sans-serif;
+  margin-left: 36% ;
+  margin-top: 45px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/*
+  styles all of the span tags on the html page
+*/
+span
+{
+  font-family:'Raleway',sans-serif;
+  text-align: center;
+
+}
+
+/**
+* Override feedback icon position
+* See http://formvalidation.io/examples/adjusting-feedback-icon-position/
+*/
+#eventForm .form-control-feedback {
+top: 0;
+right: -15px;
+}
+
+/*
+  styles the vertical lines that separate the cards on the page
+*/
+#verticalLine{
+
+  width: 1px;
+  height: 80%;
+  background-color: silver;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 3.5%;
+
+}
+
+/*
+  styles the second row of vertical lines that separate the cards on the page
+*/
+#verticalLine2{
+
+  width: 1px;
+  height: 80%;
+  background-color: silver;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+
+}
+
+/*
+  styles the glyphicon class icons on the page (shown on the cards)
+*/
+.glyphicon
+{
+
+  font-size: 100px;
+  float: right;
+  color: white;
+  padding-top: 25px;
+  padding-left: 25px;
+
+}
+
+/*
+  styles the glyphicon icon for the register anchor tag on the sidebar menu
+*/
+#register_bar .glyphicon{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+}
+
+/*
+  styles the glyphicon icon for the settings anchor tag on the sidebar menu
+*/
+#settings_bar .glyphicon{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+}
+
+/*
+  styles the glyphicon icon for the statistics anchor tag on the sidebar menu
+*/
+#statistics_bar .glyphicon{
+  color: black;
+  font-size: 42px;
+  float: left;
+  margin-left: 15px;
+}
+
+/*
+  styles the glyphicon bar on the sidebar menu
+*/
+.glyphiconbar
+{
+  font-size: 50px;
+  float: right;
+  color: black;
+  padding-top: 25px;
+  padding-left: 25px;
+
+}

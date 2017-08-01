@@ -1,3 +1,7 @@
+<!-- *********************************************** -->
+<!--                Landingpage.html                 -->
+<!-- *********************************************** -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,116 +26,114 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
+    <!-- *************** START OF Landingpage CSS *************** -->
     <style>
-
-    @import "http://fonts.googleapis.com/css?family=Raleway";
-    body {
-      font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif; }
-    .btn-default {
-      color: #222222;
-      border-color: white;
-      background-color: white; }
+      @import "http://fonts.googleapis.com/css?family=Raleway";
+      body {
+        font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+      }
+      .btn-default {
+        color: #222222;
+        border-color: white;
+        background-color: white;
+      }
       .btn-default:focus, .btn-default.focus {
         color: #222222;
         border-color: #bfbfbf;
-        background-color: #e6e6e6; }
+        background-color: #e6e6e6;
+      }
       .btn-default:hover {
         color: #222222;
         border-color: #e0e0e0;
-        background-color: #e6e6e6; }
-      .btn-default:active, .btn-default.active,
-      .open > .btn-default.dropdown-toggle {
+        background-color: #e6e6e6;
+      }
+      .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
         color: #222222;
         border-color: #e0e0e0;
-        background-color: #e6e6e6; }
-        .btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus,
-        .open > .btn-default.dropdown-toggle:hover,
-        .open > .btn-default.dropdown-toggle:focus,
-        .open > .btn-default.dropdown-toggle.focus {
-          color: #222222;
-          border-color: #bfbfbf;
-          background-color: #d4d4d4; }
-      .btn-default:active, .btn-default.active,
-      .open > .btn-default.dropdown-toggle {
-        background-image: none; }
+        background-color: #e6e6e6;
+      }
+      .btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus,
+      .open > .btn-default.dropdown-toggle:hover, .open > .btn-default.dropdown-toggle:focus, .open > .btn-default.dropdown-toggle.focus {
+        color: #222222;
+        border-color: #bfbfbf;
+        background-color: #d4d4d4;
+      }
+      .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+        background-image: none;
+      }
       .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus,
-      fieldset[disabled] .btn-default:hover,
-      fieldset[disabled] .btn-default:focus,
-      fieldset[disabled] .btn-default.focus {
+      fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default.focus {
         border-color: white;
-        background-color: white; }
+        background-color: white;
+      }
       .btn-default .badge {
         color: white;
-        background-color: #222222; }
-    .inputForm{
-      border-radius: 300px;
-      color: red;
-    }
-    .btn-primary {
-      color: white;
-      border-color: #F05F40;
-      background-color: #FF9C33; }
+        background-color: #222222;
+      }
+      .inputForm{
+        border-radius: 300px;
+        color: red;
+      }
+      .btn-primary {
+        color: white;
+        border-color: #F05F40;
+        background-color: #FF9C33;
+      }
       .btn-primary:focus, .btn-primary.focus {
         color: white;
         border-color: #a4270d;
-        background-color: #eb3812; }
+        background-color: #eb3812;
+      }
       .btn-primary:hover {
         color: white;
         border-color: #e13612;
-        background-color: #eb3812; }
+        background-color: #eb3812;
+      }
       .btn-primary:active, .btn-primary.active,
       .open > .btn-primary.dropdown-toggle {
         color: white;
         border-color: #e13612;
-        background-color: #eb3812; }
-        .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus,
-        .open > .btn-primary.dropdown-toggle:hover,
-        .open > .btn-primary.dropdown-toggle:focus,
-        .open > .btn-primary.dropdown-toggle.focus {
-          color: white;
-          border-color: #a4270d;
-          background-color: #c93110; }
-      .btn-primary:active, .btn-primary.active,
-      .open > .btn-primary.dropdown-toggle {
-        background-image: none; }
+        background-color: #eb3812;
+      }
+      .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus,
+      .open > .btn-primary.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle.focus {
+        color: white;
+        border-color: #a4270d;
+        background-color: #c93110;
+      }
+      .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+        background-image: none;
+      }
       .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus,
-      fieldset[disabled] .btn-primary:hover,
-      fieldset[disabled] .btn-primary:focus,
-      fieldset[disabled] .btn-primary.focus {
+      fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus {
         border-color: #F05F40;
-        background-color: #F05F40; }
+        background-color: #F05F40;
+      }
       .btn-primary .badge {
         color: #FF9C33;
-        background-color: white; }
-
-    .btn {
-      font-weight: 700;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 300px;
-      font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; }
-
-    .btn-xl {
-      padding: 15px 30px; }
-
-
-      body{
-        background-image: url("stethbackground.jpg");
-
-
+        background-color: white;
       }
-
+      .btn {
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 300px;
+        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      }
+      .btn-xl {
+        padding: 15px 30px;
+      }
+      body {
+        background-image: url("img/stethbackground.jpg");
+      }
       #pwd {
         width: 200px;
-
         position: relative;
         float: right;
         margin-right: 44%;
         margin-top: -30px;
         opacity: .5;
-
       }
-
       #title {
         color:white;
         font-size: 50px;
@@ -140,34 +142,26 @@
         margin-bottom: 0;
         text-transform: uppercase;
       }
-
-      /*
-      The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
-      */
+      /* The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact. */
       #abc {
-      width:100%;
-      height:100%;
-      opacity:.9;
-      top:0;
-      left:0;
-      display:none;
-      position:fixed;
-      background-color:#a8a8a8;
-      overflow:auto
+        width:100%;
+        height:100%;
+        opacity:.9;
+        top:0;
+        left:0;
+        display:none;
+        position:fixed;
+        background-color:#a8a8a8;
+        overflow:auto;
       }
-
-      /*
-      The following is the style for the popout screen.
-      */
+      /* The following is the style for the popout screen. */
       div#popupContact {
-      position:absolute;
-      left:50%;
-      top:17%;
-      margin-left:-202px;
-      font-family:'Raleway',sans-serif;
+        position:absolute;
+        left:50%;
+        top:17%;
+        margin-left:-202px;
+        font-family:'Raleway',sans-serif;
       }
-
-
       #popupContact{
         align-content: bottom;
       }
@@ -175,10 +169,7 @@
         text-align: center;
         align-content: center;
       }
-
-      /*
-        The following the style for the button that comes out.
-      */
+      /* The following the style for the button that comes out. */
       #newWindow{
         width: 800px;
         padding-top: 15px;
@@ -188,11 +179,8 @@
         margin-left: -25%;
         border-radius: 5%;
         border:4px solid #fff;
-
       }
-      /*
-        The following closes the popout screen.
-      */
+      /* The following closes the popout screen. */
       #button-close{
         background-color: #e74c3c;
         color: #ffffff;
@@ -201,9 +189,6 @@
       #wrapper{
         text-align: center;
         align-content: center;
-
-      }
-
       }
       #content{
         margin-top: 50%;
@@ -211,7 +196,6 @@
       #graphic{
         border:5px solid #fff;
       }
-
       #assign-NFC {
         background-color: green;
         color: white;
@@ -221,93 +205,58 @@
         margin-left: 43%;
         font-family:'Raleway',sans-serif;
       }
-
-
-
-
-
     </style>
-
-
-
-
-
-
-
+  <!-- *************** END OF Landingpage CSS *************** -->
   </head>
 
   <body>
+    <div class="logo"> <!-- optum logo -->
+      <img src="img/optum.png" alt="optum" style="width:250px;height:80px;float:left;">
+    </div> <!-- end of logo div -->
 
-
-
-
-
-<div class="logo">
-    <img src="img/optum.png" alt="optum" style="width:250px;height:80px;float:left;">
-  </div>
     <div class="main-content">
-
       <div>
         <h3 style="color:white; float: right; margin-right: 37%;margin-top: 325px;"> ENTER PIN OR SCAN BADGE TO LOG IN </h3>
       </div>
       <form>
-      <div class="form-group">
-
-        <label style="color: white; float: right; margin-right: 58%;margin-top: 25px;" for="pwd">PIN:</label>
-        <input type="password" class="form-control" id="pwd">
-      </div>
-    </form>
-    <a style="float: right; margin-right: 47%; margin-top: 5%;" onclick="div_show()" class="btn btn-primary btn-xl">LOGIN</a>
+        <div class="form-group"> <!-- ENTER PIN BOX -->
+          <label style="color: white; float: right; margin-right: 58%;margin-top: 25px;" for="pwd">PIN:</label>
+          <input type="password" class="form-control" id="pwd">
+        </div> <!-- end of form-group div -->
+      </form>
+      <a style="float: right; margin-right: 47%; margin-top: 5%;" onclick="div_show()" class="btn btn-primary btn-xl">LOGIN</a>
       <!--<h1 id="title"> Optumistics <h1>-->
-
-
       <div id="abc">
-
-        <!-- Popup Div Starts Here -->
+      <!-- Popup Div Starts Here -->
         <div id="popupContact">
+          <div id="newWindow" class="animated zoomIn">
+            <div id="wrapper">
+              <button id="button-close" onclick="div_hide()" style="border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
+              <img src="img/optum.png" id="hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
+              <h1 style="color: #ffffff; text-align: center;">scan patient</h1>
+            </div> <!-- end of wrapper div -->
+            <hr>
+            <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
+            <p style="margin-left: 7%; color: #ffffff; font-size: 24px; font-family:'Raleway',sans-serif;">Please scan the patient's NFC card on the scanner if applicable</p>
+            <br/>
+            <div>
+              <button id="assign-NFC"><a style="margin-left: -4px;color:white; font-family:'Raleway',sans-serif; font-size: 20px; padding-top: 25px; padding-bottom: 25px; padding-left: 25px; padding-right: 27px;" href="neoregister.HTML" class="input-box">proceed</a></button>
+            </div>
+          </div> <!-- end of newWindow div -->
+        </div> <!-- end of popupContact div -->
+      </div> <!-- end of abc div -->
+    </div> <!-- main-content -->
 
-      <div id = "newWindow" class = "animated zoomIn">
-        <div id = "wrapper">
-          <button id = "button-close" onclick ="div_hide()" style = "border-radius: 50%; margin-right: 1%; margin-top: 1%;">X</button>
-          <img src="optum.png" id = "hello" alt="optum" style="width:250px;height:80px;margin-left:-2%"><br>
-          <h1 style = "color: #ffffff; text-align: center;">scan patient</h1>
-
-
-        </div>
-      <hr>
-        <!-- The group buttons are the start, stop, and reset button that are grouped together for styling purposes. -->
-        <p style = "margin-left: 7%; color: #ffffff; font-size: 24px; font-family:'Raleway',sans-serif;">Please scan the patient's NFC card on the scanner if applicable</p>
-        <br/>
-        <div>
-        <button id="assign-NFC"><a style="margin-left: -4px;color:white; font-family:'Raleway',sans-serif; font-size: 20px; padding-top: 25px; padding-bottom: 25px; padding-left: 25px; padding-right: 27px;" href="dayDash.HTML" class="input-box">proceed</a></button>
-      </div>
-      </div>
-    </div>
-  </div>
-
-
-    </div>
-
-
-
-
+    <!-- JavaScript Functions -->
     <script>
-    //Function To Display patient scan reminder
-    function div_show() {
-    document.getElementById('abc').style.display = "block";
-    }
-    //Function to Hide patient scan reminder
-    function div_hide(){
-    document.getElementById('abc').style.display = "none";
-    }
+      //Function To Display patient scan reminder
+      function div_show() {
+        document.getElementById('abc').style.display = "block";
+      }
+      //Function to Hide patient scan reminder
+      function div_hide() {
+        document.getElementById('abc').style.display = "none";
+      }
     </script>
   </body>
-
-
-
-
-
-
-
-
 </html>

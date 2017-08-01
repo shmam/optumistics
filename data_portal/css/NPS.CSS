@@ -1,0 +1,87 @@
+/* -------------------------------------------------------- CSS FOR NPS HTML PAGE ------------------------------------------------- */
+
+@import "http://fonts.googleapis.com/css?family=Raleway";
+
+    hr {
+        margin:10px 60px;
+        margin-left: 8%;
+        border:0;
+        border-top:1px solid #ccc
+    }
+
+    body {
+        font-family:'Raleway',sans-serif;
+        overflow: hidden;
+    }
+
+    #mySidebar {
+        display: none;
+    }
+
+    #mySidebar button {
+        float: right;
+        border-radius: 50%;
+        border:1px solid #000;
+    }
+    
+    #links a {
+        font-size: 24px;
+        text-align: center;
+        font-family:'Raleway', sans-serif;
+    }
+
+    #nav-icon {
+        float:right;
+    }
+
+    #topBar img {
+        width:250px;
+        height:80px;
+    }
+
+    #mainContent {
+        font-family:'Raleway',sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+   .panel-heading {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    .buttons {
+        text-align: center;
+    }
+    .container {
+        text-align: center;
+    }
+    .container2 {
+        text-align: center;
+    }
+    .panel-warning{
+        text-align: center;
+        width: 700px;
+        height:auto;
+        margin-left: 20%;
+    }
+    #ex13 .slider{
+        background: orange
+
+    }
+    #slider2 .slider-selection {
+
+        background: orange;
+    }
+    #slider2 .slider-handle {
+
+        background: orange;
+    }
+    .slider-tick.round.in-selection{
+        background-image: linear-gradient(to bottom,orange 0%, orange 100%);
+    }
+    
+    
