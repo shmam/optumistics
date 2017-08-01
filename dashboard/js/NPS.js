@@ -37,6 +37,10 @@ $(document).ready(function(){
         });
     });
 
+    $('#skipButton').click(function(){
+      location.href="landingpage.html"
+    });
+
     /* click button to open/close sidebar */
     $('#topBar-button').click(function () {
         if (document.getElementById("mySidebar").style.display == "block") {
