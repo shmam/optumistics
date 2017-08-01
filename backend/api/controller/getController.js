@@ -709,7 +709,7 @@ function select_dup_flag_color_id(req,res) {
 }
 
 function select_provider_id_by_NFC(req,res){
-	cn.query("SELECT act.provider_id AS provider_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM ActivatedNFC_Provider act, NFC_Bracelet nfc WHERE nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"'", function(err,data)
+	cn.query("SELECT pi.provider_first_name, pi.provider_last_name, act.provider_id AS provider_id, act.nfc_id, nfc.nfc_id, nfc.nfc_hex FROM Provider_Information pi, ActivatedNFC_Provider act, NFC_Bracelet nfc WHERE pi.provider_id=act.provider_id AND nfc.nfc_id = act.nfc_id AND nfc.nfc_hex= '"+req.params.nfc_hex+"'", function(err,data)
 	{
 		if(err)
 		{

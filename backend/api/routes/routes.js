@@ -130,40 +130,40 @@ module.exports = function(app) {
 
     //Post Functions Routes
 
-    app.route('/general/insert/Person_Type/:person_type_name')
+    app.route('/general/insert/Person_Type/:person_type_name') // insert person type
         .post(insertAPI.insert_Person_Type)
 
-    app.route('/general/insert/Question/:question')
+    app.route('/general/insert/Question/:question') // insert question
         .post(insertAPI.insert_Question)
 
-    app.route('/general/insert/Flag_Color/:flag_color_name/:flag_hex')
+    app.route('/general/insert/Flag_Color/:flag_color_name/:flag_hex') // insert flag color
         .post(insertAPI.insert_Flag_Color)
 
-    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration')
+    app.route('/general/insert/Appointment_Type/:appointment_name/:appointment_duration') // insert appt type
         .post(insertAPI.insert_Appointment_Type)
 
-    app.route('/general/insert/Status/:status_name')
+    app.route('/general/insert/Status/:status_name') // insert status
         .post(insertAPI.insert_Status)
 
-    app.route('/general/insert/NFC_Bracelet/:provider_nfc/:status_id/:nfc_hex')
+    app.route('/general/insert/NFC_Bracelet/:provider_nfc/:status_id/:nfc_hex') // insert NFC bracelet
         .post(insertAPI.insert_NFC_Bracelet)
 
-    app.route('/general/insert/Room/:room_name/:status_id')
+    app.route('/general/insert/Room/:room_name/:status_id') // insert room info
         .post(insertAPI.insert_Room)
 
-    app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id')
+    app.route('/general/insert/Survey_Activity/:patient_id/:rating/:rating_date/:question_id') // insert survey activity
         .post(insertAPI.insert_Survey_Activity)
 
-    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:person_type_id')
+    app.route('/general/insert/Patient_Information/:patient_first_name/:patient_last_name/:person_type_id') // insert patient info
         .post(insertAPI.insert_Patient_Information)
 
-    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_username/:provider_password/:person_type_id/:status_id')
+    app.route('/general/insert/Provider_Information/:provider_first_name/:provider_last_name/:provider_username/:provider_password/:person_type_id/:status_id') // insert provider info
         .post(insertAPI.insert_Provider_Information)
 
-    app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon')
+    app.route('/general/insert/Actions/:action_name/:flag_color_id/:button_label/:action_duration/:status_id/:icon') // insert actions
         .post(insertAPI.insert_Actions)
 
-    app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id')
+    app.route('/general/insert/ActivatedNFC_Provider/:provider_id/:room_id/:nfc_id') // insert ActivatedNFC Provider
         .post(insertAPI.insert_ActivatedNFC_Provider)
 
     app.route('/general/insert/Appointment/:start_time/:end_time/:patient_id/:appointment_type_id/:status_id/:appointment_date/:expected_start_time/:expected_end_time/:provider_id')
