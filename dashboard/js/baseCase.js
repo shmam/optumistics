@@ -78,6 +78,7 @@ $( document ).ready(function() {
   });
 
   callToast();
+
 });
 
 
@@ -160,7 +161,8 @@ $('.card').click(function()
   $(document).ready(function()
   {
     ajaxCallNFC();
-    document.getElementById('name_div').innerHTML = sessionStorage.getItem("patient_name")
+    document.getElementById('name_div').innerHTML = "Patient: "  + sessionStorage.getItem("patient_name");
+ document.getElementById('provider_name_div').innerHTML= "Provider: " +sessionStorage.getItem("current_provider_name");
 
   });
 
