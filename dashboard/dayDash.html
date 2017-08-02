@@ -11,6 +11,10 @@
   body{
     font-family: 'Cabin', sans-serif;
   }
+ /*
+      The following #abc tag is a style tag that sets the gray backscreen and the opacity of the entire div. Which includes the popupContact.
+      */
+     
   #verticalLine{
 
     width: 1px;
@@ -58,12 +62,15 @@
   .image{
     width: 100px;
     height: 100px;
-    margin-top: 200px; 
-    margin-left: 65%;
-
+    /*margin-top: 145px; 
+    margin-left: 80%;*/
+    position:absolute;
     font-size: 48px;
-      color: #ffffff
-  }
+    color: #ffffff;
+    right:10px;
+    bottom:10px;
+    
+   }
 
    .secondRow{
 
@@ -145,7 +152,7 @@
 
 </head>
 
-<body id="body" style="overflow:hidden;">
+<body id="body" style="overflow:hidden; background:#464646">
 
       <div id="myNav" class="overlay">
 
@@ -154,26 +161,32 @@
       </div>
     </div>
 
+	
   <div zclass="w3-main" id="main" class = "animated fadeIn">
+    <div class="alert alert-success" role="alert" style="top:0px; position:absolute; display:none;" id="alertBox">
+	<strong>Time submitted successfully!</strong>
+    </div>
+    <div id = "topBar" style="padding-top:20px"> <!-- This div will be the top bar where the optum logo will be -->
+      <img src="img/optum.png" alt="optum" style="margin-left: 41%;width:250px;height:80px;"> <!-- This is the img logo for the Optum sign -->
+  	
+	<div id="google_translate_element" style = "float: right;"></div> <!--This is the google translate div -->
 
-    <div id = "topBar"> <!-- This div will be the top bar where the optum logo will be -->
-      <img src="img/optum1.jpg" alt="optum" style="margin-left: 41%;width:250px;height:80px;"> <!-- This is the img logo for the Optum sign -->
     </div>
 
 
-    <div id="name_div" style="float:left; margin-left:20px; font-weight:700; font-size:25px;"></div>
-    <div id="provider_name_div" style=style="float:left; margin-left:20px; font-weight:700; font-size:25px;"></div>
+    <span id="name_div" style="float:left; margin-left:20px; color:#FFF;font-weight:700; font-size:25px;"></span><br/>
+    <span id="provider_name_div" style="float: left;font-weight:700; color:#FFF;font-size:25px;margin-top: 1%;margin-left: -15%;"></span>
     <button style="color:white; background: rgba(231, 76, 60, 0.8); font-size:25px; padding: 5px; float: right; margin-right: 20px; font-weight: 700; " onClick="endAppointment()"> END APPOINTMENT </button> 
 
 
     <div id = "cardDivisions" style="margin-top:20px"> <!-- This div will contain all the cards. These divs will be divided proportionally and will be able to be flipped -->
-      <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 42%;"> <!-- This will be the first row on the screen -->
+      <div class = "w3-row" id = "firstRow" style = "margin-top: 2%;height: 39%;"> <!-- This will be the first row on the screen -->
 
         <div class = "w3-col w3-shadow card" hidden id = "0" style = "margin-top: 2%;margin-left: 1.5%;width: 31%; height: 94%; background: transparent;"><!-- The first column of the first row -->
           <div class = "front" >
             <h2 class="header">PHYSICAL</h2> <!--Name of Operation: Physical -->
 
-            <img src = "img/lightbulb.jpg"class="callB image" id = "0" onclick = "openNav(1)">
+            <img src = "img/tPhone.png"class="callB image" id = "0" onclick = "openNav(1)">
           </div>
           <div class = "back">
             <span class = "sec tensec" id="seconds0">00</span><span style = "font-size: 48px; color: #fff">:</span>
@@ -215,8 +228,8 @@
         </div>
       </div>
     </div>
-    <hr></br>
-      <div class = "w3-row" id = "secondRow" style = "height: 42%;"> <!-- This will be the first row on the screen -->
+    <br><br><br>
+      <div class = "w3-row" id = "secondRow" style = "height: 39%;"> <!-- This will be the first row on the screen -->
         <div class = "w3-col w3-shadow card"  hidden id = "3" style = "margin-top: -1%;margin-left: 1.5%;width: 31%; height: 94%;"> <!-- The first column of the second row -->
         <div class = "front">
           <h2 class="header">OPERATIONS</h2> <!--Name of Operation: Operations -->
@@ -263,12 +276,20 @@
 
     </div>
 
-    <script src = "js/baseCase.js"></script>
+		
+   
+   
+<script src = "js/baseCase.js"></script>
     </script>
 
-    <script>
+   <script type="text/javascript">
+	function googleTranslateElementInit() 
+	{
+	new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+	}
+</script>
 
-    </script>
+<script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
 

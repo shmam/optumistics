@@ -119,9 +119,7 @@ $('.card').click(function()
     {
        if (cards[flipCard].isEnabled) //If the card clicked has a timer running
        {
-         var group = confirm("Would you like to submit this time");
-         if (group)
-         {
+      
            clearInterval(Interval); //Stop the timer.
            cardRunning = false; //There is no timer that is now running anymore
            cards[flipCard].isEnabled = false; //That specific card is not running anymore.
@@ -135,13 +133,10 @@ $('.card').click(function()
            console.log(sendEndTime);
            ajaxCallSendTime(sendStartTime, sendEndTime, cards[flipCard].operation_id, sessionStorage.getItem("current_provider_id")); //Post the time into the DB using an AJAX POST function.
            $(appendString).flip(false); //Flip the card back.
+           $("#alertBox").show();
+	   closeAlert();
            clearAllCards(flipCard);
 
-         }
-         else
-         {
-           okjay++; //Continue the timer.
-         }
        }
 
     }
@@ -541,7 +536,13 @@ function endAppointment()
 
    window.location.href = "NPS.html"; //Go to the NPS page for the patient to fill out.
 }
+
+function closeAlert(){
+	setTimeout(function(){
+	$("#alertBox").hide();
+
+},2500);
+}
 /*
   -------------------------------------------END HELPER FUNCTIONS-----------------------------------------------------
 */
-
